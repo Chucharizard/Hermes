@@ -1,0 +1,91 @@
+using System.Windows;
+using System.Windows.Input;
+using System.Linq;
+using Hermes.Commands;
+using Hermes.Models;
+using Hermes.Services;
+
+namespace Hermes.ViewModels
+{
+    public class LoginViewModel : BaseViewModel
+    {
+        private readonly AutenticacionService _autenticacionService;
+        private int _ciEmpleado;
+        private string _password = string.Empty;
+        private string _mensajeError = string.Empty;
+        private bool _isLoading;
+
+        public int CiEmpleado
+        {
+            get => _ciEmpleado;
+            set => SetProperty(ref _ciEmpleado, value);
+        }
+
+        public string Password
+        {
+            get => _password;
+            set => SetProperty(ref _password, value);
+        }
+
+        public string MensajeError
+        {
+            get => _mensajeError;
+            set => SetProperty(ref _mensajeError, value);
+        }
+
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => SetProperty(ref _isLoading, value);
+        }
+
+        public ICommand LoginCommand { get; }
+
+        public LoginViewModel()
+        {
+            _autenticacionService = new AutenticacionService();
+            LoginCommand = new RelayCommand(async _ => await LoginAsync(), _ => !IsLoading);
+        }
+
+        private async Task LoginAsync()
+        {
+            MensajeError = string.Empty;
+
+            if (CiEmpleado == 0 || string.IsNullOrWhiteSpace(Password))
+            {
+                MensajeError = "Por favor, ingrese CI y contraseña";
+                return;
+            }
+
+            IsLoading = true;
+
+            var (success, usuario, mensaje) = await _autenticacionService.ValidarCredencialesAsync(CiEmpleado, Password);
+
+            IsLoading = false;
+
+            if (success && usuario != null)
+            {
+                // Guardar usuario en sesión
+                App.UsuarioActual = usuario;
+
+                // Navegar a ventana principal según el rol
+                if (usuario.Rol?.NombreRol.Equals("Broker", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    var mainWindow = new MainWindow();
+                    mainWindow.Show();
+
+                    // Cerrar ventana de login
+                    Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType().Name == "LoginWindow")?.Close();
+                }
+                else
+                {
+                    MensajeError = "Este sistema está disponible solo para usuarios con rol Broker";
+                }
+            }
+            else
+            {
+                MensajeError = mensaje;
+            }
+        }
+    }
+}

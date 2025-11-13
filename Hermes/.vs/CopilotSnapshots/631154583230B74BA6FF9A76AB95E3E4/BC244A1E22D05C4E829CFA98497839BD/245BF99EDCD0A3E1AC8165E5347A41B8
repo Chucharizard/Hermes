@@ -1,0 +1,36 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Hermes.Models;
+
+namespace Hermes.Data
+{
+    public class InmobiliarioDbContext : DbContext
+    {
+        public DbSet<Propiedad> Propiedades { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Transaccion> Transacciones { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // TODO: Configurar cadena de conexión desde App.config
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=localhost;Database=SistemaInmobiliario;Trusted_Connection=True;TrustServerCertificate=True;");
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configuraciones adicionales de entidades
+            modelBuilder.Entity<Propiedad>()
+                .Property(p => p.Precio)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Transaccion>()
+                .Property(t => t.Monto)
+                .HasPrecision(18, 2);
+        }
+    }
+}

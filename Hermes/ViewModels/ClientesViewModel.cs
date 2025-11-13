@@ -1,0 +1,6 @@
+namespace Hermes.ViewModels
+{
+    public class ClientesViewModel
+    {
+    }
+}

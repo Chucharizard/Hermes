@@ -1,0 +1,31 @@
+﻿using Hermes.Models;
+
+namespace Hermes.Services
+{
+    public class PropiedadService
+    {
+        public async Task<List<Propiedad>> ObtenerTodasAsync()
+        {
+            // TODO: Implementar lógica con base de datos
+            return await Task.FromResult(new List<Propiedad>());
+        }
+
+        public async Task<Propiedad?> ObtenerPorIdAsync(int id)
+        {
+            // TODO: Implementar lógica con base de datos
+            return await Task.FromResult<Propiedad?>(null);
+        }
+
+        public async Task<bool> GuardarAsync(Propiedad propiedad)
+        {
+            // TODO: Implementar lógica con base de datos
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> EliminarAsync(int id)
+        {
+            // TODO: Implementar lógica con base de datos
+            return await Task.FromResult(true);
+        }
+    }
+}

@@ -1,0 +1,15 @@
+namespace Hermes.Models
+{
+    public class Empleado
+    {
+        public int CiEmpleado { get; set; }
+        public string NombresEmpleado { get; set; } = string.Empty;
+        public string ApellidosEmpleado { get; set; } = string.Empty;
+        public string TelefonoEmpleado { get; set; } = string.Empty;
+        public string CorreoEmpleado { get; set; } = string.Empty;
+        public bool EsActivoEmpleado { get; set; }
+
+        // Navegación
+        public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+    }
+}
