@@ -24,6 +24,7 @@ namespace Hermes.ViewModels
         }
 
         public ICommand MostrarGestionEmpleadosCommand { get; }
+        public ICommand MostrarGestionTareasCommand { get; }
         public ICommand CerrarSesionCommand { get; }
 
         public MainViewModel()
@@ -37,6 +38,7 @@ namespace Hermes.ViewModels
 
             // Comandos
             MostrarGestionEmpleadosCommand = new RelayCommand(_ => MostrarGestionEmpleados());
+            MostrarGestionTareasCommand = new RelayCommand(_ => MostrarGestionTareas());
             CerrarSesionCommand = new RelayCommand(_ => CerrarSesion());
 
             // Mostrar vista por defecto
@@ -48,9 +50,14 @@ namespace Hermes.ViewModels
             CurrentView = new GestionEmpleadosView();
         }
 
+        private void MostrarGestionTareas()
+        {
+            CurrentView = new GestionTareasView();
+        }
+
         private void CerrarSesion()
         {
-            var result = MessageBox.Show("¿Esta seguro que desea cerrar sesion?",
+            var result = MessageBox.Show("ï¿½Esta seguro que desea cerrar sesion?",
                                          "Confirmar",
                                          MessageBoxButton.YesNo,
                                          MessageBoxImage.Question);

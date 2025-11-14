@@ -95,6 +95,10 @@
                             Command="{Binding MostrarGestionEmpleadosCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"/>
+                    <Button Content="✓ Gestion de Tareas"
+                            Command="{Binding MostrarGestionTareasCommand}"
+                            Style="{StaticResource MenuButtonStyle}"
+                            Margin="10,5"/>
                     <Button Content="📋 Propiedades"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"/>
