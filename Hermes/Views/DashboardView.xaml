@@ -221,32 +221,36 @@
                     </Border.Effect>
 
                     <StackPanel>
-                        <TextBlock Text="📊 Reporte Excel Profesional"
+                        <TextBlock Text="📊 Reporte Excel con Gráficos Automáticos"
                                    FontSize="20"
                                    FontWeight="Bold"
                                    Foreground="#2C3E50"
                                    Margin="0,0,0,15"/>
 
                         <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="#34495E" Margin="0,0,0,10">
-                            <Run Text="El reporte generará un archivo Excel completo que incluye:"/>
+                            <Run Text="El sistema utiliza una plantilla Excel prediseñada con gráficos profesionales:"/>
                         </TextBlock>
 
                         <StackPanel Margin="20,10,0,20">
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="• " FontWeight="Bold" Foreground="#27AE60"/>
-                                <Run Text="Hoja 'Datos de Tareas': Tabla completa con todas las tareas registradas"/>
+                                <Run Text="✓ " FontWeight="Bold" Foreground="#27AE60"/>
+                                <Run Text="Actualiza automáticamente los datos desde la base de datos"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="• " FontWeight="Bold" Foreground="#3498DB"/>
-                                <Run Text="Hoja 'Estadísticas': Resumen por estado con barras visuales coloreadas"/>
+                                <Run Text="✓ " FontWeight="Bold" Foreground="#3498DB"/>
+                                <Run Text="Los gráficos se actualizan instantáneamente con los nuevos valores"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="• " FontWeight="Bold" Foreground="#9B59B6"/>
-                                <Run Text="Hoja 'Prioridades': Distribución por prioridad con visualizaciones"/>
+                                <Run Text="✓ " FontWeight="Bold" Foreground="#9B59B6"/>
+                                <Run Text="Celda B2 = Tareas PENDIENTES"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="• " FontWeight="Bold" Foreground="#F39C12"/>
-                                <Run Text="Formato profesional con colores, porcentajes e instrucciones para gráficos"/>
+                                <Run Text="✓ " FontWeight="Bold" Foreground="#F39C12"/>
+                                <Run Text="Celda B3 = Tareas COMPLETADAS"/>
+                            </TextBlock>
+                            <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
+                                <Run Text="✓ " FontWeight="Bold" Foreground="#E74C3C"/>
+                                <Run Text="Celda B4 = Tareas VENCIDAS"/>
                             </TextBlock>
                         </StackPanel>
 
@@ -254,10 +258,10 @@
                             <StackPanel>
                                 <TextBlock FontSize="14" FontWeight="SemiBold" Foreground="#27AE60" Margin="0,0,0,5">
                                     <Run Text="💡 "/>
-                                    <Run Text="El archivo se guardará automáticamente en tu Escritorio"/>
+                                    <Run Text="Plantilla con gráficos preconfigurados"/>
                                 </TextBlock>
                                 <TextBlock FontSize="12" Foreground="#2C3E50" TextWrapping="Wrap">
-                                    <Run Text="y se abrirá con Excel. Incluye visualizaciones con barras coloreadas e instrucciones paso a paso para crear gráficos profesionales en segundos."/>
+                                    <Run Text="El archivo se guardará en tu Escritorio y se abrirá automáticamente. Los gráficos (tortas, barras, etc.) ya están configurados y se actualizan solos al cambiar los datos."/>
                                 </TextBlock>
                             </StackPanel>
                         </Border>
