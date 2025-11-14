@@ -78,6 +78,13 @@ namespace Hermes.ViewModels
 
             if (resultado)
             {
+                // Actualizar el objeto original en memoria para que la UI se actualice inmediatamente
+                _empleadoOriginal.NombresEmpleado = Empleado.NombresEmpleado;
+                _empleadoOriginal.ApellidosEmpleado = Empleado.ApellidosEmpleado;
+                _empleadoOriginal.TelefonoEmpleado = Empleado.TelefonoEmpleado;
+                _empleadoOriginal.CorreoEmpleado = Empleado.CorreoEmpleado;
+                _empleadoOriginal.EsActivoEmpleado = Empleado.EsActivoEmpleado;
+
                 MessageBox.Show("Empleado actualizado exitosamente",
                               "Exito",
                               MessageBoxButton.OK,
