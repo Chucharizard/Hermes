@@ -21,5 +21,10 @@ namespace Hermes.Views
                 ((LoginViewModel)this.DataContext).Password = passwordBox.Password;
             }
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
