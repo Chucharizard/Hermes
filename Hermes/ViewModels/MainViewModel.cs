@@ -25,6 +25,7 @@ namespace Hermes.ViewModels
 
         public ICommand MostrarGestionEmpleadosCommand { get; }
         public ICommand MostrarGestionTareasCommand { get; }
+        public ICommand MostrarDashboardCommand { get; }
         public ICommand CerrarSesionCommand { get; }
 
         public MainViewModel()
@@ -39,6 +40,7 @@ namespace Hermes.ViewModels
             // Comandos
             MostrarGestionEmpleadosCommand = new RelayCommand(_ => MostrarGestionEmpleados());
             MostrarGestionTareasCommand = new RelayCommand(_ => MostrarGestionTareas());
+            MostrarDashboardCommand = new RelayCommand(_ => MostrarDashboard());
             CerrarSesionCommand = new RelayCommand(_ => CerrarSesion());
 
             // Mostrar vista por defecto
@@ -53,6 +55,11 @@ namespace Hermes.ViewModels
         private void MostrarGestionTareas()
         {
             CurrentView = new GestionTareasView();
+        }
+
+        private void MostrarDashboard()
+        {
+            CurrentView = new DashboardView();
         }
 
         private void CerrarSesion()

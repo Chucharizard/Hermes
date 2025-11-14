@@ -91,6 +91,10 @@
             <!-- Sidebar Menu -->
             <Border Grid.Column="0" Background="#34495E" Padding="0,20">
                 <StackPanel>
+                    <Button Content="📊 Dashboard"
+                            Command="{Binding MostrarDashboardCommand}"
+                            Style="{StaticResource MenuButtonStyle}"
+                            Margin="10,5"/>
                     <Button Content="👥 Gestion de Empleados"
                             Command="{Binding MostrarGestionEmpleadosCommand}"
                             Style="{StaticResource MenuButtonStyle}"
