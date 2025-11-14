@@ -15,6 +15,7 @@ namespace Hermes.ViewModels
         private int _tareasVencidas;
         private int _tareasObservadas;
         private bool _generandoReporte;
+        private bool _generandoReportePrioridades;
 
         public int TotalTareas
         {
@@ -52,7 +53,14 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _generandoReporte, value);
         }
 
+        public bool GenerandoReportePrioridades
+        {
+            get => _generandoReportePrioridades;
+            set => SetProperty(ref _generandoReportePrioridades, value);
+        }
+
         public ICommand GenerarReporteExcelCommand { get; }
+        public ICommand GenerarReportePrioridadesCommand { get; }
         public ICommand ActualizarEstadisticasCommand { get; }
 
         public DashboardViewModel()
@@ -61,6 +69,7 @@ namespace Hermes.ViewModels
             _excelService = new ExcelService();
 
             GenerarReporteExcelCommand = new RelayCommand(async _ => await GenerarReporteExcelAsync());
+            GenerarReportePrioridadesCommand = new RelayCommand(async _ => await GenerarReportePrioridadesAsync());
             ActualizarEstadisticasCommand = new RelayCommand(async _ => await CargarEstadisticasAsync());
 
             // Cargar estadísticas iniciales
@@ -115,6 +124,43 @@ namespace Hermes.ViewModels
             finally
             {
                 GenerandoReporte = false;
+            }
+        }
+
+        private async Task GenerarReportePrioridadesAsync()
+        {
+            try
+            {
+                GenerandoReportePrioridades = true;
+
+                var filePath = await _excelService.GenerarReportePrioridadesAsync();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(
+                        $"Reporte de prioridades generado exitosamente!\n\nArchivo guardado en:\n{filePath}",
+                        "Reporte Excel - Prioridades",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+
+                    // Abrir el archivo automáticamente
+                    _excelService.AbrirArchivo(filePath);
+                });
+            }
+            catch (Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(
+                        $"Error al generar el reporte de prioridades:\n{ex.Message}",
+                        "Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                });
+            }
+            finally
+            {
+                GenerandoReportePrioridades = false;
             }
         }
     }
