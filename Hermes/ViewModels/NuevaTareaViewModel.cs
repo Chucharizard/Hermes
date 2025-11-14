@@ -15,11 +15,11 @@ namespace Hermes.ViewModels
         private readonly UsuarioService _usuarioService;
         private Tarea _tarea = new();
         private string _mensajeError = string.Empty;
-        private ObservableCollection<Usuario> _usuarios = new();
-        private Usuario? _usuarioEmisorSeleccionado;
+        private ObservableCollection<Usuario> _usuariosReceptores = new();
         private Usuario? _usuarioReceptorSeleccionado;
         private string _estadoSeleccionado = "Pendiente";
         private string _prioridadSeleccionada = "Media";
+        private string _nombreUsuarioEmisor = string.Empty;
 
         public Tarea Tarea
         {
@@ -33,16 +33,10 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _mensajeError, value);
         }
 
-        public ObservableCollection<Usuario> Usuarios
+        public ObservableCollection<Usuario> UsuariosReceptores
         {
-            get => _usuarios;
-            set => SetProperty(ref _usuarios, value);
-        }
-
-        public Usuario? UsuarioEmisorSeleccionado
-        {
-            get => _usuarioEmisorSeleccionado;
-            set => SetProperty(ref _usuarioEmisorSeleccionado, value);
+            get => _usuariosReceptores;
+            set => SetProperty(ref _usuariosReceptores, value);
         }
 
         public Usuario? UsuarioReceptorSeleccionado
@@ -61,6 +55,12 @@ namespace Hermes.ViewModels
         {
             get => _prioridadSeleccionada;
             set => SetProperty(ref _prioridadSeleccionada, value);
+        }
+
+        public string NombreUsuarioEmisor
+        {
+            get => _nombreUsuarioEmisor;
+            set => SetProperty(ref _nombreUsuarioEmisor, value);
         }
 
         // Listas para ComboBoxes
@@ -88,6 +88,13 @@ namespace Hermes.ViewModels
             _tareaService = new TareaService();
             _usuarioService = new UsuarioService();
 
+            // Obtener el usuario actual (emisor)
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual?.Empleado != null)
+            {
+                NombreUsuarioEmisor = $"{usuarioActual.Empleado.NombresEmpleado} {usuarioActual.Empleado.ApellidosEmpleado}";
+            }
+
             Tarea = new Tarea
             {
                 IdTarea = Guid.NewGuid(),
@@ -99,20 +106,21 @@ namespace Hermes.ViewModels
             GuardarCommand = new RelayCommand(async _ => await GuardarAsync());
             CancelarCommand = new RelayCommand(_ => Cancelar());
 
-            // Cargar usuarios
-            Task.Run(async () => await CargarUsuariosAsync());
+            // Cargar usuarios receptores (excluyendo al usuario actual)
+            Task.Run(async () => await CargarUsuariosReceptoresAsync());
         }
 
-        private async Task CargarUsuariosAsync()
+        private async Task CargarUsuariosReceptoresAsync()
         {
             var usuarios = await _usuarioService.ObtenerTodosAsync();
+            var usuarioActual = App.UsuarioActual;
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Usuarios.Clear();
-                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario))
+                UsuariosReceptores.Clear();
+                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario && u.IdUsuario != usuarioActual?.IdUsuario))
                 {
-                    Usuarios.Add(usuario);
+                    UsuariosReceptores.Add(usuario);
                 }
             });
         }
@@ -121,22 +129,17 @@ namespace Hermes.ViewModels
         {
             MensajeError = string.Empty;
 
-            // Validaciones
-            if (UsuarioEmisorSeleccionado == null)
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null)
             {
-                MensajeError = "Debe seleccionar un usuario emisor";
+                MensajeError = "No hay un usuario logueado";
                 return;
             }
 
+            // Validaciones
             if (UsuarioReceptorSeleccionado == null)
             {
                 MensajeError = "Debe seleccionar un usuario receptor";
-                return;
-            }
-
-            if (UsuarioEmisorSeleccionado.IdUsuario == UsuarioReceptorSeleccionado.IdUsuario)
-            {
-                MensajeError = "El emisor y receptor no pueden ser el mismo usuario";
                 return;
             }
 
@@ -153,7 +156,7 @@ namespace Hermes.ViewModels
             }
 
             // Asignar usuarios y estados
-            Tarea.UsuarioEmisorId = UsuarioEmisorSeleccionado.IdUsuario;
+            Tarea.UsuarioEmisorId = usuarioActual.IdUsuario;  // Usuario logueado
             Tarea.UsuarioReceptorId = UsuarioReceptorSeleccionado.IdUsuario;
             Tarea.EstadoTarea = EstadoSeleccionado;
             Tarea.PrioridadTarea = PrioridadSeleccionada;

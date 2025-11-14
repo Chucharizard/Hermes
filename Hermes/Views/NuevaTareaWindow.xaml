@@ -59,24 +59,27 @@
                              VerticalScrollBarVisibility="Auto"
                              Margin="0,0,0,15"/>
 
-                    <!-- Usuario Emisor -->
-                    <TextBlock Text="Usuario Emisor:"
+                    <!-- Usuario Emisor (Usuario Logueado) -->
+                    <TextBlock Text="Usuario Emisor (Tú):"
                                FontSize="12"
                                Foreground="#34495E"
                                Margin="0,0,0,5"/>
-                    <ComboBox ItemsSource="{Binding Usuarios}"
-                              SelectedItem="{Binding UsuarioEmisorSeleccionado}"
-                              DisplayMemberPath="NombreUsuario"
-                              Height="35"
-                              FontSize="14"
-                              Margin="0,0,0,15"/>
+                    <TextBox Text="{Binding NombreUsuarioEmisor, Mode=OneWay}"
+                             Height="35"
+                             FontSize="14"
+                             Padding="10,5"
+                             IsReadOnly="True"
+                             Background="#ECF0F1"
+                             Foreground="#2C3E50"
+                             FontWeight="SemiBold"
+                             Margin="0,0,0,15"/>
 
-                    <!-- Usuario Receptor -->
-                    <TextBlock Text="Usuario Receptor:"
+                    <!-- Usuario Receptor (Asignar a) -->
+                    <TextBlock Text="Asignar Tarea A:"
                                FontSize="12"
                                Foreground="#34495E"
                                Margin="0,0,0,5"/>
-                    <ComboBox ItemsSource="{Binding Usuarios}"
+                    <ComboBox ItemsSource="{Binding UsuariosReceptores}"
                               SelectedItem="{Binding UsuarioReceptorSeleccionado}"
                               DisplayMemberPath="NombreUsuario"
                               Height="35"
