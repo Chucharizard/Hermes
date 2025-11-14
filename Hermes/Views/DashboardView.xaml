@@ -221,7 +221,7 @@
                     </Border.Effect>
 
                     <StackPanel>
-                        <TextBlock Text="📈 Reporte Excel con Gráficos"
+                        <TextBlock Text="📊 Reporte Excel Profesional"
                                    FontSize="20"
                                    FontWeight="Bold"
                                    Foreground="#2C3E50"
@@ -238,15 +238,15 @@
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
                                 <Run Text="• " FontWeight="Bold" Foreground="#3498DB"/>
-                                <Run Text="Hoja 'Estadísticas': Resumen por estado con gráfico de barras"/>
+                                <Run Text="Hoja 'Estadísticas': Resumen por estado con barras visuales coloreadas"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
                                 <Run Text="• " FontWeight="Bold" Foreground="#9B59B6"/>
-                                <Run Text="Hoja 'Prioridades': Distribución por prioridad con gráfico de torta"/>
+                                <Run Text="Hoja 'Prioridades': Distribución por prioridad con visualizaciones"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
                                 <Run Text="• " FontWeight="Bold" Foreground="#F39C12"/>
-                                <Run Text="Formato profesional con colores y estilos personalizados"/>
+                                <Run Text="Formato profesional con colores, porcentajes e instrucciones para gráficos"/>
                             </TextBlock>
                         </StackPanel>
 
@@ -257,7 +257,7 @@
                                     <Run Text="El archivo se guardará automáticamente en tu Escritorio"/>
                                 </TextBlock>
                                 <TextBlock FontSize="12" Foreground="#2C3E50" TextWrapping="Wrap">
-                                    <Run Text="y se abrirá con Excel para que puedas visualizar los gráficos inmediatamente."/>
+                                    <Run Text="y se abrirá con Excel. Incluye visualizaciones con barras coloreadas e instrucciones paso a paso para crear gráficos profesionales en segundos."/>
                                 </TextBlock>
                             </StackPanel>
                         </Border>

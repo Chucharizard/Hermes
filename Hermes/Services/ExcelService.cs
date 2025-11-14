@@ -135,13 +135,48 @@ namespace Hermes.Services
                 worksheetEstadisticas.Cell(1, 2).Style.Font.FontSize = 16;
                 worksheetEstadisticas.Cell(1, 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                // GRÁFICO DE BARRAS
-                var chart = worksheetEstadisticas.AddChart("Tareas por Estado", XLChartType.ColumnClustered);
-                chart.SetPosition(10, 0, 2, 0);
-                chart.SetSize(600, 400);
+                // Barra visual de progreso (usando celdas coloreadas)
+                worksheetEstadisticas.Cell(2, 5).Value = "Visualización";
+                worksheetEstadisticas.Cell(2, 5).Style.Font.Bold = true;
+                worksheetEstadisticas.Cell(2, 5).Style.Fill.BackgroundColor = XLColor.FromHtml("#3498DB");
+                worksheetEstadisticas.Cell(2, 5).Style.Font.FontColor = XLColor.White;
 
-                var datosGrafico = worksheetEstadisticas.Range("B3:C6");
-                chart.AddDataSource(datosGrafico);
+                // Crear barras visuales usando el ancho de la celda
+                int maxBarWidth = 30;
+
+                // Barra Pendientes
+                int widthPendientes = totalTareas > 0 ? (int)((double)pendientes / totalTareas * maxBarWidth) : 0;
+                var barraPendientes = new string('█', widthPendientes);
+                worksheetEstadisticas.Cell(3, 5).Value = barraPendientes;
+                worksheetEstadisticas.Cell(3, 5).Style.Font.FontColor = XLColor.FromHtml("#F39C12");
+
+                // Barra Completadas
+                int widthCompletadas = totalTareas > 0 ? (int)((double)completadas / totalTareas * maxBarWidth) : 0;
+                var barraCompletadas = new string('█', widthCompletadas);
+                worksheetEstadisticas.Cell(4, 5).Value = barraCompletadas;
+                worksheetEstadisticas.Cell(4, 5).Style.Font.FontColor = XLColor.FromHtml("#27AE60");
+
+                // Barra Vencidas
+                int widthVencidas = totalTareas > 0 ? (int)((double)vencidas / totalTareas * maxBarWidth) : 0;
+                var barraVencidas = new string('█', widthVencidas);
+                worksheetEstadisticas.Cell(5, 5).Value = barraVencidas;
+                worksheetEstadisticas.Cell(5, 5).Style.Font.FontColor = XLColor.FromHtml("#E74C3C");
+
+                // Barra Observadas
+                int widthObservadas = totalTareas > 0 ? (int)((double)observadas / totalTareas * maxBarWidth) : 0;
+                var barraObservadas = new string('█', widthObservadas);
+                worksheetEstadisticas.Cell(6, 5).Value = barraObservadas;
+                worksheetEstadisticas.Cell(6, 5).Style.Font.FontColor = XLColor.FromHtml("#9B59B6");
+
+                // Instrucciones para crear gráfico
+                worksheetEstadisticas.Cell(9, 2).Value = "💡 CÓMO CREAR GRÁFICO:";
+                worksheetEstadisticas.Cell(9, 2).Style.Font.Bold = true;
+                worksheetEstadisticas.Cell(9, 2).Style.Font.FontSize = 12;
+
+                worksheetEstadisticas.Cell(10, 2).Value = "1. Selecciona el rango B2:C6";
+                worksheetEstadisticas.Cell(11, 2).Value = "2. Ve a 'Insertar' > 'Gráfico'";
+                worksheetEstadisticas.Cell(12, 2).Value = "3. Elige 'Columnas' o 'Barras'";
+                worksheetEstadisticas.Cell(13, 2).Value = "4. ¡Listo! Tendrás tu gráfico profesional";
 
                 // Ajustar columnas
                 worksheetEstadisticas.Columns().AdjustToContents();
@@ -189,13 +224,38 @@ namespace Hermes.Services
                 worksheetPrioridades.Cell(6, 4).Value = totalTareas > 0 ? (double)urgentes / totalTareas : 0;
                 worksheetPrioridades.Cell(6, 4).Style.NumberFormat.Format = "0.00%";
 
-                // Gráfico de torta
-                var chartPie = worksheetPrioridades.AddChart("Prioridades", XLChartType.Pie);
-                chartPie.SetPosition(8, 0, 2, 0);
-                chartPie.SetSize(600, 400);
+                // Barra visual de progreso para prioridades
+                worksheetPrioridades.Cell(2, 5).Value = "Visualización";
+                worksheetPrioridades.Cell(2, 5).Style.Font.Bold = true;
+                worksheetPrioridades.Cell(2, 5).Style.Fill.BackgroundColor = XLColor.FromHtml("#9B59B6");
+                worksheetPrioridades.Cell(2, 5).Style.Font.FontColor = XLColor.White;
 
-                var datosPrioridad = worksheetPrioridades.Range("B3:C6");
-                chartPie.AddDataSource(datosPrioridad);
+                // Barras visuales
+                int widthBaja = totalTareas > 0 ? (int)((double)bajas / totalTareas * maxBarWidth) : 0;
+                worksheetPrioridades.Cell(3, 5).Value = new string('█', widthBaja);
+                worksheetPrioridades.Cell(3, 5).Style.Font.FontColor = XLColor.FromHtml("#95A5A6");
+
+                int widthMedia = totalTareas > 0 ? (int)((double)medias / totalTareas * maxBarWidth) : 0;
+                worksheetPrioridades.Cell(4, 5).Value = new string('█', widthMedia);
+                worksheetPrioridades.Cell(4, 5).Style.Font.FontColor = XLColor.FromHtml("#3498DB");
+
+                int widthAlta = totalTareas > 0 ? (int)((double)altas / totalTareas * maxBarWidth) : 0;
+                worksheetPrioridades.Cell(5, 5).Value = new string('█', widthAlta);
+                worksheetPrioridades.Cell(5, 5).Style.Font.FontColor = XLColor.FromHtml("#F39C12");
+
+                int widthUrgente = totalTareas > 0 ? (int)((double)urgentes / totalTareas * maxBarWidth) : 0;
+                worksheetPrioridades.Cell(6, 5).Value = new string('█', widthUrgente);
+                worksheetPrioridades.Cell(6, 5).Style.Font.FontColor = XLColor.FromHtml("#E74C3C");
+
+                // Instrucciones para crear gráfico
+                worksheetPrioridades.Cell(8, 2).Value = "💡 CÓMO CREAR GRÁFICO DE TORTA:";
+                worksheetPrioridades.Cell(8, 2).Style.Font.Bold = true;
+                worksheetPrioridades.Cell(8, 2).Style.Font.FontSize = 12;
+
+                worksheetPrioridades.Cell(9, 2).Value = "1. Selecciona el rango B2:C6";
+                worksheetPrioridades.Cell(10, 2).Value = "2. Ve a 'Insertar' > 'Gráfico'";
+                worksheetPrioridades.Cell(11, 2).Value = "3. Elige 'Circular' (Pie Chart)";
+                worksheetPrioridades.Cell(12, 2).Value = "4. ¡Listo! Verás la distribución de prioridades";
 
                 worksheetPrioridades.Columns().AdjustToContents();
 
