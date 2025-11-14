@@ -231,13 +231,13 @@
                         Padding="15"
                         Margin="0,15,0,0"
                         CornerRadius="5">
-                    <TextBlock>
-                        <Run Text="Mostrando " FontWeight="SemiBold"/>
-                        <Run Text="{Binding TareasFiltradas.Count}" Foreground="#27AE60" FontWeight="Bold"/>
-                        <Run Text=" de " FontWeight="SemiBold"/>
-                        <Run Text="{Binding TotalTareas}" Foreground="#3498DB" FontWeight="Bold"/>
-                        <Run Text=" tareas" FontWeight="SemiBold"/>
-                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Mostrando " FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding TareasFiltradas.Count}" Foreground="#27AE60" FontWeight="Bold"/>
+                        <TextBlock Text=" de " FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding TotalTareas}" Foreground="#3498DB" FontWeight="Bold"/>
+                        <TextBlock Text=" tareas" FontWeight="SemiBold"/>
+                    </StackPanel>
                 </Border>
             </Grid>
         </Border>
