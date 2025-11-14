@@ -103,6 +103,27 @@
                             Command="{Binding MostrarGestionTareasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"/>
+
+                    <!-- Separador para sección de Bandejas -->
+                    <Separator Margin="10,15" Background="#7F8C8D" Height="1"/>
+                    <TextBlock Text="BANDEJAS DE TAREAS"
+                               Foreground="#95A5A6"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Margin="15,5,15,10"/>
+
+                    <Button Content="📤 Tareas Enviadas"
+                            Command="{Binding MostrarBandejaTareasEnviadasCommand}"
+                            Style="{StaticResource MenuButtonStyle}"
+                            Margin="10,5"/>
+                    <Button Content="📥 Tareas Recibidas"
+                            Command="{Binding MostrarBandejaTareasRecibidasCommand}"
+                            Style="{StaticResource MenuButtonStyle}"
+                            Margin="10,5"/>
+
+                    <!-- Separador -->
+                    <Separator Margin="10,15" Background="#7F8C8D" Height="1"/>
+
                     <Button Content="📋 Propiedades"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"/>

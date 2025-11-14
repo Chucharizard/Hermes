@@ -5,6 +5,7 @@ namespace Hermes.Models.Enums
         Pendiente,
         Completado,
         Vencido,
-        Observado
+        Observado,
+        Archivado
     }
 }

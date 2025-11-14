@@ -12,6 +12,8 @@ namespace Hermes.Data
         public DbSet<HojaRuta> HojasRuta { get; set; }
         public DbSet<HojaRutaPaso> HojasRutaPaso { get; set; }
         public DbSet<Tarea> Tareas { get; set; }
+        public DbSet<TareaComentario> TareasComentarios { get; set; }
+        public DbSet<TareaAdjunto> TareasAdjuntos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -174,6 +176,57 @@ namespace Hermes.Data
                     .WithMany()
                     .HasForeignKey(t => t.UsuarioReceptorId)
                     .HasConstraintName("FK_TAREA_RECEPTOR")
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            // Configuración TareaComentario
+            modelBuilder.Entity<TareaComentario>(entity =>
+            {
+                entity.ToTable("TAREA_COMENTARIO");
+                entity.HasKey(tc => tc.IdComentario);
+                entity.Property(tc => tc.IdComentario).HasColumnName("id_comentario").HasDefaultValueSql("NEWID()");
+                entity.Property(tc => tc.IdTarea).HasColumnName("id_tarea");
+                entity.Property(tc => tc.IdUsuario).HasColumnName("id_usuario");
+                entity.Property(tc => tc.Comentario).HasColumnName("comentario").HasMaxLength(1000);
+                entity.Property(tc => tc.FechaComentario).HasColumnName("fecha_comentario");
+
+                entity.HasOne(tc => tc.Tarea)
+                    .WithMany()
+                    .HasForeignKey(tc => tc.IdTarea)
+                    .HasConstraintName("FK_COMENTARIO_TAREA")
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(tc => tc.Usuario)
+                    .WithMany()
+                    .HasForeignKey(tc => tc.IdUsuario)
+                    .HasConstraintName("FK_COMENTARIO_USUARIO")
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            // Configuración TareaAdjunto
+            modelBuilder.Entity<TareaAdjunto>(entity =>
+            {
+                entity.ToTable("TAREA_ADJUNTO");
+                entity.HasKey(ta => ta.IdAdjunto);
+                entity.Property(ta => ta.IdAdjunto).HasColumnName("id_adjunto").HasDefaultValueSql("NEWID()");
+                entity.Property(ta => ta.IdTarea).HasColumnName("id_tarea");
+                entity.Property(ta => ta.NombreArchivo).HasColumnName("nombre_archivo").HasMaxLength(255);
+                entity.Property(ta => ta.RutaArchivo).HasColumnName("ruta_archivo").HasMaxLength(500);
+                entity.Property(ta => ta.TipoArchivo).HasColumnName("tipo_archivo").HasMaxLength(100);
+                entity.Property(ta => ta.TamañoArchivo).HasColumnName("tamaño_archivo");
+                entity.Property(ta => ta.IdUsuarioSubio).HasColumnName("id_usuario_subio");
+                entity.Property(ta => ta.FechaSubida).HasColumnName("fecha_subida");
+
+                entity.HasOne(ta => ta.Tarea)
+                    .WithMany()
+                    .HasForeignKey(ta => ta.IdTarea)
+                    .HasConstraintName("FK_ADJUNTO_TAREA")
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(ta => ta.UsuarioSubio)
+                    .WithMany()
+                    .HasForeignKey(ta => ta.IdUsuarioSubio)
+                    .HasConstraintName("FK_ADJUNTO_USUARIO")
                     .OnDelete(DeleteBehavior.NoAction);
             });
         }

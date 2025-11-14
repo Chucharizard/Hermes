@@ -20,6 +20,7 @@ namespace Hermes.ViewModels
         private string _estadoSeleccionado = "Pendiente";
         private string _prioridadSeleccionada = "Media";
         private string _nombreUsuarioEmisor = string.Empty;
+        private bool _puedeEnviarTareas = false;
 
         public Tarea Tarea
         {
@@ -63,6 +64,12 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _nombreUsuarioEmisor, value);
         }
 
+        public bool PuedeEnviarTareas
+        {
+            get => _puedeEnviarTareas;
+            set => SetProperty(ref _puedeEnviarTareas, value);
+        }
+
         // Listas para ComboBoxes
         public List<string> Estados { get; } = new()
         {
@@ -95,6 +102,14 @@ namespace Hermes.ViewModels
                 NombreUsuarioEmisor = $"{usuarioActual.Empleado.NombresEmpleado} {usuarioActual.Empleado.ApellidosEmpleado}";
             }
 
+            // Verificar si el usuario puede enviar tareas
+            PuedeEnviarTareas = VerificarPermisoEnvioTareas(usuarioActual);
+
+            if (!PuedeEnviarTareas)
+            {
+                MensajeError = "Su rol no tiene permisos para enviar tareas. Solo puede recibir tareas.";
+            }
+
             Tarea = new Tarea
             {
                 IdTarea = Guid.NewGuid(),
@@ -103,11 +118,24 @@ namespace Hermes.ViewModels
                 PrioridadTarea = "Media"
             };
 
-            GuardarCommand = new RelayCommand(async _ => await GuardarAsync());
+            GuardarCommand = new RelayCommand(async _ => await GuardarAsync(), _ => PuedeEnviarTareas);
             CancelarCommand = new RelayCommand(_ => Cancelar());
 
-            // Cargar usuarios receptores (excluyendo al usuario actual)
+            // Cargar usuarios receptores (filtrados por rol)
             Task.Run(async () => await CargarUsuariosReceptoresAsync());
+        }
+
+        private bool VerificarPermisoEnvioTareas(Usuario? usuario)
+        {
+            if (usuario?.Rol == null)
+                return false;
+
+            var rolNombre = usuario.Rol.NombreRol;
+
+            // Solo Broker, Secretaria y Abogada pueden enviar tareas
+            return rolNombre.Equals("Broker", StringComparison.OrdinalIgnoreCase) ||
+                   rolNombre.Equals("Secretaria", StringComparison.OrdinalIgnoreCase) ||
+                   rolNombre.Equals("Abogada", StringComparison.OrdinalIgnoreCase);
         }
 
         private async Task CargarUsuariosReceptoresAsync()
@@ -115,12 +143,33 @@ namespace Hermes.ViewModels
             var usuarios = await _usuarioService.ObtenerTodosAsync();
             var usuarioActual = App.UsuarioActual;
 
+            if (usuarioActual?.Rol == null)
+                return;
+
+            var rolActual = usuarioActual.Rol.NombreRol;
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 UsuariosReceptores.Clear();
-                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario && u.IdUsuario != usuarioActual?.IdUsuario))
+
+                // Filtrar usuarios basándose en el rol del usuario actual
+                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario && u.IdUsuario != usuarioActual.IdUsuario))
                 {
-                    UsuariosReceptores.Add(usuario);
+                    if (rolActual.Equals("Broker", StringComparison.OrdinalIgnoreCase) ||
+                        rolActual.Equals("Secretaria", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Broker y Secretaria pueden enviar tareas a todos los roles
+                        UsuariosReceptores.Add(usuario);
+                    }
+                    else if (rolActual.Equals("Abogada", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Abogada solo puede enviar tareas a Secretaria y otros roles (no a Broker)
+                        if (!usuario.Rol?.NombreRol.Equals("Broker", StringComparison.OrdinalIgnoreCase) == true)
+                        {
+                            UsuariosReceptores.Add(usuario);
+                        }
+                    }
+                    // Asesores y Administrativos no pueden enviar tareas (no se agregan receptores)
                 }
             });
         }
@@ -136,11 +185,28 @@ namespace Hermes.ViewModels
                 return;
             }
 
+            // Verificar permiso de envío
+            if (!PuedeEnviarTareas)
+            {
+                MensajeError = "Su rol no tiene permisos para enviar tareas";
+                return;
+            }
+
             // Validaciones
             if (UsuarioReceptorSeleccionado == null)
             {
                 MensajeError = "Debe seleccionar un usuario receptor";
                 return;
+            }
+
+            // Validación adicional: verificar que el receptor sea válido según el rol del emisor
+            if (usuarioActual.Rol != null && usuarioActual.Rol.NombreRol.Equals("Abogada", StringComparison.OrdinalIgnoreCase))
+            {
+                if (UsuarioReceptorSeleccionado.Rol?.NombreRol.Equals("Broker", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    MensajeError = "Como Abogada no puede enviar tareas al Broker";
+                    return;
+                }
             }
 
             if (string.IsNullOrWhiteSpace(Tarea.TituloTarea))
