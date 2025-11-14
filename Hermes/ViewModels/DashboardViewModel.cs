@@ -16,6 +16,7 @@ namespace Hermes.ViewModels
         private int _tareasObservadas;
         private bool _generandoReporte;
         private bool _generandoReportePrioridades;
+        private bool _generandoReporteTop3;
 
         public int TotalTareas
         {
@@ -59,8 +60,15 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _generandoReportePrioridades, value);
         }
 
+        public bool GenerandoReporteTop3
+        {
+            get => _generandoReporteTop3;
+            set => SetProperty(ref _generandoReporteTop3, value);
+        }
+
         public ICommand GenerarReporteExcelCommand { get; }
         public ICommand GenerarReportePrioridadesCommand { get; }
+        public ICommand GenerarReporteTop3Command { get; }
         public ICommand ActualizarEstadisticasCommand { get; }
 
         public DashboardViewModel()
@@ -70,6 +78,7 @@ namespace Hermes.ViewModels
 
             GenerarReporteExcelCommand = new RelayCommand(async _ => await GenerarReporteExcelAsync());
             GenerarReportePrioridadesCommand = new RelayCommand(async _ => await GenerarReportePrioridadesAsync());
+            GenerarReporteTop3Command = new RelayCommand(async _ => await GenerarReporteTop3Async());
             ActualizarEstadisticasCommand = new RelayCommand(async _ => await CargarEstadisticasAsync());
 
             // Cargar estadísticas iniciales
@@ -161,6 +170,43 @@ namespace Hermes.ViewModels
             finally
             {
                 GenerandoReportePrioridades = false;
+            }
+        }
+
+        private async Task GenerarReporteTop3Async()
+        {
+            try
+            {
+                GenerandoReporteTop3 = true;
+
+                var filePath = await _excelService.GenerarReporteTop3Async();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(
+                        $"Reporte Top 3 generado exitosamente!\n\nArchivo guardado en:\n{filePath}",
+                        "Reporte Excel - Top 3 Usuarios",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+
+                    // Abrir el archivo automáticamente
+                    _excelService.AbrirArchivo(filePath);
+                });
+            }
+            catch (Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(
+                        $"Error al generar el reporte Top 3:\n{ex.Message}",
+                        "Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                });
+            }
+            finally
+            {
+                GenerandoReporteTop3 = false;
             }
         }
     }

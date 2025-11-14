@@ -83,7 +83,8 @@
                             Padding="20,10"
                             FontSize="14"
                             BorderThickness="0"
-                            Cursor="Hand">
+                            Cursor="Hand"
+                            Margin="0,0,10,0">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Template">
@@ -101,6 +102,42 @@
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#7D3C98"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#BDC3C7"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Botón Reporte Top 3 -->
+                    <Button Content="🏆 Top 3 Usuarios"
+                            Command="{Binding GenerarReporteTop3Command}"
+                            IsEnabled="{Binding GenerandoReporteTop3, Converter={StaticResource InverseBooleanConverter}}"
+                            Background="#E67E22"
+                            Foreground="White"
+                            Padding="20,10"
+                            FontSize="14"
+                            BorderThickness="0"
+                            Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="5"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#D35400"/>
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
                                         <Setter Property="Background" Value="#BDC3C7"/>
@@ -337,6 +374,24 @@
                                            FontSize="14"
                                            FontWeight="SemiBold"
                                            Foreground="#6C3483"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Indicador de carga - Reporte Top 3 -->
+                        <Border Background="#FEF5E7"
+                                Padding="15"
+                                CornerRadius="5"
+                                BorderBrush="#E67E22"
+                                BorderThickness="1"
+                                Margin="0,15,0,0"
+                                Visibility="{Binding GenerandoReporteTop3, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="⏳ " FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock Text="Generando reporte Top 3 usuarios, por favor espere..."
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Foreground="#BA4A00"
                                            VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
