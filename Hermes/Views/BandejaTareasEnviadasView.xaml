@@ -15,115 +15,114 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Background="White" Padding="20" Margin="0,0,0,15">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-
+        <Border Grid.Row="0"
+                Style="{StaticResource CardStyle}"
+                Padding="25">
             <StackPanel>
                 <TextBlock Text="📤 Bandeja de Tareas Enviadas"
-                           FontSize="24"
-                           FontWeight="Bold"
-                           Foreground="#2C3E50"/>
+                           Style="{StaticResource TitleTextStyle}"/>
                 <TextBlock Text="Tareas que has asignado a otros usuarios"
-                           FontSize="14"
-                           Foreground="#7F8C8D"
-                           Margin="0,5,0,0"/>
+                           Style="{StaticResource MutedTextStyle}"/>
             </StackPanel>
         </Border>
 
         <!-- Estadísticas -->
-        <Border Grid.Row="1" Background="White" Padding="15" Margin="0,0,0,15">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-
+        <Border Grid.Row="1"
+                Style="{StaticResource CardStyle}"
+                Padding="15">
             <UniformGrid Rows="1" Columns="5">
                 <!-- Total Enviadas -->
-                <Border Background="#3498DB" CornerRadius="8" Margin="5" Padding="15">
+                <Border Style="{StaticResource StatCardStyle}"
+                        Background="{DynamicResource PrimaryBrush}">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalEnviadas}"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontWeight="Bold"
                                    Foreground="White"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="Total Enviadas"
-                                   FontSize="12"
+                                   FontSize="13"
                                    Foreground="White"
                                    HorizontalAlignment="Center"
                                    TextWrapping="Wrap"
-                                   TextAlignment="Center"/>
+                                   TextAlignment="Center"
+                                   Opacity="0.9"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Pendientes -->
-                <Border Background="#F39C12" CornerRadius="8" Margin="5" Padding="15">
+                <Border Style="{StaticResource StatCardStyle}"
+                        Background="{DynamicResource WarningBrush}">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalPendientes}"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontWeight="Bold"
                                    Foreground="White"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="Pendientes"
-                                   FontSize="12"
+                                   FontSize="13"
                                    Foreground="White"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"
+                                   Opacity="0.9"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Completadas -->
-                <Border Background="#27AE60" CornerRadius="8" Margin="5" Padding="15">
+                <Border Style="{StaticResource StatCardStyle}"
+                        Background="{DynamicResource AccentBrush}">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalCompletadas}"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontWeight="Bold"
                                    Foreground="White"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="Completadas"
-                                   FontSize="12"
+                                   FontSize="13"
                                    Foreground="White"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"
+                                   Opacity="0.9"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Observadas -->
-                <Border Background="#E74C3C" CornerRadius="8" Margin="5" Padding="15">
+                <Border Style="{StaticResource StatCardStyle}"
+                        Background="{DynamicResource DangerBrush}">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalObservadas}"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontWeight="Bold"
                                    Foreground="White"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="Observadas"
-                                   FontSize="12"
+                                   FontSize="13"
                                    Foreground="White"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"
+                                   Opacity="0.9"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Archivadas -->
-                <Border Background="#95A5A6" CornerRadius="8" Margin="5" Padding="15">
+                <Border Style="{StaticResource StatCardStyle}"
+                        Background="{DynamicResource SecondaryTextBrush}"
+                        Margin="0">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalArchivadas}"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontWeight="Bold"
                                    Foreground="White"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="Archivadas"
-                                   FontSize="12"
+                                   FontSize="13"
                                    Foreground="White"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"
+                                   Opacity="0.9"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
         </Border>
 
         <!-- Contenido principal -->
-        <Border Grid.Row="2" Background="White" Padding="20">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-
+        <Border Grid.Row="2" Style="{StaticResource CardStyle}" Padding="25">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -132,10 +131,9 @@
                 </Grid.RowDefinitions>
 
                 <!-- Filtros y búsqueda -->
-                <Grid Grid.Row="0" Margin="0,0,0,15">
+                <Grid Grid.Row="0" Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -143,14 +141,9 @@
 
                     <TextBox Grid.Column="0"
                              Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="14"
-                             Padding="10"
-                             BorderBrush="#BDC3C7"
-                             BorderThickness="1"
-                             VerticalContentAlignment="Center">
+                             Style="{StaticResource ModernTextBoxStyle}">
                         <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Foreground" Value="#2C3E50"/>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource ModernTextBoxStyle}">
                                 <Style.Triggers>
                                     <Trigger Property="Text" Value="">
                                         <Setter Property="Background">
@@ -158,7 +151,7 @@
                                                 <VisualBrush Stretch="None" AlignmentX="Left">
                                                     <VisualBrush.Visual>
                                                         <TextBlock Text="🔍 Buscar por título, descripción o receptor..."
-                                                                   Foreground="#95A5A6"
+                                                                   Foreground="{DynamicResource MutedTextBrush}"
                                                                    Padding="10,0,0,0"/>
                                                     </VisualBrush.Visual>
                                                 </VisualBrush>
@@ -175,91 +168,25 @@
                               SelectedItem="{Binding FiltroEstado}"
                               Width="150"
                               Margin="10,0,10,0"
-                              FontSize="14"
-                              Padding="10"
-                              BorderBrush="#BDC3C7"/>
+                              Style="{StaticResource ModernComboBoxStyle}"/>
 
                     <Button Grid.Column="2"
                             Content="🔄 Refrescar"
                             Command="{Binding RefrescarCommand}"
-                            Background="#3498DB"
-                            Foreground="White"
-                            Padding="15,8"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Margin="0,0,10,0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#2980B9"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Margin="0,0,10,0"/>
 
                     <Button Grid.Column="3"
                             Content="➕ Nueva Tarea"
                             Command="{Binding AbrirNuevaTareaCommand}"
-                            Background="#27AE60"
-                            Foreground="White"
-                            Padding="15,8"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#229954"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Style="{StaticResource SuccessButtonStyle}"/>
                 </Grid>
 
                 <!-- DataGrid -->
                 <DataGrid Grid.Row="1"
                           ItemsSource="{Binding TareasFiltradas}"
                           SelectedItem="{Binding TareaSeleccionada}"
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          IsReadOnly="True"
-                          GridLinesVisibility="None"
-                          HeadersVisibility="Column"
-                          SelectionMode="Single"
-                          FontSize="13"
-                          RowHeight="35"
-                          AlternatingRowBackground="#F8F9FA"
-                          BorderThickness="0">
-
+                          Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Título"
                                           Binding="{Binding TituloTarea}"
@@ -294,48 +221,19 @@
                 </DataGrid>
 
                 <!-- Botones de acción -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                     <Button Content="👁 Ver Detalle"
                             Command="{Binding VerDetalleCommand}"
-                            Background="#3498DB"
-                            Foreground="White"
-                            Padding="15,8"
-                            Margin="0,0,10,0"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#2980B9"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Margin="0,0,10,0"/>
 
                     <Button Content="📦 Archivar Tarea"
                             Command="{Binding ArchivarTareaCommand}"
-                            Background="#95A5A6"
+                            Background="{DynamicResource SecondaryTextBrush}"
                             Foreground="White"
-                            Padding="15,8"
+                            Padding="20,10"
                             FontSize="14"
+                            FontWeight="SemiBold"
                             BorderThickness="0"
                             Cursor="Hand">
                         <Button.Style>
@@ -344,7 +242,7 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
                                             <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
+                                                    CornerRadius="8"
                                                     Padding="{TemplateBinding Padding}">
                                                 <ContentPresenter HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"/>
@@ -354,10 +252,10 @@
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#7F8C8D"/>
+                                        <Setter Property="Opacity" Value="0.9"/>
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
+                                        <Setter Property="Opacity" Value="0.5"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
