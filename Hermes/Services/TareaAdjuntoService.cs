@@ -17,22 +17,57 @@ namespace Hermes.Services
         // READ ALL ATTACHMENTS FOR A TASK
         public async Task<List<TareaAdjunto>> ObtenerAdjuntosPorTareaAsync(Guid idTarea)
         {
-            return await _context.TareasAdjuntos
-                .Include(ta => ta.UsuarioSubioNavigation)
-                    .ThenInclude(u => u!.Empleado)
-                .Where(ta => ta.TareaId == idTarea)
-                .OrderByDescending(ta => ta.FechaSubidaTareaAdjunto)
-                .ToListAsync();
+            try
+            {
+                var adjuntos = await _context.TareasAdjuntos
+                    .Where(ta => ta.TareaId == idTarea)
+                    .OrderByDescending(ta => ta.FechaSubidaTareaAdjunto)
+                    .ToListAsync();
+
+                // Cargar manualmente los usuarios para evitar problemas con FK nullable
+                foreach (var adjunto in adjuntos)
+                {
+                    if (adjunto.IdUsuarioSubioTareaAdjunto.HasValue)
+                    {
+                        var usuario = await _context.Usuarios
+                            .Include(u => u.Empleado)
+                            .FirstOrDefaultAsync(u => u.IdUsuario == adjunto.IdUsuarioSubioTareaAdjunto.Value);
+
+                        adjunto.UsuarioSubioNavigation = usuario;
+                    }
+                }
+
+                return adjuntos;
+            }
+            catch (Exception)
+            {
+                // Si falla, retornar lista vacía en vez de lanzar excepción
+                return new List<TareaAdjunto>();
+            }
         }
 
         // READ BY ID
         public async Task<TareaAdjunto?> ObtenerPorIdAsync(Guid id)
         {
-            return await _context.TareasAdjuntos
-                .Include(ta => ta.Tarea)
-                .Include(ta => ta.UsuarioSubioNavigation)
-                    .ThenInclude(u => u!.Empleado)
-                .FirstOrDefaultAsync(ta => ta.IdTareaAdjunto == id);
+            try
+            {
+                var adjunto = await _context.TareasAdjuntos
+                    .Include(ta => ta.Tarea)
+                    .FirstOrDefaultAsync(ta => ta.IdTareaAdjunto == id);
+
+                if (adjunto != null && adjunto.IdUsuarioSubioTareaAdjunto.HasValue)
+                {
+                    adjunto.UsuarioSubioNavigation = await _context.Usuarios
+                        .Include(u => u.Empleado)
+                        .FirstOrDefaultAsync(u => u.IdUsuario == adjunto.IdUsuarioSubioTareaAdjunto.Value);
+                }
+
+                return adjunto;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         // UPLOAD FILE

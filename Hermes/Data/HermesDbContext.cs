@@ -208,13 +208,16 @@ namespace Hermes.Data
                     .WithMany()
                     .HasForeignKey(ta => ta.TareaId)
                     .HasConstraintName("FK_TAREA_ADJUNTO")
-                    .OnDelete(DeleteBehavior.NoAction);
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
+                // Relación opcional con Usuario (puede ser null)
                 entity.HasOne(ta => ta.UsuarioSubioNavigation)
                     .WithMany()
                     .HasForeignKey(ta => ta.IdUsuarioSubioTareaAdjunto)
                     .HasConstraintName("FK_ADJUNTO_USUARIO")
-                    .OnDelete(DeleteBehavior.NoAction);
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(false);
             });
         }
     }
