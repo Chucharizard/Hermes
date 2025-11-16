@@ -44,7 +44,20 @@ namespace Hermes.Services
         {
             try
             {
-                _context.Empleados.Update(empleado);
+                // Obtener el empleado existente de la BD para que EF lo rastree
+                var empleadoExistente = await ObtenerPorCiAsync(empleado.CiEmpleado);
+
+                if (empleadoExistente == null)
+                    return false;
+
+                // Actualizar las propiedades
+                empleadoExistente.NombresEmpleado = empleado.NombresEmpleado;
+                empleadoExistente.ApellidosEmpleado = empleado.ApellidosEmpleado;
+                empleadoExistente.TelefonoEmpleado = empleado.TelefonoEmpleado;
+                empleadoExistente.CorreoEmpleado = empleado.CorreoEmpleado;
+                empleadoExistente.EsActivoEmpleado = empleado.EsActivoEmpleado;
+
+                // EF ya está rastreando los cambios, solo guardamos
                 await _context.SaveChangesAsync();
                 return true;
             }

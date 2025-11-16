@@ -10,7 +10,11 @@
     <Window.DataContext>
         <viewmodels:MainViewModel/>
     </Window.DataContext>
-    
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -18,7 +22,7 @@
         </Grid.RowDefinitions>
         
         <!-- Header -->
-        <Border Grid.Row="0" Background="#2C3E50" Padding="20,0">
+        <Border Grid.Row="0" Background="{DynamicResource HeaderBackgroundBrush}" Padding="20,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -38,16 +42,52 @@
                 </StackPanel>
                 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding NombreUsuarioActual}" 
-                               FontSize="14" 
+                    <TextBlock Text="{Binding NombreUsuarioActual}"
+                               FontSize="14"
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="0,0,10,0"/>
-                    <TextBlock Text="(Broker)" 
-                               FontSize="12" 
+                    <TextBlock FontSize="12"
                                Foreground="#3498DB"
                                VerticalAlignment="Center"
-                               Margin="0,0,20,0"/>
+                               Margin="0,0,20,0">
+                        <Run Text="("/><Run Text="{Binding RolUsuario, Mode=OneWay}"/><Run Text=")"/>
+                    </TextBlock>
+
+                    <!-- Botón de cambio de tema -->
+                    <Button Content="{Binding ThemeIcon}"
+                            Command="{Binding ToggleThemeCommand}"
+                            Background="#3498DB"
+                            Foreground="White"
+                            Padding="12,8"
+                            FontSize="16"
+                            BorderThickness="0"
+                            Margin="0,0,10,0"
+                            Cursor="Hand"
+                            ToolTip="Cambiar tema">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="5"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2980B9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
                     <Button Content="Cerrar Sesion"
                             Command="{Binding CerrarSesionCommand}"
                             Background="#E74C3C"
@@ -63,7 +103,7 @@
                                             <Border Background="{TemplateBinding Background}"
                                                     CornerRadius="5"
                                                     Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center" 
+                                                <ContentPresenter HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"/>
                                             </Border>
                                         </ControlTemplate>
@@ -89,31 +129,55 @@
             </Grid.ColumnDefinitions>
             
             <!-- Sidebar Menu -->
-            <Border Grid.Column="0" Background="#34495E" Padding="0,20">
+            <Border Grid.Column="0" Background="{DynamicResource SidebarBackgroundBrush}" Padding="0,20">
                 <StackPanel>
+                    <!-- Opciones de administración (solo Broker) -->
+                    <Button Content="📊 Dashboard"
+                            Command="{Binding MostrarDashboardCommand}"
+                            Style="{StaticResource MenuButtonStyle}"
+                            Margin="10,5"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Button Content="👥 Gestion de Empleados"
                             Command="{Binding MostrarGestionEmpleadosCommand}"
                             Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"/>
-                    <Button Content="📋 Propiedades"
+                            Margin="10,5"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Button Content="✓ Gestion de Tareas"
+                            Command="{Binding MostrarGestionTareasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"/>
-                    <Button Content="🏠 Clientes"
+                            Margin="10,5"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <!-- Separador para sección de Bandejas (visible solo si hay opciones arriba O si puede enviar tareas) -->
+                    <Separator Margin="10,15" Background="#7F8C8D" Height="1"
+                               Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <TextBlock Text="BANDEJAS DE TAREAS"
+                               Foreground="#95A5A6"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Margin="15,5,15,10"/>
+
+                    <!-- Tareas Enviadas - solo para Broker, Secretaria y Abogada/Abogado -->
+                    <Button Content="📤 Tareas Enviadas"
+                            Command="{Binding MostrarBandejaTareasEnviadasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"/>
-                    <Button Content="💼 Transacciones"
-                            Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"/>
-                    <Button Content="📊 Reportes"
+                            Margin="10,5"
+                            Visibility="{Binding PuedeEnviarTareas, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <!-- Tareas Recibidas - para TODOS los roles -->
+                    <Button Content="📥 Tareas Recibidas"
+                            Command="{Binding MostrarBandejaTareasRecibidasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"/>
                 </StackPanel>
             </Border>
             
             <!-- Main Content Area -->
-            <ContentControl Grid.Column="1" 
-                          Content="{Binding CurrentView}"
-                          Margin="20"/>
+            <Border Grid.Column="1" Background="{DynamicResource BackgroundBrush}">
+                <ContentControl Content="{Binding CurrentView}"
+                              Margin="20"/>
+            </Border>
         </Grid>
     </Grid>
 </Window>
