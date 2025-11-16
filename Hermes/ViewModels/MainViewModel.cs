@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System.Linq;
 using Hermes.Commands;
 using Hermes.Views;
+using Hermes.Helpers;
 
 namespace Hermes.ViewModels
 {
@@ -13,6 +14,7 @@ namespace Hermes.ViewModels
         private string _rolUsuario = string.Empty;
         private bool _puedeEnviarTareas = false;
         private bool _esAdministrador = false;
+        private string _themeIcon = "🌙";
 
         public object? CurrentView
         {
@@ -45,12 +47,19 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _esAdministrador, value);
         }
 
+        public string ThemeIcon
+        {
+            get => _themeIcon;
+            set => SetProperty(ref _themeIcon, value);
+        }
+
         public ICommand MostrarGestionEmpleadosCommand { get; }
         public ICommand MostrarGestionTareasCommand { get; }
         public ICommand MostrarDashboardCommand { get; }
         public ICommand MostrarBandejaTareasEnviadasCommand { get; }
         public ICommand MostrarBandejaTareasRecibidasCommand { get; }
         public ICommand CerrarSesionCommand { get; }
+        public ICommand ToggleThemeCommand { get; }
 
         public MainViewModel()
         {
@@ -83,6 +92,10 @@ namespace Hermes.ViewModels
             MostrarBandejaTareasEnviadasCommand = new RelayCommand(_ => MostrarBandejaTareasEnviadas());
             MostrarBandejaTareasRecibidasCommand = new RelayCommand(_ => MostrarBandejaTareasRecibidas());
             CerrarSesionCommand = new RelayCommand(_ => CerrarSesion());
+            ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
+
+            // Actualizar el ícono del tema según el tema actual
+            UpdateThemeIcon();
 
             // Mostrar vista por defecto según el rol
             if (PuedeEnviarTareas || EsAdministrador)
@@ -137,6 +150,18 @@ namespace Hermes.ViewModels
 
                 Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.Close();
             }
+        }
+
+        private void ToggleTheme()
+        {
+            ThemeManager.ToggleTheme();
+            UpdateThemeIcon();
+        }
+
+        private void UpdateThemeIcon()
+        {
+            // 🌙 para modo oscuro, ☀️ para modo claro
+            ThemeIcon = ThemeManager.CurrentTheme == ThemeManager.Theme.Light ? "🌙" : "☀️";
         }
     }
 }
