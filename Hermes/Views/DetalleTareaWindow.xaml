@@ -326,7 +326,9 @@
                                                     <TextBlock Text="-" FontSize="12" Foreground="#95A5A6" Margin="0,0,10,0"/>
                                                     <TextBlock FontSize="12" Foreground="#95A5A6">
                                                         <Run Text="Subido por:"/>
-                                                        <Run Text="{Binding UsuarioSubio.Empleado.NombresEmpleado, Mode=OneWay}"/>
+                                                        <Run Text="{Binding UsuarioSubio.Empleado.NombresEmpleado, Mode=OneWay, FallbackValue=Desconocido, TargetNullValue=Desconocido}"/>
+                                                        <Run Text=" "/>
+                                                        <Run Text="{Binding UsuarioSubio.Empleado.ApellidosEmpleado, Mode=OneWay, FallbackValue=, TargetNullValue=}"/>
                                                     </TextBlock>
                                                 </StackPanel>
                                             </StackPanel>
