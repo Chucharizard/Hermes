@@ -182,13 +182,8 @@ namespace Hermes.Data
             // Configuración TareaComentario
             modelBuilder.Entity<TareaComentario>(entity =>
             {
-                entity.ToTable("TAREA_COMENTARIO");
                 entity.HasKey(tc => tc.IdComentario);
-                entity.Property(tc => tc.IdComentario).HasColumnName("id_comentario").HasDefaultValueSql("NEWID()");
-                entity.Property(tc => tc.IdTarea).HasColumnName("id_tarea");
-                entity.Property(tc => tc.IdUsuario).HasColumnName("id_usuario");
-                entity.Property(tc => tc.Comentario).HasColumnName("comentario").HasMaxLength(1000);
-                entity.Property(tc => tc.FechaComentario).HasColumnName("fecha_comentario");
+                entity.Property(tc => tc.IdComentario).HasDefaultValueSql("NEWID()");
 
                 entity.HasOne(tc => tc.Tarea)
                     .WithMany()
