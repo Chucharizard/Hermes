@@ -123,7 +123,7 @@
                                FontWeight="Bold"
                                Margin="15,5,15,10"/>
 
-                    <!-- Tareas Enviadas - solo para Broker, Secretaria y Abogada -->
+                    <!-- Tareas Enviadas - solo para Broker, Secretaria y Abogada/Abogado -->
                     <Button Content="📤 Tareas Enviadas"
                             Command="{Binding MostrarBandejaTareasEnviadasCommand}"
                             Style="{StaticResource MenuButtonStyle}"

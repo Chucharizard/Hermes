@@ -147,10 +147,11 @@ namespace Hermes.ViewModels
 
             var rolNombre = usuario.Rol.NombreRol;
 
-            // Solo Broker, Secretaria y Abogada pueden enviar tareas
+            // Solo Broker, Secretaria y Abogada/Abogado pueden enviar tareas
             return rolNombre.Equals("Broker", StringComparison.OrdinalIgnoreCase) ||
                    rolNombre.Equals("Secretaria", StringComparison.OrdinalIgnoreCase) ||
-                   rolNombre.Equals("Abogada", StringComparison.OrdinalIgnoreCase);
+                   rolNombre.Equals("Abogada", StringComparison.OrdinalIgnoreCase) ||
+                   rolNombre.Equals("Abogado", StringComparison.OrdinalIgnoreCase);
         }
 
         private async Task CargarUsuariosReceptoresAsync()
@@ -176,9 +177,10 @@ namespace Hermes.ViewModels
                         // Broker y Secretaria pueden enviar tareas a todos los roles
                         UsuariosReceptores.Add(usuario);
                     }
-                    else if (rolActual.Equals("Abogada", StringComparison.OrdinalIgnoreCase))
+                    else if (rolActual.Equals("Abogada", StringComparison.OrdinalIgnoreCase) ||
+                             rolActual.Equals("Abogado", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Abogada SOLO puede enviar tareas a Secretaria
+                        // Abogada/Abogado SOLO puede enviar tareas a Secretaria
                         if (usuario.Rol?.NombreRol.Equals("Secretaria", StringComparison.OrdinalIgnoreCase) == true)
                         {
                             UsuariosReceptores.Add(usuario);
@@ -215,11 +217,13 @@ namespace Hermes.ViewModels
             }
 
             // Validación adicional: verificar que el receptor sea válido según el rol del emisor
-            if (usuarioActual.Rol != null && usuarioActual.Rol.NombreRol.Equals("Abogada", StringComparison.OrdinalIgnoreCase))
+            if (usuarioActual.Rol != null &&
+                (usuarioActual.Rol.NombreRol.Equals("Abogada", StringComparison.OrdinalIgnoreCase) ||
+                 usuarioActual.Rol.NombreRol.Equals("Abogado", StringComparison.OrdinalIgnoreCase)))
             {
                 if (UsuarioReceptorSeleccionado.Rol?.NombreRol.Equals("Broker", StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    MensajeError = "Como Abogada no puede enviar tareas al Broker";
+                    MensajeError = "Como Abogada/Abogado no puede enviar tareas al Broker";
                     return;
                 }
             }

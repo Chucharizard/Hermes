@@ -66,10 +66,11 @@ namespace Hermes.ViewModels
             {
                 RolUsuario = usuario.Rol.NombreRol;
 
-                // Solo Broker, Secretaria y Abogada pueden enviar tareas
+                // Solo Broker, Secretaria y Abogada/Abogado pueden enviar tareas
                 PuedeEnviarTareas = RolUsuario.Equals("Broker", StringComparison.OrdinalIgnoreCase) ||
                                    RolUsuario.Equals("Secretaria", StringComparison.OrdinalIgnoreCase) ||
-                                   RolUsuario.Equals("Abogada", StringComparison.OrdinalIgnoreCase);
+                                   RolUsuario.Equals("Abogada", StringComparison.OrdinalIgnoreCase) ||
+                                   RolUsuario.Equals("Abogado", StringComparison.OrdinalIgnoreCase);
 
                 // Solo Broker tiene acceso completo a administración
                 EsAdministrador = RolUsuario.Equals("Broker", StringComparison.OrdinalIgnoreCase);
