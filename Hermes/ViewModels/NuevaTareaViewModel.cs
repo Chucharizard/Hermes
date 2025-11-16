@@ -178,8 +178,8 @@ namespace Hermes.ViewModels
                     }
                     else if (rolActual.Equals("Abogada", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Abogada solo puede enviar tareas a Secretaria y otros roles (no a Broker)
-                        if (!usuario.Rol?.NombreRol.Equals("Broker", StringComparison.OrdinalIgnoreCase) == true)
+                        // Abogada SOLO puede enviar tareas a Secretaria
+                        if (usuario.Rol?.NombreRol.Equals("Secretaria", StringComparison.OrdinalIgnoreCase) == true)
                         {
                             UsuariosReceptores.Add(usuario);
                         }
