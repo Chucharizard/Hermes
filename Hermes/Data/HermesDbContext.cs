@@ -206,26 +206,18 @@ namespace Hermes.Data
             // Configuración TareaAdjunto
             modelBuilder.Entity<TareaAdjunto>(entity =>
             {
-                entity.ToTable("TAREA_ADJUNTO");
-                entity.HasKey(ta => ta.IdAdjunto);
-                entity.Property(ta => ta.IdAdjunto).HasColumnName("id_adjunto").HasDefaultValueSql("NEWID()");
-                entity.Property(ta => ta.IdTarea).HasColumnName("id_tarea");
-                entity.Property(ta => ta.NombreArchivo).HasColumnName("nombre_archivo").HasMaxLength(255);
-                entity.Property(ta => ta.RutaArchivo).HasColumnName("ruta_archivo").HasMaxLength(500);
-                entity.Property(ta => ta.TipoArchivo).HasColumnName("tipo_archivo").HasMaxLength(100);
-                entity.Property(ta => ta.TamañoArchivo).HasColumnName("tamaño_archivo");
-                entity.Property(ta => ta.IdUsuarioSubio).HasColumnName("id_usuario_subio");
-                entity.Property(ta => ta.FechaSubida).HasColumnName("fecha_subida");
+                entity.HasKey(ta => ta.IdTareaAdjunto);
+                entity.Property(ta => ta.IdTareaAdjunto).HasDefaultValueSql("NEWID()");
 
                 entity.HasOne(ta => ta.Tarea)
                     .WithMany()
-                    .HasForeignKey(ta => ta.IdTarea)
-                    .HasConstraintName("FK_ADJUNTO_TAREA")
+                    .HasForeignKey(ta => ta.TareaId)
+                    .HasConstraintName("FK_TAREA_ADJUNTO")
                     .OnDelete(DeleteBehavior.NoAction);
 
-                entity.HasOne(ta => ta.UsuarioSubio)
+                entity.HasOne(ta => ta.UsuarioSubioNavigation)
                     .WithMany()
-                    .HasForeignKey(ta => ta.IdUsuarioSubio)
+                    .HasForeignKey(ta => ta.IdUsuarioSubioTareaAdjunto)
                     .HasConstraintName("FK_ADJUNTO_USUARIO")
                     .OnDelete(DeleteBehavior.NoAction);
             });

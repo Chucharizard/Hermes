@@ -8,30 +8,20 @@ namespace Hermes.Services
     public class TareaAdjuntoService
     {
         private readonly HermesDbContext _context;
-        private readonly string _adjuntosDirectory;
 
         public TareaAdjuntoService()
         {
             _context = new HermesDbContext();
-
-            // Directorio para guardar archivos adjuntos
-            _adjuntosDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Adjuntos");
-
-            // Crear directorio si no existe
-            if (!Directory.Exists(_adjuntosDirectory))
-            {
-                Directory.CreateDirectory(_adjuntosDirectory);
-            }
         }
 
         // READ ALL ATTACHMENTS FOR A TASK
         public async Task<List<TareaAdjunto>> ObtenerAdjuntosPorTareaAsync(Guid idTarea)
         {
             return await _context.TareasAdjuntos
-                .Include(ta => ta.UsuarioSubio)
+                .Include(ta => ta.UsuarioSubioNavigation)
                     .ThenInclude(u => u!.Empleado)
-                .Where(ta => ta.IdTarea == idTarea)
-                .OrderByDescending(ta => ta.FechaSubida)
+                .Where(ta => ta.TareaId == idTarea)
+                .OrderByDescending(ta => ta.FechaSubidaTareaAdjunto)
                 .ToListAsync();
         }
 
@@ -39,10 +29,10 @@ namespace Hermes.Services
         public async Task<TareaAdjunto?> ObtenerPorIdAsync(Guid id)
         {
             return await _context.TareasAdjuntos
-                .Include(ta => ta.UsuarioSubio)
-                    .ThenInclude(u => u!.Empleado)
                 .Include(ta => ta.Tarea)
-                .FirstOrDefaultAsync(ta => ta.IdAdjunto == id);
+                .Include(ta => ta.UsuarioSubioNavigation)
+                    .ThenInclude(u => u!.Empleado)
+                .FirstOrDefaultAsync(ta => ta.IdTareaAdjunto == id);
         }
 
         // UPLOAD FILE
@@ -55,24 +45,19 @@ namespace Hermes.Services
 
                 var fileInfo = new FileInfo(rutaArchivoOrigen);
 
-                // Generar nombre único para el archivo
-                var nombreUnico = $"{Guid.NewGuid()}_{fileInfo.Name}";
-                var rutaDestino = Path.Combine(_adjuntosDirectory, nombreUnico);
+                // Leer archivo como bytes
+                byte[] archivoBytes = await File.ReadAllBytesAsync(rutaArchivoOrigen);
 
-                // Copiar archivo al directorio de adjuntos
-                File.Copy(rutaArchivoOrigen, rutaDestino);
-
-                // Crear registro en base de datos
+                // Crear registro en base de datos con el archivo como VARBINARY
                 var adjunto = new TareaAdjunto
                 {
-                    IdAdjunto = Guid.NewGuid(),
-                    IdTarea = idTarea,
-                    NombreArchivo = fileInfo.Name,
-                    RutaArchivo = rutaDestino,
-                    TipoArchivo = fileInfo.Extension,
-                    TamañoArchivo = fileInfo.Length,
-                    IdUsuarioSubio = idUsuarioSubio,
-                    FechaSubida = DateTime.Now
+                    IdTareaAdjunto = Guid.NewGuid(),
+                    TareaId = idTarea,
+                    NombreArchivoTareaAdjunto = fileInfo.Name,
+                    TipoArchivoTareaAdjunto = fileInfo.Extension,
+                    ArchivoTareaAdjunto = archivoBytes,
+                    IdUsuarioSubioTareaAdjunto = idUsuarioSubio,
+                    FechaSubidaTareaAdjunto = DateTime.Now
                 };
 
                 _context.TareasAdjuntos.Add(adjunto);
@@ -90,9 +75,19 @@ namespace Hermes.Services
         {
             var adjunto = await ObtenerPorIdAsync(idAdjunto);
 
-            if (adjunto != null && File.Exists(adjunto.RutaArchivo))
+            if (adjunto?.ArchivoTareaAdjunto != null)
             {
-                return adjunto.RutaArchivo;
+                // Crear archivo temporal con el contenido del archivo de la BD
+                var tempPath = Path.Combine(Path.GetTempPath(), adjunto.NombreArchivoTareaAdjunto);
+
+                // Si ya existe el archivo temporal, eliminarlo primero
+                if (File.Exists(tempPath))
+                {
+                    File.Delete(tempPath);
+                }
+
+                await File.WriteAllBytesAsync(tempPath, adjunto.ArchivoTareaAdjunto);
+                return tempPath;
             }
 
             return null;
@@ -102,7 +97,7 @@ namespace Hermes.Services
         public async Task<int> ContarAdjuntosPorTareaAsync(Guid idTarea)
         {
             return await _context.TareasAdjuntos
-                .Where(ta => ta.IdTarea == idTarea)
+                .Where(ta => ta.TareaId == idTarea)
                 .CountAsync();
         }
 
@@ -114,13 +109,7 @@ namespace Hermes.Services
                 var adjunto = await ObtenerPorIdAsync(id);
                 if (adjunto != null)
                 {
-                    // Eliminar archivo físico
-                    if (File.Exists(adjunto.RutaArchivo))
-                    {
-                        File.Delete(adjunto.RutaArchivo);
-                    }
-
-                    // Eliminar registro de BD
+                    // Eliminar solo el registro de BD (el archivo está dentro de la BD)
                     _context.TareasAdjuntos.Remove(adjunto);
                     await _context.SaveChangesAsync();
                     return true;
@@ -136,9 +125,11 @@ namespace Hermes.Services
         // GET TOTAL SIZE OF ATTACHMENTS FOR A TASK
         public async Task<long> ObtenerTamañoTotalPorTareaAsync(Guid idTarea)
         {
-            return await _context.TareasAdjuntos
-                .Where(ta => ta.IdTarea == idTarea)
-                .SumAsync(ta => ta.TamañoArchivo);
+            var adjuntos = await _context.TareasAdjuntos
+                .Where(ta => ta.TareaId == idTarea)
+                .ToListAsync();
+
+            return adjuntos.Sum(ta => ta.ArchivoTareaAdjunto?.Length ?? 0);
         }
     }
 }
