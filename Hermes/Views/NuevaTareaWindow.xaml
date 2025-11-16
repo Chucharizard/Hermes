@@ -4,7 +4,7 @@
         xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
         xmlns:helpers="clr-namespace:Hermes.Helpers"
         Title="Nueva Tarea"
-        Height="700" Width="650"
+        Height="800" Width="650"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
 
@@ -161,6 +161,129 @@
                                    FontSize="11"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Archivos Adjuntos -->
+                    <Border Background="#F8F9FA"
+                            CornerRadius="5"
+                            Padding="15"
+                            Margin="0,0,0,15">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0"
+                                           Text="📎 Archivos Adjuntos (Opcional)"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="#34495E"
+                                           VerticalAlignment="Center"/>
+
+                                <Button Grid.Column="1"
+                                        Content="📁 Seleccionar"
+                                        Command="{Binding SeleccionarArchivoCommand}"
+                                        Background="#27AE60"
+                                        Foreground="White"
+                                        Padding="12,6"
+                                        FontSize="12"
+                                        BorderThickness="0"
+                                        Cursor="Hand">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="4"
+                                                                Padding="{TemplateBinding Padding}">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#229954"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+
+                            <!-- Lista de archivos seleccionados -->
+                            <ItemsControl ItemsSource="{Binding ArchivosPendientes}" MaxHeight="150">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="White"
+                                                CornerRadius="4"
+                                                Padding="10"
+                                                Margin="0,0,0,5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0"
+                                                           Text="📄"
+                                                           FontSize="16"
+                                                           Margin="0,0,10,0"/>
+
+                                                <StackPanel Grid.Column="1">
+                                                    <TextBlock Text="{Binding NombreArchivo}"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#2C3E50"
+                                                               FontSize="12"/>
+                                                    <TextBlock Text="{Binding TamañoTexto}"
+                                                               FontSize="10"
+                                                               Foreground="#95A5A6"/>
+                                                </StackPanel>
+
+                                                <Button Grid.Column="2"
+                                                        Content="✖"
+                                                        Command="{Binding DataContext.EliminarArchivoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="#E74C3C"
+                                                        Foreground="White"
+                                                        Width="25"
+                                                        Height="25"
+                                                        FontSize="10"
+                                                        BorderThickness="0"
+                                                        Cursor="Hand">
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border Background="{TemplateBinding Background}"
+                                                                                CornerRadius="3"
+                                                                                Padding="{TemplateBinding Padding}">
+                                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#C0392B"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
                     </Border>
 
                     <!-- Botones -->

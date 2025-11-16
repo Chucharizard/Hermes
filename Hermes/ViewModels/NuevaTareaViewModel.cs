@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Win32;
 using Hermes.Commands;
 using Hermes.Models;
 using Hermes.Models.Enums;
@@ -13,6 +15,7 @@ namespace Hermes.ViewModels
     {
         private readonly TareaService _tareaService;
         private readonly UsuarioService _usuarioService;
+        private readonly TareaAdjuntoService _adjuntoService;
         private Tarea _tarea = new();
         private string _mensajeError = string.Empty;
         private ObservableCollection<Usuario> _usuariosReceptores = new();
@@ -21,6 +24,7 @@ namespace Hermes.ViewModels
         private string _prioridadSeleccionada = "Media";
         private string _nombreUsuarioEmisor = string.Empty;
         private bool _puedeEnviarTareas = false;
+        private ObservableCollection<ArchivoPendiente> _archivosPendientes = new();
 
         public Tarea Tarea
         {
@@ -70,6 +74,12 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _puedeEnviarTareas, value);
         }
 
+        public ObservableCollection<ArchivoPendiente> ArchivosPendientes
+        {
+            get => _archivosPendientes;
+            set => SetProperty(ref _archivosPendientes, value);
+        }
+
         // Listas para ComboBoxes
         public List<string> Estados { get; } = new()
         {
@@ -89,11 +99,14 @@ namespace Hermes.ViewModels
 
         public ICommand GuardarCommand { get; }
         public ICommand CancelarCommand { get; }
+        public ICommand SeleccionarArchivoCommand { get; }
+        public ICommand EliminarArchivoCommand { get; }
 
         public NuevaTareaViewModel()
         {
             _tareaService = new TareaService();
             _usuarioService = new UsuarioService();
+            _adjuntoService = new TareaAdjuntoService();
 
             // Obtener el usuario actual (emisor)
             var usuarioActual = App.UsuarioActual;
@@ -120,6 +133,8 @@ namespace Hermes.ViewModels
 
             GuardarCommand = new RelayCommand(async _ => await GuardarAsync(), _ => PuedeEnviarTareas);
             CancelarCommand = new RelayCommand(_ => Cancelar());
+            SeleccionarArchivoCommand = new RelayCommand(_ => SeleccionarArchivo());
+            EliminarArchivoCommand = new RelayCommand(param => EliminarArchivo((ArchivoPendiente)param!));
 
             // Cargar usuarios receptores (filtrados por rol)
             Task.Run(async () => await CargarUsuariosReceptoresAsync());
@@ -232,10 +247,47 @@ namespace Hermes.ViewModels
 
             if (resultado)
             {
-                MessageBox.Show("Tarea creada exitosamente",
-                              "Exito",
-                              MessageBoxButton.OK,
-                              MessageBoxImage.Information);
+                // Subir archivos adjuntos si hay alguno
+                if (ArchivosPendientes.Count > 0)
+                {
+                    int archivosSubidos = 0;
+                    int totalArchivos = ArchivosPendientes.Count;
+
+                    foreach (var archivo in ArchivosPendientes)
+                    {
+                        var resultadoAdjunto = await _adjuntoService.SubirAdjuntoAsync(
+                            Tarea.IdTarea,
+                            usuarioActual.IdUsuario,
+                            archivo.RutaCompleta);
+
+                        if (resultadoAdjunto)
+                        {
+                            archivosSubidos++;
+                        }
+                    }
+
+                    if (archivosSubidos == totalArchivos)
+                    {
+                        MessageBox.Show($"Tarea creada exitosamente con {archivosSubidos} archivo(s) adjunto(s)",
+                                      "Exito",
+                                      MessageBoxButton.OK,
+                                      MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Tarea creada. Se subieron {archivosSubidos} de {totalArchivos} archivos",
+                                      "Advertencia",
+                                      MessageBoxButton.OK,
+                                      MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Tarea creada exitosamente",
+                                  "Exito",
+                                  MessageBoxButton.OK,
+                                  MessageBoxImage.Information);
+                }
 
                 Application.Current.Windows.OfType<Views.NuevaTareaWindow>().FirstOrDefault()?.Close();
             }
@@ -245,9 +297,72 @@ namespace Hermes.ViewModels
             }
         }
 
+        private void SeleccionarArchivo()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Todos los archivos (*.*)|*.*|" +
+                         "Documentos PDF (*.pdf)|*.pdf|" +
+                         "Imágenes (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|" +
+                         "Documentos Word (*.doc;*.docx)|*.doc;*.docx|" +
+                         "Hojas de cálculo (*.xls;*.xlsx)|*.xls;*.xlsx",
+                Title = "Seleccionar archivo para adjuntar",
+                Multiselect = true
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (var archivo in openFileDialog.FileNames)
+                {
+                    var fileInfo = new FileInfo(archivo);
+
+                    // Verificar si el archivo ya está en la lista
+                    if (!ArchivosPendientes.Any(a => a.RutaCompleta == archivo))
+                    {
+                        ArchivosPendientes.Add(new ArchivoPendiente
+                        {
+                            NombreArchivo = fileInfo.Name,
+                            RutaCompleta = archivo,
+                            Tamaño = fileInfo.Length,
+                            TamañoTexto = FormatearTamaño(fileInfo.Length)
+                        });
+                    }
+                }
+            }
+        }
+
+        private void EliminarArchivo(ArchivoPendiente archivo)
+        {
+            ArchivosPendientes.Remove(archivo);
+        }
+
+        private string FormatearTamaño(long bytes)
+        {
+            string[] tamaños = { "B", "KB", "MB", "GB" };
+            double tam = bytes;
+            int orden = 0;
+
+            while (tam >= 1024 && orden < tamaños.Length - 1)
+            {
+                orden++;
+                tam /= 1024;
+            }
+
+            return $"{tam:0.##} {tamaños[orden]}";
+        }
+
         private void Cancelar()
         {
             Application.Current.Windows.OfType<Views.NuevaTareaWindow>().FirstOrDefault()?.Close();
         }
+    }
+
+    // Clase para representar archivos pendientes de subir
+    public class ArchivoPendiente
+    {
+        public string NombreArchivo { get; set; } = string.Empty;
+        public string RutaCompleta { get; set; } = string.Empty;
+        public long Tamaño { get; set; }
+        public string TamañoTexto { get; set; } = string.Empty;
     }
 }
