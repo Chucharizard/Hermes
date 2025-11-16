@@ -183,17 +183,17 @@ namespace Hermes.Data
             modelBuilder.Entity<TareaComentario>(entity =>
             {
                 // Solo configurar lo que NO está en data annotations
-                entity.Property(tc => tc.IdComentario).HasDefaultValueSql("NEWID()");
+                entity.Property(tc => tc.IdTareaComentario).HasDefaultValueSql("NEWID()");
 
                 entity.HasOne(tc => tc.Tarea)
                     .WithMany()
-                    .HasForeignKey(tc => tc.IdTarea)
+                    .HasForeignKey(tc => tc.TareaIdComentario)
                     .HasConstraintName("FK_COMENTARIO_TAREA")
                     .OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(tc => tc.Usuario)
                     .WithMany()
-                    .HasForeignKey(tc => tc.IdUsuario)
+                    .HasForeignKey(tc => tc.UsuarioAutorId)
                     .HasConstraintName("FK_COMENTARIO_USUARIO")
                     .OnDelete(DeleteBehavior.NoAction);
             });
