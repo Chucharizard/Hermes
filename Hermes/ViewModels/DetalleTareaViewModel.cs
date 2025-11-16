@@ -21,6 +21,8 @@ namespace Hermes.ViewModels
         private string _nuevoComentario = string.Empty;
         private ObservableCollection<TareaComentario> _comentarios = new();
         private ObservableCollection<TareaAdjunto> _adjuntos = new();
+        private ObservableCollection<TareaAdjunto> _adjuntosEmisor = new();
+        private ObservableCollection<TareaAdjunto> _adjuntosReceptor = new();
         private ObservableCollection<Usuario> _usuariosReceptores = new();
         private Usuario? _nuevoReceptorSeleccionado;
 
@@ -48,6 +50,18 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _adjuntos, value);
         }
 
+        public ObservableCollection<TareaAdjunto> AdjuntosEmisor
+        {
+            get => _adjuntosEmisor;
+            set => SetProperty(ref _adjuntosEmisor, value);
+        }
+
+        public ObservableCollection<TareaAdjunto> AdjuntosReceptor
+        {
+            get => _adjuntosReceptor;
+            set => SetProperty(ref _adjuntosReceptor, value);
+        }
+
         public ObservableCollection<Usuario> UsuariosReceptores
         {
             get => _usuariosReceptores;
@@ -70,10 +84,13 @@ namespace Hermes.ViewModels
         public bool PuedeObservar => EsEmisor && Tarea?.EstadoTarea == "Completado";
         public int TotalComentarios => Comentarios.Count;
         public int TotalAdjuntos => Adjuntos.Count;
+        public int TotalAdjuntosEmisor => AdjuntosEmisor.Count;
+        public int TotalAdjuntosReceptor => AdjuntosReceptor.Count;
 
         public ICommand AgregarComentarioCommand { get; }
         public ICommand SubirAdjuntoCommand { get; }
         public ICommand DescargarAdjuntoCommand { get; }
+        public ICommand EliminarAdjuntoCommand { get; }
         public ICommand CompletarTareaCommand { get; }
         public ICommand DevolverTareaCommand { get; }
         public ICommand ObservarTareaCommand { get; }
@@ -93,6 +110,7 @@ namespace Hermes.ViewModels
             AgregarComentarioCommand = new RelayCommand(async _ => await AgregarComentarioAsync(), _ => !string.IsNullOrWhiteSpace(NuevoComentario));
             SubirAdjuntoCommand = new RelayCommand(async _ => await SubirAdjuntoAsync());
             DescargarAdjuntoCommand = new RelayCommand(async param => await DescargarAdjuntoAsync((TareaAdjunto)param!));
+            EliminarAdjuntoCommand = new RelayCommand(async param => await EliminarAdjuntoAsync((TareaAdjunto)param!));
             CompletarTareaCommand = new RelayCommand(async _ => await CompletarTareaAsync(), _ => PuedeCompletar);
             DevolverTareaCommand = new RelayCommand(async _ => await DevolverTareaAsync(), _ => PuedeDevolver);
             ObservarTareaCommand = new RelayCommand(async _ => await ObservarTareaAsync(), _ => PuedeObservar);
@@ -123,9 +141,22 @@ namespace Hermes.ViewModels
                 }
 
                 Adjuntos.Clear();
+                AdjuntosEmisor.Clear();
+                AdjuntosReceptor.Clear();
+
                 foreach (var adjunto in adjuntos)
                 {
                     Adjuntos.Add(adjunto);
+
+                    // Separar por usuario que subió
+                    if (adjunto.IdUsuarioSubioTareaAdjunto == Tarea.UsuarioEmisorId)
+                    {
+                        AdjuntosEmisor.Add(adjunto);
+                    }
+                    else if (adjunto.IdUsuarioSubioTareaAdjunto == Tarea.UsuarioReceptorId)
+                    {
+                        AdjuntosReceptor.Add(adjunto);
+                    }
                 }
 
                 // Cargar usuarios receptores (excluyendo al emisor)
@@ -215,6 +246,37 @@ namespace Hermes.ViewModels
             else
             {
                 MessageBox.Show("Archivo no encontrado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async Task EliminarAdjuntoAsync(TareaAdjunto adjunto)
+        {
+            // Verificar que el usuario actual sea quien subió el archivo
+            if (adjunto.IdUsuarioSubioTareaAdjunto != App.UsuarioActual?.IdUsuario)
+            {
+                MessageBox.Show("Solo puedes eliminar los archivos que tú subiste", "Permiso denegado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var resultado = MessageBox.Show(
+                $"¿Está seguro de eliminar el archivo '{adjunto.NombreArchivo}'?",
+                "Confirmar eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                var eliminado = await _adjuntoService.EliminarAsync(adjunto.IdAdjunto);
+
+                if (eliminado)
+                {
+                    MessageBox.Show("Archivo eliminado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    await CargarDatosAsync();
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar archivo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -351,6 +413,8 @@ namespace Hermes.ViewModels
             OnPropertyChanged(nameof(PuedeObservar));
             OnPropertyChanged(nameof(TotalComentarios));
             OnPropertyChanged(nameof(TotalAdjuntos));
+            OnPropertyChanged(nameof(TotalAdjuntosEmisor));
+            OnPropertyChanged(nameof(TotalAdjuntosReceptor));
         }
 
         private void Cerrar()
