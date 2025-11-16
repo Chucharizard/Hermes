@@ -1,8 +1,15 @@
 ﻿
-FC:\Users\USUARIO\Downloads\ProyectoHermes\Hermes\App.xaml;;
-FC:\Users\USUARIO\Downloads\ProyectoHermes\Hermes\MainWindow.xaml;;
-FC:\Users\USUARIO\Downloads\ProyectoHermes\Hermes\Views\GestionarUsuarioWindow.xaml;;
-FC:\Users\USUARIO\Downloads\ProyectoHermes\Hermes\Views\GestionEmpleadosView.xaml;;
-FC:\Users\USUARIO\Downloads\ProyectoHermes\Hermes\Views\LoginWindow.xaml;;
-FC:\Users\USUARIO\Downloads\ProyectoHermes\Hermes\Views\NuevoEmpleadoWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\App.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\MainWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\BandejaTareasEnviadasView.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\BandejaTareasRecibidasView.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\DashboardView.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\EditarEmpleadoWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\EditarTareaWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\GestionarUsuarioWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\GestionEmpleadosView.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\GestionTareasView.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\LoginWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\NuevaTareaWindow.xaml;;
+FC:\Users\USUARIO\Downloads\PruebasHermes\v5\Hermes\Hermes\Views\NuevoEmpleadoWindow.xaml;;
 

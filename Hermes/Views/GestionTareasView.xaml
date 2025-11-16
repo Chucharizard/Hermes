@@ -18,7 +18,11 @@
         </Grid.RowDefinitions>
 
         <!-- Header con botones -->
-        <Border Grid.Row="0" Background="White" Padding="20" Margin="0,0,0,20">
+        <Border Grid.Row="0" 
+                Background="{DynamicResource CardBackgroundBrush}" 
+                Padding="20" 
+                Margin="0,0,0,20"
+                CornerRadius="10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
             </Border.Effect>
@@ -33,10 +37,10 @@
                     <TextBlock Text="Gestion de Tareas"
                                FontSize="24"
                                FontWeight="Bold"
-                               Foreground="#2C3E50"/>
+                               Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock Text="Administra las tareas del sistema"
                                FontSize="14"
-                               Foreground="#7F8C8D"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
                                Margin="0,5,0,0"/>
                 </StackPanel>
 
@@ -108,7 +112,10 @@
         </Border>
 
         <!-- DataGrid de Tareas -->
-        <Border Grid.Row="1" Background="White" Padding="20">
+        <Border Grid.Row="1" 
+                Background="{DynamicResource CardBackgroundBrush}" 
+                Padding="20"
+                CornerRadius="10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
             </Border.Effect>
@@ -123,25 +130,42 @@
 
                 <!-- Estadisticas -->
                 <Border Grid.Row="0"
-                        Background="#ECF0F1"
+                        Background="{DynamicResource HoverBackgroundBrush}"
                         Padding="15"
                         Margin="0,0,0,15"
                         CornerRadius="5">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Total: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TotalTareas}" Foreground="#34495E" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Pendientes: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasPendientes}" Foreground="#F39C12" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Completadas: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasCompletadas}" Foreground="#27AE60" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Vencidas: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasVencidas}" Foreground="#E74C3C" FontWeight="Bold"/>
+                        <TextBlock Text="Total: " 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        <TextBlock Text="{Binding TotalTareas}" 
+                                   Foreground="{DynamicResource PrimaryTextBrush}" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="  |  Pendientes: " 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        <TextBlock Text="{Binding TareasPendientes}" 
+                                   Foreground="#F39C12" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="  |  Completadas: " 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        <TextBlock Text="{Binding TareasCompletadas}" 
+                                   Foreground="#27AE60" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="  |  Vencidas: " 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        <TextBlock Text="{Binding TareasVencidas}" 
+                                   Foreground="#E74C3C" 
+                                   FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Buscador -->
                 <Border Grid.Row="1"
-                        BorderBrush="#BDC3C7"
+                        Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="1"
                         CornerRadius="5"
                         Margin="0,0,0,15">
@@ -150,93 +174,250 @@
                              Padding="10"
                              FontSize="14"
                              BorderThickness="0"
-                             VerticalContentAlignment="Center"/>
+                             Background="Transparent"
+                             Foreground="{DynamicResource PrimaryTextBrush}"
+                             VerticalContentAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="" />
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                 </Border>
 
                 <!-- DataGrid -->
-                <DataGrid Grid.Row="2"
-                          ItemsSource="{Binding TareasFiltradas}"
-                          SelectedItem="{Binding TareaSeleccionada}"
-                          AutoGenerateColumns="False"
-                          IsReadOnly="True"
-                          SelectionMode="Single"
-                          CanUserAddRows="False"
-                          CanUserDeleteRows="False"
-                          GridLinesVisibility="None"
-                          HeadersVisibility="Column"
-                          BorderThickness="0"
-                          AlternatingRowBackground="#F8F9FA">
+                <Border Grid.Row="2"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Background="{DynamicResource CardBackgroundBrush}">
+                    <DataGrid ItemsSource="{Binding TareasFiltradas}"
+                              SelectedItem="{Binding TareaSeleccionada}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              GridLinesVisibility="None"
+                              HeadersVisibility="Column"
+                              BorderThickness="0"
+                              Background="{DynamicResource CardBackgroundBrush}"
+                              RowBackground="{DynamicResource CardBackgroundBrush}"
+                              AlternatingRowBackground="{DynamicResource HoverBackgroundBrush}"
+                              RowHeight="45">
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Titulo"
-                                          Binding="{Binding TituloTarea}"
-                                          Width="*"/>
-                        <DataGridTextColumn Header="Emisor"
-                                          Binding="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                          Width="150"/>
-                        <DataGridTextColumn Header="Receptor"
-                                          Binding="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
-                                          Width="150"/>
-                        <DataGridTextColumn Header="Estado"
-                                          Binding="{Binding EstadoTarea}"
-                                          Width="100"/>
-                        <DataGridTextColumn Header="Prioridad"
-                                          Binding="{Binding PrioridadTarea}"
-                                          Width="100"/>
-                        <DataGridTextColumn Header="Fecha Inicio"
-                                          Binding="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
-                                          Width="100"/>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{DynamicResource HoverBackgroundBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="FontSize" Value="13"/>
+                                <Setter Property="Padding" Value="15,12"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
 
-                        <DataGridTemplateColumn Header="Acciones" Width="320">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Ver"
-                                                Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#3498DB"
-                                                Foreground="White"
-                                                Padding="10,5"
-                                                Margin="2"
-                                                BorderThickness="0"
-                                                Cursor="Hand"/>
-                                        <Button Content="Editar"
-                                                Command="{Binding DataContext.EditarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#F39C12"
-                                                Foreground="White"
-                                                Padding="10,5"
-                                                Margin="2"
-                                                BorderThickness="0"
-                                                Cursor="Hand"/>
-                                        <Button Content="Eliminar"
-                                                Command="{Binding DataContext.EliminarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#E74C3C"
-                                                Foreground="White"
-                                                Padding="10,5"
-                                                Margin="2"
-                                                BorderThickness="0"
-                                                Cursor="Hand"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Padding" Value="15,8"/>
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="DataGridCell">
+                                            <Border Padding="{TemplateBinding Padding}"
+                                                    Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource HoverBackgroundBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Titulo"
+                                              Binding="{Binding TituloTarea}"
+                                              Width="*"/>
+                            <DataGridTextColumn Header="Emisor"
+                                              Binding="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
+                                              Width="150"/>
+                            <DataGridTextColumn Header="Receptor"
+                                              Binding="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
+                                              Width="150"/>
+                            <DataGridTextColumn Header="Estado"
+                                              Binding="{Binding EstadoTarea}"
+                                              Width="100"/>
+                            <DataGridTextColumn Header="Prioridad"
+                                              Binding="{Binding PrioridadTarea}"
+                                              Width="100"/>
+                            <DataGridTextColumn Header="Fecha Inicio"
+                                              Binding="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
+                                              Width="100"/>
+
+                            <DataGridTemplateColumn Header="Acciones" Width="320">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" 
+                                                   HorizontalAlignment="Center"
+                                                   Margin="5,0">
+                                            <Button Content="Ver"
+                                                    Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Padding="10,6"
+                                                    Margin="2"
+                                                    FontSize="12"
+                                                    FontWeight="SemiBold"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Background" Value="#3498DB"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Border Background="{TemplateBinding Background}"
+                                                                            CornerRadius="5"
+                                                                            Padding="{TemplateBinding Padding}">
+                                                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                                                        VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#2980B9"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                            
+                                            <Button Content="Editar"
+                                                    Command="{Binding DataContext.EditarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Padding="10,6"
+                                                    Margin="2"
+                                                    FontSize="12"
+                                                    FontWeight="SemiBold"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Background" Value="#F39C12"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Border Background="{TemplateBinding Background}"
+                                                                            CornerRadius="5"
+                                                                            Padding="{TemplateBinding Padding}">
+                                                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                                                        VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#E67E22"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                            
+                                            <Button Content="Eliminar"
+                                                    Command="{Binding DataContext.EliminarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Padding="10,6"
+                                                    Margin="2"
+                                                    FontSize="12"
+                                                    FontWeight="SemiBold"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Background" Value="#E74C3C"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Border Background="{TemplateBinding Background}"
+                                                                            CornerRadius="5"
+                                                                            Padding="{TemplateBinding Padding}">
+                                                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                                                        VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#C0392B"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
 
                 <!-- Footer con total -->
                 <Border Grid.Row="3"
-                        Background="#ECF0F1"
+                        Background="{DynamicResource HoverBackgroundBrush}"
                         Padding="15"
                         Margin="0,15,0,0"
                         CornerRadius="5">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Mostrando " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasFiltradas.Count}" Foreground="#27AE60" FontWeight="Bold"/>
-                        <TextBlock Text=" de " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TotalTareas}" Foreground="#3498DB" FontWeight="Bold"/>
-                        <TextBlock Text=" tareas" FontWeight="SemiBold"/>
+                        <TextBlock Text="Mostrando " 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        <TextBlock Text="{Binding TareasFiltradas.Count}" 
+                                   Foreground="#27AE60" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text=" de " 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        <TextBlock Text="{Binding TotalTareas}" 
+                                   Foreground="#3498DB" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text=" tareas" 
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
                     </StackPanel>
                 </Border>
             </Grid>

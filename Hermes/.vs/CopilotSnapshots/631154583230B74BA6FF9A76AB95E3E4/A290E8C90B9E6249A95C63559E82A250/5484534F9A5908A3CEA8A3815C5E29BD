@@ -1,6 +1,0 @@
-﻿namespace Hermes.Services
-{
-    public class UsuarioService
-    {
-    }
-}
