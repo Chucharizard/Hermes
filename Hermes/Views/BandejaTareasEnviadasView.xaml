@@ -137,6 +137,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBox Grid.Column="0"
@@ -185,6 +187,7 @@
                             Padding="15,8"
                             FontSize="14"
                             BorderThickness="0"
+                            Margin="0,0,10,0"
                             Cursor="Hand">
                         <Button.Style>
                             <Style TargetType="Button">
@@ -203,6 +206,38 @@
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#2980B9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button Grid.Column="3"
+                            Content="➕ Nueva Tarea"
+                            Command="{Binding AbrirNuevaTareaCommand}"
+                            Background="#27AE60"
+                            Foreground="White"
+                            Padding="15,8"
+                            FontSize="14"
+                            BorderThickness="0"
+                            Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="5"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#229954"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

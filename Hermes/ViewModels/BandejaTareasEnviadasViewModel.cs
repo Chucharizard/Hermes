@@ -76,6 +76,7 @@ namespace Hermes.ViewModels
         public ICommand RefrescarCommand { get; }
         public ICommand VerDetalleCommand { get; }
         public ICommand ArchivarTareaCommand { get; }
+        public ICommand AbrirNuevaTareaCommand { get; }
 
         public BandejaTareasEnviadasViewModel()
         {
@@ -85,6 +86,7 @@ namespace Hermes.ViewModels
             RefrescarCommand = new RelayCommand(async _ => await CargarTareasEnviadasAsync());
             VerDetalleCommand = new RelayCommand(_ => VerDetalleTarea(), _ => TareaSeleccionada != null);
             ArchivarTareaCommand = new RelayCommand(async _ => await ArchivarTareaAsync(), _ => TareaSeleccionada != null && TareaSeleccionada.EstadoTarea == "Completado");
+            AbrirNuevaTareaCommand = new RelayCommand(_ => AbrirNuevaTarea());
 
             Task.Run(async () => await CargarTareasEnviadasAsync());
         }
@@ -193,6 +195,16 @@ namespace Hermes.ViewModels
                                   MessageBoxButton.OK,
                                   MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private void AbrirNuevaTarea()
+        {
+            var nuevaTareaWindow = new Views.NuevaTareaWindow();
+            if (nuevaTareaWindow.ShowDialog() == true)
+            {
+                // Refrescar lista después de crear la tarea
+                Task.Run(async () => await CargarTareasEnviadasAsync());
             }
         }
     }
