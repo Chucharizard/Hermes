@@ -10,6 +10,9 @@ namespace Hermes.ViewModels
     {
         private object? _currentView;
         private string _nombreUsuarioActual = string.Empty;
+        private string _rolUsuario = string.Empty;
+        private bool _puedeEnviarTareas = false;
+        private bool _esAdministrador = false;
 
         public object? CurrentView
         {
@@ -21,6 +24,25 @@ namespace Hermes.ViewModels
         {
             get => _nombreUsuarioActual;
             set => SetProperty(ref _nombreUsuarioActual, value);
+        }
+
+        public string RolUsuario
+        {
+            get => _rolUsuario;
+            set => SetProperty(ref _rolUsuario, value);
+        }
+
+        // Propiedades para controlar visibilidad del menú según rol
+        public bool PuedeEnviarTareas
+        {
+            get => _puedeEnviarTareas;
+            set => SetProperty(ref _puedeEnviarTareas, value);
+        }
+
+        public bool EsAdministrador
+        {
+            get => _esAdministrador;
+            set => SetProperty(ref _esAdministrador, value);
         }
 
         public ICommand MostrarGestionEmpleadosCommand { get; }
@@ -39,6 +61,20 @@ namespace Hermes.ViewModels
                 NombreUsuarioActual = $"{usuario.Empleado.NombresEmpleado} {usuario.Empleado.ApellidosEmpleado}";
             }
 
+            // Configurar permisos según el rol
+            if (usuario?.Rol != null)
+            {
+                RolUsuario = usuario.Rol.NombreRol;
+
+                // Solo Broker, Secretaria y Abogada pueden enviar tareas
+                PuedeEnviarTareas = RolUsuario.Equals("Broker", StringComparison.OrdinalIgnoreCase) ||
+                                   RolUsuario.Equals("Secretaria", StringComparison.OrdinalIgnoreCase) ||
+                                   RolUsuario.Equals("Abogada", StringComparison.OrdinalIgnoreCase);
+
+                // Solo Broker tiene acceso completo a administración
+                EsAdministrador = RolUsuario.Equals("Broker", StringComparison.OrdinalIgnoreCase);
+            }
+
             // Comandos
             MostrarGestionEmpleadosCommand = new RelayCommand(_ => MostrarGestionEmpleados());
             MostrarGestionTareasCommand = new RelayCommand(_ => MostrarGestionTareas());
@@ -47,8 +83,16 @@ namespace Hermes.ViewModels
             MostrarBandejaTareasRecibidasCommand = new RelayCommand(_ => MostrarBandejaTareasRecibidas());
             CerrarSesionCommand = new RelayCommand(_ => CerrarSesion());
 
-            // Mostrar vista por defecto
-            MostrarDashboard();
+            // Mostrar vista por defecto según el rol
+            if (PuedeEnviarTareas || EsAdministrador)
+            {
+                MostrarDashboard();
+            }
+            else
+            {
+                // Para asesores y administrativos, mostrar directamente sus tareas recibidas
+                MostrarBandejaTareasRecibidas();
+            }
         }
 
         private void MostrarGestionEmpleados()
