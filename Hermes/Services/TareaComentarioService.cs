@@ -19,8 +19,8 @@ namespace Hermes.Services
             return await _context.TareasComentarios
                 .Include(tc => tc.Usuario)
                     .ThenInclude(u => u!.Empleado)
-                .Where(tc => tc.IdTarea == idTarea)
-                .OrderBy(tc => tc.FechaComentario)
+                .Where(tc => tc.TareaIdComentario == idTarea)
+                .OrderBy(tc => tc.FechaTareaComentario)
                 .ToListAsync();
         }
 
@@ -31,7 +31,7 @@ namespace Hermes.Services
                 .Include(tc => tc.Usuario)
                     .ThenInclude(u => u!.Empleado)
                 .Include(tc => tc.Tarea)
-                .FirstOrDefaultAsync(tc => tc.IdComentario == id);
+                .FirstOrDefaultAsync(tc => tc.IdTareaComentario == id);
         }
 
         // CREATE
@@ -39,8 +39,8 @@ namespace Hermes.Services
         {
             try
             {
-                comentario.IdComentario = Guid.NewGuid();
-                comentario.FechaComentario = DateTime.Now;
+                comentario.IdTareaComentario = Guid.NewGuid();
+                comentario.FechaTareaComentario = DateTime.Now;
 
                 _context.TareasComentarios.Add(comentario);
                 await _context.SaveChangesAsync();
@@ -56,7 +56,7 @@ namespace Hermes.Services
         public async Task<int> ContarComentariosPorTareaAsync(Guid idTarea)
         {
             return await _context.TareasComentarios
-                .Where(tc => tc.IdTarea == idTarea)
+                .Where(tc => tc.TareaIdComentario == idTarea)
                 .CountAsync();
         }
 
