@@ -76,26 +76,13 @@ namespace Hermes.ViewModels
                 // Guardar usuario en sesión
                 App.UsuarioActual = usuario;
 
-                // Navegar a ventana principal según el rol
-                if (usuario.Rol?.NombreRol.Equals("Broker", StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    var mainWindow = new MainWindow();
-                    mainWindow.Show();
+                // Abrir ventana principal (todos los roles tienen acceso)
+                // El menú se adapta automáticamente según el rol en MainViewModel
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
 
-                    // Cerrar ventana de login
-                    Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType().Name == "LoginWindow")?.Close();
-                }
-                else
-                {
-                    _intentosFallidos++;
-                    IntentosRestantes = 3 - _intentosFallidos;
-                    MensajeError = $"Este sistema está disponible solo para usuarios con rol Broker. Intentos restantes: {IntentosRestantes}";
-
-                    if (_intentosFallidos >= 3)
-                    {
-                        CerrarAplicacion();
-                    }
-                }
+                // Cerrar ventana de login
+                Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType().Name == "LoginWindow")?.Close();
             }
             else
             {
