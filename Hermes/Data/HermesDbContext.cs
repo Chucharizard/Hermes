@@ -182,7 +182,7 @@ namespace Hermes.Data
             // Configuración TareaComentario
             modelBuilder.Entity<TareaComentario>(entity =>
             {
-                entity.HasKey(tc => tc.IdComentario);
+                // Solo configurar lo que NO está en data annotations
                 entity.Property(tc => tc.IdComentario).HasDefaultValueSql("NEWID()");
 
                 entity.HasOne(tc => tc.Tarea)
@@ -201,7 +201,7 @@ namespace Hermes.Data
             // Configuración TareaAdjunto
             modelBuilder.Entity<TareaAdjunto>(entity =>
             {
-                entity.HasKey(ta => ta.IdTareaAdjunto);
+                // Solo configurar lo que NO está en data annotations
                 entity.Property(ta => ta.IdTareaAdjunto).HasDefaultValueSql("NEWID()");
 
                 entity.HasOne(ta => ta.Tarea)
