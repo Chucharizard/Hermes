@@ -130,8 +130,13 @@ namespace Hermes.ViewModels
                 }
 
                 // Cargar receptores (excluyendo al emisor)
+                // VALIDACIÓN CRÍTICA: Solo usuarios Y empleados activos
                 UsuariosReceptores.Clear();
-                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario && u.IdUsuario != Tarea.UsuarioEmisorId))
+                foreach (var usuario in usuarios.Where(u =>
+                    u.EsActivoUsuario &&
+                    u.Empleado != null &&
+                    u.Empleado.EsActivoEmpleado &&
+                    u.IdUsuario != Tarea.UsuarioEmisorId))
                 {
                     UsuariosReceptores.Add(usuario);
                 }
@@ -145,10 +150,43 @@ namespace Hermes.ViewModels
         {
             MensajeError = string.Empty;
 
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null)
+            {
+                MensajeError = "No hay un usuario logueado";
+                return;
+            }
+
+            if (!usuarioActual.EsActivoUsuario)
+            {
+                MensajeError = "Su usuario está inactivo. No puede realizar esta acción.";
+                return;
+            }
+
+            if (usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MensajeError = "Su empleado está inactivo. No puede realizar esta acción.";
+                return;
+            }
+
             // Validaciones
             if (UsuarioReceptorSeleccionado == null)
             {
                 MensajeError = "Debe seleccionar un usuario receptor";
+                return;
+            }
+
+            // VALIDACIÓN CRÍTICA: Verificar que el receptor esté activo
+            if (!UsuarioReceptorSeleccionado.EsActivoUsuario)
+            {
+                MensajeError = "El usuario receptor seleccionado está inactivo. Seleccione otro receptor.";
+                return;
+            }
+
+            if (UsuarioReceptorSeleccionado.Empleado == null || !UsuarioReceptorSeleccionado.Empleado.EsActivoEmpleado)
+            {
+                MensajeError = "El empleado receptor seleccionado está inactivo. Seleccione otro receptor.";
                 return;
             }
 
