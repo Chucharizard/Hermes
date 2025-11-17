@@ -120,19 +120,78 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
-                <!-- Buscador -->
-                <Border Grid.Row="0"
-                        BorderBrush="#BDC3C7"
-                        BorderThickness="1"
-                        CornerRadius="5"
-                        Margin="0,0,0,15">
-                    <TextBox Text="{Binding FiltroTexto, UpdateSourceTrigger=PropertyChanged}"
-                             Height="35"
-                             Padding="10"
-                             FontSize="14"
-                             BorderThickness="0"
-                             VerticalContentAlignment="Center"/>
-                </Border>
+                <!-- Buscador y Filtros -->
+                <Grid Grid.Row="0" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Buscador -->
+                    <Border Grid.Column="0"
+                            BorderBrush="#BDC3C7"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Margin="0,0,10,0">
+                        <TextBox Text="{Binding FiltroTexto, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="35"
+                                 Padding="10"
+                                 FontSize="14"
+                                 BorderThickness="0"
+                                 VerticalContentAlignment="Center">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="None" AlignmentX="Left">
+                                                        <VisualBrush.Visual>
+                                                            <TextBlock Text="🔍 Buscar por CI, nombre o apellido..."
+                                                                     Foreground="#BDC3C7"
+                                                                     Margin="10,0,0,0"
+                                                                     VerticalAlignment="Center"/>
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </Border>
+
+                    <!-- Label -->
+                    <TextBlock Grid.Column="1"
+                               Text="Estado:"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="10,0"/>
+
+                    <!-- Filtro de Estado -->
+                    <Border Grid.Column="2"
+                            BorderBrush="#BDC3C7"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <ComboBox ItemsSource="{Binding OpcionesFiltroEstado}"
+                                  SelectedItem="{Binding FiltroEstado}"
+                                  Height="35"
+                                  Padding="10,0"
+                                  FontSize="14"
+                                  BorderThickness="0"
+                                  VerticalContentAlignment="Center">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Height" Value="30"/>
+                                    <Setter Property="Padding" Value="10,5"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                    </Border>
+                </Grid>
                 
                 <!-- DataGrid -->
                 <DataGrid Grid.Row="1"
@@ -207,16 +266,20 @@
                 </DataGrid>
                 
                 <!-- Footer con estadisticas -->
-                <Border Grid.Row="2" 
-                        Background="#ECF0F1" 
+                <Border Grid.Row="2"
+                        Background="#ECF0F1"
                         Padding="15"
                         Margin="0,15,0,0"
                         CornerRadius="5">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Total empleados: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TotalEmpleados}" Foreground="#27AE60" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Activos: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding EmpleadosActivos}" Foreground="#3498DB" FontWeight="Bold"/>
+                        <TextBlock Text="📊 Total empleados: " FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding TotalEmpleados}" Foreground="#34495E" FontWeight="Bold"/>
+
+                        <TextBlock Text="  |  ✅ Activos: " FontWeight="SemiBold" Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding EmpleadosActivos}" Foreground="#27AE60" FontWeight="Bold"/>
+
+                        <TextBlock Text="  |  ❌ Inactivos: " FontWeight="SemiBold" Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding EmpleadosInactivos}" Foreground="#E74C3C" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
             </Grid>
