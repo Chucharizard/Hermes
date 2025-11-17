@@ -1,0 +1,150 @@
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using Hermes.Commands;
+using Hermes.Models;
+using Hermes.Services;
+
+namespace Hermes.ViewModels
+{
+    public class GestionEmpleadosViewModel : BaseViewModel
+    {
+        private readonly EmpleadoService _empleadoService;
+        private ObservableCollection<Empleado> _empleados = new();
+        private ObservableCollection<Empleado> _empleadosFiltrados = new();
+        private Empleado? _empleadoSeleccionado;
+        private string _filtroTexto = string.Empty;
+
+        public ObservableCollection<Empleado> Empleados
+        {
+            get => _empleados;
+            set => SetProperty(ref _empleados, value);
+        }
+
+        public ObservableCollection<Empleado> EmpleadosFiltrados
+        {
+            get => _empleadosFiltrados;
+            set => SetProperty(ref _empleadosFiltrados, value);
+        }
+
+        public Empleado? EmpleadoSeleccionado
+        {
+            get => _empleadoSeleccionado;
+            set => SetProperty(ref _empleadoSeleccionado, value);
+        }
+
+        public string FiltroTexto
+        {
+            get => _filtroTexto;
+            set
+            {
+                SetProperty(ref _filtroTexto, value);
+                FiltrarEmpleados();
+            }
+        }
+
+        public int TotalEmpleados => Empleados?.Count ?? 0;
+        public int EmpleadosActivos => Empleados?.Count(e => e.EsActivoEmpleado) ?? 0;
+
+        public ICommand CargarEmpleadosCommand { get; }
+        public ICommand AbrirNuevoEmpleadoCommand { get; }
+        public ICommand EditarEmpleadoCommand { get; }
+        public ICommand VerDetalleCommand { get; }
+        public ICommand GestionarUsuarioCommand { get; }
+
+        public GestionEmpleadosViewModel()
+        {
+            _empleadoService = new EmpleadoService();
+            Empleados = new ObservableCollection<Empleado>();
+            EmpleadosFiltrados = new ObservableCollection<Empleado>();
+
+            CargarEmpleadosCommand = new RelayCommand(async _ => await CargarEmpleadosAsync());
+            AbrirNuevoEmpleadoCommand = new RelayCommand(_ => AbrirNuevoEmpleado());
+            EditarEmpleadoCommand = new RelayCommand(empleado => EditarEmpleado(empleado as Empleado));
+            VerDetalleCommand = new RelayCommand(empleado => VerDetalle(empleado as Empleado));
+            GestionarUsuarioCommand = new RelayCommand(empleado => GestionarUsuario(empleado as Empleado));
+
+            // Cargar datos iniciales
+            Task.Run(async () => await CargarEmpleadosAsync());
+        }
+
+        private async Task CargarEmpleadosAsync()
+        {
+            var empleados = await _empleadoService.ObtenerTodosAsync();
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Empleados.Clear();
+                foreach (var empleado in empleados)
+                {
+                    Empleados.Add(empleado);
+                }
+
+                FiltrarEmpleados();
+                OnPropertyChanged(nameof(TotalEmpleados));
+                OnPropertyChanged(nameof(EmpleadosActivos));
+            });
+        }
+
+        private void FiltrarEmpleados()
+        {
+            EmpleadosFiltrados.Clear();
+
+            var filtrados = string.IsNullOrWhiteSpace(FiltroTexto)
+                ? Empleados
+                : Empleados.Where(e =>
+                    e.CiEmpleado.ToString().Contains(FiltroTexto) ||
+                    e.NombresEmpleado.ToLower().Contains(FiltroTexto.ToLower()) ||
+                    e.ApellidosEmpleado.ToLower().Contains(FiltroTexto.ToLower()));
+
+            foreach (var empleado in filtrados)
+            {
+                EmpleadosFiltrados.Add(empleado);
+            }
+        }
+
+        private void AbrirNuevoEmpleado()
+        {
+            var ventana = new Views.NuevoEmpleadoWindow();
+            ventana.Owner = Application.Current.MainWindow;
+            if (ventana.ShowDialog() == true)
+            {
+                Task.Run(async () => await CargarEmpleadosAsync());
+            }
+        }
+
+        private void EditarEmpleado(Empleado? empleado)
+        {
+            if (empleado == null) return;
+
+            MessageBox.Show($"Funcionalidad de Editar Empleado para {empleado.NombresEmpleado} - Por implementar",
+                           "Informacion",
+                           MessageBoxButton.OK,
+                           MessageBoxImage.Information);
+        }
+
+        private void VerDetalle(Empleado? empleado)
+        {
+            if (empleado == null) return;
+
+            MessageBox.Show($"Detalle de {empleado.NombresEmpleado} {empleado.ApellidosEmpleado}\n\n" +
+                           $"CI: {empleado.CiEmpleado}\n" +
+                           $"Telefono: {empleado.TelefonoEmpleado}\n" +
+                           $"Correo: {empleado.CorreoEmpleado}\n" +
+                           $"Activo: {(empleado.EsActivoEmpleado ? "Si" : "No")}",
+                           "Informacion del Empleado",
+                           MessageBoxButton.OK,
+                           MessageBoxImage.Information);
+        }
+
+        private void GestionarUsuario(Empleado? empleado)
+        {
+            if (empleado == null) return;
+
+            var ventana = new Views.GestionarUsuarioWindow(empleado);
+            ventana.Owner = Application.Current.MainWindow;
+            ventana.ShowDialog();
+        }
+    }
+}

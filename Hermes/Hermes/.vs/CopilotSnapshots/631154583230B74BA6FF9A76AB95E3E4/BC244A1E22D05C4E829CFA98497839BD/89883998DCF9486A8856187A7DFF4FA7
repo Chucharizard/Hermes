@@ -1,0 +1,12 @@
+﻿namespace Hermes.Models
+{
+    public enum TipoPropiedad
+    {
+        Casa,
+        Apartamento,
+        Terreno,
+        Local,
+        Oficina,
+        Bodega
+    }
+}

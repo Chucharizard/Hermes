@@ -1,0 +1,89 @@
+using Microsoft.EntityFrameworkCore;
+using Hermes.Data;
+using Hermes.Models;
+
+namespace Hermes.Services
+{
+    public class UsuarioService
+    {
+        private readonly HermesDbContext _context;
+
+        public UsuarioService()
+        {
+            _context = new HermesDbContext();
+        }
+
+        public async Task<Usuario?> ObtenerPorEmpleadoCiAsync(int ci)
+        {
+            return await _context.Usuarios
+                .Include(u => u.Empleado)
+                .Include(u => u.Rol)
+                .FirstOrDefaultAsync(u => u.EmpleadoCi == ci);
+        }
+
+        public async Task<List<Usuario>> ObtenerTodosAsync()
+        {
+            return await _context.Usuarios
+                .Include(u => u.Empleado)
+                .Include(u => u.Rol)
+                .ToListAsync();
+        }
+
+        public async Task<bool> CrearAsync(Usuario usuario)
+        {
+            try
+            {
+                _context.Usuarios.Add(usuario);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> CrearUsuarioAsync(Usuario usuario)
+        {
+            return await CrearAsync(usuario);
+        }
+
+        public async Task<bool> ActualizarAsync(Usuario usuario)
+        {
+            try
+            {
+                _context.Usuarios.Update(usuario);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> ActualizarUsuarioAsync(Usuario usuario)
+        {
+            return await ActualizarAsync(usuario);
+        }
+
+        public async Task<bool> EliminarUsuarioAsync(Guid idUsuario)
+        {
+            try
+            {
+                var usuario = await _context.Usuarios.FindAsync(idUsuario);
+                if (usuario != null)
+                {
+                    usuario.EsActivoUsuario = false;
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+}

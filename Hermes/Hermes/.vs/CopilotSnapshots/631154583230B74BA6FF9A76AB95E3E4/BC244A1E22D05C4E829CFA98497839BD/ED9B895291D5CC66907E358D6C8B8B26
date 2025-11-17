@@ -1,0 +1,21 @@
+﻿using System.Collections.ObjectModel;
+using Hermes.Models;
+
+namespace Hermes.ViewModels
+{
+    public class ClientesViewModel : BaseViewModel
+    {
+        private ObservableCollection<Cliente> _clientes = new();
+
+        public ObservableCollection<Cliente> Clientes
+        {
+            get => _clientes;
+            set => SetProperty(ref _clientes, value);
+        }
+
+        public ClientesViewModel()
+        {
+            // Cargar clientes
+        }
+    }
+}
