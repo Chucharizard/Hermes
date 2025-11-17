@@ -126,5 +126,109 @@ namespace Hermes.Services
                 return false;
             }
         }
+
+        /// <summary>
+        /// Actualiza automáticamente el estado de tareas que han pasado su fecha límite
+        /// Similar al comportamiento de Microsoft Teams
+        /// </summary>
+        public async Task<int> ActualizarTareasVencidasAsync()
+        {
+            try
+            {
+                var ahora = DateTime.Now;
+
+                // Buscar tareas que:
+                // 1. Tienen fecha límite
+                // 2. La fecha límite ya pasó
+                // 3. NO están completadas ni archivadas
+                // 4. NO están ya marcadas como vencidas
+                var tareasVencidas = await _context.Tareas
+                    .Where(t =>
+                        t.FechaLimiteTarea.HasValue &&
+                        t.FechaLimiteTarea.Value < ahora &&
+                        t.EstadoTarea != "Completado" &&
+                        t.EstadoTarea != "Archivado" &&
+                        t.EstadoTarea != "Vencido")
+                    .ToListAsync();
+
+                // Marcar como vencidas
+                foreach (var tarea in tareasVencidas)
+                {
+                    tarea.EstadoTarea = "Vencido";
+                }
+
+                if (tareasVencidas.Count > 0)
+                {
+                    await _context.SaveChangesAsync();
+                }
+
+                return tareasVencidas.Count;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Verifica si una tarea específica está vencida y la actualiza si es necesario
+        /// </summary>
+        public async Task<bool> VerificarYActualizarVencimientoAsync(Guid tareaId)
+        {
+            try
+            {
+                var tarea = await ObtenerPorIdAsync(tareaId);
+
+                if (tarea == null) return false;
+
+                // Si ya está completada o archivada, no hacer nada
+                if (tarea.EstadoTarea == "Completado" || tarea.EstadoTarea == "Archivado")
+                    return false;
+
+                // Si tiene fecha límite y ya pasó
+                if (tarea.FechaLimiteTarea.HasValue &&
+                    tarea.FechaLimiteTarea.Value < DateTime.Now &&
+                    tarea.EstadoTarea != "Vencido")
+                {
+                    tarea.EstadoTarea = "Vencido";
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Permite completar una tarea vencida (completada con retraso)
+        /// Similar a Teams que permite completar tareas vencidas
+        /// </summary>
+        public async Task<bool> CompletarTareaVencidaAsync(Guid tareaId, string? comentarioRetraso = null)
+        {
+            try
+            {
+                var tarea = await ObtenerPorIdAsync(tareaId);
+
+                if (tarea == null) return false;
+
+                tarea.EstadoTarea = "Completado";
+                tarea.FechaCompletadaTarea = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+
+                // Nota: Si se desea, aquí se puede agregar un comentario automático
+                // indicando que la tarea fue completada con retraso
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

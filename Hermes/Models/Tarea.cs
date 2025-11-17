@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
 namespace Hermes.Models
@@ -149,6 +150,128 @@ namespace Hermes.Models
         // Navegación
         public virtual Usuario? UsuarioEmisor { get; set; }
         public virtual Usuario? UsuarioReceptor { get; set; }
+
+        // Propiedades calculadas (no se guardan en BD)
+
+        /// <summary>
+        /// Indica si la tarea está vencida (pasó su fecha límite y no está completada/archivada)
+        /// </summary>
+        [NotMapped]
+        public bool EstaVencida
+        {
+            get
+            {
+                if (!FechaLimiteTarea.HasValue)
+                    return false;
+
+                if (EstadoTarea == "Completado" || EstadoTarea == "Archivado")
+                    return false;
+
+                return DateTime.Now > FechaLimiteTarea.Value;
+            }
+        }
+
+        /// <summary>
+        /// Indica si la tarea está próxima a vencer (menos de 24 horas)
+        /// </summary>
+        [NotMapped]
+        public bool ProximaAVencer
+        {
+            get
+            {
+                if (!FechaLimiteTarea.HasValue || EstaVencida)
+                    return false;
+
+                if (EstadoTarea == "Completado" || EstadoTarea == "Archivado")
+                    return false;
+
+                var horasRestantes = (FechaLimiteTarea.Value - DateTime.Now).TotalHours;
+                return horasRestantes > 0 && horasRestantes <= 24;
+            }
+        }
+
+        /// <summary>
+        /// Tiempo restante o tiempo de retraso en formato legible
+        /// </summary>
+        [NotMapped]
+        public string TiempoRestante
+        {
+            get
+            {
+                if (!FechaLimiteTarea.HasValue)
+                    return "Sin fecha límite";
+
+                if (EstadoTarea == "Completado")
+                    return "Completada";
+
+                if (EstadoTarea == "Archivado")
+                    return "Archivada";
+
+                var diferencia = FechaLimiteTarea.Value - DateTime.Now;
+
+                if (diferencia.TotalMinutes < 0)
+                {
+                    // Vencida - mostrar tiempo de retraso
+                    var retraso = DateTime.Now - FechaLimiteTarea.Value;
+
+                    if (retraso.TotalDays >= 1)
+                        return $"⚠️ Vencida hace {(int)retraso.TotalDays} día(s)";
+                    else if (retraso.TotalHours >= 1)
+                        return $"⚠️ Vencida hace {(int)retraso.TotalHours} hora(s)";
+                    else
+                        return $"⚠️ Vencida hace {(int)retraso.TotalMinutes} minuto(s)";
+                }
+                else
+                {
+                    // No vencida - mostrar tiempo restante
+                    if (diferencia.TotalDays >= 1)
+                        return $"⏰ {(int)diferencia.TotalDays} día(s) restantes";
+                    else if (diferencia.TotalHours >= 1)
+                        return $"⚠️ {(int)diferencia.TotalHours} hora(s) restantes";
+                    else
+                        return $"🔥 {(int)diferencia.TotalMinutes} minuto(s) restantes";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Color sugerido para la UI basado en el estado de vencimiento
+        /// </summary>
+        [NotMapped]
+        public string ColorVencimiento
+        {
+            get
+            {
+                if (EstadoTarea == "Completado")
+                    return "#27AE60"; // Verde
+
+                if (EstadoTarea == "Archivado")
+                    return "#95A5A6"; // Gris
+
+                if (EstaVencida)
+                    return "#E74C3C"; // Rojo
+
+                if (ProximaAVencer)
+                    return "#F39C12"; // Naranja
+
+                return "#3498DB"; // Azul (normal)
+            }
+        }
+
+        /// <summary>
+        /// Indica si fue completada con retraso
+        /// </summary>
+        [NotMapped]
+        public bool CompletadaConRetraso
+        {
+            get
+            {
+                if (EstadoTarea != "Completado" || !FechaCompletadaTarea.HasValue || !FechaLimiteTarea.HasValue)
+                    return false;
+
+                return FechaCompletadaTarea.Value > FechaLimiteTarea.Value;
+            }
+        }
 
         // INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;

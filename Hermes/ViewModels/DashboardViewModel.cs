@@ -87,6 +87,9 @@ namespace Hermes.ViewModels
 
         private async Task CargarEstadisticasAsync()
         {
+            // ⏰ ACTUALIZAR TAREAS VENCIDAS (al estilo Teams)
+            await _tareaService.ActualizarTareasVencidasAsync();
+
             var tareas = await _tareaService.ObtenerTodasAsync();
 
             Application.Current.Dispatcher.Invoke(() =>
