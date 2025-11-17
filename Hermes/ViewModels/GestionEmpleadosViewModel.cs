@@ -118,10 +118,12 @@ namespace Hermes.ViewModels
         {
             if (empleado == null) return;
 
-            MessageBox.Show($"Funcionalidad de Editar Empleado para {empleado.NombresEmpleado} - Por implementar",
-                           "Informacion",
-                           MessageBoxButton.OK,
-                           MessageBoxImage.Information);
+            var ventana = new Views.EditarEmpleadoWindow(empleado);
+            ventana.Owner = Application.Current.MainWindow;
+            if (ventana.ShowDialog() == true)
+            {
+                Task.Run(async () => await CargarEmpleadosAsync());
+            }
         }
 
         private void VerDetalle(Empleado? empleado)

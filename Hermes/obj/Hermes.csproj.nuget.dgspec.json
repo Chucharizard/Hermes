@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USUARIO\\Downloads\\ProyectoHermes\\Hermes\\Hermes.csproj": {}
+    "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v6\\Hermes\\Hermes\\Hermes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USUARIO\\Downloads\\ProyectoHermes\\Hermes\\Hermes.csproj": {
+    "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v6\\Hermes\\Hermes\\Hermes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USUARIO\\Downloads\\ProyectoHermes\\Hermes\\Hermes.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v6\\Hermes\\Hermes\\Hermes.csproj",
         "projectName": "Hermes",
-        "projectPath": "C:\\Users\\USUARIO\\Downloads\\ProyectoHermes\\Hermes\\Hermes.csproj",
+        "projectPath": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v6\\Hermes\\Hermes\\Hermes.csproj",
         "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USUARIO\\Downloads\\ProyectoHermes\\Hermes\\obj\\",
+        "outputPath": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v6\\Hermes\\Hermes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.104.1, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"

@@ -1,9 +1,7 @@
-using System.Security.Cryptography;
-using System.Text;
-using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Hermes.Data;
 using Hermes.Models;
+using Hermes.Helpers;
 
 namespace Hermes.Services
 {
@@ -16,6 +14,10 @@ namespace Hermes.Services
             _context = new HermesDbContext();
         }
 
+        /// <summary>
+        /// Valida las credenciales de un usuario y actualiza autom√°ticamente
+        /// las contrase√±as legacy (SHA256) a BCrypt en el primer login exitoso
+        /// </summary>
         public async Task<(bool Success, Usuario? Usuario, string Mensaje)> ValidarCredencialesAsync(int ciEmpleado, string password)
         {
             try
@@ -30,54 +32,75 @@ namespace Hermes.Services
                     return (false, null, "Usuario no encontrado o inactivo");
                 }
 
-                // Hashear la contraseÒa ingresada
-                string passwordHash = HashPassword(password);
+                // Verificar contrase√±a usando la clase centralizada
+                // Soporta tanto BCrypt (nuevo) como SHA256 (legacy)
+                bool passwordValida = PasswordHasher.VerifyPassword(password, usuario.PasswordUsuario);
 
-                // IMPORTANTE: Limpiar espacios y convertir a min˙sculas para comparaciÛn
-                string hashBD = usuario.PasswordUsuario?.Trim().ToLower() ?? string.Empty;
-                string hashGenerado = passwordHash?.Trim().ToLower() ?? string.Empty;
-
-                // Comparar hashes
-                if (hashBD != hashGenerado)
+                if (!passwordValida)
                 {
-                    return (false, null, "ContraseÒa incorrecta");
+                    return (false, null, "Contrase√±a incorrecta");
                 }
 
-                return (true, usuario, "AutenticaciÛn exitosa");
+                // MIGRACI√ìN AUTOM√ÅTICA: Si el password es correcto pero est√° en SHA256 legacy,
+                // actualizarlo a BCrypt en este momento
+                if (PasswordHasher.NeedsRehash(usuario.PasswordUsuario))
+                {
+                    await MigrarPasswordABCryptAsync(usuario, password);
+                }
+
+                return (true, usuario, "Autenticaci√≥n exitosa");
             }
             catch (Exception ex)
             {
-                return (false, null, $"Error de autenticaciÛn: {ex.Message}");
+                return (false, null, $"Error de autenticaci√≥n: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Migra autom√°ticamente un password de SHA256 a BCrypt
+        /// Se ejecuta transparentemente durante el login
+        /// </summary>
+        private async Task MigrarPasswordABCryptAsync(Usuario usuario, string passwordTextoPlano)
+        {
+            try
+            {
+                // Generar nuevo hash BCrypt
+                string nuevoHashBCrypt = PasswordHasher.HashPassword(passwordTextoPlano);
+
+                // Actualizar en BD
+                usuario.PasswordUsuario = nuevoHashBCrypt;
+                await _context.SaveChangesAsync();
+
+                // Log silencioso de la migraci√≥n (opcional)
+                System.Diagnostics.Debug.WriteLine(
+                    $"Password migrado a BCrypt para usuario: {usuario.NombreUsuario}"
+                );
+            }
+            catch (Exception ex)
+            {
+                // Si falla la migraci√≥n, no afecta el login
+                // El usuario puede seguir usando su password legacy
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al migrar password: {ex.Message}"
+                );
+            }
+        }
+
+        /// <summary>
+        /// Crea un hash de contrase√±a usando BCrypt
+        /// Usar este m√©todo al crear o actualizar contrase√±as
+        /// </summary>
         public string HashPassword(string password)
         {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2")); // min˙sculas (hexadecimal)
-                }
-                return builder.ToString();
-            }
+            return PasswordHasher.HashPassword(password);
         }
 
-        // MÈtodo para verificar hash (˙til para debugging)
-        public void VerificarHash(string password, string hashEsperado)
+        /// <summary>
+        /// Verifica si una contrase√±a coincide con su hash
+        /// </summary>
+        public bool VerifyPassword(string password, string hash)
         {
-            string hashGenerado = HashPassword(password);
-
-            MessageBox.Show(
-                $"Password: {password}\n\n" +
-                $"Hash generado:\n{hashGenerado}\n\n" +
-                $"Hash esperado:\n{hashEsperado}\n\n" +
-                $"øCoinciden?: {hashGenerado.ToLower() == hashEsperado.ToLower()}",
-                "VerificaciÛn de Hash",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            return PasswordHasher.VerifyPassword(password, hash);
         }
     }
 }

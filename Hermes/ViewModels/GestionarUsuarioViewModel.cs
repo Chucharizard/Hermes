@@ -1,12 +1,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using Hermes.Commands;
 using Hermes.Models;
 using Hermes.Services;
+using Hermes.Helpers;
 
 namespace Hermes.ViewModels
 {
@@ -151,19 +150,19 @@ namespace Hermes.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(Password))
                 {
-                    MensajeError = "La contraseña es obligatoria";
+                    MensajeError = "La contraseï¿½a es obligatoria";
                     return;
                 }
 
                 if (Password != ConfirmPassword)
                 {
-                    MensajeError = "Las contraseñas no coinciden";
+                    MensajeError = "Las contraseï¿½as no coinciden";
                     return;
                 }
 
                 if (Password.Length < 6)
                 {
-                    MensajeError = "La contraseña debe tener al menos 6 caracteres";
+                    MensajeError = "La contraseï¿½a debe tener al menos 6 caracteres";
                     return;
                 }
             }
@@ -177,10 +176,10 @@ namespace Hermes.ViewModels
             // Asignar valores
             Usuario.RolId = RolSeleccionado.IdRol;
 
-            // Si se proporciona contraseña, hashearla
+            // Si se proporciona contraseÃ±a, hashearla usando BCrypt
             if (!string.IsNullOrWhiteSpace(Password))
             {
-                Usuario.PasswordUsuario = HashPassword(Password);
+                Usuario.PasswordUsuario = PasswordHasher.HashPassword(Password);
             }
 
             // Guardar
@@ -205,20 +204,6 @@ namespace Hermes.ViewModels
             else
             {
                 MensajeError = "Error al guardar el usuario";
-            }
-        }
-
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
             }
         }
 

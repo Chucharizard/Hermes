@@ -1,0 +1,765 @@
+<Window x:Class="Hermes.Views.DetalleTareaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalle de Tarea"
+        Height="700"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid Background="#ECF0F1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#34495E" Padding="20">
+            <StackPanel>
+                <TextBlock Text="{Binding Tarea.TituloTarea}"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Estado: "
+                               FontSize="14"
+                               Foreground="#ECF0F1"/>
+                    <TextBlock Text="{Binding Tarea.EstadoTarea}"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#F39C12"
+                               Margin="5,0,20,0"/>
+
+                    <TextBlock Text="Prioridad: "
+                               FontSize="14"
+                               Foreground="#ECF0F1"/>
+                    <TextBlock Text="{Binding Tarea.PrioridadTarea}"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#E74C3C"
+                               Margin="5,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Contenido -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+
+                <!-- Información de la tarea -->
+                <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
+                    </Border.Effect>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="📋 Información de la Tarea"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,0,10">
+                            <TextBlock Text="Emisor:" FontWeight="Bold" Foreground="#7F8C8D"/>
+                            <TextBlock Margin="0,5,0,0">
+                                <Run Text="{Binding Tarea.UsuarioEmisor.Empleado.NombresEmpleado, Mode=OneWay}"/>
+                                <Run Text=" "/>
+                                <Run Text="{Binding Tarea.UsuarioEmisor.Empleado.ApellidosEmpleado, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                            <TextBlock Text="Receptor:" FontWeight="Bold" Foreground="#7F8C8D"/>
+                            <TextBlock Margin="0,5,0,0">
+                                <Run Text="{Binding Tarea.UsuarioReceptor.Empleado.NombresEmpleado, Mode=OneWay}"/>
+                                <Run Text=" "/>
+                                <Run Text="{Binding Tarea.UsuarioReceptor.Empleado.ApellidosEmpleado, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,0,10">
+                            <TextBlock Text="Fecha de Inicio:" FontWeight="Bold" Foreground="#7F8C8D"/>
+                            <TextBlock Text="{Binding Tarea.FechaInicioTarea, StringFormat=dd/MM/yyyy HH:mm}" Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
+                            <TextBlock Text="Fecha Límite:" FontWeight="Bold" Foreground="#7F8C8D"/>
+                            <TextBlock Text="{Binding Tarea.FechaLimiteTarea, StringFormat=dd/MM/yyyy HH:mm}" Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10">
+                            <TextBlock Text="Descripción:" FontWeight="Bold" Foreground="#7F8C8D"/>
+                            <TextBlock Text="{Binding Tarea.DescripcionTarea}"
+                                       TextWrapping="Wrap"
+                                       Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <!-- Sección de reasignación (solo visible para emisor si estado es Observado) -->
+                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Margin="0,10,0,0">
+                            <Border Background="#FFF3CD" BorderBrush="#FFC107" BorderThickness="1" CornerRadius="5" Padding="10">
+                                <StackPanel>
+                                    <TextBlock Text="⚠ Tarea observada - Reasignar a otro usuario:"
+                                               FontWeight="Bold"
+                                               Foreground="#856404"
+                                               Margin="0,0,0,10"/>
+                                    <ComboBox ItemsSource="{Binding UsuariosReceptores}"
+                                              SelectedItem="{Binding NuevoReceptorSeleccionado}"
+                                              DisplayMemberPath="Empleado.NombresEmpleado"
+                                              Padding="10"
+                                              FontSize="14"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Comentarios -->
+                <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
+                    </Border.Effect>
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalComentarios, StringFormat='💬 Comentarios ({0})'}"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+
+                        <!-- Lista de comentarios -->
+                        <ItemsControl ItemsSource="{Binding Comentarios}" MaxHeight="200">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#F8F9FA" CornerRadius="5" Padding="15" Margin="0,0,0,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock FontWeight="Bold" Foreground="#2C3E50">
+                                                    <Run Text="{Binding Usuario.Empleado.NombresEmpleado, Mode=OneWay}"/>
+                                                    <Run Text=" "/>
+                                                    <Run Text="{Binding Usuario.Empleado.ApellidosEmpleado, Mode=OneWay}"/>
+                                                </TextBlock>
+                                                <TextBlock Text="{Binding FechaComentario, StringFormat=dd/MM/yyyy HH:mm}"
+                                                           FontSize="12"
+                                                           Foreground="#95A5A6"
+                                                           Margin="10,0,0,0"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Comentario}"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="#34495E"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- Agregar comentario -->
+                        <Grid Margin="0,15,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding NuevoComentario, UpdateSourceTrigger=PropertyChanged}"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     Height="60"
+                                     Padding="10"
+                                     FontSize="14"
+                                     BorderBrush="#BDC3C7"
+                                     VerticalScrollBarVisibility="Auto">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush Stretch="None" AlignmentX="Left" AlignmentY="Top">
+                                                            <VisualBrush.Visual>
+                                                                <TextBlock Text="Escribe un comentario..."
+                                                                           Foreground="#95A5A6"
+                                                                           Padding="10,5,0,0"/>
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+
+                            <Button Grid.Column="1"
+                                    Content="Enviar"
+                                    Command="{Binding AgregarComentarioCommand}"
+                                    Background="#3498DB"
+                                    Foreground="White"
+                                    Padding="20,10"
+                                    Margin="10,0,0,0"
+                                    Height="60"
+                                    BorderThickness="0"
+                                    Cursor="Hand">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                            CornerRadius="5"
+                                                            Padding="{TemplateBinding Padding}">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                        VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#2980B9"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="#BDC3C7"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Adjuntos - Dos Columnas -->
+                <Border Background="White" CornerRadius="8" Padding="20">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
+                    </Border.Effect>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Columna Emisor -->
+                        <StackPanel Grid.Column="0">
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding TotalAdjuntosEmisor, StringFormat='📤 Archivos del Emisor ({0})'}"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="#E67E22"/>
+                            </Grid>
+
+                            <!-- Lista de archivos del emisor -->
+                            <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding AdjuntosEmisor}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#FEF5E7" CornerRadius="5" Padding="10" Margin="0,0,0,8">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid Grid.Row="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <TextBlock Grid.Column="0" Text="📄" FontSize="18" Margin="0,0,8,0"/>
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding NombreArchivo}"
+                                                                   FontWeight="SemiBold"
+                                                                   Foreground="#2C3E50"
+                                                                   FontSize="12"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   ToolTip="{Binding NombreArchivo}"/>
+                                                    </Grid>
+
+                                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="26,5,0,5">
+                                                        <TextBlock Text="{Binding TamañoArchivo, StringFormat={}{0:N0} bytes}"
+                                                                   FontSize="10"
+                                                                   Foreground="#95A5A6"/>
+                                                    </StackPanel>
+
+                                                    <!-- Botones -->
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                        <Button Content="⬇"
+                                                                Command="{Binding DataContext.DescargarAdjuntoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                CommandParameter="{Binding}"
+                                                                Background="#3498DB"
+                                                                Foreground="White"
+                                                                Width="25"
+                                                                Height="25"
+                                                                FontSize="10"
+                                                                BorderThickness="0"
+                                                                Cursor="Hand"
+                                                                Margin="0,0,5,0"
+                                                                ToolTip="Descargar">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button">
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="Button">
+                                                                                <Border Background="{TemplateBinding Background}"
+                                                                                        CornerRadius="3">
+                                                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                                                    VerticalAlignment="Center"/>
+                                                                                </Border>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#2980B9"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
+
+                                                        <Button Content="✖"
+                                                                Command="{Binding DataContext.EliminarAdjuntoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                CommandParameter="{Binding}"
+                                                                Background="#E74C3C"
+                                                                Foreground="White"
+                                                                Width="25"
+                                                                Height="25"
+                                                                FontSize="10"
+                                                                BorderThickness="0"
+                                                                Cursor="Hand"
+                                                                ToolTip="Eliminar">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button">
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="Button">
+                                                                                <Border Background="{TemplateBinding Background}"
+                                                                                        CornerRadius="3">
+                                                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                                                    VerticalAlignment="Center"/>
+                                                                                </Border>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#C0392B"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
+
+                        <!-- Separador -->
+                        <Border Grid.Column="1" Background="#BDC3C7" Width="1" Margin="0,30,0,0"/>
+
+                        <!-- Columna Receptor -->
+                        <StackPanel Grid.Column="2">
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding TotalAdjuntosReceptor, StringFormat='📥 Archivos del Receptor ({0})'}"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="#27AE60"/>
+
+                                <Button Grid.Column="1"
+                                        Content="📁"
+                                        Command="{Binding SubirAdjuntoCommand}"
+                                        Background="#27AE60"
+                                        Foreground="White"
+                                        Width="30"
+                                        Height="30"
+                                        FontSize="14"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        ToolTip="Subir archivo">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="4">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#229954"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+
+                            <!-- Lista de archivos del receptor -->
+                            <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding AdjuntosReceptor}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#E8F8F5" CornerRadius="5" Padding="10" Margin="0,0,0,8">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid Grid.Row="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <TextBlock Grid.Column="0" Text="📄" FontSize="18" Margin="0,0,8,0"/>
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding NombreArchivo}"
+                                                                   FontWeight="SemiBold"
+                                                                   Foreground="#2C3E50"
+                                                                   FontSize="12"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   ToolTip="{Binding NombreArchivo}"/>
+                                                    </Grid>
+
+                                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="26,5,0,5">
+                                                        <TextBlock Text="{Binding TamañoArchivo, StringFormat={}{0:N0} bytes}"
+                                                                   FontSize="10"
+                                                                   Foreground="#95A5A6"/>
+                                                    </StackPanel>
+
+                                                    <!-- Botones -->
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                        <Button Content="⬇"
+                                                                Command="{Binding DataContext.DescargarAdjuntoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                CommandParameter="{Binding}"
+                                                                Background="#3498DB"
+                                                                Foreground="White"
+                                                                Width="25"
+                                                                Height="25"
+                                                                FontSize="10"
+                                                                BorderThickness="0"
+                                                                Cursor="Hand"
+                                                                Margin="0,0,5,0"
+                                                                ToolTip="Descargar">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button">
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="Button">
+                                                                                <Border Background="{TemplateBinding Background}"
+                                                                                        CornerRadius="3">
+                                                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                                                    VerticalAlignment="Center"/>
+                                                                                </Border>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#2980B9"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
+
+                                                        <Button Content="✖"
+                                                                Command="{Binding DataContext.EliminarAdjuntoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                CommandParameter="{Binding}"
+                                                                Background="#E74C3C"
+                                                                Foreground="White"
+                                                                Width="25"
+                                                                Height="25"
+                                                                FontSize="10"
+                                                                BorderThickness="0"
+                                                                Cursor="Hand"
+                                                                ToolTip="Eliminar">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button">
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="Button">
+                                                                                <Border Background="{TemplateBinding Background}"
+                                                                                        CornerRadius="3">
+                                                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                                                    VerticalAlignment="Center"/>
+                                                                                </Border>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#C0392B"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Botones de acción -->
+        <Border Grid.Row="2" Background="White" BorderBrush="#BDC3C7" BorderThickness="0,1,0,0" Padding="20">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                <!-- Botón Completar (solo para receptor en estado Pendiente) -->
+                <Button Content="✅ Completar Tarea"
+                        Command="{Binding CompletarTareaCommand}"
+                        Visibility="{Binding PuedeCompletar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="#27AE60"
+                        Foreground="White"
+                        Padding="15,10"
+                        Margin="0,0,10,0"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#229954"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Botón Devolver (solo para receptor en estado Pendiente) -->
+                <Button Content="↩ Devolver con Observación"
+                        Command="{Binding DevolverTareaCommand}"
+                        Visibility="{Binding PuedeDevolver, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="#E74C3C"
+                        Foreground="White"
+                        Padding="15,10"
+                        Margin="0,0,10,0"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#C0392B"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Botón Observar (solo para emisor en estado Completado) -->
+                <Button Content="⚠ Observar Tarea Completada"
+                        Command="{Binding ObservarTareaCommand}"
+                        Visibility="{Binding PuedeObservar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="#F39C12"
+                        Foreground="White"
+                        Padding="15,10"
+                        Margin="0,0,10,0"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#E67E22"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Botón Archivar (solo para emisor en estado Completado) -->
+                <Button Content="📦 Archivar"
+                        Command="{Binding ArchivarTareaCommand}"
+                        Visibility="{Binding PuedeArchivar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="#95A5A6"
+                        Foreground="White"
+                        Padding="15,10"
+                        Margin="0,0,10,0"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#7F8C8D"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Botón Reasignar (solo para emisor en estado Observado) -->
+                <Button Content="🔄 Reasignar Tarea"
+                        Command="{Binding ReasignarTareaCommand}"
+                        Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="#9B59B6"
+                        Foreground="White"
+                        Padding="15,10"
+                        Margin="0,0,10,0"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#8E44AD"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#BDC3C7"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Botón Cerrar -->
+                <Button Content="Cerrar"
+                        Command="{Binding CerrarCommand}"
+                        Background="#7F8C8D"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#636E72"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
