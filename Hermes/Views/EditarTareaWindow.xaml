@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:helpers="clr-namespace:Hermes.Helpers"
         Title="Editar Tarea"
-        Height="700" Width="650"
+        Height="750" Width="650"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
 
@@ -124,24 +124,80 @@
 
                         <!-- Fecha Inicio -->
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="Fecha Inicio:"
+                            <TextBlock Text="Fecha y Hora de Inicio:"
                                        FontSize="12"
                                        Foreground="#34495E"
                                        Margin="0,0,0,5"/>
                             <DatePicker SelectedDate="{Binding Tarea.FechaInicioTarea}"
                                         Height="35"
-                                        FontSize="14"/>
+                                        FontSize="14"
+                                        Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Hora:"
+                                               FontSize="10"
+                                               Foreground="#7F8C8D"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Horas}"
+                                              SelectedItem="{Binding HoraInicio}"
+                                              Height="30"
+                                              FontSize="13"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Minuto:"
+                                               FontSize="10"
+                                               Foreground="#7F8C8D"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Minutos}"
+                                              SelectedItem="{Binding MinutoInicio}"
+                                              Height="30"
+                                              FontSize="13"/>
+                                </StackPanel>
+                            </Grid>
                         </StackPanel>
 
                         <!-- Fecha Limite -->
                         <StackPanel Grid.Column="2">
-                            <TextBlock Text="Fecha Limite (opcional):"
+                            <TextBlock Text="Fecha y Hora Límite (opcional):"
                                        FontSize="12"
                                        Foreground="#34495E"
                                        Margin="0,0,0,5"/>
                             <DatePicker SelectedDate="{Binding Tarea.FechaLimiteTarea}"
                                         Height="35"
-                                        FontSize="14"/>
+                                        FontSize="14"
+                                        Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Hora:"
+                                               FontSize="10"
+                                               Foreground="#7F8C8D"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Horas}"
+                                              SelectedItem="{Binding HoraLimite}"
+                                              Height="30"
+                                              FontSize="13"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Minuto:"
+                                               FontSize="10"
+                                               Foreground="#7F8C8D"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Minutos}"
+                                              SelectedItem="{Binding MinutoLimite}"
+                                              Height="30"
+                                              FontSize="13"/>
+                                </StackPanel>
+                            </Grid>
                         </StackPanel>
                     </Grid>
 

@@ -26,6 +26,12 @@ namespace Hermes.ViewModels
         private bool _puedeEnviarTareas = false;
         private ObservableCollection<ArchivoPendiente> _archivosPendientes = new();
 
+        // Propiedades para selección de hora
+        private int _horaInicio = DateTime.Now.Hour;
+        private int _minutoInicio = DateTime.Now.Minute;
+        private int? _horaLimite;
+        private int? _minutoLimite;
+
         public Tarea Tarea
         {
             get => _tarea;
@@ -80,6 +86,30 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _archivosPendientes, value);
         }
 
+        public int HoraInicio
+        {
+            get => _horaInicio;
+            set => SetProperty(ref _horaInicio, value);
+        }
+
+        public int MinutoInicio
+        {
+            get => _minutoInicio;
+            set => SetProperty(ref _minutoInicio, value);
+        }
+
+        public int? HoraLimite
+        {
+            get => _horaLimite;
+            set => SetProperty(ref _horaLimite, value);
+        }
+
+        public int? MinutoLimite
+        {
+            get => _minutoLimite;
+            set => SetProperty(ref _minutoLimite, value);
+        }
+
         // Listas para ComboBoxes
         public List<string> Estados { get; } = new()
         {
@@ -96,6 +126,9 @@ namespace Hermes.ViewModels
             "Alta",
             "Urgente"
         };
+
+        public List<int> Horas { get; } = Enumerable.Range(0, 24).ToList();
+        public List<int> Minutos { get; } = Enumerable.Range(0, 60).ToList();
 
         public ICommand GuardarCommand { get; }
         public ICommand CancelarCommand { get; }
@@ -123,10 +156,15 @@ namespace Hermes.ViewModels
                 MensajeError = "Su rol no tiene permisos para enviar tareas. Solo puede recibir tareas.";
             }
 
+            // Inicializar hora de inicio con hora actual
+            var ahora = DateTime.Now;
+            HoraInicio = ahora.Hour;
+            MinutoInicio = ahora.Minute;
+
             Tarea = new Tarea
             {
                 IdTarea = Guid.NewGuid(),
-                FechaInicioTarea = DateTime.Now,
+                FechaInicioTarea = ahora,
                 EstadoTarea = "Pendiente",
                 PrioridadTarea = "Media"
             };
@@ -276,6 +314,30 @@ namespace Hermes.ViewModels
             Tarea.UsuarioReceptorId = UsuarioReceptorSeleccionado.IdUsuario;
             Tarea.EstadoTarea = EstadoSeleccionado;
             Tarea.PrioridadTarea = PrioridadSeleccionada;
+
+            // Combinar fecha y hora para FechaInicioTarea
+            if (Tarea.FechaInicioTarea != default)
+            {
+                Tarea.FechaInicioTarea = new DateTime(
+                    Tarea.FechaInicioTarea.Year,
+                    Tarea.FechaInicioTarea.Month,
+                    Tarea.FechaInicioTarea.Day,
+                    HoraInicio,
+                    MinutoInicio,
+                    0);
+            }
+
+            // Combinar fecha y hora para FechaLimiteTarea (si existe)
+            if (Tarea.FechaLimiteTarea.HasValue && HoraLimite.HasValue && MinutoLimite.HasValue)
+            {
+                Tarea.FechaLimiteTarea = new DateTime(
+                    Tarea.FechaLimiteTarea.Value.Year,
+                    Tarea.FechaLimiteTarea.Value.Month,
+                    Tarea.FechaLimiteTarea.Value.Day,
+                    HoraLimite.Value,
+                    MinutoLimite.Value,
+                    0);
+            }
 
             // Guardar
             var resultado = await _tareaService.CrearAsync(Tarea);

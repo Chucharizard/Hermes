@@ -21,6 +21,12 @@ namespace Hermes.ViewModels
         private string _prioridadSeleccionada = string.Empty;
         private string _nombreUsuarioEmisor = string.Empty;
 
+        // Propiedades para selección de hora
+        private int _horaInicio;
+        private int _minutoInicio;
+        private int? _horaLimite;
+        private int? _minutoLimite;
+
         public Tarea Tarea
         {
             get => _tarea;
@@ -63,6 +69,30 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _nombreUsuarioEmisor, value);
         }
 
+        public int HoraInicio
+        {
+            get => _horaInicio;
+            set => SetProperty(ref _horaInicio, value);
+        }
+
+        public int MinutoInicio
+        {
+            get => _minutoInicio;
+            set => SetProperty(ref _minutoInicio, value);
+        }
+
+        public int? HoraLimite
+        {
+            get => _horaLimite;
+            set => SetProperty(ref _horaLimite, value);
+        }
+
+        public int? MinutoLimite
+        {
+            get => _minutoLimite;
+            set => SetProperty(ref _minutoLimite, value);
+        }
+
         // Listas para ComboBoxes
         public List<string> Estados { get; } = new()
         {
@@ -79,6 +109,9 @@ namespace Hermes.ViewModels
             "Alta",
             "Urgente"
         };
+
+        public List<int> Horas { get; } = Enumerable.Range(0, 24).ToList();
+        public List<int> Minutos { get; } = Enumerable.Range(0, 60).ToList();
 
         public ICommand ActualizarCommand { get; }
         public ICommand CancelarCommand { get; }
@@ -108,6 +141,16 @@ namespace Hermes.ViewModels
 
             EstadoSeleccionado = tareaAEditar.EstadoTarea;
             PrioridadSeleccionada = tareaAEditar.PrioridadTarea;
+
+            // Extraer hora y minutos de las fechas existentes
+            HoraInicio = tareaAEditar.FechaInicioTarea.Hour;
+            MinutoInicio = tareaAEditar.FechaInicioTarea.Minute;
+
+            if (tareaAEditar.FechaLimiteTarea.HasValue)
+            {
+                HoraLimite = tareaAEditar.FechaLimiteTarea.Value.Hour;
+                MinutoLimite = tareaAEditar.FechaLimiteTarea.Value.Minute;
+            }
 
             ActualizarCommand = new RelayCommand(async _ => await ActualizarAsync());
             CancelarCommand = new RelayCommand(_ => Cancelar());
@@ -206,6 +249,30 @@ namespace Hermes.ViewModels
             Tarea.UsuarioReceptorId = UsuarioReceptorSeleccionado.IdUsuario;
             Tarea.EstadoTarea = EstadoSeleccionado;
             Tarea.PrioridadTarea = PrioridadSeleccionada;
+
+            // Combinar fecha y hora para FechaInicioTarea
+            if (Tarea.FechaInicioTarea != default)
+            {
+                Tarea.FechaInicioTarea = new DateTime(
+                    Tarea.FechaInicioTarea.Year,
+                    Tarea.FechaInicioTarea.Month,
+                    Tarea.FechaInicioTarea.Day,
+                    HoraInicio,
+                    MinutoInicio,
+                    0);
+            }
+
+            // Combinar fecha y hora para FechaLimiteTarea (si existe)
+            if (Tarea.FechaLimiteTarea.HasValue && HoraLimite.HasValue && MinutoLimite.HasValue)
+            {
+                Tarea.FechaLimiteTarea = new DateTime(
+                    Tarea.FechaLimiteTarea.Value.Year,
+                    Tarea.FechaLimiteTarea.Value.Month,
+                    Tarea.FechaLimiteTarea.Value.Day,
+                    HoraLimite.Value,
+                    MinutoLimite.Value,
+                    0);
+            }
 
             // Actualizar en BD
             var resultado = await _tareaService.ActualizarAsync(Tarea);
