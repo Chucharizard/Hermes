@@ -29,10 +29,10 @@ namespace Hermes.Services
                 var observadas = tareas.Count(t => t.EstadoTarea == "Observado");
 
                 // Calcular estadísticas por prioridad
+                var prioridadUrgente = tareas.Count(t => t.PrioridadTarea == "Urgente");
                 var prioridadAlta = tareas.Count(t => t.PrioridadTarea == "Alta");
                 var prioridadMedia = tareas.Count(t => t.PrioridadTarea == "Media");
                 var prioridadBaja = tareas.Count(t => t.PrioridadTarea == "Baja");
-                var prioridadUrgente = tareas.Count(t => t.PrioridadTarea == "Urgente");
 
                 // Calcular Top 3 usuarios
                 var estadisticasPorUsuario = tareas
@@ -46,20 +46,34 @@ namespace Hermes.Services
                     {
                         Usuario = g.Key.Nombre,
                         TotalTareas = g.Count(),
-                        TareasFinalizadas = g.Count(t => t.EstadoTarea == "Completado"),
-                        Eficiencia = (double)g.Count(t => t.EstadoTarea == "Completado") / g.Count()
+                        TareasFinalizadas = g.Count(t => t.EstadoTarea == "Completado")
                     })
                     .OrderByDescending(x => x.TareasFinalizadas)
                     .Take(3)
                     .ToList();
 
-                // Crear ruta de destino
+                // Ruta de la plantilla
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var templatePath = Path.Combine(baseDirectory, "Resources", "Plantillas", "Reporte_Dashboard_Consolidado.xlsx");
+
+                // Verificar que existe la plantilla
+                if (!File.Exists(templatePath))
+                {
+                    throw new FileNotFoundException(
+                        $"No se encontró la plantilla de Excel en: {templatePath}\n\n" +
+                        "Por favor, asegúrate de que el archivo 'Reporte_Dashboard_Consolidado.xlsx' esté en la carpeta 'Resources/Plantillas' del proyecto.");
+                }
+
+                // Crear ruta de destino en el escritorio
                 var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 var fileName = $"Dashboard_Consolidado_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                 var filePath = Path.Combine(desktopPath, fileName);
 
-                // Crear el archivo Excel usando ClosedXML
-                using (var workbook = new XLWorkbook())
+                // Copiar la plantilla al escritorio
+                File.Copy(templatePath, filePath, true);
+
+                // Abrir el archivo copiado y actualizar solo las celdas de datos
+                using (var workbook = new XLWorkbook(filePath))
                 {
                     // ========================================
                     // HOJA 1: DASHBOARD PRINCIPAL
