@@ -456,10 +456,19 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-                                <TextBlock Text="⚠ No se pueden subir archivos (tarea vencida o completada)"
-                                           FontSize="11"
-                                           Foreground="#856404"
-                                           TextWrapping="Wrap"/>
+                                <StackPanel>
+                                    <TextBlock FontSize="11"
+                                               Foreground="#856404"
+                                               TextWrapping="Wrap">
+                                        <Run Text="⚠ No se pueden subir archivos"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="10"
+                                               Foreground="#856404"
+                                               TextWrapping="Wrap"
+                                               Margin="0,3,0,0">
+                                        <Run Text="(Tarea cerrada o completada)"/>
+                                    </TextBlock>
+                                </StackPanel>
                             </Border>
 
                             <!-- Lista de archivos del receptor -->

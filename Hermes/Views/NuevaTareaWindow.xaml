@@ -4,7 +4,7 @@
         xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
         xmlns:helpers="clr-namespace:Hermes.Helpers"
         Title="Nueva Tarea"
-        Height="850" Width="650"
+        Height="900" Width="650"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
 
@@ -205,6 +205,32 @@
                             </Grid>
                         </StackPanel>
                     </Grid>
+
+                    <!-- Configuración de cierre de tarea -->
+                    <Border Background="#E3F2FD"
+                            BorderBrush="#2196F3"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Padding="12"
+                            Margin="0,0,0,15">
+                        <StackPanel>
+                            <TextBlock Text="⚙ Configuración de Entrega"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#1976D2"
+                                       Margin="0,0,0,8"/>
+                            <CheckBox IsChecked="{Binding Tarea.PermiteEntregaConRetraso}"
+                                      Content="Permitir entrega con retraso después de la fecha límite"
+                                      FontSize="12"
+                                      Foreground="#424242"
+                                      Margin="0,0,0,5"/>
+                            <TextBlock Text="✓ Marcado: Se puede entregar después de la hora límite (con retraso)&#x0a;✗ Desmarcado: La tarea se cierra automáticamente y no acepta entregas"
+                                       FontSize="10"
+                                       Foreground="#757575"
+                                       TextWrapping="Wrap"
+                                       Margin="20,0,0,0"/>
+                        </StackPanel>
+                    </Border>
 
                     <!-- Mensaje de Error -->
                     <Border Background="#FFEBEE"

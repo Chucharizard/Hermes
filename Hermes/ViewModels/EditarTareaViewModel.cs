@@ -136,7 +136,8 @@ namespace Hermes.ViewModels
                 PrioridadTarea = tareaAEditar.PrioridadTarea,
                 FechaInicioTarea = tareaAEditar.FechaInicioTarea,
                 FechaLimiteTarea = tareaAEditar.FechaLimiteTarea,
-                FechaCompletadaTarea = tareaAEditar.FechaCompletadaTarea
+                FechaCompletadaTarea = tareaAEditar.FechaCompletadaTarea,
+                PermiteEntregaConRetraso = tareaAEditar.PermiteEntregaConRetraso
             };
 
             EstadoSeleccionado = tareaAEditar.EstadoTarea;
@@ -288,6 +289,7 @@ namespace Hermes.ViewModels
                 _tareaOriginal.FechaInicioTarea = Tarea.FechaInicioTarea;
                 _tareaOriginal.FechaLimiteTarea = Tarea.FechaLimiteTarea;
                 _tareaOriginal.FechaCompletadaTarea = Tarea.FechaCompletadaTarea;
+                _tareaOriginal.PermiteEntregaConRetraso = Tarea.PermiteEntregaConRetraso;
 
                 MessageBox.Show("Tarea actualizada exitosamente",
                               "Exito",

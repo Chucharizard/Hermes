@@ -16,6 +16,7 @@ namespace Hermes.Models
         private DateTime _fechaInicioTarea;
         private DateTime? _fechaLimiteTarea;
         private DateTime? _fechaCompletadaTarea;
+        private bool _permiteEntregaConRetraso = true; // Por defecto permite retraso
 
         public Guid IdTarea
         {
@@ -142,6 +143,24 @@ namespace Hermes.Models
                 if (_fechaCompletadaTarea != value)
                 {
                     _fechaCompletadaTarea = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indica si la tarea permite entrega con retraso después de la fecha límite.
+        /// True = Permite entregar con retraso (estilo Teams)
+        /// False = Cierre estricto (no permite nada después de la fecha límite)
+        /// </summary>
+        public bool PermiteEntregaConRetraso
+        {
+            get => _permiteEntregaConRetraso;
+            set
+            {
+                if (_permiteEntregaConRetraso != value)
+                {
+                    _permiteEntregaConRetraso = value;
                     OnPropertyChanged();
                 }
             }

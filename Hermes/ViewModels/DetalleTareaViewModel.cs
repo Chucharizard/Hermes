@@ -83,23 +83,28 @@ namespace Hermes.ViewModels
         public bool PuedeReasignar => EsEmisor && Tarea?.EstadoTarea == "Observado";
         public bool PuedeObservar => EsEmisor && Tarea?.EstadoTarea == "Completado";
 
-        // Verificar si se pueden subir archivos (no si la tarea está vencida)
+        // Verificar si se pueden subir archivos considerando la configuración de entrega
         public bool PuedeSubirArchivos
         {
             get
             {
                 if (Tarea == null) return false;
 
-                // Si la tarea tiene fecha límite y ya pasó, no se pueden subir archivos
-                if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
-                {
-                    return false;
-                }
-
                 // Si la tarea está completada o archivada, no se pueden subir archivos
                 if (Tarea.EstadoTarea == "Completado" || Tarea.EstadoTarea == "Archivado")
                 {
                     return false;
+                }
+
+                // Si la tarea tiene fecha límite y ya pasó
+                if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
+                {
+                    // Si NO permite entrega con retraso, se cierra estrictamente
+                    if (!Tarea.PermiteEntregaConRetraso)
+                    {
+                        return false;
+                    }
+                    // Si permite retraso, se puede subir (pero será marcado como con retraso)
                 }
 
                 return true;
@@ -236,7 +241,14 @@ namespace Hermes.ViewModels
             {
                 if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
                 {
-                    MessageBox.Show("No se pueden subir archivos después de la fecha y hora límite de la tarea.", "Tarea Vencida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    if (!Tarea.PermiteEntregaConRetraso)
+                    {
+                        MessageBox.Show("Esta tarea tiene cierre estricto y no acepta entregas después de la fecha y hora límite.", "Tarea Cerrada", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pueden subir archivos después de la fecha y hora límite de la tarea.", "Tarea Vencida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
                 else
                 {
