@@ -37,107 +37,40 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <!-- Botón Reporte por Estado -->
-                    <Button Content="📊 Reporte por Estado"
-                            Command="{Binding GenerarReporteExcelCommand}"
+                    <!-- Botón Dashboard Consolidado -->
+                    <Button Command="{Binding GenerarDashboardConsolidadoCommand}"
                             IsEnabled="{Binding GenerandoReporte, Converter={StaticResource InverseBooleanConverter}}"
-                            Background="#27AE60"
+                            Background="#2E86AB"
                             Foreground="White"
-                            Padding="20,10"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Margin="0,0,10,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#229954"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-
-                    <!-- Botón Reporte Prioridades -->
-                    <Button Content="🎯 Prioridades"
-                            Command="{Binding GenerarReportePrioridadesCommand}"
-                            IsEnabled="{Binding GenerandoReportePrioridades, Converter={StaticResource InverseBooleanConverter}}"
-                            Background="#9B59B6"
-                            Foreground="White"
-                            Padding="20,10"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Margin="0,0,10,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#7D3C98"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-
-                    <!-- Botón Reporte Top 3 -->
-                    <Button Content="🏆 Top 3 Usuarios"
-                            Command="{Binding GenerarReporteTop3Command}"
-                            IsEnabled="{Binding GenerandoReporteTop3, Converter={StaticResource InverseBooleanConverter}}"
-                            Background="#E67E22"
-                            Foreground="White"
-                            Padding="20,10"
-                            FontSize="14"
+                            Padding="25,12"
+                            FontSize="15"
+                            FontWeight="SemiBold"
                             BorderThickness="0"
                             Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📊" FontSize="18" Margin="0,0,8,0"/>
+                            <TextBlock Text="Generar Dashboard Consolidado" VerticalAlignment="Center"/>
+                        </StackPanel>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
                                             <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
+                                                    CornerRadius="8"
                                                     Padding="{TemplateBinding Padding}">
                                                 <ContentPresenter HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"/>
+                                                <Border.Effect>
+                                                    <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.3"/>
+                                                </Border.Effect>
                                             </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#D35400"/>
+                                        <Setter Property="Background" Value="#1F5F7B"/>
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
                                         <Setter Property="Background" Value="#BDC3C7"/>
@@ -297,36 +230,40 @@
                     </Border.Effect>
 
                     <StackPanel>
-                        <TextBlock Text="📊 Reporte Excel con Gráficos Automáticos"
+                        <TextBlock Text="📊 Dashboard Consolidado Excel"
                                    FontSize="20"
                                    FontWeight="Bold"
                                    Foreground="#2C3E50"
                                    Margin="0,0,0,15"/>
 
                         <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="#34495E" Margin="0,0,0,10">
-                            <Run Text="El sistema utiliza una plantilla Excel prediseñada con gráficos profesionales:"/>
+                            <Run Text="El sistema genera un archivo Excel profesional con múltiples hojas de análisis:"/>
                         </TextBlock>
 
                         <StackPanel Margin="20,10,0,20">
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
+                                <Run Text="📄 " FontWeight="Bold" Foreground="#2E86AB"/>
+                                <Run Text="Hoja 1: Dashboard Principal con KPIs visuales"/>
+                            </TextBlock>
+                            <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
+                                <Run Text="📄 " FontWeight="Bold" Foreground="#A23B72"/>
+                                <Run Text="Hoja 2: Datos Detallados y Estadísticas"/>
+                            </TextBlock>
+                            <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
+                                <Run Text="📄 " FontWeight="Bold" Foreground="#62C370"/>
+                                <Run Text="Hoja 3: Análisis y Métricas de Rendimiento"/>
+                            </TextBlock>
+                            <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
                                 <Run Text="✓ " FontWeight="Bold" Foreground="#27AE60"/>
-                                <Run Text="Actualiza automáticamente los datos desde la base de datos"/>
+                                <Run Text="Incluye estadísticas de estados, prioridades y top 3 usuarios"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
                                 <Run Text="✓ " FontWeight="Bold" Foreground="#3498DB"/>
-                                <Run Text="Los gráficos se actualizan instantáneamente con los nuevos valores"/>
-                            </TextBlock>
-                            <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="✓ " FontWeight="Bold" Foreground="#9B59B6"/>
-                                <Run Text="Celda B2 = Tareas PENDIENTES"/>
+                                <Run Text="Formatos profesionales con colores y bordes"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
                                 <Run Text="✓ " FontWeight="Bold" Foreground="#F39C12"/>
-                                <Run Text="Celda B3 = Tareas COMPLETADAS"/>
-                            </TextBlock>
-                            <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="✓ " FontWeight="Bold" Foreground="#E74C3C"/>
-                                <Run Text="Celda B4 = Tareas VENCIDAS"/>
+                                <Run Text="Métricas de rendimiento con evaluación automática"/>
                             </TextBlock>
                         </StackPanel>
 
@@ -334,64 +271,28 @@
                             <StackPanel>
                                 <TextBlock FontSize="14" FontWeight="SemiBold" Foreground="#27AE60" Margin="0,0,0,5">
                                     <Run Text="💡 "/>
-                                    <Run Text="Plantilla con gráficos preconfigurados"/>
+                                    <Run Text="Reporte completo y profesional"/>
                                 </TextBlock>
                                 <TextBlock FontSize="12" Foreground="#2C3E50" TextWrapping="Wrap">
-                                    <Run Text="El archivo se guardará en tu Escritorio y se abrirá automáticamente. Los gráficos (tortas, barras, etc.) ya están configurados y se actualizan solos al cambiar los datos."/>
+                                    <Run Text="El archivo se guardará en tu Escritorio y se abrirá automáticamente. Incluye todos los reportes en un solo archivo con múltiples hojas organizadas."/>
                                 </TextBlock>
                             </StackPanel>
                         </Border>
 
-                        <!-- Indicador de carga - Reporte por Estado -->
-                        <Border Background="#FFF3CD"
+                        <!-- Indicador de carga -->
+                        <Border Background="#E3F2FD"
                                 Padding="15"
                                 CornerRadius="5"
-                                BorderBrush="#F39C12"
+                                BorderBrush="#2E86AB"
                                 BorderThickness="1"
                                 Margin="0,15,0,0"
                                 Visibility="{Binding GenerandoReporte, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="⏳ " FontSize="16" VerticalAlignment="Center"/>
-                                <TextBlock Text="Generando reporte por estado, por favor espere..."
+                                <TextBlock Text="Generando dashboard consolidado, por favor espere..."
                                            FontSize="14"
                                            FontWeight="SemiBold"
-                                           Foreground="#856404"
-                                           VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Border>
-
-                        <!-- Indicador de carga - Reporte Prioridades -->
-                        <Border Background="#F4ECF7"
-                                Padding="15"
-                                CornerRadius="5"
-                                BorderBrush="#9B59B6"
-                                BorderThickness="1"
-                                Margin="0,15,0,0"
-                                Visibility="{Binding GenerandoReportePrioridades, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="⏳ " FontSize="16" VerticalAlignment="Center"/>
-                                <TextBlock Text="Generando reporte de prioridades, por favor espere..."
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="#6C3483"
-                                           VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Border>
-
-                        <!-- Indicador de carga - Reporte Top 3 -->
-                        <Border Background="#FEF5E7"
-                                Padding="15"
-                                CornerRadius="5"
-                                BorderBrush="#E67E22"
-                                BorderThickness="1"
-                                Margin="0,15,0,0"
-                                Visibility="{Binding GenerandoReporteTop3, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="⏳ " FontSize="16" VerticalAlignment="Center"/>
-                                <TextBlock Text="Generando reporte Top 3 usuarios, por favor espere..."
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="#BA4A00"
+                                           Foreground="#1565C0"
                                            VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
