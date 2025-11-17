@@ -94,15 +94,13 @@ namespace Hermes.Services
                     dashboard.Cell("H8").Value = vencidas;
                     dashboard.Cell("H10").Value = totalTareas > 0 ? (double)vencidas / totalTareas : 0;
 
-                    // Distribución por prioridad
-                    dashboard.Cell("C16").Value = prioridadUrgente;
-                    dashboard.Cell("D16").Value = totalTareas > 0 ? (double)prioridadUrgente / totalTareas : 0;
-                    dashboard.Cell("C17").Value = prioridadAlta;
-                    dashboard.Cell("D17").Value = totalTareas > 0 ? (double)prioridadAlta / totalTareas : 0;
-                    dashboard.Cell("C18").Value = prioridadMedia;
-                    dashboard.Cell("D18").Value = totalTareas > 0 ? (double)prioridadMedia / totalTareas : 0;
-                    dashboard.Cell("C19").Value = prioridadBaja;
-                    dashboard.Cell("D19").Value = totalTareas > 0 ? (double)prioridadBaja / totalTareas : 0;
+                    // Distribución por prioridad (la plantilla tiene: Alta, Media, Baja)
+                    dashboard.Cell("C16").Value = prioridadAlta;
+                    dashboard.Cell("D16").Value = totalTareas > 0 ? (double)prioridadAlta / totalTareas : 0;
+                    dashboard.Cell("C17").Value = prioridadMedia;
+                    dashboard.Cell("D17").Value = totalTareas > 0 ? (double)prioridadMedia / totalTareas : 0;
+                    dashboard.Cell("C18").Value = prioridadBaja;
+                    dashboard.Cell("D18").Value = totalTareas > 0 ? (double)prioridadBaja / totalTareas : 0;
 
                     // Top 3 usuarios
                     if (estadisticasPorUsuario.Count > 0)
@@ -137,11 +135,10 @@ namespace Hermes.Services
                     detailSheet.Cell("B7").Value = vencidas;
                     detailSheet.Cell("B8").Value = observadas;
 
-                    // Prioridades
-                    detailSheet.Cell("B14").Value = prioridadUrgente;
-                    detailSheet.Cell("B15").Value = prioridadAlta;
-                    detailSheet.Cell("B16").Value = prioridadMedia;
-                    detailSheet.Cell("B17").Value = prioridadBaja;
+                    // Prioridades (la plantilla tiene: Alta, Media, Baja)
+                    detailSheet.Cell("B14").Value = prioridadAlta;
+                    detailSheet.Cell("B15").Value = prioridadMedia;
+                    detailSheet.Cell("B16").Value = prioridadBaja;
 
                     // ========================================
                     // HOJA 3: ANÁLISIS Y MÉTRICAS
