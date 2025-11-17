@@ -106,8 +106,7 @@ namespace Hermes.ViewModels
         {
             "Baja",
             "Media",
-            "Alta",
-            "Urgente"
+            "Alta"
         };
 
         public List<int> Horas { get; } = Enumerable.Range(0, 24).ToList();
