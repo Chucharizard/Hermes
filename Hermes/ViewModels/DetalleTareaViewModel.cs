@@ -82,6 +82,30 @@ namespace Hermes.ViewModels
         public bool PuedeArchivar => EsEmisor && Tarea?.EstadoTarea == "Completado";
         public bool PuedeReasignar => EsEmisor && Tarea?.EstadoTarea == "Observado";
         public bool PuedeObservar => EsEmisor && Tarea?.EstadoTarea == "Completado";
+
+        // Verificar si se pueden subir archivos (no si la tarea está vencida)
+        public bool PuedeSubirArchivos
+        {
+            get
+            {
+                if (Tarea == null) return false;
+
+                // Si la tarea tiene fecha límite y ya pasó, no se pueden subir archivos
+                if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
+                {
+                    return false;
+                }
+
+                // Si la tarea está completada o archivada, no se pueden subir archivos
+                if (Tarea.EstadoTarea == "Completado" || Tarea.EstadoTarea == "Archivado")
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
         public int TotalComentarios => Comentarios.Count;
         public int TotalAdjuntos => Adjuntos.Count;
         public int TotalAdjuntosEmisor => AdjuntosEmisor.Count;
@@ -207,6 +231,20 @@ namespace Hermes.ViewModels
 
         private async Task SubirAdjuntoAsync()
         {
+            // VALIDACIÓN: Verificar si la tarea está vencida
+            if (!PuedeSubirArchivos)
+            {
+                if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
+                {
+                    MessageBox.Show("No se pueden subir archivos después de la fecha y hora límite de la tarea.", "Tarea Vencida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden subir archivos en tareas completadas o archivadas.", "Acción no permitida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                return;
+            }
+
             // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
             var usuarioActual = App.UsuarioActual;
             if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
@@ -456,6 +494,7 @@ namespace Hermes.ViewModels
             OnPropertyChanged(nameof(PuedeArchivar));
             OnPropertyChanged(nameof(PuedeReasignar));
             OnPropertyChanged(nameof(PuedeObservar));
+            OnPropertyChanged(nameof(PuedeSubirArchivos));
             OnPropertyChanged(nameof(TotalComentarios));
             OnPropertyChanged(nameof(TotalAdjuntos));
             OnPropertyChanged(nameof(TotalAdjuntosEmisor));

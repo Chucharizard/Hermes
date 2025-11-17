@@ -9,6 +9,7 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Window.Resources>
 
     <Grid Background="#ECF0F1">
@@ -405,6 +406,7 @@
                                 <Button Grid.Column="1"
                                         Content="📁"
                                         Command="{Binding SubirAdjuntoCommand}"
+                                        Visibility="{Binding PuedeSubirArchivos, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Background="#27AE60"
                                         Foreground="White"
                                         Width="30"
@@ -435,6 +437,29 @@
                                     </Button.Style>
                                 </Button>
                             </Grid>
+
+                            <!-- Mensaje informativo cuando no se pueden subir archivos -->
+                            <Border Background="#FFF3CD"
+                                    BorderBrush="#FFC107"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Padding="8,5"
+                                    Margin="0,0,0,10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding PuedeSubirArchivos}" Value="False">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock Text="⚠ No se pueden subir archivos (tarea vencida o completada)"
+                                           FontSize="11"
+                                           Foreground="#856404"
+                                           TextWrapping="Wrap"/>
+                            </Border>
 
                             <!-- Lista de archivos del receptor -->
                             <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
