@@ -15,6 +15,7 @@ namespace Hermes.ViewModels
         private ObservableCollection<Empleado> _empleadosFiltrados = new();
         private Empleado? _empleadoSeleccionado;
         private string _filtroTexto = string.Empty;
+        private string _filtroEstado = "Todos";
 
         public ObservableCollection<Empleado> Empleados
         {
@@ -44,8 +45,27 @@ namespace Hermes.ViewModels
             }
         }
 
+        public string FiltroEstado
+        {
+            get => _filtroEstado;
+            set
+            {
+                SetProperty(ref _filtroEstado, value);
+                FiltrarEmpleados();
+            }
+        }
+
+        // Lista de opciones para el filtro de estado
+        public List<string> OpcionesFiltroEstado { get; } = new()
+        {
+            "Todos",
+            "Activos",
+            "Inactivos"
+        };
+
         public int TotalEmpleados => Empleados?.Count ?? 0;
         public int EmpleadosActivos => Empleados?.Count(e => e.EsActivoEmpleado) ?? 0;
+        public int EmpleadosInactivos => Empleados?.Count(e => !e.EsActivoEmpleado) ?? 0;
 
         public ICommand CargarEmpleadosCommand { get; }
         public ICommand AbrirNuevoEmpleadoCommand { get; }
@@ -84,6 +104,7 @@ namespace Hermes.ViewModels
                 FiltrarEmpleados();
                 OnPropertyChanged(nameof(TotalEmpleados));
                 OnPropertyChanged(nameof(EmpleadosActivos));
+                OnPropertyChanged(nameof(EmpleadosInactivos));
             });
         }
 
@@ -91,12 +112,21 @@ namespace Hermes.ViewModels
         {
             EmpleadosFiltrados.Clear();
 
+            // Aplicar filtro de texto (CI, nombre, apellido)
             var filtrados = string.IsNullOrWhiteSpace(FiltroTexto)
                 ? Empleados
                 : Empleados.Where(e =>
                     e.CiEmpleado.ToString().Contains(FiltroTexto) ||
                     e.NombresEmpleado.ToLower().Contains(FiltroTexto.ToLower()) ||
                     e.ApellidosEmpleado.ToLower().Contains(FiltroTexto.ToLower()));
+
+            // Aplicar filtro de estado (Todos/Activos/Inactivos)
+            filtrados = FiltroEstado switch
+            {
+                "Activos" => filtrados.Where(e => e.EsActivoEmpleado),
+                "Inactivos" => filtrados.Where(e => !e.EsActivoEmpleado),
+                _ => filtrados // "Todos"
+            };
 
             foreach (var empleado in filtrados)
             {

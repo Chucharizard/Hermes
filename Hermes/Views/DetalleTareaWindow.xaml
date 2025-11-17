@@ -1,6 +1,7 @@
 <Window x:Class="Hermes.Views.DetalleTareaWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:helpers="clr-namespace:Hermes.Helpers"
         Title="Detalle de Tarea"
         Height="700"
         Width="900"
@@ -9,6 +10,7 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Window.Resources>
 
     <Grid Background="#ECF0F1">
@@ -405,6 +407,7 @@
                                 <Button Grid.Column="1"
                                         Content="📁"
                                         Command="{Binding SubirAdjuntoCommand}"
+                                        Visibility="{Binding PuedeSubirArchivos, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Background="#27AE60"
                                         Foreground="White"
                                         Width="30"
@@ -435,6 +438,38 @@
                                     </Button.Style>
                                 </Button>
                             </Grid>
+
+                            <!-- Mensaje informativo cuando no se pueden subir archivos -->
+                            <Border Background="#FFF3CD"
+                                    BorderBrush="#FFC107"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Padding="8,5"
+                                    Margin="0,0,0,10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding PuedeSubirArchivos}" Value="False">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel>
+                                    <TextBlock FontSize="11"
+                                               Foreground="#856404"
+                                               TextWrapping="Wrap">
+                                        <Run Text="⚠ No se pueden subir archivos"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="10"
+                                               Foreground="#856404"
+                                               TextWrapping="Wrap"
+                                               Margin="0,3,0,0">
+                                        <Run Text="(Tarea cerrada o completada)"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
 
                             <!-- Lista de archivos del receptor -->
                             <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">

@@ -21,6 +21,12 @@ namespace Hermes.ViewModels
         private string _prioridadSeleccionada = string.Empty;
         private string _nombreUsuarioEmisor = string.Empty;
 
+        // Propiedades para selección de hora
+        private int _horaInicio;
+        private int _minutoInicio;
+        private int? _horaLimite;
+        private int? _minutoLimite;
+
         public Tarea Tarea
         {
             get => _tarea;
@@ -63,6 +69,30 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _nombreUsuarioEmisor, value);
         }
 
+        public int HoraInicio
+        {
+            get => _horaInicio;
+            set => SetProperty(ref _horaInicio, value);
+        }
+
+        public int MinutoInicio
+        {
+            get => _minutoInicio;
+            set => SetProperty(ref _minutoInicio, value);
+        }
+
+        public int? HoraLimite
+        {
+            get => _horaLimite;
+            set => SetProperty(ref _horaLimite, value);
+        }
+
+        public int? MinutoLimite
+        {
+            get => _minutoLimite;
+            set => SetProperty(ref _minutoLimite, value);
+        }
+
         // Listas para ComboBoxes
         public List<string> Estados { get; } = new()
         {
@@ -76,9 +106,11 @@ namespace Hermes.ViewModels
         {
             "Baja",
             "Media",
-            "Alta",
-            "Urgente"
+            "Alta"
         };
+
+        public List<int> Horas { get; } = Enumerable.Range(0, 24).ToList();
+        public List<int> Minutos { get; } = Enumerable.Range(0, 60).ToList();
 
         public ICommand ActualizarCommand { get; }
         public ICommand CancelarCommand { get; }
@@ -103,11 +135,22 @@ namespace Hermes.ViewModels
                 PrioridadTarea = tareaAEditar.PrioridadTarea,
                 FechaInicioTarea = tareaAEditar.FechaInicioTarea,
                 FechaLimiteTarea = tareaAEditar.FechaLimiteTarea,
-                FechaCompletadaTarea = tareaAEditar.FechaCompletadaTarea
+                FechaCompletadaTarea = tareaAEditar.FechaCompletadaTarea,
+                PermiteEntregaConRetraso = tareaAEditar.PermiteEntregaConRetraso
             };
 
             EstadoSeleccionado = tareaAEditar.EstadoTarea;
             PrioridadSeleccionada = tareaAEditar.PrioridadTarea;
+
+            // Extraer hora y minutos de las fechas existentes
+            HoraInicio = tareaAEditar.FechaInicioTarea.Hour;
+            MinutoInicio = tareaAEditar.FechaInicioTarea.Minute;
+
+            if (tareaAEditar.FechaLimiteTarea.HasValue)
+            {
+                HoraLimite = tareaAEditar.FechaLimiteTarea.Value.Hour;
+                MinutoLimite = tareaAEditar.FechaLimiteTarea.Value.Minute;
+            }
 
             ActualizarCommand = new RelayCommand(async _ => await ActualizarAsync());
             CancelarCommand = new RelayCommand(_ => Cancelar());
@@ -130,8 +173,13 @@ namespace Hermes.ViewModels
                 }
 
                 // Cargar receptores (excluyendo al emisor)
+                // VALIDACIÓN CRÍTICA: Solo usuarios Y empleados activos
                 UsuariosReceptores.Clear();
-                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario && u.IdUsuario != Tarea.UsuarioEmisorId))
+                foreach (var usuario in usuarios.Where(u =>
+                    u.EsActivoUsuario &&
+                    u.Empleado != null &&
+                    u.Empleado.EsActivoEmpleado &&
+                    u.IdUsuario != Tarea.UsuarioEmisorId))
                 {
                     UsuariosReceptores.Add(usuario);
                 }
@@ -145,10 +193,43 @@ namespace Hermes.ViewModels
         {
             MensajeError = string.Empty;
 
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null)
+            {
+                MensajeError = "No hay un usuario logueado";
+                return;
+            }
+
+            if (!usuarioActual.EsActivoUsuario)
+            {
+                MensajeError = "Su usuario está inactivo. No puede realizar esta acción.";
+                return;
+            }
+
+            if (usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MensajeError = "Su empleado está inactivo. No puede realizar esta acción.";
+                return;
+            }
+
             // Validaciones
             if (UsuarioReceptorSeleccionado == null)
             {
                 MensajeError = "Debe seleccionar un usuario receptor";
+                return;
+            }
+
+            // VALIDACIÓN CRÍTICA: Verificar que el receptor esté activo
+            if (!UsuarioReceptorSeleccionado.EsActivoUsuario)
+            {
+                MensajeError = "El usuario receptor seleccionado está inactivo. Seleccione otro receptor.";
+                return;
+            }
+
+            if (UsuarioReceptorSeleccionado.Empleado == null || !UsuarioReceptorSeleccionado.Empleado.EsActivoEmpleado)
+            {
+                MensajeError = "El empleado receptor seleccionado está inactivo. Seleccione otro receptor.";
                 return;
             }
 
@@ -169,6 +250,30 @@ namespace Hermes.ViewModels
             Tarea.EstadoTarea = EstadoSeleccionado;
             Tarea.PrioridadTarea = PrioridadSeleccionada;
 
+            // Combinar fecha y hora para FechaInicioTarea
+            if (Tarea.FechaInicioTarea != default)
+            {
+                Tarea.FechaInicioTarea = new DateTime(
+                    Tarea.FechaInicioTarea.Year,
+                    Tarea.FechaInicioTarea.Month,
+                    Tarea.FechaInicioTarea.Day,
+                    HoraInicio,
+                    MinutoInicio,
+                    0);
+            }
+
+            // Combinar fecha y hora para FechaLimiteTarea (si existe)
+            if (Tarea.FechaLimiteTarea.HasValue && HoraLimite.HasValue && MinutoLimite.HasValue)
+            {
+                Tarea.FechaLimiteTarea = new DateTime(
+                    Tarea.FechaLimiteTarea.Value.Year,
+                    Tarea.FechaLimiteTarea.Value.Month,
+                    Tarea.FechaLimiteTarea.Value.Day,
+                    HoraLimite.Value,
+                    MinutoLimite.Value,
+                    0);
+            }
+
             // Actualizar en BD
             var resultado = await _tareaService.ActualizarAsync(Tarea);
 
@@ -183,6 +288,7 @@ namespace Hermes.ViewModels
                 _tareaOriginal.FechaInicioTarea = Tarea.FechaInicioTarea;
                 _tareaOriginal.FechaLimiteTarea = Tarea.FechaLimiteTarea;
                 _tareaOriginal.FechaCompletadaTarea = Tarea.FechaCompletadaTarea;
+                _tareaOriginal.PermiteEntregaConRetraso = Tarea.PermiteEntregaConRetraso;
 
                 MessageBox.Show("Tarea actualizada exitosamente",
                               "Exito",

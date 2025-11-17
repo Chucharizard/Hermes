@@ -32,6 +32,12 @@ namespace Hermes.Services
                     return (false, null, "Usuario no encontrado o inactivo");
                 }
 
+                // VALIDACIÓN CRÍTICA: Verificar que el empleado también esté activo
+                if (usuario.Empleado == null || !usuario.Empleado.EsActivoEmpleado)
+                {
+                    return (false, null, "El empleado asociado a este usuario está inactivo. Contacte al administrador.");
+                }
+
                 // Verificar contraseña usando la clase centralizada
                 // Soporta tanto BCrypt (nuevo) como SHA256 (legacy)
                 bool passwordValida = PasswordHasher.VerifyPassword(password, usuario.PasswordUsuario);

@@ -164,6 +164,7 @@ namespace Hermes.Data
                 entity.Property(t => t.FechaInicioTarea).HasColumnName("fecha_inicio_tarea");
                 entity.Property(t => t.FechaLimiteTarea).HasColumnName("fecha_limite_tarea");
                 entity.Property(t => t.FechaCompletadaTarea).HasColumnName("fecha_completada_tarea");
+                entity.Property(t => t.PermiteEntregaConRetraso).HasColumnName("permite_entrega_con_retraso").HasDefaultValue(true);
 
                 // Configurar m�ltiples relaciones con Usuario explícitamente
                 entity.HasOne(t => t.UsuarioEmisor)
