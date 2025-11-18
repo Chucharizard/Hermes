@@ -15,29 +15,18 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Background="White" Padding="20" Margin="0,0,0,15">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-
+        <Border Grid.Row="0" Style="{StaticResource SectionHeaderStyle}" Margin="0,0,0,15">
             <StackPanel>
                 <TextBlock Text="📥 Bandeja de Tareas Recibidas"
-                           FontSize="24"
-                           FontWeight="Bold"
-                           Foreground="#2C3E50"/>
+                           Style="{StaticResource TitleTextStyle}"/>
                 <TextBlock Text="Tareas que te han asignado"
-                           FontSize="14"
-                           Foreground="#7F8C8D"
+                           Style="{StaticResource SubtitleTextStyle}"
                            Margin="0,5,0,0"/>
             </StackPanel>
         </Border>
 
         <!-- Estadísticas -->
-        <Border Grid.Row="1" Background="White" Padding="15" Margin="0,0,0,15">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-
+        <Border Grid.Row="1" Style="{StaticResource CardStyle}" Padding="15" Margin="0,0,0,15">
             <UniformGrid Rows="1" Columns="5">
                 <!-- Total Recibidas -->
                 <Border Background="#9B59B6" CornerRadius="8" Margin="5" Padding="15">
@@ -119,10 +108,7 @@
         </Border>
 
         <!-- Contenido principal -->
-        <Border Grid.Row="2" Background="White" Padding="20">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
+        <Border Grid.Row="2" Style="{StaticResource CardStyle}">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -141,89 +127,31 @@
 
                     <TextBox Grid.Column="0"
                              Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="14"
-                             Padding="10"
-                             BorderBrush="#BDC3C7"
-                             BorderThickness="1"
-                             VerticalContentAlignment="Center">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Foreground" Value="#2C3E50"/>
-                                <Style.Triggers>
-                                    <Trigger Property="Text" Value="">
-                                        <Setter Property="Background">
-                                            <Setter.Value>
-                                                <VisualBrush Stretch="None" AlignmentX="Left">
-                                                    <VisualBrush.Visual>
-                                                        <TextBlock Text="🔍 Buscar por título, descripción o emisor..."
-                                                                   Foreground="#95A5A6"
-                                                                   Padding="10,0,0,0"/>
-                                                    </VisualBrush.Visual>
-                                                </VisualBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Tag="🔍 Buscar por título, descripción o emisor..."/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding EstadosFiltro}"
                               SelectedItem="{Binding FiltroEstado}"
+                              Style="{StaticResource ModernComboBoxStyle}"
                               Width="150"
-                              Margin="10,0,10,0"
-                              FontSize="14"
-                              Padding="10"
-                              BorderBrush="#BDC3C7"/>
+                              Margin="10,0,10,0"/>
 
                     <Button Grid.Column="2"
                             Content="🔄 Refrescar"
                             Command="{Binding RefrescarCommand}"
-                            Background="#3498DB"
-                            Foreground="White"
-                            Padding="15,8"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#2980B9"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Style="{StaticResource InfoButtonStyle}"
+                            Padding="15,8"/>
                 </Grid>
 
                 <!-- DataGrid -->
                 <DataGrid Grid.Row="1"
                           ItemsSource="{Binding TareasFiltradas}"
                           SelectedItem="{Binding TareaSeleccionada}"
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          IsReadOnly="True"
-                          GridLinesVisibility="None"
-                          HeadersVisibility="Column"
-                          SelectionMode="Single"
-                          FontSize="13"
-                          RowHeight="35"
-                          AlternatingRowBackground="#F8F9FA"
-                          BorderThickness="0">
+                          Style="{StaticResource ModernDataGridStyle}"
+                          ColumnHeaderStyle="{StaticResource ModernDataGridHeaderStyle}"
+                          CellStyle="{StaticResource ModernDataGridCellStyle}"
+                          RowStyle="{StaticResource ModernDataGridRowStyle}">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Título"
@@ -262,107 +190,20 @@
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
                     <Button Content="👁 Ver Detalle"
                             Command="{Binding VerDetalleCommand}"
-                            Background="#3498DB"
-                            Foreground="White"
+                            Style="{StaticResource InfoButtonStyle}"
                             Padding="15,8"
-                            Margin="0,0,10,0"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#2980B9"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Margin="0,0,10,0"/>
 
                     <Button Content="✅ Completar Tarea"
                             Command="{Binding CompletarTareaCommand}"
-                            Background="#27AE60"
-                            Foreground="White"
+                            Style="{StaticResource SuccessButtonStyle}"
                             Padding="15,8"
-                            Margin="0,0,10,0"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#229954"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Margin="0,0,10,0"/>
 
                     <Button Content="↩ Devolver Tarea"
                             Command="{Binding DevolverTareaCommand}"
-                            Background="#E74C3C"
-                            Foreground="White"
-                            Padding="15,8"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#C0392B"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Background" Value="#BDC3C7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Style="{StaticResource DangerButtonStyle}"
+                            Padding="15,8"/>
                 </StackPanel>
             </Grid>
         </Border>
