@@ -16,59 +16,6 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <!-- Header con degradado -->
-        <Border Grid.Row="0" Padding="20,0">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#1A1F2E" Offset="0"/>
-                    <GradientStop Color="#2C3E50" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="🏢 HERMES" 
-                               FontSize="24" 
-                               FontWeight="Bold"
-                               Foreground="White"
-                               Margin="0,0,30,0"/>
-                    <TextBlock Text="Panel de Administracion" 
-                               FontSize="16" 
-                               Foreground="#BDC3C7"
-                               VerticalAlignment="Center"/>
-                </StackPanel>
-                
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding NombreUsuarioActual}"
-                               FontSize="14"
-                               Foreground="White"
-                               VerticalAlignment="Center"
-                               Margin="0,0,10,0"/>
-                    <TextBlock FontSize="12"
-                               Foreground="#3498DB"
-                               VerticalAlignment="Center"
-                               Margin="0,0,20,0">
-                        <Run Text="("/><Run Text="{Binding RolUsuario, Mode=OneWay}"/><Run Text=")"/>
-                    </TextBlock>
-                    <Button Content="Cerrar Sesion"
-                            Command="{Binding CerrarSesionCommand}"
-                            Style="{StaticResource DangerButtonStyle}"
-                            Padding="15,8"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-        
-        <!-- Content Area -->
-        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
@@ -83,6 +30,52 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
+                    <!-- Logo y Título -->
+                    <StackPanel Margin="15,0,15,20">
+                        <TextBlock Text="🏢 HERMES"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,5"/>
+                        <TextBlock Text="Panel de Administración"
+                                   FontSize="12"
+                                   Foreground="#BDC3C7"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Información del Usuario -->
+                    <Border Background="#2C3E50"
+                            CornerRadius="8"
+                            Padding="12"
+                            Margin="10,0,10,15">
+                        <StackPanel>
+                            <TextBlock Text="{Binding NombreUsuarioActual}"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="White"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,5"/>
+                            <TextBlock FontSize="12"
+                                       Foreground="#5DADE2"
+                                       TextAlignment="Center">
+                                <Run Text="("/><Run Text="{Binding RolUsuario, Mode=OneWay}"/><Run Text=")"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Botón Cerrar Sesión -->
+                    <Button Content="🚪 Cerrar Sesión"
+                            Command="{Binding CerrarSesionCommand}"
+                            Style="{StaticResource DangerButtonStyle}"
+                            Padding="12,8"
+                            Margin="10,0,10,20"
+                            FontSize="13"/>
+
+                    <!-- Separador -->
+                    <Separator Margin="10,0,10,15" Background="#34495E" Height="2"/>
+
                     <!-- Opciones de administración (solo Broker) -->
                     <Button Content="📊 Dashboard"
                             Command="{Binding MostrarDashboardCommand}"
