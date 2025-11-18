@@ -2,39 +2,90 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ========================================== -->
-    <!-- COLORES GLOBALES -->
+    <!-- COLORES GLOBALES - PALETA MIDNIGHT BLUE -->
     <!-- ========================================== -->
-    <SolidColorBrush x:Key="PrimaryColor" Color="#667eea"/>
-    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#764ba2"/>
-    <SolidColorBrush x:Key="SuccessColor" Color="#27AE60"/>
-    <SolidColorBrush x:Key="SuccessHoverColor" Color="#229954"/>
-    <SolidColorBrush x:Key="InfoColor" Color="#3498DB"/>
-    <SolidColorBrush x:Key="InfoHoverColor" Color="#2980B9"/>
-    <SolidColorBrush x:Key="DangerColor" Color="#E74C3C"/>
-    <SolidColorBrush x:Key="DangerHoverColor" Color="#C0392B"/>
-    <SolidColorBrush x:Key="WarningColor" Color="#F39C12"/>
-    <SolidColorBrush x:Key="WarningHoverColor" Color="#D68910"/>
-    <SolidColorBrush x:Key="DarkColor" Color="#2C3E50"/>
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#1C2833"/>
-    <SolidColorBrush x:Key="SidebarColor" Color="#34495E"/>
-    <SolidColorBrush x:Key="TextPrimaryColor" Color="#2C3E50"/>
-    <SolidColorBrush x:Key="TextSecondaryColor" Color="#7F8C8D"/>
-    <SolidColorBrush x:Key="TextMutedColor" Color="#95A5A6"/>
-    <SolidColorBrush x:Key="BorderColor" Color="#BDC3C7"/>
-    <SolidColorBrush x:Key="BackgroundLightColor" Color="#F8F9FA"/>
+
+    <!-- Fondos -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="#0F1419"/>     <!-- Casi negro azulado -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#1A1F2E"/>        <!-- Azul muy oscuro -->
+    <SolidColorBrush x:Key="BackgroundMedium" Color="#2C3E50"/>      <!-- Azul grisáceo oscuro -->
+    <SolidColorBrush x:Key="BackgroundLight" Color="#34495E"/>       <!-- Azul gris -->
+    <SolidColorBrush x:Key="BackgroundLightColor" Color="#ECF0F1"/>  <!-- Gris muy claro -->
     <SolidColorBrush x:Key="BackgroundGrayColor" Color="#ECF0F1"/>
 
+    <!-- Azules principales -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="#3498DB"/>          <!-- Azul claro vibrante -->
+    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#2874A6"/>      <!-- Azul medio -->
+    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#1B4F72"/>    <!-- Azul profundo -->
+    <SolidColorBrush x:Key="PrimaryLightColor" Color="#5DADE2"/>     <!-- Azul eléctrico -->
+
+    <!-- Colores de acción -->
+    <SolidColorBrush x:Key="InfoColor" Color="#3498DB"/>             <!-- Azul principal -->
+    <SolidColorBrush x:Key="InfoHoverColor" Color="#2874A6"/>        <!-- Azul oscuro -->
+    <SolidColorBrush x:Key="SuccessColor" Color="#1ABC9C"/>          <!-- Turquesa -->
+    <SolidColorBrush x:Key="SuccessHoverColor" Color="#148F77"/>     <!-- Turquesa oscuro -->
+    <SolidColorBrush x:Key="WarningColor" Color="#F39C12"/>          <!-- Naranja -->
+    <SolidColorBrush x:Key="WarningHoverColor" Color="#D68910"/>     <!-- Naranja oscuro -->
+    <SolidColorBrush x:Key="DangerColor" Color="#E74C3C"/>           <!-- Rojo -->
+    <SolidColorBrush x:Key="DangerHoverColor" Color="#C0392B"/>      <!-- Rojo oscuro -->
+
+    <!-- Colores oscuros -->
+    <SolidColorBrush x:Key="DarkColor" Color="#2C3E50"/>
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#1A1F2E"/>
+    <SolidColorBrush x:Key="SidebarColor" Color="#1A1F2E"/>
+
+    <!-- Textos -->
+    <SolidColorBrush x:Key="TextPrimaryColor" Color="#ECF0F1"/>      <!-- Texto claro para fondos oscuros -->
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#BDC3C7"/>    <!-- Texto secundario -->
+    <SolidColorBrush x:Key="TextMutedColor" Color="#95A5A6"/>        <!-- Texto apagado -->
+    <SolidColorBrush x:Key="TextDarkColor" Color="#2C3E50"/>         <!-- Texto oscuro para fondos claros -->
+
+    <!-- Bordes -->
+    <SolidColorBrush x:Key="BorderColor" Color="#34495E"/>
+    <SolidColorBrush x:Key="BorderLightColor" Color="#BDC3C7"/>
+
     <!-- ========================================== -->
-    <!-- DEGRADADOS -->
+    <!-- DEGRADADOS - MIDNIGHT BLUE THEME -->
     <!-- ========================================== -->
+
+    <!-- Degradado principal (azul) -->
     <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#667eea" Offset="0"/>
-        <GradientStop Color="#764ba2" Offset="1"/>
+        <GradientStop Color="#3498DB" Offset="0"/>
+        <GradientStop Color="#2874A6" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PrimaryGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#667eea" Offset="0"/>
-        <GradientStop Color="#764ba2" Offset="1"/>
+        <GradientStop Color="#3498DB" Offset="0"/>
+        <GradientStop Color="#2874A6" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado oscuro (fondos) -->
+    <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#1A1F2E" Offset="0"/>
+        <GradientStop Color="#2C3E50" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1A1F2E" Offset="0"/>
+        <GradientStop Color="#2C3E50" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado turquesa (éxito) -->
+    <LinearGradientBrush x:Key="SuccessGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#1ABC9C" Offset="0"/>
+        <GradientStop Color="#148F77" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado azul profundo -->
+    <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#2874A6" Offset="0"/>
+        <GradientStop Color="#1B4F72" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado azul claro -->
+    <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#5DADE2" Offset="0"/>
+        <GradientStop Color="#3498DB" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- ========================================== -->

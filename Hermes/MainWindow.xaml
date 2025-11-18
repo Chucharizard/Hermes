@@ -21,8 +21,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!-- Header -->
-        <Border Grid.Row="0" Background="#2C3E50" Padding="20,0">
+        <!-- Header con degradado -->
+        <Border Grid.Row="0" Padding="20,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#1A1F2E" Offset="0"/>
+                    <GradientStop Color="#2C3E50" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -68,8 +74,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <!-- Sidebar Menu -->
-            <Border Grid.Column="0" Background="#34495E" Padding="0,20">
+            <!-- Sidebar Menu con degradado vertical -->
+            <Border Grid.Column="0" Padding="0,20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1A1F2E" Offset="0"/>
+                        <GradientStop Color="#2C3E50" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <StackPanel>
                     <!-- Opciones de administración (solo Broker) -->
                     <Button Content="📊 Dashboard"
@@ -135,10 +147,11 @@
                 </StackPanel>
             </Border>
             
-            <!-- Main Content Area -->
-            <ContentControl Grid.Column="1" 
-                          Content="{Binding CurrentView}"
-                          Margin="20"/>
+            <!-- Main Content Area con fondo azul muy claro -->
+            <Border Grid.Column="1" Background="#ECF0F1">
+                <ContentControl Content="{Binding CurrentView}"
+                              Margin="20"/>
+            </Border>
         </Grid>
     </Grid>
 </Window>

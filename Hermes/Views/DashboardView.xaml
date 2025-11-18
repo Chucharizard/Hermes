@@ -62,16 +62,66 @@
                     <RowDefinition Height="Auto"/> <!-- Botón Actualizar -->
                 </Grid.RowDefinitions>
 
-                <!-- Tarjetas de Estadísticas con Colores Vivos -->
+                <!-- Tarjetas de Estadísticas con Degradados Azul Medianoche -->
                 <UniformGrid Grid.Row="0" Rows="1" Columns="5" Margin="0,0,0,20">
                     <!-- Total Tareas -->
-                    <Border Background="#34495E"
-                            CornerRadius="12"
+                    <Border CornerRadius="12"
                             Margin="0,0,10,0"
-                            Padding="20">
+                            Padding="20"
+                            Cursor="Hand"
+                            MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
+                            Tag="Total">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#2C3E50" Offset="0"/>
+                                <GradientStop Color="#34495E" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2" Color="#34495E"/>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#1A1F2E"/>
                         </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="📋"
                                        FontSize="32"
@@ -91,13 +141,63 @@
                     </Border>
 
                     <!-- Pendientes -->
-                    <Border Background="#F39C12"
-                            CornerRadius="12"
+                    <Border CornerRadius="12"
                             Margin="0,0,10,0"
-                            Padding="20">
+                            Padding="20"
+                            Cursor="Hand"
+                            MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
+                            Tag="Pendiente">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3498DB" Offset="0"/>
+                                <GradientStop Color="#2874A6" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2" Color="#F39C12"/>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#2874A6"/>
                         </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="⏳"
                                        FontSize="32"
@@ -117,13 +217,63 @@
                     </Border>
 
                     <!-- Completadas -->
-                    <Border Background="#27AE60"
-                            CornerRadius="12"
+                    <Border CornerRadius="12"
                             Margin="0,0,10,0"
-                            Padding="20">
+                            Padding="20"
+                            Cursor="Hand"
+                            MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
+                            Tag="Completado">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#1ABC9C" Offset="0"/>
+                                <GradientStop Color="#148F77" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2" Color="#27AE60"/>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#148F77"/>
                         </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="✓"
                                        FontSize="32"
@@ -143,13 +293,63 @@
                     </Border>
 
                     <!-- Vencidas -->
-                    <Border Background="#E74C3C"
-                            CornerRadius="12"
+                    <Border CornerRadius="12"
                             Margin="0,0,10,0"
-                            Padding="20">
+                            Padding="20"
+                            Cursor="Hand"
+                            MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
+                            Tag="Vencido">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#E74C3C" Offset="0"/>
+                                <GradientStop Color="#C0392B" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2" Color="#E74C3C"/>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#C0392B"/>
                         </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="⚠"
                                        FontSize="32"
@@ -169,12 +369,62 @@
                     </Border>
 
                     <!-- Observadas -->
-                    <Border Background="#9B59B6"
-                            CornerRadius="12"
-                            Padding="20">
+                    <Border CornerRadius="12"
+                            Padding="20"
+                            Cursor="Hand"
+                            MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
+                            Tag="Observado">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#F39C12" Offset="0"/>
+                                <GradientStop Color="#D68910" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2" Color="#9B59B6"/>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#D68910"/>
                         </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.05" Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="👁"
                                        FontSize="32"
