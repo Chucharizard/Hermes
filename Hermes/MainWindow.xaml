@@ -33,13 +33,14 @@
                     <!-- Logo y Título -->
                     <StackPanel Margin="15,0,15,20">
                         <TextBlock Text="🏢 HERMES"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontWeight="Bold"
                                    Foreground="White"
                                    HorizontalAlignment="Center"
-                                   Margin="0,0,0,5"/>
+                                   Margin="0,0,0,8"/>
                         <TextBlock Text="Panel de Administración"
-                                   FontSize="12"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
                                    Foreground="#BDC3C7"
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -47,17 +48,18 @@
                     <!-- Información del Usuario -->
                     <Border Background="#2C3E50"
                             CornerRadius="8"
-                            Padding="12"
+                            Padding="15"
                             Margin="10,0,10,15">
                         <StackPanel>
                             <TextBlock Text="{Binding NombreUsuarioActual}"
-                                       FontSize="14"
-                                       FontWeight="SemiBold"
+                                       FontSize="16"
+                                       FontWeight="Bold"
                                        Foreground="White"
                                        TextAlignment="Center"
                                        TextWrapping="Wrap"
-                                       Margin="0,0,0,5"/>
-                            <TextBlock FontSize="12"
+                                       Margin="0,0,0,6"/>
+                            <TextBlock FontSize="13"
+                                       FontWeight="SemiBold"
                                        Foreground="#5DADE2"
                                        TextAlignment="Center">
                                 <Run Text="("/><Run Text="{Binding RolUsuario, Mode=OneWay}"/><Run Text=")"/>
@@ -69,9 +71,10 @@
                     <Button Content="🚪 Cerrar Sesión"
                             Command="{Binding CerrarSesionCommand}"
                             Style="{StaticResource DangerButtonStyle}"
-                            Padding="12,8"
+                            Padding="12,10"
                             Margin="10,0,10,20"
-                            FontSize="13"/>
+                            FontSize="14"
+                            FontWeight="SemiBold"/>
 
                     <!-- Separador -->
                     <Separator Margin="10,0,10,15" Background="#34495E" Height="2"/>
@@ -81,16 +84,22 @@
                             Command="{Binding MostrarDashboardCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Button Content="👥 Gestion de Empleados"
                             Command="{Binding MostrarGestionEmpleadosCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Button Content="✓ Gestion de Tareas"
                             Command="{Binding MostrarGestionTareasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Separador para sección de Bandejas (visible solo si hay opciones arriba O si puede enviar tareas) -->
@@ -99,22 +108,27 @@
 
                     <TextBlock Text="BANDEJAS DE TAREAS"
                                Foreground="#95A5A6"
-                               FontSize="11"
+                               FontSize="12"
                                FontWeight="Bold"
-                               Margin="15,5,15,10"/>
+                               Margin="15,5,15,10"
+                               LetterSpacing="1"/>
 
                     <!-- Tareas Enviadas - solo para Broker, Secretaria y Abogada/Abogado -->
                     <Button Content="📤 Tareas Enviadas"
                             Command="{Binding MostrarBandejaTareasEnviadasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding PuedeEnviarTareas, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Tareas Recibidas - para TODOS los roles -->
                     <Button Content="📥 Tareas Recibidas"
                             Command="{Binding MostrarBandejaTareasRecibidasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"/>
+                            Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"/>
 
                     <!-- Separador (solo visible para administradores) -->
                     <Separator Margin="10,15" Background="#7F8C8D" Height="1"
@@ -124,18 +138,26 @@
                     <Button Content="📋 Propiedades"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Button Content="🏠 Clientes"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Button Content="💼 Transacciones"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Button Content="📊 Reportes"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
+                            FontSize="14"
+                            FontWeight="SemiBold"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </Border>
