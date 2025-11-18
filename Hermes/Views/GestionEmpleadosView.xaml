@@ -18,101 +18,38 @@
         </Grid.RowDefinitions>
         
         <!-- Header con botones -->
-        <Border Grid.Row="0" Background="White" Padding="20" Margin="0,0,0,20">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-            
+        <Border Grid.Row="0" Style="{StaticResource SectionHeaderStyle}" Margin="0,0,0,20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="Gestion de Empleados y Usuarios" 
-                               FontSize="24" 
-                               FontWeight="Bold"
-                               Foreground="#2C3E50"/>
-                    <TextBlock Text="Administra empleados y asigna roles de usuario" 
-                               FontSize="14" 
-                               Foreground="#7F8C8D"
+                    <TextBlock Text="Gestion de Empleados y Usuarios"
+                               Style="{StaticResource TitleTextStyle}"/>
+                    <TextBlock Text="Administra empleados y asigna roles de usuario"
+                               Style="{StaticResource SubtitleTextStyle}"
                                Margin="0,5,0,0"/>
                 </StackPanel>
-                
+
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="? Nuevo Empleado"
+                    <Button Content="➕ Nuevo Empleado"
                             Command="{Binding AbrirNuevoEmpleadoCommand}"
-                            Background="#27AE60"
-                            Foreground="White"
+                            Style="{StaticResource SuccessButtonStyle}"
                             Padding="20,10"
-                            Margin="0,0,10,0"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center" 
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#229954"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                    
-                    <Button Content="?? Actualizar"
+                            Margin="0,0,10,0"/>
+
+                    <Button Content="🔄 Actualizar"
                             Command="{Binding CargarEmpleadosCommand}"
-                            Background="#3498DB"
-                            Foreground="White"
-                            Padding="20,10"
-                            FontSize="14"
-                            BorderThickness="0"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="5"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center" 
-                                                                VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#2980B9"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Style="{StaticResource InfoButtonStyle}"
+                            Padding="20,10"/>
                 </StackPanel>
             </Grid>
         </Border>
         
         <!-- DataGrid de Empleados -->
-        <Border Grid.Row="1" Background="White" Padding="20">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1"/>
-            </Border.Effect>
-            
+        <Border Grid.Row="1" Style="{StaticResource CardStyle}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -129,39 +66,11 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Buscador -->
-                    <Border Grid.Column="0"
-                            BorderBrush="#BDC3C7"
-                            BorderThickness="1"
-                            CornerRadius="5"
-                            Margin="0,0,10,0">
-                        <TextBox Text="{Binding FiltroTexto, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="35"
-                                 Padding="10"
-                                 FontSize="14"
-                                 BorderThickness="0"
-                                 VerticalContentAlignment="Center">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Style.Triggers>
-                                        <Trigger Property="Text" Value="">
-                                            <Setter Property="Background">
-                                                <Setter.Value>
-                                                    <VisualBrush Stretch="None" AlignmentX="Left">
-                                                        <VisualBrush.Visual>
-                                                            <TextBlock Text="🔍 Buscar por CI, nombre o apellido..."
-                                                                     Foreground="#BDC3C7"
-                                                                     Margin="10,0,0,0"
-                                                                     VerticalAlignment="Center"/>
-                                                        </VisualBrush.Visual>
-                                                    </VisualBrush>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                    </Border>
+                    <TextBox Grid.Column="0"
+                             Text="{Binding FiltroTexto, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Tag="🔍 Buscar por CI, nombre o apellido..."
+                             Margin="0,0,10,0"/>
 
                     <!-- Label -->
                     <TextBlock Grid.Column="1"
@@ -172,40 +81,20 @@
                                Margin="10,0"/>
 
                     <!-- Filtro de Estado -->
-                    <Border Grid.Column="2"
-                            BorderBrush="#BDC3C7"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                        <ComboBox ItemsSource="{Binding OpcionesFiltroEstado}"
-                                  SelectedItem="{Binding FiltroEstado}"
-                                  Height="35"
-                                  Padding="10,0"
-                                  FontSize="14"
-                                  BorderThickness="0"
-                                  VerticalContentAlignment="Center">
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="ComboBoxItem">
-                                    <Setter Property="Height" Value="30"/>
-                                    <Setter Property="Padding" Value="10,5"/>
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-                        </ComboBox>
-                    </Border>
+                    <ComboBox Grid.Column="2"
+                              ItemsSource="{Binding OpcionesFiltroEstado}"
+                              SelectedItem="{Binding FiltroEstado}"
+                              Style="{StaticResource ModernComboBoxStyle}"/>
                 </Grid>
                 
                 <!-- DataGrid -->
                 <DataGrid Grid.Row="1"
                           ItemsSource="{Binding EmpleadosFiltrados}"
                           SelectedItem="{Binding EmpleadoSeleccionado}"
-                          AutoGenerateColumns="False"
-                          IsReadOnly="True"
-                          SelectionMode="Single"
-                          CanUserAddRows="False"
-                          CanUserDeleteRows="False"
-                          GridLinesVisibility="None"
-                          HeadersVisibility="Column"
-                          BorderThickness="0"
-                          AlternatingRowBackground="#F8F9FA">
+                          Style="{StaticResource ModernDataGridStyle}"
+                          ColumnHeaderStyle="{StaticResource ModernDataGridHeaderStyle}"
+                          CellStyle="{StaticResource ModernDataGridCellStyle}"
+                          RowStyle="{StaticResource ModernDataGridRowStyle}">
                     
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="CI" 
@@ -231,33 +120,28 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="??? Ver"
+                                        <Button Content="👁 Ver"
                                                 Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}"
-                                                Background="#3498DB"
-                                                Foreground="White"
+                                                Style="{StaticResource InfoButtonStyle}"
                                                 Padding="10,5"
-                                                Margin="2"
-                                                BorderThickness="0"
-                                                Cursor="Hand"/>
-                                        <Button Content="?? Editar"
+                                                Margin="2"/>
+                                        <Button Content="✏ Editar"
                                                 Command="{Binding DataContext.EditarEmpleadoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}"
-                                                Background="#F39C12"
-                                                Foreground="White"
+                                                Style="{StaticResource WarningButtonStyle}"
                                                 Padding="10,5"
-                                                Margin="2"
-                                                BorderThickness="0"
-                                                Cursor="Hand"/>
-                                        <Button Content="?? Usuario"
+                                                Margin="2"/>
+                                        <Button Content="👤 Usuario"
                                                 Command="{Binding DataContext.GestionarUsuarioCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}"
-                                                Background="#9B59B6"
-                                                Foreground="White"
+                                                Style="{StaticResource CompactButtonStyle}"
                                                 Padding="10,5"
-                                                Margin="2"
-                                                BorderThickness="0"
-                                                Cursor="Hand"/>
+                                                Margin="2">
+                                            <Button.Background>
+                                                <SolidColorBrush Color="#9B59B6"/>
+                                            </Button.Background>
+                                        </Button>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
