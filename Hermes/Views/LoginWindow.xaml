@@ -261,7 +261,6 @@
                     <!-- Botón Login -->
                     <Button Content="Iniciar Sesión"
                             Command="{Binding LoginCommand}"
-                            Style="{StaticResource PrimaryButtonStyle}"
                             Height="50"
                             FontSize="16"
                             Margin="0,10,0,0">
