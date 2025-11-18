@@ -178,7 +178,7 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Header con Prioridad y Estado -->
-                                        <StackPanel Grid.Row="0" Style="{StaticResource TareaCardHeaderStyle}" Padding="15,10">
+                                        <StackPanel Grid.Row="0" Style="{StaticResource TareaCardHeaderStyle}" Margin="15,10">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
@@ -208,7 +208,7 @@
                                         </StackPanel>
 
                                         <!-- Título de la Tarea -->
-                                        <StackPanel Grid.Row="1" Padding="15,12,15,8">
+                                        <StackPanel Grid.Row="1" Margin="15,12,15,8">
                                             <TextBlock Text="{Binding TituloTarea}"
                                                        Style="{StaticResource TareaCardTitleStyle}"/>
                                             <TextBlock Text="{Binding DescripcionTarea}"
@@ -216,7 +216,7 @@
                                         </StackPanel>
 
                                         <!-- Información del Emisor -->
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" Padding="15,0,15,8">
+                                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="15,0,15,8">
                                             <!-- Avatar -->
                                             <Border Style="{StaticResource AvatarCircleStyle}">
                                                 <TextBlock Foreground="White"
@@ -246,7 +246,7 @@
                                         </StackPanel>
 
                                         <!-- Metadata (Fechas) -->
-                                        <StackPanel Grid.Row="3" Padding="15,0,15,12">
+                                        <StackPanel Grid.Row="3" Margin="15,0,15,12">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
