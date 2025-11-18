@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Hermes.Commands;
+using Hermes.Helpers;
 using Hermes.Models;
 using Hermes.Services;
 
@@ -140,32 +141,27 @@ namespace Hermes.ViewModels
         {
             if (tarea == null) return;
 
-            var resultado = MessageBox.Show(
-                $"¿Esta seguro que desea eliminar la tarea '{tarea.TituloTarea}'?",
-                "Confirmar eliminacion",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
+            // Usar DialogHelper para confirmación consistente
+            if (!DialogHelper.ConfirmarEliminacion(tarea.TituloTarea))
+                return;
 
-            if (resultado == MessageBoxResult.Yes)
+            try
             {
                 var eliminado = await _tareaService.EliminarAsync(tarea.IdTarea);
 
                 if (eliminado)
                 {
-                    MessageBox.Show("Tarea eliminada exitosamente",
-                                  "Exito",
-                                  MessageBoxButton.OK,
-                                  MessageBoxImage.Information);
-
+                    DialogHelper.MostrarExito("La tarea ha sido eliminada exitosamente.");
                     await CargarTareasAsync();
                 }
                 else
                 {
-                    MessageBox.Show("Error al eliminar la tarea",
-                                  "Error",
-                                  MessageBoxButton.OK,
-                                  MessageBoxImage.Error);
+                    DialogHelper.MostrarError("No se pudo eliminar la tarea. Por favor, intente nuevamente.");
                 }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.MostrarError($"Error al eliminar la tarea:\n{ex.Message}");
             }
         }
 
