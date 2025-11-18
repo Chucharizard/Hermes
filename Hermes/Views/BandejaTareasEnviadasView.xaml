@@ -1,11 +1,18 @@
 <UserControl x:Class="Hermes.Views.BandejaTareasEnviadasView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewmodels="clr-namespace:Hermes.ViewModels">
+             xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
+             xmlns:converters="clr-namespace:Hermes.Converters">
 
     <UserControl.DataContext>
         <viewmodels:BandejaTareasEnviadasViewModel/>
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
+        <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
+        <converters:NombreToInitialsConverter x:Key="NombreToInitialsConverter"/>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -113,7 +120,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- Filtros y búsqueda -->
@@ -152,61 +158,154 @@
                             Padding="15,8"/>
                 </Grid>
 
-                <!-- DataGrid -->
-                <DataGrid Grid.Row="1"
-                          ItemsSource="{Binding TareasFiltradas}"
-                          SelectedItem="{Binding TareaSeleccionada}"
-                          Style="{StaticResource ModernDataGridStyle}"
-                          ColumnHeaderStyle="{StaticResource ModernDataGridHeaderStyle}"
-                          CellStyle="{StaticResource ModernDataGridCellStyle}"
-                          RowStyle="{StaticResource ModernDataGridRowStyle}">
+                <!-- Cards de Tareas -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding TareasFiltradas}">
+                        <!-- Panel: Grid de 3 columnas -->
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Título"
-                                          Binding="{Binding TituloTarea}"
-                                          Width="2*"/>
+                        <!-- Template del Card -->
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource TareaCardStyle}"
+                                        BorderBrush="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                        MouseLeftButtonDown="Card_MouseLeftButtonDown"
+                                        Tag="{Binding}">
 
-                        <DataGridTextColumn Header="Receptor"
-                                          Width="1.5*">
-                            <DataGridTextColumn.Binding>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="UsuarioReceptor.Empleado.NombresEmpleado"/>
-                                    <Binding Path="UsuarioReceptor.Empleado.ApellidosEmpleado"/>
-                                </MultiBinding>
-                            </DataGridTextColumn.Binding>
-                        </DataGridTextColumn>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/> <!-- Header -->
+                                            <RowDefinition Height="Auto"/> <!-- Título -->
+                                            <RowDefinition Height="Auto"/> <!-- Usuario -->
+                                            <RowDefinition Height="Auto"/> <!-- Metadata -->
+                                            <RowDefinition Height="Auto"/> <!-- Acciones -->
+                                        </Grid.RowDefinitions>
 
-                        <DataGridTextColumn Header="Estado"
-                                          Binding="{Binding EstadoTarea}"
-                                          Width="*"/>
+                                        <!-- Header con Prioridad y Estado -->
+                                        <StackPanel Grid.Row="0" Style="{StaticResource TareaCardHeaderStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
 
-                        <DataGridTextColumn Header="Prioridad"
-                                          Binding="{Binding PrioridadTarea}"
-                                          Width="*"/>
+                                                <!-- Badge de Prioridad -->
+                                                <Border Grid.Column="0"
+                                                        Style="{StaticResource PrioridadBadgeStyle}"
+                                                        Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               Foreground="White"
+                                                               FontSize="11"
+                                                               FontWeight="Bold"/>
+                                                </Border>
 
-                        <DataGridTextColumn Header="Fecha Inicio"
-                                          Binding="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
-                                          Width="*"/>
+                                                <!-- Badge de Estado -->
+                                                <Border Grid.Column="1"
+                                                        Style="{StaticResource EstadoBadgeStyle}"
+                                                        Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}">
+                                                    <TextBlock Text="{Binding EstadoTarea}"
+                                                               Foreground="White"
+                                                               FontSize="10"
+                                                               FontWeight="SemiBold"/>
+                                                </Border>
+                                            </Grid>
+                                        </StackPanel>
 
-                        <DataGridTextColumn Header="Fecha Límite"
-                                          Binding="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
-                                          Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                                        <!-- Título de la Tarea -->
+                                        <StackPanel Grid.Row="1" Padding="15,12,15,8">
+                                            <TextBlock Text="{Binding TituloTarea}"
+                                                       Style="{StaticResource TareaCardTitleStyle}"/>
+                                            <TextBlock Text="{Binding DescripcionTarea}"
+                                                       Style="{StaticResource TareaCardDescriptionStyle}"/>
+                                        </StackPanel>
 
-                <!-- Botones de acción -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
-                    <Button Content="👁 Ver Detalle"
-                            Command="{Binding VerDetalleCommand}"
-                            Style="{StaticResource InfoButtonStyle}"
-                            Padding="15,8"
-                            Margin="0,0,10,0"/>
+                                        <!-- Información del Receptor -->
+                                        <StackPanel Grid.Row="2" Orientation="Horizontal" Padding="15,0,15,8">
+                                            <!-- Avatar -->
+                                            <Border Style="{StaticResource AvatarCircleStyle}">
+                                                <TextBlock Foreground="White"
+                                                           FontWeight="Bold"
+                                                           FontSize="14"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource NombreToInitialsConverter}">
+                                                            <Binding Path="UsuarioReceptor.Empleado.NombresEmpleado"/>
+                                                            <Binding Path="UsuarioReceptor.Empleado.ApellidosEmpleado"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Border>
 
-                    <Button Content="📦 Archivar Tarea"
-                            Command="{Binding ArchivarTareaCommand}"
-                            Style="{StaticResource CompactButtonStyle}"
-                            Padding="15,8"/>
-                </StackPanel>
+                                            <!-- Nombre del Receptor -->
+                                            <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock FontSize="13" FontWeight="SemiBold" Foreground="#2C3E50">
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.ApellidosEmpleado}"/>
+                                                </TextBlock>
+                                                <TextBlock Text="Asignado a"
+                                                           FontSize="11"
+                                                           Foreground="#95A5A6"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <!-- Metadata (Fechas) -->
+                                        <StackPanel Grid.Row="3" Padding="15,0,15,12">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Fecha Inicio -->
+                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                    <TextBlock Text="📅" Margin="0,0,4,0" Style="{StaticResource MetadataTextStyle}"/>
+                                                    <TextBlock Text="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
+                                                               Style="{StaticResource MetadataTextStyle}"/>
+                                                </StackPanel>
+
+                                                <!-- Fecha Límite -->
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                    <TextBlock Text="⏰" Margin="0,0,4,0" Style="{StaticResource MetadataTextStyle}"/>
+                                                    <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
+                                                               Style="{StaticResource MetadataTextStyle}"
+                                                               FontWeight="SemiBold"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+
+                                        <!-- Botones de Acción -->
+                                        <Border Grid.Row="4"
+                                                Background="#FAFBFC"
+                                                Padding="15,10"
+                                                BorderBrush="#ECF0F1"
+                                                BorderThickness="0,1,0,0">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <Button Content="Ver"
+                                                        Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource InfoButtonStyle}"
+                                                        Padding="12,5"
+                                                        Margin="0,0,5,0"
+                                                        FontSize="12"/>
+                                                <Button Content="📦"
+                                                        Command="{Binding DataContext.ArchivarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource CompactButtonStyle}"
+                                                        Padding="12,5"
+                                                        FontSize="12"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </Grid>
         </Border>
     </Grid>
