@@ -15,8 +15,6 @@ namespace Hermes.ViewModels
         private int _tareasVencidas;
         private int _tareasObservadas;
         private bool _generandoReporte;
-        private bool _generandoReportePrioridades;
-        private bool _generandoReporteTop3;
 
         public int TotalTareas
         {
@@ -54,21 +52,7 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _generandoReporte, value);
         }
 
-        public bool GenerandoReportePrioridades
-        {
-            get => _generandoReportePrioridades;
-            set => SetProperty(ref _generandoReportePrioridades, value);
-        }
-
-        public bool GenerandoReporteTop3
-        {
-            get => _generandoReporteTop3;
-            set => SetProperty(ref _generandoReporteTop3, value);
-        }
-
-        public ICommand GenerarReporteExcelCommand { get; }
-        public ICommand GenerarReportePrioridadesCommand { get; }
-        public ICommand GenerarReporteTop3Command { get; }
+        public ICommand GenerarDashboardConsolidadoCommand { get; }
         public ICommand ActualizarEstadisticasCommand { get; }
 
         public DashboardViewModel()
@@ -76,9 +60,7 @@ namespace Hermes.ViewModels
             _tareaService = new TareaService();
             _excelService = new ExcelService();
 
-            GenerarReporteExcelCommand = new RelayCommand(async _ => await GenerarReporteExcelAsync());
-            GenerarReportePrioridadesCommand = new RelayCommand(async _ => await GenerarReportePrioridadesAsync());
-            GenerarReporteTop3Command = new RelayCommand(async _ => await GenerarReporteTop3Async());
+            GenerarDashboardConsolidadoCommand = new RelayCommand(async _ => await GenerarDashboardConsolidadoAsync());
             ActualizarEstadisticasCommand = new RelayCommand(async _ => await CargarEstadisticasAsync());
 
             // Cargar estadísticas iniciales
@@ -87,6 +69,9 @@ namespace Hermes.ViewModels
 
         private async Task CargarEstadisticasAsync()
         {
+            // ⏰ ACTUALIZAR TAREAS VENCIDAS (al estilo Teams)
+            await _tareaService.ActualizarTareasVencidasAsync();
+
             var tareas = await _tareaService.ObtenerTodasAsync();
 
             Application.Current.Dispatcher.Invoke(() =>
@@ -99,19 +84,24 @@ namespace Hermes.ViewModels
             });
         }
 
-        private async Task GenerarReporteExcelAsync()
+        private async Task GenerarDashboardConsolidadoAsync()
         {
             try
             {
                 GenerandoReporte = true;
 
-                var filePath = await _excelService.GenerarReporteTareasAsync();
+                var filePath = await _excelService.GenerarReporteDashboardConsolidadoAsync();
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MessageBox.Show(
-                        $"Reporte generado exitosamente!\n\nArchivo guardado en:\n{filePath}",
-                        "Reporte Excel",
+                        $"Dashboard consolidado generado exitosamente!\n\n" +
+                        $"El reporte incluye:\n" +
+                        $"• Hoja 1: Dashboard principal con KPIs\n" +
+                        $"• Hoja 2: Datos detallados y estadísticas\n" +
+                        $"• Hoja 3: Análisis y métricas de rendimiento\n\n" +
+                        $"Archivo guardado en:\n{filePath}",
+                        "Dashboard Consolidado",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
 
@@ -124,7 +114,7 @@ namespace Hermes.ViewModels
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MessageBox.Show(
-                        $"Error al generar el reporte:\n{ex.Message}",
+                        $"Error al generar el dashboard consolidado:\n{ex.Message}",
                         "Error",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
@@ -133,80 +123,6 @@ namespace Hermes.ViewModels
             finally
             {
                 GenerandoReporte = false;
-            }
-        }
-
-        private async Task GenerarReportePrioridadesAsync()
-        {
-            try
-            {
-                GenerandoReportePrioridades = true;
-
-                var filePath = await _excelService.GenerarReportePrioridadesAsync();
-
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    MessageBox.Show(
-                        $"Reporte de prioridades generado exitosamente!\n\nArchivo guardado en:\n{filePath}",
-                        "Reporte Excel - Prioridades",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-
-                    // Abrir el archivo automáticamente
-                    _excelService.AbrirArchivo(filePath);
-                });
-            }
-            catch (Exception ex)
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    MessageBox.Show(
-                        $"Error al generar el reporte de prioridades:\n{ex.Message}",
-                        "Error",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                });
-            }
-            finally
-            {
-                GenerandoReportePrioridades = false;
-            }
-        }
-
-        private async Task GenerarReporteTop3Async()
-        {
-            try
-            {
-                GenerandoReporteTop3 = true;
-
-                var filePath = await _excelService.GenerarReporteTop3Async();
-
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    MessageBox.Show(
-                        $"Reporte Top 3 generado exitosamente!\n\nArchivo guardado en:\n{filePath}",
-                        "Reporte Excel - Top 3 Usuarios",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-
-                    // Abrir el archivo automáticamente
-                    _excelService.AbrirArchivo(filePath);
-                });
-            }
-            catch (Exception ex)
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    MessageBox.Show(
-                        $"Error al generar el reporte Top 3:\n{ex.Message}",
-                        "Error",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                });
-            }
-            finally
-            {
-                GenerandoReporteTop3 = false;
             }
         }
     }

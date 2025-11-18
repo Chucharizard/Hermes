@@ -1,9 +1,0 @@
-﻿namespace Hermes.Models
-{
-    public enum RolUsuario
-    {
-        Administrador,
-        Agente,
-        Usuario
-    }
-}

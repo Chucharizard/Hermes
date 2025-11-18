@@ -97,6 +97,9 @@ namespace Hermes.ViewModels
             if (usuarioActual == null)
                 return;
 
+            // ⏰ ACTUALIZAR TAREAS VENCIDAS (al estilo Teams)
+            await _tareaService.ActualizarTareasVencidasAsync();
+
             var tareas = await _tareaService.ObtenerPorEmisorAsync(usuarioActual.IdUsuario);
 
             Application.Current.Dispatcher.Invoke(() =>

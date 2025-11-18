@@ -1,6 +1,0 @@
-namespace Hermes.Helpers
-{
-    public class FileHelper
-    {
-    }
-}

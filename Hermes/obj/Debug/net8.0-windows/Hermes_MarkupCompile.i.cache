@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\USUARIO\Downloads\PruebasHermes\v6\Hermes\Hermes\obj\Debug\net8.0-windows\
+C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\
 Hermes
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\USUARIO\Downloads\PruebasHermes\v6\Hermes\Hermes\App.xaml
+C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\App.xaml
 17-1612946553
 
-721638430649
+73-1135147328
 2342084623051
 MainWindow.xaml;Resources\Styles.xaml;Views\BandejaTareasEnviadasView.xaml;Views\BandejaTareasRecibidasView.xaml;Views\ClientesView.xaml;Views\DashboardView.xaml;Views\DetalleTareaWindow.xaml;Views\EditarEmpleadoWindow.xaml;Views\EditarTareaWindow.xaml;Views\GestionarUsuarioWindow.xaml;Views\GestionEmpleadosView.xaml;Views\GestionTareasView.xaml;Views\LoginWindow.xaml;Views\NuevaTareaWindow.xaml;Views\NuevoEmpleadoWindow.xaml;Views\PropiedadesView.xaml;Views\UsuariosView.xaml;
 

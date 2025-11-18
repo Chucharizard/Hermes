@@ -82,6 +82,35 @@ namespace Hermes.ViewModels
         public bool PuedeArchivar => EsEmisor && Tarea?.EstadoTarea == "Completado";
         public bool PuedeReasignar => EsEmisor && Tarea?.EstadoTarea == "Observado";
         public bool PuedeObservar => EsEmisor && Tarea?.EstadoTarea == "Completado";
+
+        // Verificar si se pueden subir archivos considerando la configuración de entrega
+        public bool PuedeSubirArchivos
+        {
+            get
+            {
+                if (Tarea == null) return false;
+
+                // Si la tarea está completada o archivada, no se pueden subir archivos
+                if (Tarea.EstadoTarea == "Completado" || Tarea.EstadoTarea == "Archivado")
+                {
+                    return false;
+                }
+
+                // Si la tarea tiene fecha límite y ya pasó
+                if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
+                {
+                    // Si NO permite entrega con retraso, se cierra estrictamente
+                    if (!Tarea.PermiteEntregaConRetraso)
+                    {
+                        return false;
+                    }
+                    // Si permite retraso, se puede subir (pero será marcado como con retraso)
+                }
+
+                return true;
+            }
+        }
+
         public int TotalComentarios => Comentarios.Count;
         public int TotalAdjuntos => Adjuntos.Count;
         public int TotalAdjuntosEmisor => AdjuntosEmisor.Count;
@@ -172,6 +201,15 @@ namespace Hermes.ViewModels
 
         private async Task AgregarComentarioAsync()
         {
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
+                usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MessageBox.Show("Su usuario o empleado está inactivo. No puede agregar comentarios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(NuevoComentario))
                 return;
 
@@ -198,6 +236,36 @@ namespace Hermes.ViewModels
 
         private async Task SubirAdjuntoAsync()
         {
+            // VALIDACIÓN: Verificar si la tarea está vencida
+            if (!PuedeSubirArchivos)
+            {
+                if (Tarea.FechaLimiteTarea.HasValue && DateTime.Now > Tarea.FechaLimiteTarea.Value)
+                {
+                    if (!Tarea.PermiteEntregaConRetraso)
+                    {
+                        MessageBox.Show("Esta tarea tiene cierre estricto y no acepta entregas después de la fecha y hora límite.", "Tarea Cerrada", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pueden subir archivos después de la fecha y hora límite de la tarea.", "Tarea Vencida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden subir archivos en tareas completadas o archivadas.", "Acción no permitida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                return;
+            }
+
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
+                usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MessageBox.Show("Su usuario o empleado está inactivo. No puede subir adjuntos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var openFileDialog = new OpenFileDialog
             {
                 Filter = "Todos los archivos (*.*)|*.*",
@@ -282,6 +350,15 @@ namespace Hermes.ViewModels
 
         private async Task CompletarTareaAsync()
         {
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
+                usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MessageBox.Show("Su usuario o empleado está inactivo. No puede completar tareas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (!PuedeCompletar)
                 return;
 
@@ -308,6 +385,15 @@ namespace Hermes.ViewModels
 
         private async Task DevolverTareaAsync()
         {
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
+                usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MessageBox.Show("Su usuario o empleado está inactivo. No puede devolver tareas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (!PuedeDevolver || string.IsNullOrWhiteSpace(NuevoComentario))
             {
                 MessageBox.Show("Debe agregar un comentario explicando por qué devuelve la tarea", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -330,6 +416,15 @@ namespace Hermes.ViewModels
 
         private async Task ObservarTareaAsync()
         {
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario actual esté activo
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
+                usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MessageBox.Show("Su usuario o empleado está inactivo. No puede observar tareas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (!PuedeObservar || string.IsNullOrWhiteSpace(NuevoComentario))
             {
                 MessageBox.Show("Debe agregar un comentario explicando las observaciones", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -411,6 +506,7 @@ namespace Hermes.ViewModels
             OnPropertyChanged(nameof(PuedeArchivar));
             OnPropertyChanged(nameof(PuedeReasignar));
             OnPropertyChanged(nameof(PuedeObservar));
+            OnPropertyChanged(nameof(PuedeSubirArchivos));
             OnPropertyChanged(nameof(TotalComentarios));
             OnPropertyChanged(nameof(TotalAdjuntos));
             OnPropertyChanged(nameof(TotalAdjuntosEmisor));

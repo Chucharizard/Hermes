@@ -26,6 +26,12 @@ namespace Hermes.ViewModels
         private bool _puedeEnviarTareas = false;
         private ObservableCollection<ArchivoPendiente> _archivosPendientes = new();
 
+        // Propiedades para selección de hora
+        private int _horaInicio = DateTime.Now.Hour;
+        private int _minutoInicio = DateTime.Now.Minute;
+        private int? _horaLimite;
+        private int? _minutoLimite;
+
         public Tarea Tarea
         {
             get => _tarea;
@@ -80,6 +86,30 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _archivosPendientes, value);
         }
 
+        public int HoraInicio
+        {
+            get => _horaInicio;
+            set => SetProperty(ref _horaInicio, value);
+        }
+
+        public int MinutoInicio
+        {
+            get => _minutoInicio;
+            set => SetProperty(ref _minutoInicio, value);
+        }
+
+        public int? HoraLimite
+        {
+            get => _horaLimite;
+            set => SetProperty(ref _horaLimite, value);
+        }
+
+        public int? MinutoLimite
+        {
+            get => _minutoLimite;
+            set => SetProperty(ref _minutoLimite, value);
+        }
+
         // Listas para ComboBoxes
         public List<string> Estados { get; } = new()
         {
@@ -93,9 +123,11 @@ namespace Hermes.ViewModels
         {
             "Baja",
             "Media",
-            "Alta",
-            "Urgente"
+            "Alta"
         };
+
+        public List<int> Horas { get; } = Enumerable.Range(0, 24).ToList();
+        public List<int> Minutos { get; } = Enumerable.Range(0, 60).ToList();
 
         public ICommand GuardarCommand { get; }
         public ICommand CancelarCommand { get; }
@@ -123,10 +155,15 @@ namespace Hermes.ViewModels
                 MensajeError = "Su rol no tiene permisos para enviar tareas. Solo puede recibir tareas.";
             }
 
+            // Inicializar hora de inicio con hora actual
+            var ahora = DateTime.Now;
+            HoraInicio = ahora.Hour;
+            MinutoInicio = ahora.Minute;
+
             Tarea = new Tarea
             {
                 IdTarea = Guid.NewGuid(),
-                FechaInicioTarea = DateTime.Now,
+                FechaInicioTarea = ahora,
                 EstadoTarea = "Pendiente",
                 PrioridadTarea = "Media"
             };
@@ -169,7 +206,12 @@ namespace Hermes.ViewModels
                 UsuariosReceptores.Clear();
 
                 // Filtrar usuarios basándose en el rol del usuario actual
-                foreach (var usuario in usuarios.Where(u => u.EsActivoUsuario && u.IdUsuario != usuarioActual.IdUsuario))
+                // VALIDACIÓN CRÍTICA: Solo usuarios Y empleados activos
+                foreach (var usuario in usuarios.Where(u =>
+                    u.EsActivoUsuario &&
+                    u.Empleado != null &&
+                    u.Empleado.EsActivoEmpleado &&
+                    u.IdUsuario != usuarioActual.IdUsuario))
                 {
                     if (rolActual.Equals("Broker", StringComparison.OrdinalIgnoreCase) ||
                         rolActual.Equals("Secretaria", StringComparison.OrdinalIgnoreCase))
@@ -202,6 +244,19 @@ namespace Hermes.ViewModels
                 return;
             }
 
+            // VALIDACIÓN CRÍTICA: Verificar que el usuario y empleado emisor estén activos
+            if (!usuarioActual.EsActivoUsuario)
+            {
+                MensajeError = "Su usuario está inactivo. Contacte al administrador.";
+                return;
+            }
+
+            if (usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MensajeError = "Su empleado está inactivo. Contacte al administrador.";
+                return;
+            }
+
             // Verificar permiso de envío
             if (!PuedeEnviarTareas)
             {
@@ -213,6 +268,19 @@ namespace Hermes.ViewModels
             if (UsuarioReceptorSeleccionado == null)
             {
                 MensajeError = "Debe seleccionar un usuario receptor";
+                return;
+            }
+
+            // VALIDACIÓN CRÍTICA: Verificar que el receptor y su empleado estén activos
+            if (!UsuarioReceptorSeleccionado.EsActivoUsuario)
+            {
+                MensajeError = "El usuario receptor seleccionado está inactivo. Seleccione otro receptor.";
+                return;
+            }
+
+            if (UsuarioReceptorSeleccionado.Empleado == null || !UsuarioReceptorSeleccionado.Empleado.EsActivoEmpleado)
+            {
+                MensajeError = "El empleado receptor seleccionado está inactivo. Seleccione otro receptor.";
                 return;
             }
 
@@ -245,6 +313,30 @@ namespace Hermes.ViewModels
             Tarea.UsuarioReceptorId = UsuarioReceptorSeleccionado.IdUsuario;
             Tarea.EstadoTarea = EstadoSeleccionado;
             Tarea.PrioridadTarea = PrioridadSeleccionada;
+
+            // Combinar fecha y hora para FechaInicioTarea
+            if (Tarea.FechaInicioTarea != default)
+            {
+                Tarea.FechaInicioTarea = new DateTime(
+                    Tarea.FechaInicioTarea.Year,
+                    Tarea.FechaInicioTarea.Month,
+                    Tarea.FechaInicioTarea.Day,
+                    HoraInicio,
+                    MinutoInicio,
+                    0);
+            }
+
+            // Combinar fecha y hora para FechaLimiteTarea (si existe)
+            if (Tarea.FechaLimiteTarea.HasValue && HoraLimite.HasValue && MinutoLimite.HasValue)
+            {
+                Tarea.FechaLimiteTarea = new DateTime(
+                    Tarea.FechaLimiteTarea.Value.Year,
+                    Tarea.FechaLimiteTarea.Value.Month,
+                    Tarea.FechaLimiteTarea.Value.Day,
+                    HoraLimite.Value,
+                    MinutoLimite.Value,
+                    0);
+            }
 
             // Guardar
             var resultado = await _tareaService.CrearAsync(Tarea);
