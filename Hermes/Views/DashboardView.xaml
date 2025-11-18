@@ -350,10 +350,10 @@
                                                                Foreground="White"/>
                                                 </Border>
 
-                                                <!-- Fecha Creación -->
+                                                <!-- Fecha Inicio -->
                                                 <StackPanel Grid.Row="2" Orientation="Horizontal">
                                                     <TextBlock Text="📅" FontSize="11" Margin="0,0,4,0" Foreground="#7F8C8D"/>
-                                                    <TextBlock Text="{Binding FechaCreacionTarea, StringFormat=dd/MM/yyyy HH:mm}"
+                                                    <TextBlock Text="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                                                FontSize="11"
                                                                Foreground="#7F8C8D"/>
                                                 </StackPanel>

@@ -102,9 +102,9 @@ namespace Hermes.ViewModels
                 .Take(5)
                 .ToList();
 
-            // Obtener actividad reciente (últimas 5 tareas creadas o modificadas)
+            // Obtener actividad reciente (últimas 5 tareas por fecha de inicio)
             var actividadReciente = tareas
-                .OrderByDescending(t => t.FechaCreacionTarea)
+                .OrderByDescending(t => t.FechaInicioTarea)
                 .Take(5)
                 .ToList();
 
