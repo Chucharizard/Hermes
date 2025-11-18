@@ -178,7 +178,7 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Header con Prioridad y Estado -->
-                                        <StackPanel Grid.Row="0" Style="{StaticResource TareaCardHeaderStyle}">
+                                        <StackPanel Grid.Row="0" Style="{StaticResource TareaCardHeaderStyle}" Padding="15,10">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>

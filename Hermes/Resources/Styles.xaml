@@ -623,7 +623,6 @@
     <!-- Header de Card de Tarea (con color de prioridad) -->
     <Style x:Key="TareaCardHeaderStyle" TargetType="StackPanel">
         <Setter Property="Background" Value="#F8F9FA"/>
-        <Setter Property="Padding" Value="15,10"/>
     </Style>
 
     <!-- Título de Tarea en Card -->
