@@ -219,7 +219,7 @@
                                         <StackPanel Grid.Row="1" Margin="15,12,15,8">
                                             <TextBlock Text="{Binding TituloTarea}"
                                                        Style="{StaticResource TareaCardTitleStyle}"/>
-                                            <TextBlock Text="{Binding DescripcionTarea}"
+                                            <TextBlock Text="{Binding DescripcionTarea, TargetNullValue=''}"
                                                        Style="{StaticResource TareaCardDescriptionStyle}"/>
                                         </StackPanel>
 
