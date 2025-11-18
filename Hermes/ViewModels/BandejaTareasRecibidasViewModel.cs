@@ -131,7 +131,7 @@ namespace Hermes.ViewModels
             {
                 tareasFiltradas = tareasFiltradas.Where(t =>
                     t.TituloTarea.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
-                    t.DescripcionTarea.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
+                    (t.DescripcionTarea?.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ?? false) ||
                     (t.UsuarioEmisor?.Empleado != null &&
                      (t.UsuarioEmisor.Empleado.NombresEmpleado.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
                       t.UsuarioEmisor.Empleado.ApellidosEmpleado.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase))));
