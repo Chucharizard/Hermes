@@ -519,3 +519,6 @@ C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windo
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Hermes.pdb
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Hermes.genruntimeconfig.cache
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\ref\Hermes.dll
+C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaView.g.cs
+C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaView.baml
+C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\bin\Debug\net8.0-windows\Resources\Plantillas\Reporte_Dashboard_Consolidado.xlsx

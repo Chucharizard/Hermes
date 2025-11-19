@@ -52,7 +52,7 @@ namespace Hermes.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hermes;component/views/usuariosview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hermes;V1.0.0.0;component/views/usuariosview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\UsuariosView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
