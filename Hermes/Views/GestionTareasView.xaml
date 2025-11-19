@@ -1,14 +1,37 @@
 <UserControl x:Class="Hermes.Views.GestionTareasView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewmodels="clr-namespace:Hermes.ViewModels">
+             xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
+             xmlns:views="clr-namespace:Hermes.Views"
+             xmlns:converters="clr-namespace:Hermes.Converters">
 
     <UserControl.DataContext>
         <viewmodels:GestionTareasViewModel/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
+        <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
+        <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <!-- Estilo para item de tarea seleccionado -->
+        <Style x:Key="TareaListItemStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F8FA"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Background" Value="#E3F2FD"/>
+                    <Setter Property="BorderBrush" Value="#2196F3"/>
+                    <Setter Property="BorderThickness" Value="0,0,3,1"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -17,134 +40,338 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header con botones -->
-        <Border Grid.Row="0" Style="{StaticResource SectionHeaderStyle}">
+        <!-- Header compacto + Estadísticas inline + Nueva Tarea -->
+        <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.08" Color="#000000"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="Gestion de Tareas"
-                               Style="{StaticResource TitleTextStyle}"/>
-                    <TextBlock Text="Administra las tareas del sistema"
-                               Style="{StaticResource SubtitleTextStyle}"
-                               Margin="0,5,0,0"/>
+                <!-- Título -->
+                <TextBlock Grid.Column="0"
+                           Text="🔧 Gestión de Tareas"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="#2C3E50"
+                           VerticalAlignment="Center"
+                           Margin="0,0,20,0"/>
+
+                <!-- Estadísticas inline compactas -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <!-- Total -->
+                    <Border Background="#3498DB" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding TotalTareas}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="0,0,5,0"/>
+                            <TextBlock Text="Total"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Pendientes -->
+                    <Border Background="#F39C12" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding TareasPendientes}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="0,0,5,0"/>
+                            <TextBlock Text="Pendientes"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Completadas -->
+                    <Border Background="#27AE60" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding TareasCompletadas}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="0,0,5,0"/>
+                            <TextBlock Text="Completadas"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Vencidas -->
+                    <Border Background="#E74C3C" CornerRadius="12" Padding="10,4">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding TareasVencidas}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="0,0,5,0"/>
+                            <TextBlock Text="Vencidas"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="Nueva Tarea"
-                            Command="{Binding AbrirNuevaTareaCommand}"
-                            Style="{StaticResource SuccessButtonStyle}"
-                            Margin="0,0,10,0"/>
-
-                    <Button Content="Actualizar"
-                            Command="{Binding CargarTareasCommand}"
-                            Style="{StaticResource InfoButtonStyle}"/>
-                </StackPanel>
+                <!-- Botón Nueva Tarea -->
+                <Button Grid.Column="2"
+                        Content="➕ Nueva Tarea"
+                        Command="{Binding AbrirNuevaTareaCommand}"
+                        Style="{StaticResource SuccessButtonStyle}"
+                        Padding="12,6"
+                        FontSize="12"/>
             </Grid>
         </Border>
 
-        <!-- DataGrid de Tareas -->
-        <Border Grid.Row="1" Style="{StaticResource CardStyle}">
+        <!-- ========================================== -->
+        <!-- LAYOUT MASTER-DETAIL (Tipo Gmail/Outlook) -->
+        <!-- ========================================== -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <!-- Lista de tareas (master) -->
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="12"/>
+                <!-- Detalle de tarea (detail) -->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- ========================================== -->
+            <!-- MASTER: LISTA DE TAREAS COMPACTA -->
+            <!-- ========================================== -->
+            <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                </Border.Effect>
 
-                <!-- Estadisticas -->
-                <Border Grid.Row="0" Style="{StaticResource InfoBannerStyle}" Margin="0,0,0,15">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Total: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TotalTareas}" Foreground="{StaticResource TextPrimaryColor}" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Pendientes: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasPendientes}" Foreground="{StaticResource WarningColor}" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Completadas: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasCompletadas}" Foreground="{StaticResource SuccessColor}" FontWeight="Bold"/>
-                        <TextBlock Text="  |  Vencidas: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasVencidas}" Foreground="{StaticResource DangerColor}" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Búsqueda y Refrescar -->
+                    <StackPanel Grid.Row="0" Margin="12,12,12,0">
+                        <TextBox Text="{Binding FiltroTexto, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Tag="🔍 Buscar tareas..."
+                                 Margin="0,0,0,8"/>
+
+                        <Button Content="🔄 Actualizar"
+                                Command="{Binding CargarTareasCommand}"
+                                Style="{StaticResource InfoButtonStyle}"
+                                Padding="10,6"
+                                HorizontalAlignment="Stretch"/>
                     </StackPanel>
-                </Border>
 
-                <!-- Buscador -->
-                <TextBox Grid.Row="1"
-                         Text="{Binding FiltroTexto, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource ModernTextBoxStyle}"
-                         Height="45"
-                         Margin="0,0,0,15"
-                         Tag="🔍 Buscar tareas..."/>
-
-                <!-- DataGrid -->
-                <DataGrid Grid.Row="2"
-                          ItemsSource="{Binding TareasFiltradas}"
-                          SelectedItem="{Binding TareaSeleccionada}"
-                          Style="{StaticResource ModernDataGridStyle}"
-                          ColumnHeaderStyle="{StaticResource ModernDataGridHeaderStyle}"
-                          CellStyle="{StaticResource ModernDataGridCellStyle}"
-                          RowStyle="{StaticResource ModernDataGridRowStyle}">
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Titulo"
-                                          Binding="{Binding TituloTarea}"
-                                          Width="*"/>
-                        <DataGridTextColumn Header="Emisor"
-                                          Binding="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                          Width="150"/>
-                        <DataGridTextColumn Header="Receptor"
-                                          Binding="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
-                                          Width="150"/>
-                        <DataGridTextColumn Header="Estado"
-                                          Binding="{Binding EstadoTarea}"
-                                          Width="100"/>
-                        <DataGridTextColumn Header="Prioridad"
-                                          Binding="{Binding PrioridadTarea}"
-                                          Width="100"/>
-                        <DataGridTextColumn Header="Fecha Inicio"
-                                          Binding="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
-                                          Width="100"/>
-
-                        <DataGridTemplateColumn Header="Acciones" Width="320">
-                            <DataGridTemplateColumn.CellTemplate>
+                    <!-- Lista de tareas scrollable -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+                        <ItemsControl ItemsSource="{Binding TareasFiltradas}">
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Ver"
-                                                Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Style="{StaticResource CompactButtonStyle}"
-                                                Background="{StaticResource InfoColor}"/>
-                                        <Button Content="Editar"
-                                                Command="{Binding DataContext.EditarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Style="{StaticResource CompactButtonStyle}"
-                                                Background="{StaticResource WarningColor}"/>
-                                        <Button Content="Eliminar"
-                                                Command="{Binding DataContext.EliminarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Style="{StaticResource CompactButtonStyle}"
-                                                Background="{StaticResource DangerColor}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                                    <!-- Item compacto de tarea tipo Gmail -->
+                                    <Border Style="{StaticResource TareaListItemStyle}"
+                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            Tag="{Binding}">
 
-                <!-- Footer con total -->
-                <Border Grid.Row="3" Style="{StaticResource InfoBannerStyle}" Margin="0,15,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Mostrando " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TareasFiltradas.Count}" Foreground="{StaticResource SuccessColor}" FontWeight="Bold"/>
-                        <TextBlock Text=" de " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TotalTareas}" Foreground="{StaticResource InfoColor}" FontWeight="Bold"/>
-                        <TextBlock Text=" tareas" FontWeight="SemiBold"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Fila 1: Badges de Estado y Prioridad -->
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
+                                                <Border Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,2"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding EstadoTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <Border Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,2">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <TextBlock Text="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
+                                                           FontSize="9"
+                                                           Foreground="#95A5A6"
+                                                           VerticalAlignment="Center"
+                                                           Margin="8,0,0,0"/>
+                                            </StackPanel>
+
+                                            <!-- Fila 2: Título de la tarea -->
+                                            <TextBlock Grid.Row="1"
+                                                       Text="{Binding TituloTarea}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#2C3E50"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       Margin="0,0,0,4"/>
+
+                                            <!-- Fila 3: Emisor → Receptor -->
+                                            <TextBlock Grid.Row="2"
+                                                       FontSize="10"
+                                                       Foreground="#7F8C8D"
+                                                       Margin="0,0,0,6">
+                                                <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}" Foreground="#E67E22" FontWeight="SemiBold"/>
+                                                <Run Text=" → "/>
+                                                <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}" Foreground="#27AE60" FontWeight="SemiBold"/>
+                                            </TextBlock>
+
+                                            <!-- Fila 4: Botones de acción rápida -->
+                                            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                                <Button Content="✏"
+                                                        Command="{Binding DataContext.EditarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="#F39C12"
+                                                        Foreground="White"
+                                                        Width="24"
+                                                        Height="24"
+                                                        FontSize="11"
+                                                        BorderThickness="0"
+                                                        Cursor="Hand"
+                                                        Margin="0,0,4,0"
+                                                        ToolTip="Editar tarea">
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#E67E22"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+
+                                                <Button Content="🗑"
+                                                        Command="{Binding DataContext.EliminarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="#E74C3C"
+                                                        Foreground="White"
+                                                        Width="24"
+                                                        Height="24"
+                                                        FontSize="11"
+                                                        BorderThickness="0"
+                                                        Cursor="Hand"
+                                                        ToolTip="Eliminar tarea">
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#C0392B"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- ========================================== -->
+            <!-- DETAIL: VISTA DE DETALLE DE TAREA -->
+            <!-- ========================================== -->
+            <Border Grid.Column="2" Background="White" CornerRadius="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                </Border.Effect>
+
+                <Grid>
+                    <!-- Mostrar mensaje cuando no hay tarea seleccionada -->
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+
+                        <TextBlock Text="🔧"
+                                   FontSize="64"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,15"
+                                   Opacity="0.3"/>
+                        <TextBlock Text="Selecciona una tarea"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   Foreground="#95A5A6"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,5"/>
+                        <TextBlock Text="para ver los detalles y gestionar"
+                                   FontSize="14"
+                                   Foreground="#BDC3C7"
+                                   HorizontalAlignment="Center"/>
                     </StackPanel>
-                </Border>
-            </Grid>
-        </Border>
+
+                    <!-- Mostrar DetalleTareaView cuando hay tarea seleccionada -->
+                    <ContentControl Content="{Binding DetalleViewModel}">
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <views:DetalleTareaView/>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

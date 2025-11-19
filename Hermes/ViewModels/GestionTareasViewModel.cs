@@ -15,6 +15,7 @@ namespace Hermes.ViewModels
         private ObservableCollection<Tarea> _tareas = new();
         private ObservableCollection<Tarea> _tareasFiltradas = new();
         private Tarea? _tareaSeleccionada;
+        private DetalleTareaViewModel? _detalleViewModel;
         private string _filtroTexto = string.Empty;
 
         public ObservableCollection<Tarea> Tareas
@@ -32,7 +33,20 @@ namespace Hermes.ViewModels
         public Tarea? TareaSeleccionada
         {
             get => _tareaSeleccionada;
-            set => SetProperty(ref _tareaSeleccionada, value);
+            set
+            {
+                if (SetProperty(ref _tareaSeleccionada, value))
+                {
+                    // Crear ViewModel de detalle cuando se selecciona una tarea
+                    DetalleViewModel = value != null ? new DetalleTareaViewModel(value) : null;
+                }
+            }
+        }
+
+        public DetalleTareaViewModel? DetalleViewModel
+        {
+            get => _detalleViewModel;
+            set => SetProperty(ref _detalleViewModel, value);
         }
 
         public string FiltroTexto
