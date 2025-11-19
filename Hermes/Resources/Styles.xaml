@@ -2,90 +2,92 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ========================================== -->
-    <!-- COLORES GLOBALES - PALETA MIDNIGHT BLUE -->
+    <!-- COLORES GLOBALES - PALETA MODERNA PROFESIONAL -->
+    <!-- Inspirado en Microsoft Teams con tonos azul oscuro -->
     <!-- ========================================== -->
 
-    <!-- Fondos -->
-    <SolidColorBrush x:Key="BackgroundDarkest" Color="#0F1419"/>     <!-- Casi negro azulado -->
-    <SolidColorBrush x:Key="BackgroundDark" Color="#1A1F2E"/>        <!-- Azul muy oscuro -->
-    <SolidColorBrush x:Key="BackgroundMedium" Color="#2C3E50"/>      <!-- Azul grisáceo oscuro -->
-    <SolidColorBrush x:Key="BackgroundLight" Color="#34495E"/>       <!-- Azul gris -->
-    <SolidColorBrush x:Key="BackgroundLightColor" Color="#ECF0F1"/>  <!-- Gris muy claro -->
-    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#ECF0F1"/>
+    <!-- Fondos - Paleta personalizada -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="#0d1b2a"/>     <!-- Azul muy oscuro (casi negro) -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#1b263b"/>        <!-- Azul oscuro -->
+    <SolidColorBrush x:Key="BackgroundMedium" Color="#415a77"/>      <!-- Azul medio -->
+    <SolidColorBrush x:Key="BackgroundLight" Color="#778da9"/>       <!-- Azul grisáceo claro -->
+    <SolidColorBrush x:Key="BackgroundLightColor" Color="#e0e1dd"/>  <!-- Gris muy claro (casi blanco) -->
+    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#e0e1dd"/>   <!-- Gris muy claro -->
 
-    <!-- Azules principales -->
-    <SolidColorBrush x:Key="PrimaryColor" Color="#3498DB"/>          <!-- Azul claro vibrante -->
-    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#2874A6"/>      <!-- Azul medio -->
-    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#1B4F72"/>    <!-- Azul profundo -->
-    <SolidColorBrush x:Key="PrimaryLightColor" Color="#5DADE2"/>     <!-- Azul eléctrico -->
+    <!-- Azules principales - Inspirado en Teams -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="#5B7CBA"/>          <!-- Azul profesional vibrante -->
+    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#4A67A3"/>      <!-- Azul medio oscuro -->
+    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#3B5389"/>    <!-- Azul profundo -->
+    <SolidColorBrush x:Key="PrimaryLightColor" Color="#7B96CD"/>     <!-- Azul claro -->
 
-    <!-- Colores de acción -->
-    <SolidColorBrush x:Key="InfoColor" Color="#3498DB"/>             <!-- Azul principal -->
-    <SolidColorBrush x:Key="InfoHoverColor" Color="#2874A6"/>        <!-- Azul oscuro -->
-    <SolidColorBrush x:Key="SuccessColor" Color="#1ABC9C"/>          <!-- Turquesa -->
-    <SolidColorBrush x:Key="SuccessHoverColor" Color="#148F77"/>     <!-- Turquesa oscuro -->
-    <SolidColorBrush x:Key="WarningColor" Color="#F39C12"/>          <!-- Naranja -->
-    <SolidColorBrush x:Key="WarningHoverColor" Color="#D68910"/>     <!-- Naranja oscuro -->
-    <SolidColorBrush x:Key="DangerColor" Color="#E74C3C"/>           <!-- Rojo -->
-    <SolidColorBrush x:Key="DangerHoverColor" Color="#C0392B"/>      <!-- Rojo oscuro -->
+    <!-- Colores de acción - Modernos y accesibles -->
+    <SolidColorBrush x:Key="InfoColor" Color="#5B7CBA"/>             <!-- Azul información -->
+    <SolidColorBrush x:Key="InfoHoverColor" Color="#4A67A3"/>        <!-- Azul oscuro hover -->
+    <SolidColorBrush x:Key="SuccessColor" Color="#0F7B6C"/>          <!-- Verde azulado -->
+    <SolidColorBrush x:Key="SuccessHoverColor" Color="#0C6259"/>     <!-- Verde azulado oscuro -->
+    <SolidColorBrush x:Key="WarningColor" Color="#C87E28"/>          <!-- Naranja cálido -->
+    <SolidColorBrush x:Key="WarningHoverColor" Color="#A76820"/>     <!-- Naranja oscuro -->
+    <SolidColorBrush x:Key="DangerColor" Color="#D13438"/>           <!-- Rojo profesional -->
+    <SolidColorBrush x:Key="DangerHoverColor" Color="#B52B2F"/>      <!-- Rojo oscuro -->
 
     <!-- Colores oscuros -->
-    <SolidColorBrush x:Key="DarkColor" Color="#2C3E50"/>
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#1A1F2E"/>
-    <SolidColorBrush x:Key="SidebarColor" Color="#1A1F2E"/>
+    <SolidColorBrush x:Key="DarkColor" Color="#415a77"/>
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#1b263b"/>
+    <SolidColorBrush x:Key="SidebarColor" Color="#1b263b"/>
 
-    <!-- Textos -->
-    <SolidColorBrush x:Key="TextPrimaryColor" Color="#ECF0F1"/>      <!-- Texto claro para fondos oscuros -->
-    <SolidColorBrush x:Key="TextSecondaryColor" Color="#BDC3C7"/>    <!-- Texto secundario -->
-    <SolidColorBrush x:Key="TextMutedColor" Color="#95A5A6"/>        <!-- Texto apagado -->
-    <SolidColorBrush x:Key="TextDarkColor" Color="#2C3E50"/>         <!-- Texto oscuro para fondos claros -->
+    <!-- Textos - Alto contraste -->
+    <SolidColorBrush x:Key="TextPrimaryColor" Color="#f8f9fa"/>      <!-- Texto claro para fondos oscuros -->
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#d1d3d4"/>    <!-- Texto secundario -->
+    <SolidColorBrush x:Key="TextMutedColor" Color="#9ca3af"/>        <!-- Texto apagado -->
+    <SolidColorBrush x:Key="TextDarkColor" Color="#1b263b"/>         <!-- Texto oscuro para fondos claros -->
 
-    <!-- Bordes -->
-    <SolidColorBrush x:Key="BorderColor" Color="#34495E"/>
-    <SolidColorBrush x:Key="BorderLightColor" Color="#BDC3C7"/>
+    <!-- Bordes - Sutiles -->
+    <SolidColorBrush x:Key="BorderColor" Color="#415a77"/>
+    <SolidColorBrush x:Key="BorderLightColor" Color="#cbd5e0"/>
 
     <!-- ========================================== -->
-    <!-- DEGRADADOS - MIDNIGHT BLUE THEME -->
+    <!-- DEGRADADOS - ESTILO PROFESIONAL MODERNO -->
+    <!-- Degradados sutiles inspirados en Teams -->
     <!-- ========================================== -->
 
-    <!-- Degradado principal (azul) -->
+    <!-- Degradado principal (azul profesional) -->
     <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#3498DB" Offset="0"/>
-        <GradientStop Color="#2874A6" Offset="1"/>
+        <GradientStop Color="#5B7CBA" Offset="0"/>
+        <GradientStop Color="#4A67A3" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PrimaryGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#3498DB" Offset="0"/>
-        <GradientStop Color="#2874A6" Offset="1"/>
+        <GradientStop Color="#5B7CBA" Offset="0"/>
+        <GradientStop Color="#4A67A3" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado oscuro (fondos) -->
+    <!-- Degradado oscuro (fondos sidebar) -->
     <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#1A1F2E" Offset="0"/>
-        <GradientStop Color="#2C3E50" Offset="1"/>
+        <GradientStop Color="#1b263b" Offset="0"/>
+        <GradientStop Color="#415a77" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1A1F2E" Offset="0"/>
-        <GradientStop Color="#2C3E50" Offset="1"/>
+        <GradientStop Color="#1b263b" Offset="0"/>
+        <GradientStop Color="#415a77" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado turquesa (éxito) -->
+    <!-- Degradado turquesa/verde (éxito) -->
     <LinearGradientBrush x:Key="SuccessGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#1ABC9C" Offset="0"/>
-        <GradientStop Color="#148F77" Offset="1"/>
+        <GradientStop Color="#0F7B6C" Offset="0"/>
+        <GradientStop Color="#0C6259" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado azul profundo -->
     <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#2874A6" Offset="0"/>
-        <GradientStop Color="#1B4F72" Offset="1"/>
+        <GradientStop Color="#4A67A3" Offset="0"/>
+        <GradientStop Color="#3B5389" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado azul claro -->
     <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#5DADE2" Offset="0"/>
-        <GradientStop Color="#3498DB" Offset="1"/>
+        <GradientStop Color="#7B96CD" Offset="0"/>
+        <GradientStop Color="#5B7CBA" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- ========================================== -->
@@ -305,7 +307,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2C3E50"/>
+                <Setter Property="Background" Value="#415a77"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
@@ -357,7 +359,7 @@
         <Setter Property="Padding" Value="20"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.08" Color="#0d1b2a"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -369,7 +371,7 @@
         <Setter Property="Margin" Value="0,0,0,20"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.06" Color="#0d1b2a"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -381,7 +383,7 @@
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.08" Color="#0d1b2a"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -509,7 +511,7 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="BorderThickness" Value="0,0,1,0"/>
-        <Setter Property="BorderBrush" Value="#34495E"/>
+        <Setter Property="BorderBrush" Value="#778da9"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
     </Style>
 
@@ -520,8 +522,8 @@
         <Setter Property="Background" Value="Transparent"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#E8F4F8"/>
-                <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+                <Setter Property="Background" Value="#EDF2F7"/>
+                <Setter Property="Foreground" Value="{StaticResource TextDarkColor}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -531,10 +533,10 @@
         <Setter Property="Background" Value="White"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#F0F8FF"/>
+                <Setter Property="Background" Value="#F7FAFC"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#E8F4F8"/>
+                <Setter Property="Background" Value="#EDF2F7"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -559,7 +561,7 @@
     <!-- Texto de Label -->
     <Style x:Key="LabelTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Foreground" Value="#34495E"/>
+        <Setter Property="Foreground" Value="#415a77"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Margin" Value="0,0,0,8"/>
     </Style>
@@ -575,13 +577,13 @@
     <!-- ========================================== -->
 
     <!-- Sombra Estándar -->
-    <DropShadowEffect x:Key="StandardShadow" BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+    <DropShadowEffect x:Key="StandardShadow" BlurRadius="20" ShadowDepth="2" Opacity="0.08" Color="#0d1b2a"/>
 
     <!-- Sombra Ligera -->
-    <DropShadowEffect x:Key="LightShadow" BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#2C3E50"/>
+    <DropShadowEffect x:Key="LightShadow" BlurRadius="15" ShadowDepth="1" Opacity="0.05" Color="#0d1b2a"/>
 
     <!-- Sombra Profunda -->
-    <DropShadowEffect x:Key="DeepShadow" BlurRadius="30" ShadowDepth="0" Opacity="0.3" Color="#2C3E50"/>
+    <DropShadowEffect x:Key="DeepShadow" BlurRadius="30" ShadowDepth="4" Opacity="0.12" Color="#0d1b2a"/>
 
     <!-- ========================================== -->
     <!-- ANIMACIONES DE FADE -->
@@ -628,7 +630,7 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.06" Color="#0d1b2a"/>
             </Setter.Value>
         </Setter>
         <Setter Property="RenderTransform">
@@ -680,7 +682,7 @@
     <Style x:Key="TareaCardTitleStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Foreground" Value="#2C3E50"/>
+        <Setter Property="Foreground" Value="#1b263b"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="Margin" Value="0,0,0,5"/>
@@ -689,7 +691,7 @@
     <!-- Descripción de Tarea en Card -->
     <Style x:Key="TareaCardDescriptionStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Foreground" Value="#7F8C8D"/>
+        <Setter Property="Foreground" Value="#778da9"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="MaxHeight" Value="40"/>
@@ -720,7 +722,7 @@
     <!-- Texto de Metadata (fechas, etc) -->
     <Style x:Key="MetadataTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="#95A5A6"/>
+        <Setter Property="Foreground" Value="#9ca3af"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 

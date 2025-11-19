@@ -40,7 +40,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#34495E"/>
+                    <Setter Property="Background" Value="#415a77"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -68,8 +68,8 @@
             <Border Grid.Column="0" Padding="0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#1A1F2E" Offset="0"/>
-                        <GradientStop Color="#2C3E50" Offset="1"/>
+                        <GradientStop Color="#1b263b" Offset="0"/>
+                        <GradientStop Color="#415a77" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
@@ -101,12 +101,12 @@
                         <TextBlock Text="Panel de Administración"
                                    FontSize="13"
                                    FontWeight="SemiBold"
-                                   Foreground="#BDC3C7"
+                                   Foreground="#d1d3d4"
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
                     <!-- Información del Usuario (ocultar cuando está colapsado) -->
-                    <Border Background="#2C3E50"
+                    <Border Background="#415a77"
                             CornerRadius="8"
                             Padding="15"
                             Margin="10,0,10,15">
@@ -130,7 +130,7 @@
                                        Margin="0,0,0,6"/>
                             <TextBlock FontSize="13"
                                        FontWeight="SemiBold"
-                                       Foreground="#5DADE2"
+                                       Foreground="#7B96CD"
                                        TextAlignment="Center">
                                 <Run Text="("/><Run Text="{Binding RolUsuario, Mode=OneWay}"/><Run Text=")"/>
                             </TextBlock>
@@ -164,7 +164,7 @@
                     </Button>
 
                     <!-- Separador -->
-                    <Separator Margin="10,0,10,15" Background="#34495E" Height="2"/>
+                    <Separator Margin="10,0,10,15" Background="#778da9" Height="2"/>
 
                     <!-- Opciones de administración (solo Broker) -->
                     <Button Command="{Binding MostrarDashboardCommand}"
@@ -241,11 +241,11 @@
                     </Button>
 
                     <!-- Separador para sección de Bandejas (visible solo si hay opciones arriba O si puede enviar tareas) -->
-                    <Separator Margin="10,15" Background="#7F8C8D" Height="1"
+                    <Separator Margin="10,15" Background="#778da9" Height="1"
                                Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <TextBlock Text="BANDEJAS DE TAREAS"
-                               Foreground="#95A5A6"
+                               Foreground="#9ca3af"
                                FontSize="12"
                                FontWeight="Bold"
                                Margin="15,5,15,10">
@@ -314,8 +314,8 @@
                 </StackPanel>
             </Border>
             
-            <!-- Main Content Area con fondo azul muy claro -->
-            <Border Grid.Column="1" Background="#ECF0F1">
+            <!-- Main Content Area con fondo moderno -->
+            <Border Grid.Column="1" Background="#e0e1dd">
                 <ContentControl Content="{Binding CurrentView}"
                               Margin="20"/>
             </Border>
