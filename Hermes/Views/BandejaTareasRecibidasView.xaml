@@ -318,28 +318,23 @@
                     </StackPanel>
 
                     <!-- Mostrar DetalleTareaView cuando hay tarea seleccionada -->
-                    <views:DetalleTareaView DataContext="{Binding DetalleViewModel}">
-                        <views:DetalleTareaView.Style>
-                            <Style TargetType="views:DetalleTareaView">
-                                <Setter Property="Visibility" Value="Collapsed"/>
+                    <ContentControl Content="{Binding DetalleViewModel}">
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="Visibility" Value="Visible"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding DetalleViewModel}" Value="{x:Null}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
-                                <Style.MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding DetalleViewModel, Converter={x:Null}}" Value="False"/>
-                                        <Condition Binding="{Binding TareaSeleccionada, Converter={x:Null}}" Value="False"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </Style.MultiDataTrigger>
                             </Style>
-                        </views:DetalleTareaView.Style>
-                    </views:DetalleTareaView>
+                        </ContentControl.Style>
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <views:DetalleTareaView/>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
                 </Grid>
             </Border>
         </Grid>
