@@ -12,7 +12,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- ========================================== -->
@@ -737,6 +736,7 @@
                             BorderThickness="2"
                             CornerRadius="8"
                             Padding="12"
+                            Margin="0,0,0,12"
                             Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
@@ -756,174 +756,193 @@
                                       Background="White"/>
                         </StackPanel>
                     </Border>
+
+                    <!-- ========================================== -->
+                    <!-- BOTONES DE ACCIÓN -->
+                    <!-- ========================================== -->
+                    <Border Background="White" CornerRadius="8" Padding="12">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
+                        </Border.Effect>
+
+                        <StackPanel>
+                            <!-- Header de acciones -->
+                            <TextBlock Text="⚡ Acciones"
+                                       FontSize="11"
+                                       FontWeight="Bold"
+                                       Foreground="#2C3E50"
+                                       Margin="0,0,0,10"/>
+
+                            <!-- Completar -->
+                            <Button Content="✅ Completar"
+                                    Command="{Binding CompletarTareaCommand}"
+                                    Visibility="{Binding PuedeCompletar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="#27AE60"
+                                    Foreground="White"
+                                    Padding="10,6"
+                                    Margin="0,0,0,6"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Stretch">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#229954"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+                            <!-- Devolver -->
+                            <Button Content="↩ Devolver"
+                                    Command="{Binding DevolverTareaCommand}"
+                                    Visibility="{Binding PuedeDevolver, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="#E74C3C"
+                                    Foreground="White"
+                                    Padding="10,6"
+                                    Margin="0,0,0,6"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Stretch">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#C0392B"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+                            <!-- Observar -->
+                            <Button Content="⚠ Observar"
+                                    Command="{Binding ObservarTareaCommand}"
+                                    Visibility="{Binding PuedeObservar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="#F39C12"
+                                    Foreground="White"
+                                    Padding="10,6"
+                                    Margin="0,0,0,6"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Stretch">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#E67E22"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+                            <!-- Archivar -->
+                            <Button Content="📦 Archivar"
+                                    Command="{Binding ArchivarTareaCommand}"
+                                    Visibility="{Binding PuedeArchivar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="#95A5A6"
+                                    Foreground="White"
+                                    Padding="10,6"
+                                    Margin="0,0,0,6"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Stretch">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#7F8C8D"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+                            <!-- Reasignar -->
+                            <Button Content="🔄 Reasignar"
+                                    Command="{Binding ReasignarTareaCommand}"
+                                    Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="#9B59B6"
+                                    Foreground="White"
+                                    Padding="10,6"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Stretch">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#8E44AD"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="#BDC3C7"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-
-        <!-- ========================================== -->
-        <!-- FOOTER: Botones de acción -->
-        <!-- ========================================== -->
-        <Border Grid.Row="2" Background="White" BorderBrush="#BDC3C7" BorderThickness="0,1,0,0" Padding="15,12">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-
-                <Button Content="✅ Completar"
-                        Command="{Binding CompletarTareaCommand}"
-                        Visibility="{Binding PuedeCompletar, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="#27AE60"
-                        Foreground="White"
-                        Padding="12,7"
-                        Margin="0,0,8,0"
-                        FontSize="11"
-                        FontWeight="SemiBold"
-                        BorderThickness="0"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#229954"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button Content="↩ Devolver"
-                        Command="{Binding DevolverTareaCommand}"
-                        Visibility="{Binding PuedeDevolver, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="#E74C3C"
-                        Foreground="White"
-                        Padding="12,7"
-                        Margin="0,0,8,0"
-                        FontSize="11"
-                        FontWeight="SemiBold"
-                        BorderThickness="0"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#C0392B"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button Content="⚠ Observar"
-                        Command="{Binding ObservarTareaCommand}"
-                        Visibility="{Binding PuedeObservar, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="#F39C12"
-                        Foreground="White"
-                        Padding="12,7"
-                        Margin="0,0,8,0"
-                        FontSize="11"
-                        FontWeight="SemiBold"
-                        BorderThickness="0"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#E67E22"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button Content="📦 Archivar"
-                        Command="{Binding ArchivarTareaCommand}"
-                        Visibility="{Binding PuedeArchivar, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="#95A5A6"
-                        Foreground="White"
-                        Padding="12,7"
-                        Margin="0,0,8,0"
-                        FontSize="11"
-                        FontWeight="SemiBold"
-                        BorderThickness="0"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#7F8C8D"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button Content="🔄 Reasignar"
-                        Command="{Binding ReasignarTareaCommand}"
-                        Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="#9B59B6"
-                        Foreground="White"
-                        Padding="12,7"
-                        Margin="0,0,8,0"
-                        FontSize="11"
-                        FontWeight="SemiBold"
-                        BorderThickness="0"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#8E44AD"/>
-                                </Trigger>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Background" Value="#BDC3C7"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </StackPanel>
-        </Border>
     </Grid>
 </UserControl>
