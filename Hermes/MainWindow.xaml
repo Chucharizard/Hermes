@@ -40,7 +40,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#34495E"/>
+                    <Setter Property="Background" Value="#415a77"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -64,12 +64,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <!-- Sidebar Menu con degradado vertical -->
+            <!-- Sidebar Menu con degradado vertical (Nueva paleta) -->
             <Border Grid.Column="0" Padding="0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#1A1F2E" Offset="0"/>
-                        <GradientStop Color="#2C3E50" Offset="1"/>
+                        <GradientStop Color="#1b263b" Offset="0"/>
+                        <GradientStop Color="#0d1b2a" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
@@ -164,7 +164,7 @@
                     </Button>
 
                     <!-- Separador -->
-                    <Separator Margin="10,0,10,15" Background="#34495E" Height="2"/>
+                    <Separator Margin="10,0,10,15" Background="#415a77" Height="2"/>
 
                     <!-- Opciones de administración (solo Broker) -->
                     <Button Command="{Binding MostrarDashboardCommand}"
@@ -314,8 +314,14 @@
                 </StackPanel>
             </Border>
             
-            <!-- Main Content Area con fondo azul muy claro -->
-            <Border Grid.Column="1" Background="#ECF0F1">
+            <!-- Main Content Area con degradado moderno -->
+            <Border Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#e0e1dd" Offset="0"/>
+                        <GradientStop Color="#d4d5d0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <ContentControl Content="{Binding CurrentView}"
                               Margin="20"/>
             </Border>
