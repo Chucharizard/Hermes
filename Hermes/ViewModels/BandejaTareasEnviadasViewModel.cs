@@ -14,6 +14,7 @@ namespace Hermes.ViewModels
         private readonly TareaComentarioService _comentarioService;
         private ObservableCollection<Tarea> _tareasEnviadas = new();
         private Tarea? _tareaSeleccionada;
+        private DetalleTareaViewModel? _detalleViewModel;
         private string _filtroEstado = "Todas";
         private string _textoBusqueda = string.Empty;
         private ObservableCollection<Tarea> _tareasFiltradas = new();
@@ -33,7 +34,20 @@ namespace Hermes.ViewModels
         public Tarea? TareaSeleccionada
         {
             get => _tareaSeleccionada;
-            set => SetProperty(ref _tareaSeleccionada, value);
+            set
+            {
+                if (SetProperty(ref _tareaSeleccionada, value))
+                {
+                    // Crear ViewModel de detalle cuando se selecciona una tarea
+                    DetalleViewModel = value != null ? new DetalleTareaViewModel(value) : null;
+                }
+            }
+        }
+
+        public DetalleTareaViewModel? DetalleViewModel
+        {
+            get => _detalleViewModel;
+            set => SetProperty(ref _detalleViewModel, value);
         }
 
         public string FiltroEstado
@@ -77,6 +91,7 @@ namespace Hermes.ViewModels
         public ICommand VerDetalleCommand { get; }
         public ICommand ArchivarTareaCommand { get; }
         public ICommand AbrirNuevaTareaCommand { get; }
+        public ICommand VolverCommand { get; }
 
         public BandejaTareasEnviadasViewModel()
         {
@@ -87,6 +102,7 @@ namespace Hermes.ViewModels
             VerDetalleCommand = new RelayCommand(_ => VerDetalleTarea(), _ => TareaSeleccionada != null);
             ArchivarTareaCommand = new RelayCommand(async _ => await ArchivarTareaAsync(), _ => TareaSeleccionada != null && TareaSeleccionada.EstadoTarea == "Completado");
             AbrirNuevaTareaCommand = new RelayCommand(_ => AbrirNuevaTarea());
+            VolverCommand = new RelayCommand(_ => Volver());
 
             Task.Run(async () => await CargarTareasEnviadasAsync());
         }
@@ -130,7 +146,7 @@ namespace Hermes.ViewModels
             {
                 tareasFiltradas = tareasFiltradas.Where(t =>
                     t.TituloTarea.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
-                    t.DescripcionTarea.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
+                    (t.DescripcionTarea?.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ?? false) ||
                     (t.UsuarioReceptor?.Empleado != null &&
                      (t.UsuarioReceptor.Empleado.NombresEmpleado.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
                       t.UsuarioReceptor.Empleado.ApellidosEmpleado.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase))));
@@ -154,16 +170,9 @@ namespace Hermes.ViewModels
 
         private void VerDetalleTarea()
         {
-            if (TareaSeleccionada == null)
-                return;
-
-            // Abrir ventana de detalle (se creará más adelante)
-            var detalleWindow = new Views.DetalleTareaWindow(TareaSeleccionada);
-            if (detalleWindow.ShowDialog() == true)
-            {
-                // Refrescar lista después de cambios
-                Task.Run(async () => await CargarTareasEnviadasAsync());
-            }
+            // Este método ya no es necesario porque el detalle se muestra inline
+            // La selección de la tarea ya activa el DetalleViewModel automáticamente
+            // Se mantiene para compatibilidad con el comando
         }
 
         private async Task ArchivarTareaAsync()
@@ -209,6 +218,12 @@ namespace Hermes.ViewModels
                 // Refrescar lista después de crear la tarea
                 Task.Run(async () => await CargarTareasEnviadasAsync());
             }
+        }
+
+        private void Volver()
+        {
+            // Limpiar selección para volver a la vista de lista
+            TareaSeleccionada = null;
         }
     }
 }

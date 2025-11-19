@@ -1,6 +1,8 @@
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using Hermes.Commands;
+using Hermes.Models;
 using Hermes.Services;
 
 namespace Hermes.ViewModels
@@ -15,6 +17,8 @@ namespace Hermes.ViewModels
         private int _tareasVencidas;
         private int _tareasObservadas;
         private bool _generandoReporte;
+        private ObservableCollection<Tarea> _tareasUrgentes;
+        private ObservableCollection<Tarea> _actividadReciente;
 
         public int TotalTareas
         {
@@ -52,6 +56,18 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _generandoReporte, value);
         }
 
+        public ObservableCollection<Tarea> TareasUrgentes
+        {
+            get => _tareasUrgentes;
+            set => SetProperty(ref _tareasUrgentes, value);
+        }
+
+        public ObservableCollection<Tarea> ActividadReciente
+        {
+            get => _actividadReciente;
+            set => SetProperty(ref _actividadReciente, value);
+        }
+
         public ICommand GenerarDashboardConsolidadoCommand { get; }
         public ICommand ActualizarEstadisticasCommand { get; }
 
@@ -59,6 +75,9 @@ namespace Hermes.ViewModels
         {
             _tareaService = new TareaService();
             _excelService = new ExcelService();
+
+            TareasUrgentes = new ObservableCollection<Tarea>();
+            ActividadReciente = new ObservableCollection<Tarea>();
 
             GenerarDashboardConsolidadoCommand = new RelayCommand(async _ => await GenerarDashboardConsolidadoAsync());
             ActualizarEstadisticasCommand = new RelayCommand(async _ => await CargarEstadisticasAsync());
@@ -74,6 +93,21 @@ namespace Hermes.ViewModels
 
             var tareas = await _tareaService.ObtenerTodasAsync();
 
+            // Filtrar tareas urgentes (Alta prioridad, no completadas)
+            var tareasUrgentes = tareas
+                .Where(t => (t.PrioridadTarea == "Alta" || t.PrioridadTarea == "Urgente") &&
+                            t.EstadoTarea != "Completado" &&
+                            t.EstadoTarea != "Archivada")
+                .OrderBy(t => t.FechaLimiteTarea)
+                .Take(5)
+                .ToList();
+
+            // Obtener actividad reciente (últimas 5 tareas por fecha de inicio)
+            var actividadReciente = tareas
+                .OrderByDescending(t => t.FechaInicioTarea)
+                .Take(5)
+                .ToList();
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 TotalTareas = tareas.Count;
@@ -81,6 +115,15 @@ namespace Hermes.ViewModels
                 TareasCompletadas = tareas.Count(t => t.EstadoTarea == "Completado");
                 TareasVencidas = tareas.Count(t => t.EstadoTarea == "Vencido");
                 TareasObservadas = tareas.Count(t => t.EstadoTarea == "Observado");
+
+                // Actualizar colecciones
+                TareasUrgentes.Clear();
+                foreach (var tarea in tareasUrgentes)
+                    TareasUrgentes.Add(tarea);
+
+                ActividadReciente.Clear();
+                foreach (var tarea in actividadReciente)
+                    ActividadReciente.Add(tarea);
             });
         }
 

@@ -13,6 +13,8 @@ namespace Hermes.ViewModels
         private string _rolUsuario = string.Empty;
         private bool _puedeEnviarTareas = false;
         private bool _esAdministrador = false;
+        private bool _sidebarColapsado = false;
+        private double _anchoSidebar = 250;
 
         public object? CurrentView
         {
@@ -45,12 +47,30 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _esAdministrador, value);
         }
 
+        // Propiedades para sidebar colapsable
+        public bool SidebarColapsado
+        {
+            get => _sidebarColapsado;
+            set
+            {
+                SetProperty(ref _sidebarColapsado, value);
+                AnchoSidebar = value ? 70 : 250;
+            }
+        }
+
+        public double AnchoSidebar
+        {
+            get => _anchoSidebar;
+            set => SetProperty(ref _anchoSidebar, value);
+        }
+
         public ICommand MostrarGestionEmpleadosCommand { get; }
         public ICommand MostrarGestionTareasCommand { get; }
         public ICommand MostrarDashboardCommand { get; }
         public ICommand MostrarBandejaTareasEnviadasCommand { get; }
         public ICommand MostrarBandejaTareasRecibidasCommand { get; }
         public ICommand CerrarSesionCommand { get; }
+        public ICommand ToggleSidebarCommand { get; }
 
         public MainViewModel()
         {
@@ -83,6 +103,7 @@ namespace Hermes.ViewModels
             MostrarBandejaTareasEnviadasCommand = new RelayCommand(_ => MostrarBandejaTareasEnviadas());
             MostrarBandejaTareasRecibidasCommand = new RelayCommand(_ => MostrarBandejaTareasRecibidas());
             CerrarSesionCommand = new RelayCommand(_ => CerrarSesion());
+            ToggleSidebarCommand = new RelayCommand(_ => ToggleSidebar());
 
             // Mostrar vista por defecto según el rol
             if (PuedeEnviarTareas || EsAdministrador)
@@ -119,6 +140,21 @@ namespace Hermes.ViewModels
         private void MostrarBandejaTareasRecibidas()
         {
             CurrentView = new BandejaTareasRecibidasView();
+        }
+
+        public void MostrarBandejaTareasRecibidasConFiltro(string filtroEstado)
+        {
+            var view = new BandejaTareasRecibidasView();
+            if (view.DataContext is BandejaTareasRecibidasViewModel viewModel)
+            {
+                viewModel.FiltroEstado = filtroEstado == "Total" ? "Todas" : filtroEstado;
+            }
+            CurrentView = view;
+        }
+
+        private void ToggleSidebar()
+        {
+            SidebarColapsado = !SidebarColapsado;
         }
 
         private void CerrarSesion()
