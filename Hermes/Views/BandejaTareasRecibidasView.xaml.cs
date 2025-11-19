@@ -14,10 +14,10 @@ namespace Hermes.Views
         }
 
         /// <summary>
-        /// Manejador para el click en un card de tarea
-        /// Selecciona la tarea y puede ejecutar Ver Detalle
+        /// Manejador para el click en un item de tarea
+        /// Selecciona la tarea y muestra el detalle inline
         /// </summary>
-        private void Card_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TareaItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is Border border && border.Tag is Tarea tarea)
             {
