@@ -53,7 +53,7 @@ namespace Hermes.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hermes;V1.0.0.0;component/views/dashboardview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hermes;component/views/dashboardview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\DashboardView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

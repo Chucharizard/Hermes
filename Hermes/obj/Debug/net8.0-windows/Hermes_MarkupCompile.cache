@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\App.xaml
-18-180806891
+17-1612946553
 
-77736762240
+71-2037463597
 2342084623051
-MainWindow.xaml;Resources\Styles.xaml;Views\BandejaTareasEnviadasView.xaml;Views\BandejaTareasRecibidasView.xaml;Views\ClientesView.xaml;Views\DashboardView.xaml;Views\DetalleTareaView.xaml;Views\DetalleTareaWindow.xaml;Views\EditarEmpleadoWindow.xaml;Views\EditarTareaWindow.xaml;Views\GestionarUsuarioWindow.xaml;Views\GestionEmpleadosView.xaml;Views\GestionTareasView.xaml;Views\LoginWindow.xaml;Views\NuevaTareaWindow.xaml;Views\NuevoEmpleadoWindow.xaml;Views\PropiedadesView.xaml;Views\UsuariosView.xaml;
+MainWindow.xaml;Resources\Styles.xaml;Views\BandejaTareasEnviadasView.xaml;Views\BandejaTareasRecibidasView.xaml;Views\ClientesView.xaml;Views\DashboardView.xaml;Views\DetalleTareaWindow.xaml;Views\EditarEmpleadoWindow.xaml;Views\EditarTareaWindow.xaml;Views\GestionarUsuarioWindow.xaml;Views\GestionEmpleadosView.xaml;Views\GestionTareasView.xaml;Views\LoginWindow.xaml;Views\NuevaTareaWindow.xaml;Views\NuevoEmpleadoWindow.xaml;Views\PropiedadesView.xaml;Views\UsuariosView.xaml;
 
 False
 
