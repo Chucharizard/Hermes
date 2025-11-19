@@ -91,6 +91,7 @@ namespace Hermes.ViewModels
         public ICommand VerDetalleCommand { get; }
         public ICommand CompletarTareaCommand { get; }
         public ICommand DevolverTareaCommand { get; }
+        public ICommand VolverCommand { get; }
 
         public BandejaTareasRecibidasViewModel()
         {
@@ -101,6 +102,7 @@ namespace Hermes.ViewModels
             VerDetalleCommand = new RelayCommand(_ => VerDetalleTarea(), _ => TareaSeleccionada != null);
             CompletarTareaCommand = new RelayCommand(async _ => await CompletarTareaAsync(), _ => TareaSeleccionada != null && TareaSeleccionada.EstadoTarea == "Pendiente");
             DevolverTareaCommand = new RelayCommand(_ => DevolverTarea(), _ => TareaSeleccionada != null && TareaSeleccionada.EstadoTarea == "Pendiente");
+            VolverCommand = new RelayCommand(_ => Volver());
 
             Task.Run(async () => await CargarTareasRecibidasAsync());
         }
@@ -218,6 +220,12 @@ namespace Hermes.ViewModels
             // Abrir ventana de detalle para agregar comentario de observación
             // La lógica de devolución se manejará en la ventana de detalle
             VerDetalleTarea();
+        }
+
+        private void Volver()
+        {
+            // Limpiar selección para volver a la vista de lista
+            TareaSeleccionada = null;
         }
     }
 }

@@ -137,38 +137,32 @@
         </Border>
 
         <!-- ========================================== -->
-        <!-- LAYOUT CON PANEL LATERAL INTEGRADO (Estilo Teams) -->
+        <!-- VISTA DE LISTA (Mostrar cuando no hay tarea seleccionada) -->
         <!-- ========================================== -->
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <!-- Lista: 400px cuando hay selección, * cuando no hay -->
-                <ColumnDefinition MinWidth="300">
-                    <ColumnDefinition.Width>
-                        <Binding Path="TareaSeleccionada"
-                                 Converter="{StaticResource TareaSeleccionadaToGridLengthConverter}"
-                                 ConverterParameter="Lista"/>
-                    </ColumnDefinition.Width>
-                </ColumnDefinition>
-                <!-- Separador: 12px cuando hay selección, 0 cuando no hay -->
-                <ColumnDefinition>
-                    <ColumnDefinition.Width>
-                        <Binding Path="TareaSeleccionada"
-                                 Converter="{StaticResource TareaSeleccionadaToGridLengthConverter}"
-                                 ConverterParameter="Separador"/>
-                    </ColumnDefinition.Width>
-                </ColumnDefinition>
-                <!-- Detalle: * cuando hay selección, 0 cuando no hay -->
-                <ColumnDefinition MinWidth="500">
-                    <ColumnDefinition.Width>
-                        <Binding Path="TareaSeleccionada"
-                                 Converter="{StaticResource TareaSeleccionadaToGridLengthConverter}"
-                                 ConverterParameter="Detalle"/>
-                    </ColumnDefinition.Width>
-                </ColumnDefinition>
-            </Grid.ColumnDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
             <!-- LISTA DE TAREAS -->
-            <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="0">
+            <Border Background="White" CornerRadius="8" Padding="0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
                 </Border.Effect>
@@ -291,11 +285,8 @@
                 </Grid>
             </Border>
 
-            <!-- PANEL DE DETALLE LATERAL -->
-            <Border Grid.Column="2" Background="White" CornerRadius="8">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
-                </Border.Effect>
+            <!-- VISTA DE DETALLE COMPLETO (Reemplazo total estilo Teams) -->
+            <Border Background="White" CornerRadius="8" Padding="0">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="Visibility" Value="Visible"/>
@@ -306,14 +297,37 @@
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                </Border.Effect>
 
-                <ContentControl Content="{Binding DetalleViewModel}">
-                    <ContentControl.ContentTemplate>
-                        <DataTemplate>
-                            <views:DetalleTareaView/>
-                        </DataTemplate>
-                    </ContentControl.ContentTemplate>
-                </ContentControl>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Botón Volver -->
+                    <Border Grid.Row="0" Background="#F5F8FA" Padding="12" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+                        <Button Content="← Volver a Tareas Enviadas"
+                                Command="{Binding VolverCommand}"
+                                Style="{StaticResource InfoButtonStyle}"
+                                HorizontalAlignment="Left"
+                                Padding="12,8"
+                                FontSize="12"/>
+                    </Border>
+
+                    <!-- Contenido del Detalle -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ContentControl Content="{Binding DetalleViewModel}">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <views:DetalleTareaView/>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+                    </ScrollViewer>
+                </Grid>
             </Border>
         </Grid>
     </Grid>
