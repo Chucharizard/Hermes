@@ -480,7 +480,7 @@
                             </Style>
                         </ScrollViewer.Style>
 
-                        <StackPanel Padding="20">
+                        <StackPanel Margin="20">
                             <!-- Encabezado -->
                             <TextBlock Text="📋 Editar Tarea"
                                        FontSize="18"
