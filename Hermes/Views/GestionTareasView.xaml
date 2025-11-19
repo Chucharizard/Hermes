@@ -37,6 +37,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -135,9 +136,123 @@
         </Border>
 
         <!-- ========================================== -->
+        <!-- CALENDARIO SEMANAL -->
+        <!-- ========================================== -->
+        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="15" Margin="0,0,0,10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.08" Color="#000000"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Título del calendario y navegación -->
+                <Grid Grid.Row="0" Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="📅 Calendario Semanal"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               Foreground="#2C3E50"
+                               VerticalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding TituloSemana}"
+                               FontSize="12"
+                               Foreground="#7F8C8D"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                    <Button Grid.Column="2"
+                            Content="←"
+                            Command="{Binding SemanaAnteriorCommand}"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Padding="10,4"
+                            FontSize="14"
+                            Margin="0,0,6,0"/>
+
+                    <Button Grid.Column="3"
+                            Content="→"
+                            Command="{Binding SemanaSiguienteCommand}"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Padding="10,4"
+                            FontSize="14"/>
+                </Grid>
+
+                <!-- Días de la semana -->
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding DiasSemana}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1" Columns="7"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="White"
+                                    BorderBrush="#E0E0E0"
+                                    BorderThickness="1"
+                                    Margin="2"
+                                    Padding="8"
+                                    CornerRadius="6"
+                                    Cursor="Hand">
+                                <Border.InputBindings>
+                                    <MouseBinding Gesture="LeftClick"
+                                                  Command="{Binding DataContext.SeleccionarDiaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                  CommandParameter="{Binding}"/>
+                                </Border.InputBindings>
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#F5F8FA"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding EsSeleccionado}" Value="True">
+                                                <Setter Property="Background" Value="#E3F2FD"/>
+                                                <Setter Property="BorderBrush" Value="#2196F3"/>
+                                                <Setter Property="BorderThickness" Value="2"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+
+                                <StackPanel>
+                                    <TextBlock Text="{Binding DiaNombre}"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               Foreground="#7F8C8D"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,4"/>
+
+                                    <TextBlock Text="{Binding DiaNumero}"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="#2C3E50"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,4"/>
+
+                                    <TextBlock Text="{Binding Indicador}"
+                                               FontSize="20"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+
+        <!-- ========================================== -->
         <!-- LAYOUT MASTER-DETAIL (Tipo Gmail/Outlook) -->
         <!-- ========================================== -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <!-- Lista de tareas (master) -->
                 <ColumnDefinition Width="380"/>
@@ -314,7 +429,7 @@
             </Border>
 
             <!-- ========================================== -->
-            <!-- DETAIL: VISTA DE DETALLE DE TAREA -->
+            <!-- DETAIL: PANEL DE EDICIÓN DE TAREA -->
             <!-- ========================================== -->
             <Border Grid.Column="2" Background="White" CornerRadius="8">
                 <Border.Effect>
@@ -346,16 +461,16 @@
                                    Foreground="#95A5A6"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,5"/>
-                        <TextBlock Text="para ver los detalles y gestionar"
+                        <TextBlock Text="para editarla y gestionarla"
                                    FontSize="14"
                                    Foreground="#BDC3C7"
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- Mostrar DetalleTareaView cuando hay tarea seleccionada -->
-                    <ContentControl Content="{Binding DetalleViewModel}">
-                        <ContentControl.Style>
-                            <Style TargetType="ContentControl">
+                    <!-- Panel de Edición cuando hay tarea seleccionada -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer.Style>
+                            <Style TargetType="ScrollViewer">
                                 <Setter Property="Visibility" Value="Visible"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
@@ -363,13 +478,126 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </ContentControl.Style>
-                        <ContentControl.ContentTemplate>
-                            <DataTemplate>
-                                <views:DetalleTareaView/>
-                            </DataTemplate>
-                        </ContentControl.ContentTemplate>
-                    </ContentControl>
+                        </ScrollViewer.Style>
+
+                        <StackPanel Padding="20">
+                            <!-- Encabezado -->
+                            <TextBlock Text="📋 Editar Tarea"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Foreground="#2C3E50"
+                                       Margin="0,0,0,20"/>
+
+                            <!-- Título -->
+                            <TextBlock Text="Título:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding TituloEditable, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource ModernTextBoxStyle}"
+                                     Margin="0,0,0,15"/>
+
+                            <!-- Descripción -->
+                            <TextBlock Text="Descripción:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding DescripcionEditable, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource ModernTextBoxStyle}"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     Height="100"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Margin="0,0,0,15"/>
+
+                            <!-- Estado y Prioridad (Grid 2 columnas) -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Estado -->
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Estado:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                    <ComboBox ItemsSource="{Binding EstadosDisponibles}"
+                                              SelectedItem="{Binding EstadoEditable}"
+                                              Style="{StaticResource ModernComboBoxStyle}"/>
+                                </StackPanel>
+
+                                <!-- Prioridad -->
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Prioridad:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                    <ComboBox ItemsSource="{Binding PrioridadesDisponibles}"
+                                              SelectedItem="{Binding PrioridadEditable}"
+                                              Style="{StaticResource ModernComboBoxStyle}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Fecha Inicio y Fecha Límite (Grid 2 columnas) -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Fecha Inicio -->
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Fecha Inicio:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                    <DatePicker SelectedDate="{Binding FechaInicioEditable}"
+                                                Style="{StaticResource ModernDatePickerStyle}"/>
+                                </StackPanel>
+
+                                <!-- Fecha Límite -->
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Fecha Límite:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                    <DatePicker SelectedDate="{Binding FechaLimiteEditable}"
+                                                Style="{StaticResource ModernDatePickerStyle}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Emisor (solo lectura) -->
+                            <TextBlock Text="Emisor:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <Border Background="#ECF0F1"
+                                    BorderBrush="#BDC3C7"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Padding="10,8"
+                                    Margin="0,0,0,15">
+                                <TextBlock Text="{Binding EmisorInfo}"
+                                           Foreground="#7F8C8D"
+                                           FontStyle="Italic"/>
+                            </Border>
+
+                            <!-- Receptor -->
+                            <TextBlock Text="Receptor:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <ComboBox ItemsSource="{Binding UsuariosDisponibles}"
+                                      SelectedItem="{Binding UsuarioReceptorEditable}"
+                                      DisplayMemberPath="Empleado.NombresEmpleado"
+                                      Style="{StaticResource ModernComboBoxStyle}"
+                                      Margin="0,0,0,20"/>
+
+                            <!-- Botones de acción -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0"
+                                        Content="💾 Guardar Cambios"
+                                        Command="{Binding GuardarCambiosCommand}"
+                                        Style="{StaticResource SuccessButtonStyle}"
+                                        Padding="12,10"
+                                        FontSize="13"/>
+
+                                <Button Grid.Column="2"
+                                        Content="🗑 Eliminar Tarea"
+                                        Command="{Binding EliminarTareaCommand}"
+                                        CommandParameter="{Binding TareaSeleccionada}"
+                                        Style="{StaticResource DangerButtonStyle}"
+                                        Padding="12,10"
+                                        FontSize="13"/>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </Border>
         </Grid>

@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -9,14 +10,53 @@ using Hermes.Services;
 
 namespace Hermes.ViewModels
 {
+    public class DiaCalendario : BaseViewModel
+    {
+        private DateTime _fecha;
+        private string _indicador = "-";
+        private bool _esSeleccionado;
+
+        public DateTime Fecha
+        {
+            get => _fecha;
+            set => SetProperty(ref _fecha, value);
+        }
+
+        public string DiaNombre => _fecha.ToString("ddd", new CultureInfo("es-ES")).Substring(0, 1).ToUpper();
+        public int DiaNumero => _fecha.Day;
+
+        public string Indicador
+        {
+            get => _indicador;
+            set => SetProperty(ref _indicador, value);
+        }
+
+        public bool EsSeleccionado
+        {
+            get => _esSeleccionado;
+            set => SetProperty(ref _esSeleccionado, value);
+        }
+    }
+
     public class GestionTareasViewModel : BaseViewModel
     {
         private readonly TareaService _tareaService;
+        private readonly UsuarioService _usuarioService;
         private ObservableCollection<Tarea> _tareas = new();
         private ObservableCollection<Tarea> _tareasFiltradas = new();
         private Tarea? _tareaSeleccionada;
-        private DetalleTareaViewModel? _detalleViewModel;
         private string _filtroTexto = string.Empty;
+        private DateTime _semanaActual;
+        private DateTime? _diaSeleccionado;
+
+        // Propiedades editables
+        private string _tituloEditable = string.Empty;
+        private string _descripcionEditable = string.Empty;
+        private string _estadoEditable = "Pendiente";
+        private string _prioridadEditable = "Media";
+        private DateTime _fechaInicioEditable = DateTime.Now;
+        private DateTime _fechaLimiteEditable = DateTime.Now.AddDays(7);
+        private Usuario? _usuarioReceptorEditable;
 
         public ObservableCollection<Tarea> Tareas
         {
@@ -37,16 +77,9 @@ namespace Hermes.ViewModels
             {
                 if (SetProperty(ref _tareaSeleccionada, value))
                 {
-                    // Crear ViewModel de detalle cuando se selecciona una tarea
-                    DetalleViewModel = value != null ? new DetalleTareaViewModel(value) : null;
+                    CargarDatosEditables();
                 }
             }
-        }
-
-        public DetalleTareaViewModel? DetalleViewModel
-        {
-            get => _detalleViewModel;
-            set => SetProperty(ref _detalleViewModel, value);
         }
 
         public string FiltroTexto
@@ -59,6 +92,101 @@ namespace Hermes.ViewModels
             }
         }
 
+        // Calendario
+        public DateTime SemanaActual
+        {
+            get => _semanaActual;
+            set
+            {
+                SetProperty(ref _semanaActual, value);
+                ActualizarDiasSemana();
+            }
+        }
+
+        public DateTime? DiaSeleccionado
+        {
+            get => _diaSeleccionado;
+            set
+            {
+                SetProperty(ref _diaSeleccionado, value);
+                FiltrarTareas();
+            }
+        }
+
+        public string TituloSemana => $"Semana del {InicioSemana:dd/MM} al {FinSemana:dd/MM/yyyy}";
+
+        public DateTime InicioSemana => _semanaActual.Date.AddDays(-(int)_semanaActual.DayOfWeek + (int)DayOfWeek.Monday);
+        public DateTime FinSemana => InicioSemana.AddDays(6);
+
+        // Días de la semana
+        public ObservableCollection<DiaCalendario> DiasSemana { get; } = new();
+
+        // Propiedades editables
+        public string TituloEditable
+        {
+            get => _tituloEditable;
+            set => SetProperty(ref _tituloEditable, value);
+        }
+
+        public string DescripcionEditable
+        {
+            get => _descripcionEditable;
+            set => SetProperty(ref _descripcionEditable, value);
+        }
+
+        public string EstadoEditable
+        {
+            get => _estadoEditable;
+            set => SetProperty(ref _estadoEditable, value);
+        }
+
+        public string PrioridadEditable
+        {
+            get => _prioridadEditable;
+            set => SetProperty(ref _prioridadEditable, value);
+        }
+
+        public DateTime FechaInicioEditable
+        {
+            get => _fechaInicioEditable;
+            set => SetProperty(ref _fechaInicioEditable, value);
+        }
+
+        public DateTime FechaLimiteEditable
+        {
+            get => _fechaLimiteEditable;
+            set => SetProperty(ref _fechaLimiteEditable, value);
+        }
+
+        public Usuario? UsuarioReceptorEditable
+        {
+            get => _usuarioReceptorEditable;
+            set => SetProperty(ref _usuarioReceptorEditable, value);
+        }
+
+        public string EmisorInfo => TareaSeleccionada?.UsuarioEmisor?.Empleado != null
+            ? $"{TareaSeleccionada.UsuarioEmisor.Empleado.NombresEmpleado} {TareaSeleccionada.UsuarioEmisor.Empleado.ApellidosEmpleado}"
+            : "No especificado";
+
+        public ObservableCollection<Usuario> UsuariosDisponibles { get; } = new();
+
+        public List<string> EstadosDisponibles { get; } = new()
+        {
+            "Pendiente",
+            "Completado",
+            "Vencido",
+            "Observado",
+            "Archivado"
+        };
+
+        public List<string> PrioridadesDisponibles { get; } = new()
+        {
+            "Baja",
+            "Media",
+            "Alta",
+            "Urgente"
+        };
+
         public int TotalTareas => Tareas?.Count ?? 0;
         public int TareasPendientes => Tareas?.Count(t => t.EstadoTarea == "Pendiente") ?? 0;
         public int TareasCompletadas => Tareas?.Count(t => t.EstadoTarea == "Completado") ?? 0;
@@ -69,21 +197,36 @@ namespace Hermes.ViewModels
         public ICommand EditarTareaCommand { get; }
         public ICommand EliminarTareaCommand { get; }
         public ICommand VerDetalleCommand { get; }
+        public ICommand SemanaAnteriorCommand { get; }
+        public ICommand SemanaSiguienteCommand { get; }
+        public ICommand SeleccionarDiaCommand { get; }
+        public ICommand GuardarCambiosCommand { get; }
 
         public GestionTareasViewModel()
         {
             _tareaService = new TareaService();
+            _usuarioService = new UsuarioService();
             Tareas = new ObservableCollection<Tarea>();
             TareasFiltradas = new ObservableCollection<Tarea>();
+            _semanaActual = DateTime.Now;
 
             CargarTareasCommand = new RelayCommand(async _ => await CargarTareasAsync());
             AbrirNuevaTareaCommand = new RelayCommand(_ => AbrirNuevaTarea());
             EditarTareaCommand = new RelayCommand(tarea => EditarTarea(tarea as Tarea));
-            EliminarTareaCommand = new RelayCommand(tarea => EliminarTarea(tarea as Tarea));
+            EliminarTareaCommand = new RelayCommand(async tarea => await EliminarTareaAsync(tarea as Tarea));
             VerDetalleCommand = new RelayCommand(tarea => VerDetalle(tarea as Tarea));
+            SemanaAnteriorCommand = new RelayCommand(_ => SemanaActual = SemanaActual.AddDays(-7));
+            SemanaSiguienteCommand = new RelayCommand(_ => SemanaActual = SemanaActual.AddDays(7));
+            SeleccionarDiaCommand = new RelayCommand(dia => SeleccionarDia(dia as DiaCalendario));
+            GuardarCambiosCommand = new RelayCommand(async _ => await GuardarCambiosAsync(), _ => TareaSeleccionada != null);
 
             // Cargar datos iniciales
-            Task.Run(async () => await CargarTareasAsync());
+            ActualizarDiasSemana();
+            Task.Run(async () =>
+            {
+                await CargarTareasAsync();
+                await CargarUsuariosAsync();
+            });
         }
 
         private async Task CargarTareasAsync()
@@ -113,20 +256,39 @@ namespace Hermes.ViewModels
         {
             TareasFiltradas.Clear();
 
-            var filtradas = string.IsNullOrWhiteSpace(FiltroTexto)
-                ? Tareas
-                : Tareas.Where(t =>
+            var filtradas = Tareas.AsEnumerable();
+
+            // Filtrar por día seleccionado
+            if (DiaSeleccionado.HasValue)
+            {
+                var diaInicio = DiaSeleccionado.Value.Date;
+                var diaFin = diaInicio.AddDays(1);
+
+                filtradas = filtradas.Where(t =>
+                    (t.FechaInicioTarea >= diaInicio && t.FechaInicioTarea < diaFin) ||
+                    (t.FechaLimiteTarea.HasValue && t.FechaLimiteTarea.Value >= diaInicio && t.FechaLimiteTarea.Value < diaFin) ||
+                    (t.FechaCompletadaTarea.HasValue && t.FechaCompletadaTarea.Value >= diaInicio && t.FechaCompletadaTarea.Value < diaFin));
+            }
+
+            // Filtrar por texto
+            if (!string.IsNullOrWhiteSpace(FiltroTexto))
+            {
+                filtradas = filtradas.Where(t =>
                     t.TituloTarea.ToLower().Contains(FiltroTexto.ToLower()) ||
                     (t.DescripcionTarea?.ToLower().Contains(FiltroTexto.ToLower()) ?? false) ||
                     t.EstadoTarea.ToLower().Contains(FiltroTexto.ToLower()) ||
                     t.PrioridadTarea.ToLower().Contains(FiltroTexto.ToLower()) ||
                     (t.UsuarioEmisor?.Empleado?.NombresEmpleado.ToLower().Contains(FiltroTexto.ToLower()) ?? false) ||
                     (t.UsuarioReceptor?.Empleado?.NombresEmpleado.ToLower().Contains(FiltroTexto.ToLower()) ?? false));
+            }
 
             foreach (var tarea in filtradas)
             {
                 TareasFiltradas.Add(tarea);
             }
+
+            // Actualizar indicadores del calendario
+            ActualizarIndicadoresCalendario();
         }
 
         private void AbrirNuevaTarea()
@@ -151,7 +313,7 @@ namespace Hermes.ViewModels
             }
         }
 
-        private async void EliminarTarea(Tarea? tarea)
+        private async Task EliminarTareaAsync(Tarea? tarea)
         {
             if (tarea == null) return;
 
@@ -167,6 +329,7 @@ namespace Hermes.ViewModels
                 {
                     DialogHelper.MostrarExito("La tarea ha sido eliminada exitosamente.");
                     await CargarTareasAsync();
+                    TareaSeleccionada = null;
                 }
                 else
                 {
@@ -213,6 +376,172 @@ namespace Hermes.ViewModels
                 "Informacion de la Tarea",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
+        }
+
+        private async Task CargarUsuariosAsync()
+        {
+            var usuarios = await _usuarioService.ObtenerTodosAsync();
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                UsuariosDisponibles.Clear();
+                foreach (var usuario in usuarios)
+                {
+                    UsuariosDisponibles.Add(usuario);
+                }
+            });
+        }
+
+        private void ActualizarDiasSemana()
+        {
+            DiasSemana.Clear();
+
+            var inicioSemana = InicioSemana;
+
+            for (int i = 0; i < 7; i++)
+            {
+                var dia = new DiaCalendario
+                {
+                    Fecha = inicioSemana.AddDays(i),
+                    EsSeleccionado = false
+                };
+                DiasSemana.Add(dia);
+            }
+
+            ActualizarIndicadoresCalendario();
+            OnPropertyChanged(nameof(TituloSemana));
+        }
+
+        private void ActualizarIndicadoresCalendario()
+        {
+            foreach (var dia in DiasSemana)
+            {
+                var diaInicio = dia.Fecha.Date;
+                var diaFin = diaInicio.AddDays(1);
+
+                var tareasDelDia = Tareas.Where(t =>
+                    (t.FechaInicioTarea >= diaInicio && t.FechaInicioTarea < diaFin) ||
+                    (t.FechaLimiteTarea.HasValue && t.FechaLimiteTarea.Value >= diaInicio && t.FechaLimiteTarea.Value < diaFin) ||
+                    (t.FechaCompletadaTarea.HasValue && t.FechaCompletadaTarea.Value >= diaInicio && t.FechaCompletadaTarea.Value < diaFin)).ToList();
+
+                if (!tareasDelDia.Any())
+                {
+                    dia.Indicador = "-";
+                }
+                else if (tareasDelDia.Any(t => t.EstadoTarea == "Completado"))
+                {
+                    dia.Indicador = "🟢";
+                }
+                else if (tareasDelDia.Any(t => t.EstadoTarea == "Vencido"))
+                {
+                    dia.Indicador = "⚪";
+                }
+                else
+                {
+                    dia.Indicador = "🔴";
+                }
+            }
+        }
+
+        private void SeleccionarDia(DiaCalendario? dia)
+        {
+            if (dia == null) return;
+
+            // Deseleccionar todos los días
+            foreach (var d in DiasSemana)
+            {
+                d.EsSeleccionado = false;
+            }
+
+            // Si se selecciona el mismo día, deseleccionar
+            if (DiaSeleccionado == dia.Fecha.Date)
+            {
+                DiaSeleccionado = null;
+            }
+            else
+            {
+                dia.EsSeleccionado = true;
+                DiaSeleccionado = dia.Fecha.Date;
+            }
+        }
+
+        private void CargarDatosEditables()
+        {
+            if (TareaSeleccionada == null)
+            {
+                TituloEditable = string.Empty;
+                DescripcionEditable = string.Empty;
+                EstadoEditable = "Pendiente";
+                PrioridadEditable = "Media";
+                FechaInicioEditable = DateTime.Now;
+                FechaLimiteEditable = DateTime.Now.AddDays(7);
+                UsuarioReceptorEditable = null;
+            }
+            else
+            {
+                TituloEditable = TareaSeleccionada.TituloTarea;
+                DescripcionEditable = TareaSeleccionada.DescripcionTarea ?? string.Empty;
+                EstadoEditable = TareaSeleccionada.EstadoTarea;
+                PrioridadEditable = TareaSeleccionada.PrioridadTarea;
+                FechaInicioEditable = TareaSeleccionada.FechaInicioTarea;
+                FechaLimiteEditable = TareaSeleccionada.FechaLimiteTarea ?? DateTime.Now.AddDays(7);
+                UsuarioReceptorEditable = TareaSeleccionada.UsuarioReceptor;
+            }
+
+            OnPropertyChanged(nameof(EmisorInfo));
+        }
+
+        private async Task GuardarCambiosAsync()
+        {
+            if (TareaSeleccionada == null) return;
+
+            // Validaciones
+            if (string.IsNullOrWhiteSpace(TituloEditable))
+            {
+                DialogHelper.MostrarError("El título es obligatorio.");
+                return;
+            }
+
+            if (UsuarioReceptorEditable == null)
+            {
+                DialogHelper.MostrarError("Debe seleccionar un usuario receptor.");
+                return;
+            }
+
+            if (FechaLimiteEditable < FechaInicioEditable)
+            {
+                DialogHelper.MostrarError("La fecha límite no puede ser anterior a la fecha de inicio.");
+                return;
+            }
+
+            try
+            {
+                // Actualizar la tarea con los valores editados
+                TareaSeleccionada.TituloTarea = TituloEditable;
+                TareaSeleccionada.DescripcionTarea = DescripcionEditable;
+                TareaSeleccionada.EstadoTarea = EstadoEditable;
+                TareaSeleccionada.PrioridadTarea = PrioridadEditable;
+                TareaSeleccionada.FechaInicioTarea = FechaInicioEditable;
+                TareaSeleccionada.FechaLimiteTarea = FechaLimiteEditable;
+                TareaSeleccionada.IdUsuarioReceptor = UsuarioReceptorEditable.IdUsuario;
+                TareaSeleccionada.UsuarioReceptor = UsuarioReceptorEditable;
+
+                var actualizado = await _tareaService.ActualizarAsync(TareaSeleccionada);
+
+                if (actualizado)
+                {
+                    DialogHelper.MostrarExito("Los cambios se han guardado exitosamente.");
+                    await CargarTareasAsync();
+                }
+                else
+                {
+                    DialogHelper.MostrarError("No se pudieron guardar los cambios. Por favor, intente nuevamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.MostrarError($"Error al guardar los cambios:\n{ex.Message}");
+            }
         }
     }
 }
