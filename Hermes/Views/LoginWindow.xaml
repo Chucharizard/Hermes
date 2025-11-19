@@ -26,10 +26,45 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Border CornerRadius="15" Background="White">
+    <Border CornerRadius="20" Background="White">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.3" Color="#2C3E50"/>
+            <DropShadowEffect BlurRadius="40" ShadowDepth="5" Opacity="0.4" Color="#0d1b2a"/>
         </Border.Effect>
+
+        <!-- Animación de entrada -->
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                       From="0" To="1" Duration="0:0:0.6">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                       From="0.95" To="1" Duration="0:0:0.6">
+                            <DoubleAnimation.EasingFunction>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                       From="0.95" To="1" Duration="0:0:0.6">
+                            <DoubleAnimation.EasingFunction>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
+
+        <Border.RenderTransform>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+        </Border.RenderTransform>
+        <Border.RenderTransformOrigin>
+            <Point X="0.5" Y="0.5"/>
+        </Border.RenderTransformOrigin>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -37,17 +72,57 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Panel Izquierdo - Branding -->
-            <Border Grid.Column="0" CornerRadius="15,0,0,15"
-                    Background="{StaticResource PrimaryGradientVertical}">
+            <!-- Panel Izquierdo - Branding (Nueva paleta oscura) -->
+            <Border Grid.Column="0" CornerRadius="20,0,0,20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1b263b" Offset="0"/>
+                        <GradientStop Color="#0d1b2a" Offset="0.5"/>
+                        <GradientStop Color="#1b263b" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <!-- Overlay con patrón de puntos -->
+                <Border.OpacityMask>
+                    <VisualBrush TileMode="Tile" Viewport="0,0,20,20" ViewportUnits="Absolute" Viewbox="0,0,10,10" ViewboxUnits="Absolute">
+                        <VisualBrush.Visual>
+                            <Canvas>
+                                <Ellipse Fill="White" Width="1" Height="1" Canvas.Left="5" Canvas.Top="5" Opacity="0.1"/>
+                            </Canvas>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.OpacityMask>
 
                 <Grid>
                     <StackPanel VerticalAlignment="Center" Margin="40">
-                        <!-- Logo / Icono -->
+                        <!-- Logo / Icono con efecto glassmorphism -->
                         <Border Width="120" Height="120"
-                                Background="White"
                                 CornerRadius="60"
-                                Margin="0,0,0,30">
+                                Margin="0,0,0,30"
+                                Background="#20FFFFFF"
+                                BorderBrush="#40FFFFFF"
+                                BorderThickness="2"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5" Color="#5DADE2"/>
+                            </Border.Effect>
+                            <Border.RenderTransform>
+                                <RotateTransform Angle="0"/>
+                            </Border.RenderTransform>
+                            <Border.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                                           From="0" To="5" Duration="0:0:3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Border.Triggers>
                             <TextBlock Text="🏢"
                                        FontSize="60"
                                        HorizontalAlignment="Center"
@@ -64,30 +139,77 @@
 
                         <TextBlock Text="Gestión de Tareas y Empleados"
                                    FontSize="16"
-                                   Foreground="#E0E0E0"
+                                   Foreground="#e0e1dd"
                                    HorizontalAlignment="Center"
                                    TextAlignment="Center"
                                    TextWrapping="Wrap"
-                                   Margin="0,0,0,30"/>
+                                   Margin="0,0,0,30"
+                                   Opacity="0.9"/>
 
-                        <Border BorderBrush="White"
-                                BorderThickness="1"
-                                CornerRadius="5"
-                                Padding="15"
-                                Opacity="0.3">
+                        <!-- Panel de características con glassmorphism -->
+                        <Border BorderBrush="#60FFFFFF"
+                                BorderThickness="2"
+                                CornerRadius="12"
+                                Padding="20,15"
+                                Background="#15FFFFFF">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                            </Border.Effect>
                             <StackPanel>
-                                <TextBlock Text="✓ Control de tareas"
-                                           Foreground="White"
+                                <TextBlock Foreground="White"
                                            FontSize="14"
-                                           Margin="0,5"/>
-                                <TextBlock Text="✓ Gestión de empleados"
-                                           Foreground="White"
+                                           Margin="0,5"
+                                           Opacity="0">
+                                    <Run Text="✓" FontWeight="Bold" Foreground="#5DADE2"/>
+                                    <Run Text=" Control de tareas"/>
+                                    <TextBlock.Triggers>
+                                        <EventTrigger RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                   From="0" To="1" Duration="0:0:0.5"
+                                                                   BeginTime="0:0:0.3"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </TextBlock.Triggers>
+                                </TextBlock>
+                                <TextBlock Foreground="White"
                                            FontSize="14"
-                                           Margin="0,5"/>
-                                <TextBlock Text="✓ Reportes en Excel"
-                                           Foreground="White"
+                                           Margin="0,5"
+                                           Opacity="0">
+                                    <Run Text="✓" FontWeight="Bold" Foreground="#5DADE2"/>
+                                    <Run Text=" Gestión de empleados"/>
+                                    <TextBlock.Triggers>
+                                        <EventTrigger RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                   From="0" To="1" Duration="0:0:0.5"
+                                                                   BeginTime="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </TextBlock.Triggers>
+                                </TextBlock>
+                                <TextBlock Foreground="White"
                                            FontSize="14"
-                                           Margin="0,5"/>
+                                           Margin="0,5"
+                                           Opacity="0">
+                                    <Run Text="✓" FontWeight="Bold" Foreground="#5DADE2"/>
+                                    <Run Text=" Reportes en Excel"/>
+                                    <TextBlock.Triggers>
+                                        <EventTrigger RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                   From="0" To="1" Duration="0:0:0.5"
+                                                                   BeginTime="0:0:0.7"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </TextBlock.Triggers>
+                                </TextBlock>
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -124,68 +246,127 @@
                     <TextBlock Text="Bienvenido"
                                FontSize="36"
                                FontWeight="Bold"
-                               Foreground="#2C3E50"
-                               Margin="0,0,0,10"/>
+                               Foreground="#0d1b2a"
+                               Margin="0,0,0,10"
+                               Opacity="0">
+                        <TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                       From="0" To="1" Duration="0:0:0.5"
+                                                       BeginTime="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>
+                    </TextBlock>
 
                     <TextBlock Text="Inicia sesión para continuar"
                                FontSize="16"
-                               Foreground="#7F8C8D"
-                               Margin="0,0,0,40"/>
+                               Foreground="#778da9"
+                               Margin="0,0,0,40"
+                               Opacity="0">
+                        <TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                       From="0" To="1" Duration="0:0:0.5"
+                                                       BeginTime="0:0:0.4"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>
+                    </TextBlock>
 
                     <!-- CI Empleado -->
                     <TextBlock Text="CI de Empleado"
                                FontSize="13"
-                               Foreground="#34495E"
+                               Foreground="#1b263b"
                                FontWeight="SemiBold"
                                Margin="0,0,0,8"/>
 
-                    <Border BorderBrush="#BDC3C7"
-                            BorderThickness="1"
-                            CornerRadius="8"
-                            Background="#F8F9FA"
+                    <Border x:Name="CiBorder"
+                            BorderBrush="#415a77"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Background="#FFFFFF"
                             Margin="0,0,0,20">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#5DADE2"/>
+                        </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#5DADE2"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <Grid>
                             <TextBlock Text="👤"
                                        FontSize="18"
-                                       Foreground="#95A5A6"
+                                       Foreground="#778da9"
                                        VerticalAlignment="Center"
                                        Margin="15,0,0,0"/>
-                            <TextBox Text="{Binding CiEmpleado, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="45"
+                            <TextBox x:Name="CiTextBox"
+                                     Text="{Binding CiEmpleado, UpdateSourceTrigger=PropertyChanged}"
+                                     Height="50"
                                      FontSize="15"
                                      Padding="45,10,15,10"
                                      Background="Transparent"
                                      BorderThickness="0"
-                                     VerticalContentAlignment="Center"/>
+                                     Foreground="#0d1b2a"
+                                     VerticalContentAlignment="Center"
+                                     GotFocus="Input_GotFocus"
+                                     LostFocus="Input_LostFocus"/>
                         </Grid>
                     </Border>
 
                     <!-- Password -->
                     <TextBlock Text="Contraseña"
                                FontSize="13"
-                               Foreground="#34495E"
+                               Foreground="#1b263b"
                                FontWeight="SemiBold"
                                Margin="0,0,0,8"/>
 
-                    <Border BorderBrush="#BDC3C7"
-                            BorderThickness="1"
-                            CornerRadius="8"
-                            Background="#F8F9FA"
+                    <Border x:Name="PasswordBorder"
+                            BorderBrush="#415a77"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Background="#FFFFFF"
                             Margin="0,0,0,25">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#5DADE2"/>
+                        </Border.Effect>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#5DADE2"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <Grid>
                             <TextBlock Text="🔒"
                                        FontSize="18"
-                                       Foreground="#95A5A6"
+                                       Foreground="#778da9"
                                        VerticalAlignment="Center"
                                        Margin="15,0,0,0"/>
                             <PasswordBox x:Name="PasswordBox"
-                                         Height="45"
+                                         Height="50"
                                          FontSize="15"
                                          Padding="45,10,15,10"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Foreground="#0d1b2a"
                                          VerticalContentAlignment="Center"
-                                         PasswordChanged="PasswordBox_PasswordChanged"/>
+                                         PasswordChanged="PasswordBox_PasswordChanged"
+                                         GotFocus="Input_GotFocus"
+                                         LostFocus="Input_LostFocus"/>
                         </Grid>
                     </Border>
 
@@ -264,15 +445,67 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- Botón Login -->
+                    <!-- Botón Login con efecto moderno -->
                     <Button Content="Iniciar Sesión"
                             Command="{Binding LoginCommand}"
-                            Height="50"
+                            Height="55"
                             FontSize="16"
-                            Margin="0,10,0,0">
+                            FontWeight="SemiBold"
+                            Margin="0,10,0,0"
+                            Cursor="Hand"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Button.RenderTransform>
                         <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+                            <Style TargetType="Button">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#5DADE2" Offset="0"/>
+                                            <GradientStop Color="#3498DB" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="12">
+                                                <Border.Effect>
+                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="#3498DB"/>
+                                                </Border.Effect>
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                                 <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.02" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.02" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
                                     <DataTrigger Binding="{Binding IsLoading}" Value="True">
                                         <Setter Property="IsEnabled" Value="False"/>
                                         <Setter Property="Opacity" Value="0.7"/>
@@ -282,12 +515,12 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Loading Indicator -->
+                    <!-- Loading Indicator con nuevo color -->
                     <ProgressBar IsIndeterminate="True"
                                  Height="4"
                                  Margin="0,15,0,0"
-                                 Foreground="#667eea"
-                                 Background="#E0E0E0"
+                                 Foreground="#5DADE2"
+                                 Background="#e0e1dd"
                                  BorderThickness="0"
                                  Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
