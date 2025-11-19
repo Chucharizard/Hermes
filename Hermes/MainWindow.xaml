@@ -110,8 +110,7 @@
                                Foreground="#95A5A6"
                                FontSize="12"
                                FontWeight="Bold"
-                               Margin="15,5,15,10"
-                               LetterSpacing="1"/>
+                               Margin="15,5,15,10"/>
 
                     <!-- Tareas Enviadas - solo para Broker, Secretaria y Abogada/Abogado -->
                     <Button Content="📤 Tareas Enviadas"
@@ -167,6 +166,5 @@
                 <ContentControl Content="{Binding CurrentView}"
                               Margin="20"/>
             </Border>
-        </Grid>
     </Grid>
 </Window>
