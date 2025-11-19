@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
         <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
+        <converters:TareaSeleccionadaToGridLengthConverter x:Key="TareaSeleccionadaToGridLengthConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
         <!-- Estilo para item de tarea -->
@@ -139,31 +140,32 @@
         <!-- LAYOUT CON PANEL LATERAL INTEGRADO (Estilo Teams) -->
         <!-- ========================================== -->
         <Grid Grid.Row="1">
-            <!-- Columnas por defecto cuando hay tarea seleccionada -->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" MinWidth="300"/>
-                <ColumnDefinition Width="12"/>
-                <ColumnDefinition Width="*" MinWidth="500"/>
+                <!-- Lista: 400px cuando hay selección, * cuando no hay -->
+                <ColumnDefinition MinWidth="300">
+                    <ColumnDefinition.Width>
+                        <Binding Path="TareaSeleccionada"
+                                 Converter="{StaticResource TareaSeleccionadaToGridLengthConverter}"
+                                 ConverterParameter="Lista"/>
+                    </ColumnDefinition.Width>
+                </ColumnDefinition>
+                <!-- Separador: 12px cuando hay selección, 0 cuando no hay -->
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>
+                        <Binding Path="TareaSeleccionada"
+                                 Converter="{StaticResource TareaSeleccionadaToGridLengthConverter}"
+                                 ConverterParameter="Separador"/>
+                    </ColumnDefinition.Width>
+                </ColumnDefinition>
+                <!-- Detalle: * cuando hay selección, 0 cuando no hay -->
+                <ColumnDefinition MinWidth="500">
+                    <ColumnDefinition.Width>
+                        <Binding Path="TareaSeleccionada"
+                                 Converter="{StaticResource TareaSeleccionadaToGridLengthConverter}"
+                                 ConverterParameter="Detalle"/>
+                    </ColumnDefinition.Width>
+                </ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <!-- Cambiar a lista completa cuando no hay selección -->
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
-                            <Setter Property="ColumnDefinitions">
-                                <Setter.Value>
-                                    <ColumnDefinitionCollection>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="0"/>
-                                        <ColumnDefinition Width="0"/>
-                                    </ColumnDefinitionCollection>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
 
             <!-- LISTA DE TAREAS -->
             <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="0">
