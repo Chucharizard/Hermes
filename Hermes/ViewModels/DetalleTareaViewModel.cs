@@ -497,6 +497,99 @@ namespace Hermes.ViewModels
             }
         }
 
+        /// <summary>
+        /// Procesa archivos arrastrados mediante drag and drop
+        /// </summary>
+        public async void ProcesarArchivosArrastrados(string[] rutasArchivos)
+        {
+            if (rutasArchivos == null || rutasArchivos.Length == 0)
+                return;
+
+            // Validaciones
+            if (!PuedeSubirArchivos)
+            {
+                MessageBox.Show("No puedes subir archivos en este momento.", "Acción no permitida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var usuarioActual = App.UsuarioActual;
+            if (usuarioActual == null || !usuarioActual.EsActivoUsuario ||
+                usuarioActual.Empleado == null || !usuarioActual.Empleado.EsActivoEmpleado)
+            {
+                MessageBox.Show("Su usuario o empleado está inactivo. No puede subir adjuntos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Procesar cada archivo
+            int exitosos = 0;
+            int fallidos = 0;
+
+            foreach (var rutaArchivo in rutasArchivos)
+            {
+                if (!File.Exists(rutaArchivo))
+                {
+                    fallidos++;
+                    continue;
+                }
+
+                try
+                {
+                    var resultado = await _adjuntoService.SubirAdjuntoAsync(
+                        Tarea.IdTarea,
+                        App.UsuarioActual!.IdUsuario,
+                        rutaArchivo);
+
+                    if (resultado)
+                    {
+                        exitosos++;
+                    }
+                    else
+                    {
+                        fallidos++;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    fallidos++;
+                    System.Diagnostics.Debug.WriteLine($"Error al subir archivo {rutaArchivo}: {ex.Message}");
+                }
+            }
+
+            // Recargar datos si hubo al menos un archivo exitoso
+            if (exitosos > 0)
+            {
+                await CargarDatosAsync();
+            }
+
+            // Mostrar resultado
+            if (rutasArchivos.Length == 1)
+            {
+                if (exitosos == 1)
+                {
+                    MessageBox.Show("Archivo adjuntado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al adjuntar el archivo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                if (fallidos == 0)
+                {
+                    MessageBox.Show($"Se adjuntaron {exitosos} archivos exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (exitosos == 0)
+                {
+                    MessageBox.Show($"No se pudo adjuntar ninguno de los {fallidos} archivos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show($"Se adjuntaron {exitosos} archivos exitosamente.\n{fallidos} archivos fallaron.", "Parcialmente exitoso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
         private void ActualizarPropiedades()
         {
             OnPropertyChanged(nameof(EsEmisor));

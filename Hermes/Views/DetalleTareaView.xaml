@@ -485,8 +485,43 @@
                         </Grid>
                     </Border>
 
-                    <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
+                    <ScrollViewer Grid.Row="4"
+                                  VerticalScrollBarVisibility="Auto"
+                                  AllowDrop="True"
+                                  DragEnter="AdjuntosReceptor_DragEnter"
+                                  DragLeave="AdjuntosReceptor_DragLeave"
+                                  DragOver="AdjuntosReceptor_DragOver"
+                                  Drop="AdjuntosReceptor_Drop"
+                                  Name="ScrollViewerAdjuntosReceptor">
+                        <Grid>
+                            <!-- Overlay de Drag & Drop -->
+                            <Border x:Name="DragDropOverlay"
+                                    Background="#E3F2FD"
+                                    BorderBrush="#2196F3"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Visibility="Collapsed"
+                                    Margin="5">
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="📁"
+                                               FontSize="48"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,10"/>
+                                    <TextBlock Text="Suelta los archivos aquí"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               Foreground="#2196F3"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="para adjuntarlos a la tarea"
+                                               FontSize="12"
+                                               Foreground="#7F8C8D"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Contenido normal -->
+                            <StackPanel x:Name="AdjuntosContent">
                             <!-- Mensaje si no puede subir archivos -->
                             <Border Background="#FFF3CD"
                                     BorderBrush="#FFC107"
@@ -603,7 +638,8 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                        </StackPanel>
+                            </StackPanel>
+                        </Grid>
                     </ScrollViewer>
                 </Grid>
             </Border>
