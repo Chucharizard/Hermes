@@ -15,16 +15,23 @@ namespace Hermes.Views
 
         /// <summary>
         /// Manejador para el click en un item de tarea
-        /// Selecciona la tarea y muestra el detalle inline
+        /// Abre la ventana de detalle en modo modal (estilo Teams)
         /// </summary>
         private void TareaItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is Border border && border.Tag is Tarea tarea)
             {
-                // Obtener el ViewModel y seleccionar la tarea
-                if (DataContext is BandejaTareasRecibidasViewModel viewModel)
+                // Abrir ventana modal con el detalle de la tarea
+                var ventanaDetalle = new DetalleTareaWindow(tarea);
+                ventanaDetalle.Owner = Application.Current.MainWindow;
+
+                if (ventanaDetalle.ShowDialog() == true)
                 {
-                    viewModel.TareaSeleccionada = tarea;
+                    // Refrescar la lista si hubo cambios
+                    if (DataContext is BandejaTareasRecibidasViewModel viewModel)
+                    {
+                        viewModel.RefrescarCommand.Execute(null);
+                    }
                 }
             }
         }
