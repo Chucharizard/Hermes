@@ -83,20 +83,120 @@
                 </Border.Background>
 
                 <Grid>
-                    <!-- Patrón de puntos decorativo superpuesto -->
-                    <Border CornerRadius="20,0,0,20" Opacity="0.05">
-                        <Border.Background>
-                            <DrawingBrush TileMode="Tile" Viewport="0,0,20,20" ViewportUnits="Absolute">
-                                <DrawingBrush.Drawing>
-                                    <GeometryDrawing Brush="White">
-                                        <GeometryDrawing.Geometry>
-                                            <EllipseGeometry RadiusX="1" RadiusY="1" Center="10,10"/>
-                                        </GeometryDrawing.Geometry>
-                                    </GeometryDrawing>
-                                </DrawingBrush.Drawing>
-                            </DrawingBrush>
-                        </Border.Background>
-                    </Border>
+                    <!-- Constelación decorativa -->
+                    <Canvas>
+                        <!-- Líneas de constelación (dibujadas primero para que queden detrás) -->
+                        <Line X1="80" Y1="100" X2="150" Y2="180" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="150" Y1="180" X2="200" Y2="150" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="200" Y1="150" X2="250" Y2="220" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="80" Y1="100" X2="120" Y2="60" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="120" Y1="60" X2="200" Y2="150" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="150" Y1="180" X2="180" Y2="280" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="250" Y1="220" X2="280" Y2="180" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="200" Y1="150" X2="280" Y2="180" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+
+                        <!-- Líneas adicionales para parte inferior -->
+                        <Line X1="100" Y1="400" X2="160" Y2="450" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="160" Y1="450" X2="220" Y2="420" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="220" Y1="420" X2="190" Y2="500" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+                        <Line X1="100" Y1="400" X2="50" Y2="480" Stroke="#30FFFFFF" StrokeThickness="1" Opacity="0.6"/>
+
+                        <!-- Estrellas (puntos brillantes) -->
+                        <!-- Estrella principal más grande con parpadeo -->
+                        <Ellipse Canvas.Left="148" Canvas.Top="178" Width="4" Height="4" Fill="#FFFFFF" Opacity="0.9">
+                            <Ellipse.Effect>
+                                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.8" Color="#FFFFFF"/>
+                            </Ellipse.Effect>
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                           From="0.9" To="0.4" Duration="0:0:2"
+                                                           AutoReverse="True">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+
+                        <!-- Estrellas medianas -->
+                        <Ellipse Canvas.Left="78" Canvas.Top="98" Width="3" Height="3" Fill="#FFFFFF" Opacity="0.85">
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                           From="0.85" To="0.3" Duration="0:0:3"
+                                                           BeginTime="0:0:0.5"
+                                                           AutoReverse="True">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                        <Ellipse Canvas.Left="198" Canvas.Top="148" Width="3" Height="3" Fill="#FFFFFF" Opacity="0.85"/>
+                        <Ellipse Canvas.Left="248" Canvas.Top="218" Width="3" Height="3" Fill="#FFFFFF" Opacity="0.85">
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                           From="0.85" To="0.25" Duration="0:0:2.5"
+                                                           BeginTime="0:0:1"
+                                                           AutoReverse="True">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                        <Ellipse Canvas.Left="158" Canvas.Top="448" Width="3" Height="3" Fill="#FFFFFF" Opacity="0.85">
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                           From="0.85" To="0.35" Duration="0:0:2.8"
+                                                           BeginTime="0:0:1.5"
+                                                           AutoReverse="True">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+
+                        <!-- Estrellas pequeñas -->
+                        <Ellipse Canvas.Left="118" Canvas.Top="58" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+                        <Ellipse Canvas.Left="178" Canvas.Top="278" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+                        <Ellipse Canvas.Left="278" Canvas.Top="178" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+                        <Ellipse Canvas.Left="98" Canvas.Top="398" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+                        <Ellipse Canvas.Left="218" Canvas.Top="418" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+                        <Ellipse Canvas.Left="188" Canvas.Top="498" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+                        <Ellipse Canvas.Left="48" Canvas.Top="478" Width="2" Height="2" Fill="#FFFFFF" Opacity="0.7"/>
+
+                        <!-- Estrellas adicionales dispersas (muy pequeñas) -->
+                        <Ellipse Canvas.Left="60" Canvas.Top="140" Width="1.5" Height="1.5" Fill="#FFFFFF" Opacity="0.5"/>
+                        <Ellipse Canvas.Left="240" Canvas.Top="100" Width="1.5" Height="1.5" Fill="#FFFFFF" Opacity="0.5"/>
+                        <Ellipse Canvas.Left="130" Canvas.Top="320" Width="1.5" Height="1.5" Fill="#FFFFFF" Opacity="0.5"/>
+                        <Ellipse Canvas.Left="270" Canvas.Top="380" Width="1.5" Height="1.5" Fill="#FFFFFF" Opacity="0.5"/>
+                        <Ellipse Canvas.Left="90" Canvas.Top="250" Width="1.5" Height="1.5" Fill="#FFFFFF" Opacity="0.5"/>
+                    </Canvas>
 
                     <!-- Círculos decorativos de fondo con animación -->
                     <Canvas>
@@ -284,11 +384,11 @@
 
             <!-- Panel Derecho - Formulario -->
             <Grid Grid.Column="1">
-                <!-- Fondo degradado sutil -->
+                <!-- Fondo degradado morado medianoche -->
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#FAFBFC" Offset="0"/>
-                        <GradientStop Color="#F0F2F5" Offset="1"/>
+                        <GradientStop Color="#0a0a15" Offset="0"/>
+                        <GradientStop Color="#1a1a2e" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -297,7 +397,7 @@
                     <!-- Círculo superior derecha -->
                     <Ellipse Width="180" Height="180"
                              Canvas.Right="-90" Canvas.Top="-90"
-                             Fill="#08415a77"
+                             Fill="#155DADE2"
                              RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -327,7 +427,7 @@
                     <!-- Círculo inferior izquierda -->
                     <Ellipse Width="140" Height="140"
                              Canvas.Left="-70" Canvas.Bottom="-70"
-                             Fill="#085DADE2"
+                             Fill="#203498DB"
                              RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -385,14 +485,21 @@
                 <!-- Contenedor del formulario con efecto de card -->
                 <Border VerticalAlignment="Center"
                         Margin="50,0"
-                        Background="White"
                         CornerRadius="16"
                         Padding="40,50"
                         Panel.ZIndex="5"
                         Opacity="0"
-                        RenderTransformOrigin="0.5,0.5">
+                        RenderTransformOrigin="0.5,0.5"
+                        BorderBrush="#30FFFFFF"
+                        BorderThickness="1">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#1a1a2e" Offset="0"/>
+                            <GradientStop Color="#16213e" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
                     <Border.Effect>
-                        <DropShadowEffect BlurRadius="30" ShadowDepth="5" Opacity="0.15" Color="#0d1b2a"/>
+                        <DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.5" Color="#000000"/>
                     </Border.Effect>
                     <Border.RenderTransform>
                         <TranslateTransform Y="20"/>
@@ -432,26 +539,26 @@
                     <TextBlock Text="Bienvenido"
                                FontSize="36"
                                FontWeight="Bold"
-                               Foreground="#0d1b2a"
+                               Foreground="#FFFFFF"
                                Margin="0,0,0,10"/>
 
                     <TextBlock Text="Inicia sesión para continuar"
                                FontSize="16"
-                               Foreground="#778da9"
+                               Foreground="#B0B8C8"
                                Margin="0,0,0,40"/>
 
                     <!-- CI Empleado -->
                     <TextBlock Text="CI de Empleado"
                                FontSize="13"
-                               Foreground="#1b263b"
+                               Foreground="#E0E0E0"
                                FontWeight="SemiBold"
                                Margin="0,0,0,8"/>
 
                     <Border x:Name="CiBorder"
-                            BorderBrush="#415a77"
+                            BorderBrush="#3a4a5e"
                             BorderThickness="2"
                             CornerRadius="10"
-                            Background="#FFFFFF"
+                            Background="#0f1419"
                             Margin="0,0,0,20">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#5DADE2"/>
@@ -478,7 +585,7 @@
                                      Padding="45,10,15,10"
                                      Background="Transparent"
                                      BorderThickness="0"
-                                     Foreground="#0d1b2a"
+                                     Foreground="#FFFFFF"
                                      VerticalContentAlignment="Center"
                                      GotFocus="Input_GotFocus"
                                      LostFocus="Input_LostFocus"/>
@@ -488,15 +595,15 @@
                     <!-- Password -->
                     <TextBlock Text="Contraseña"
                                FontSize="13"
-                               Foreground="#1b263b"
+                               Foreground="#E0E0E0"
                                FontWeight="SemiBold"
                                Margin="0,0,0,8"/>
 
                     <Border x:Name="PasswordBorder"
-                            BorderBrush="#415a77"
+                            BorderBrush="#3a4a5e"
                             BorderThickness="2"
                             CornerRadius="10"
-                            Background="#FFFFFF"
+                            Background="#0f1419"
                             Margin="0,0,0,25">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#5DADE2"/>
@@ -522,7 +629,7 @@
                                          Padding="45,10,15,10"
                                          Background="Transparent"
                                          BorderThickness="0"
-                                         Foreground="#0d1b2a"
+                                         Foreground="#FFFFFF"
                                          VerticalContentAlignment="Center"
                                          PasswordChanged="PasswordBox_PasswordChanged"
                                          GotFocus="Input_GotFocus"
@@ -531,14 +638,16 @@
                     </Border>
 
                     <!-- Indicador de Intentos -->
-                    <Border Background="#FFF3CD"
+                    <Border Background="#2a1f1f"
+                            BorderBrush="#F39C12"
+                            BorderThickness="1"
                             CornerRadius="6"
                             Padding="12,8"
                             Margin="0,0,0,15"
                             Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
                         <StackPanel>
                             <TextBlock Text="{Binding MensajeError}"
-                                       Foreground="#856404"
+                                       Foreground="#FDB863"
                                        FontSize="12"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"
@@ -680,7 +789,7 @@
                                  Height="4"
                                  Margin="0,15,0,0"
                                  Foreground="#5DADE2"
-                                 Background="#e0e1dd"
+                                 Background="#0f1419"
                                  BorderThickness="0"
                                  Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
