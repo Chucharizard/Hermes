@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
+             xmlns:views="clr-namespace:Hermes.Views"
              xmlns:converters="clr-namespace:Hermes.Converters">
 
     <UserControl.DataContext>
@@ -135,129 +136,183 @@
         </Border>
 
         <!-- ========================================== -->
-        <!-- LISTA COMPLETA (Estilo Teams) -->
+        <!-- LAYOUT CON PANEL LATERAL INTEGRADO (Estilo Teams) -->
         <!-- ========================================== -->
-        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="0">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
-            </Border.Effect>
+        <Grid Grid.Row="1">
+            <!-- Columnas por defecto cuando hay tarea seleccionada -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" MinWidth="300"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="*" MinWidth="500"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <!-- Cambiar a lista completa cuando no hay selección -->
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                            <Setter Property="ColumnDefinitions">
+                                <Setter.Value>
+                                    <ColumnDefinitionCollection>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0"/>
+                                        <ColumnDefinition Width="0"/>
+                                    </ColumnDefinitionCollection>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
-                <!-- Filtros y búsqueda compactos -->
-                <StackPanel Grid.Row="0" Margin="12,12,12,0">
-                    <TextBox Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource ModernTextBoxStyle}"
-                             Tag="🔍 Buscar tareas..."
-                             Margin="0,0,0,8"/>
+            <!-- LISTA DE TAREAS -->
+            <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                </Border.Effect>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                        <ComboBox Grid.Column="0"
-                                  ItemsSource="{Binding EstadosFiltro}"
-                                  SelectedItem="{Binding FiltroEstado}"
-                                  Style="{StaticResource ModernComboBoxStyle}"
-                                  Margin="0,0,8,0"/>
+                    <!-- Filtros y búsqueda compactos -->
+                    <StackPanel Grid.Row="0" Margin="12,12,12,0">
+                        <TextBox Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Tag="🔍 Buscar tareas..."
+                                 Margin="0,0,0,8"/>
 
-                        <Button Grid.Column="1"
-                                Content="🔄"
-                                Command="{Binding RefrescarCommand}"
-                                Style="{StaticResource InfoButtonStyle}"
-                                Padding="10,6"
-                                ToolTip="Refrescar"/>
-                    </Grid>
-                </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                <!-- Lista de tareas scrollable -->
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
-                    <ItemsControl ItemsSource="{Binding TareasFiltradas}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <!-- Item compacto de tarea tipo Teams -->
-                                <Border Style="{StaticResource TareaListItemStyle}"
-                                        MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
-                                        Tag="{Binding}">
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding EstadosFiltro}"
+                                      SelectedItem="{Binding FiltroEstado}"
+                                      Style="{StaticResource ModernComboBoxStyle}"
+                                      Margin="0,0,8,0"/>
 
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                            <Button Grid.Column="1"
+                                    Content="🔄"
+                                    Command="{Binding RefrescarCommand}"
+                                    Style="{StaticResource InfoButtonStyle}"
+                                    Padding="10,6"
+                                    ToolTip="Refrescar"/>
+                        </Grid>
+                    </StackPanel>
 
-                                        <!-- Fila 1: Badges de Estado y Prioridad -->
-                                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
-                                            <Border Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}"
-                                                    CornerRadius="8"
-                                                    Padding="6,2"
-                                                    Margin="0,0,6,0">
-                                                <TextBlock Text="{Binding EstadoTarea}"
+                    <!-- Lista de tareas scrollable -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+                        <ItemsControl ItemsSource="{Binding TareasFiltradas}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Item compacto de tarea tipo Teams -->
+                                    <Border Style="{StaticResource TareaListItemStyle}"
+                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            Tag="{Binding}">
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Fila 1: Badges de Estado y Prioridad -->
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
+                                                <Border Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,2"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding EstadoTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <Border Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,2">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
                                                            FontSize="9"
-                                                           FontWeight="Bold"
-                                                           Foreground="White"/>
-                                            </Border>
+                                                           Foreground="#95A5A6"
+                                                           VerticalAlignment="Center"
+                                                           Margin="8,0,0,0"/>
+                                            </StackPanel>
 
-                                            <Border Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
-                                                    CornerRadius="8"
-                                                    Padding="6,2">
-                                                <TextBlock Text="{Binding PrioridadTarea}"
-                                                           FontSize="9"
-                                                           FontWeight="Bold"
-                                                           Foreground="White"/>
-                                            </Border>
+                                            <!-- Fila 2: Título de la tarea -->
+                                            <TextBlock Grid.Row="1"
+                                                       Text="{Binding TituloTarea}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#2C3E50"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       Margin="0,0,0,4"/>
 
-                                            <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
-                                                       FontSize="9"
-                                                       Foreground="#95A5A6"
-                                                       VerticalAlignment="Center"
-                                                       Margin="8,0,0,0"/>
-                                        </StackPanel>
+                                            <!-- Fila 3: Receptor y descripción breve -->
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                        <!-- Fila 2: Título de la tarea -->
-                                        <TextBlock Grid.Row="1"
-                                                   Text="{Binding TituloTarea}"
-                                                   FontSize="13"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#2C3E50"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   Margin="0,0,0,4"/>
+                                                <TextBlock Grid.Column="0"
+                                                           FontSize="10"
+                                                           Foreground="#7F8C8D"
+                                                           Margin="0,0,10,0">
+                                                    <Run Text="Para:"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}" Foreground="#27AE60" FontWeight="SemiBold"/>
+                                                </TextBlock>
 
-                                        <!-- Fila 3: Receptor y descripción breve -->
-                                        <Grid Grid.Row="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0"
-                                                       FontSize="10"
-                                                       Foreground="#7F8C8D"
-                                                       Margin="0,0,10,0">
-                                                <Run Text="Para:"/>
-                                                <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}" Foreground="#27AE60" FontWeight="SemiBold"/>
-                                            </TextBlock>
-
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding DescripcionTarea}"
-                                                       FontSize="10"
-                                                       Foreground="#95A5A6"
-                                                       TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding DescripcionTarea}"
+                                                           FontSize="10"
+                                                           Foreground="#95A5A6"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </Grid>
-        </Border>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- PANEL DE DETALLE LATERAL -->
+            <Border Grid.Column="2" Background="White" CornerRadius="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                </Border.Effect>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <ContentControl Content="{Binding DetalleViewModel}">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <views:DetalleTareaView/>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
