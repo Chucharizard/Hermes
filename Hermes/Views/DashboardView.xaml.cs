@@ -21,9 +21,8 @@ namespace Hermes.Views
                 var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 if (mainWindow?.DataContext is MainViewModel mainViewModel)
                 {
-                    // Navegar a la bandeja de tareas recibidas
-                    // (Por ahora navegamos a la bandeja sin filtro - el filtro lo agregaremos después)
-                    mainViewModel.MostrarBandejaTareasRecibidasCommand.Execute(null);
+                    // Navegar a la bandeja de tareas recibidas con filtro aplicado
+                    mainViewModel.MostrarBandejaTareasRecibidasConFiltro(estadoFiltro);
                 }
             }
         }

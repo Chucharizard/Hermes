@@ -13,11 +13,40 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style x:Key="HamburgerButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#34495E"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="{Binding AnchoSidebar}"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
@@ -30,8 +59,25 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
-                    <!-- Logo y Título -->
+                    <!-- Botón Hamburguesa -->
+                    <Button Content="☰"
+                            Command="{Binding ToggleSidebarCommand}"
+                            Style="{StaticResource HamburgerButtonStyle}"
+                            Margin="10,0,10,15"
+                            HorizontalAlignment="Left"/>
+
+                    <!-- Logo y Título (ocultar cuando está colapsado) -->
                     <StackPanel Margin="15,0,15,20">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
                         <TextBlock Text="🏢 HERMES"
                                    FontSize="32"
                                    FontWeight="Bold"
@@ -45,11 +91,21 @@
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- Información del Usuario -->
+                    <!-- Información del Usuario (ocultar cuando está colapsado) -->
                     <Border Background="#2C3E50"
                             CornerRadius="8"
                             Padding="15"
                             Margin="10,0,10,15">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="{Binding NombreUsuarioActual}"
                                        FontSize="16"
@@ -68,39 +124,107 @@
                     </Border>
 
                     <!-- Botón Cerrar Sesión -->
-                    <Button Content="🚪 Cerrar Sesión"
-                            Command="{Binding CerrarSesionCommand}"
+                    <Button Command="{Binding CerrarSesionCommand}"
                             Style="{StaticResource DangerButtonStyle}"
                             Padding="12,10"
                             Margin="10,0,10,20"
                             FontSize="14"
-                            FontWeight="SemiBold"/>
+                            FontWeight="SemiBold">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="🚪" FontSize="16" Margin="0,0,5,0"/>
+                                <TextBlock Text="Cerrar Sesión" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
 
                     <!-- Separador -->
                     <Separator Margin="10,0,10,15" Background="#34495E" Height="2"/>
 
                     <!-- Opciones de administración (solo Broker) -->
-                    <Button Content="📊 Dashboard"
-                            Command="{Binding MostrarDashboardCommand}"
+                    <Button Command="{Binding MostrarDashboardCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
                             FontSize="14"
                             FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="👥 Gestion de Empleados"
-                            Command="{Binding MostrarGestionEmpleadosCommand}"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📊" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Dashboard" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Command="{Binding MostrarGestionEmpleadosCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
                             FontSize="14"
                             FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="✓ Gestion de Tareas"
-                            Command="{Binding MostrarGestionTareasCommand}"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="👥" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Gestion de Empleados" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Command="{Binding MostrarGestionTareasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
                             FontSize="14"
                             FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="✓" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Gestion de Tareas" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
 
                     <!-- Separador para sección de Bandejas (visible solo si hay opciones arriba O si puede enviar tareas) -->
                     <Separator Margin="10,15" Background="#7F8C8D" Height="1"
@@ -110,54 +234,69 @@
                                Foreground="#95A5A6"
                                FontSize="12"
                                FontWeight="Bold"
-                               Margin="15,5,15,10"/>
+                               Margin="15,5,15,10">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
 
                     <!-- Tareas Enviadas - solo para Broker, Secretaria y Abogada/Abogado -->
-                    <Button Content="📤 Tareas Enviadas"
-                            Command="{Binding MostrarBandejaTareasEnviadasCommand}"
+                    <Button Command="{Binding MostrarBandejaTareasEnviadasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
                             FontSize="14"
                             FontWeight="SemiBold"
-                            Visibility="{Binding PuedeEnviarTareas, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Visibility="{Binding PuedeEnviarTareas, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📤" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Tareas Enviadas" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
 
                     <!-- Tareas Recibidas - para TODOS los roles -->
-                    <Button Content="📥 Tareas Recibidas"
-                            Command="{Binding MostrarBandejaTareasRecibidasCommand}"
+                    <Button Command="{Binding MostrarBandejaTareasRecibidasCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Margin="10,5"
                             FontSize="14"
-                            FontWeight="SemiBold"/>
-
-                    <!-- Separador (solo visible para administradores) -->
-                    <Separator Margin="10,15" Background="#7F8C8D" Height="1"
-                               Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                    <!-- Opciones adicionales (solo Broker) -->
-                    <Button Content="📋 Propiedades"
-                            Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="🏠 Clientes"
-                            Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="💼 Transacciones"
-                            Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="📊 Reportes"
-                            Style="{StaticResource MenuButtonStyle}"
-                            Margin="10,5"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            FontWeight="SemiBold">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📥" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Tareas Recibidas" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
                 </StackPanel>
             </Border>
             
