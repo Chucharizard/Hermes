@@ -523,7 +523,7 @@ namespace Hermes.ViewModels
                 TareaSeleccionada.PrioridadTarea = PrioridadEditable;
                 TareaSeleccionada.FechaInicioTarea = FechaInicioEditable;
                 TareaSeleccionada.FechaLimiteTarea = FechaLimiteEditable;
-                TareaSeleccionada.IdUsuarioReceptor = UsuarioReceptorEditable.IdUsuario;
+                TareaSeleccionada.UsuarioReceptorId = UsuarioReceptorEditable.IdUsuario;
                 TareaSeleccionada.UsuarioReceptor = UsuarioReceptorEditable;
 
                 var actualizado = await _tareaService.ActualizarAsync(TareaSeleccionada);
