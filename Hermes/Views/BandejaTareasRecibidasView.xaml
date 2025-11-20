@@ -20,9 +20,9 @@
             <Setter Property="Background" Value="{StaticResource CardGradient}"/>
             <Setter Property="BorderBrush" Value="#30FFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="14,12"/>
-            <Setter Property="Margin" Value="8"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="6"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Effect">
                 <Setter.Value>
@@ -200,37 +200,42 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Filtros y búsqueda compactos -->
-                    <StackPanel Grid.Row="0" Margin="12,12,12,0">
-                        <TextBox Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
+                    <!-- Filtros y búsqueda en una sola línea -->
+                    <Grid Grid.Row="0" Margin="12,12,12,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource ModernTextBoxStyle}"
                                  Tag="🔍 Buscar tareas..."
-                                 Margin="0,0,0,8"/>
+                                 Margin="0,0,8,0"/>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding EstadosFiltro}"
+                                  SelectedItem="{Binding FiltroEstado}"
+                                  Style="{StaticResource ModernComboBoxStyle}"
+                                  Margin="0,0,8,0"/>
 
-                            <ComboBox Grid.Column="0"
-                                      ItemsSource="{Binding EstadosFiltro}"
-                                      SelectedItem="{Binding FiltroEstado}"
-                                      Style="{StaticResource ModernComboBoxStyle}"
-                                      Margin="0,0,8,0"/>
+                        <Button Grid.Column="2"
+                                Content="🔄"
+                                Command="{Binding RefrescarCommand}"
+                                Style="{StaticResource InfoButtonStyle}"
+                                Width="45"
+                                ToolTip="Refrescar"/>
+                    </Grid>
 
-                            <Button Grid.Column="1"
-                                    Content="🔄"
-                                    Command="{Binding RefrescarCommand}"
-                                    Style="{StaticResource InfoButtonStyle}"
-                                    Padding="10,6"
-                                    ToolTip="Refrescar"/>
-                        </Grid>
-                    </StackPanel>
-
-                    <!-- Lista de tareas scrollable -->
+                    <!-- Lista de tareas en grid de 2 columnas -->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
                         <ItemsControl ItemsSource="{Binding TareasFiltradas}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="2"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <!-- Item de tarea mejorado con mejor organización -->
