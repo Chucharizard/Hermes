@@ -40,7 +40,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#34495E"/>
+                    <Setter Property="Background" Value="#3a4a5e"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -64,12 +64,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <!-- Sidebar Menu con degradado vertical -->
+            <!-- Sidebar Menu con degradado vertical morado medianoche -->
             <Border Grid.Column="0" Padding="0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#1A1F2E" Offset="0"/>
-                        <GradientStop Color="#2C3E50" Offset="1"/>
+                        <GradientStop Color="#0d1b2a" Offset="0"/>
+                        <GradientStop Color="#0a0a15" Offset="0.5"/>
+                        <GradientStop Color="#0d1b2a" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
@@ -101,15 +102,26 @@
                         <TextBlock Text="Panel de Administración"
                                    FontSize="13"
                                    FontWeight="SemiBold"
-                                   Foreground="#BDC3C7"
-                                   HorizontalAlignment="Center"/>
+                                   Foreground="#B0B8C8"
+                                   HorizontalAlignment="Center"
+                                   Opacity="0.9"/>
                     </StackPanel>
 
                     <!-- Información del Usuario (ocultar cuando está colapsado) -->
-                    <Border Background="#2C3E50"
-                            CornerRadius="8"
+                    <Border CornerRadius="12"
                             Padding="15"
-                            Margin="10,0,10,15">
+                            Margin="10,0,10,15"
+                            BorderBrush="#30FFFFFF"
+                            BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#1a1a2e" Offset="0"/>
+                                <GradientStop Color="#16213e" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                        </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Visibility" Value="Visible"/>
@@ -164,7 +176,7 @@
                     </Button>
 
                     <!-- Separador -->
-                    <Separator Margin="10,0,10,15" Background="#34495E" Height="2"/>
+                    <Separator Margin="10,0,10,15" Background="#3a4a5e" Height="1" Opacity="0.5"/>
 
                     <!-- Opciones de administración (solo Broker) -->
                     <Button Command="{Binding MostrarDashboardCommand}"
@@ -241,12 +253,12 @@
                     </Button>
 
                     <!-- Separador para sección de Bandejas (visible solo si hay opciones arriba O si puede enviar tareas) -->
-                    <Separator Margin="10,15" Background="#7F8C8D" Height="1"
+                    <Separator Margin="10,15" Background="#3a4a5e" Height="1" Opacity="0.5"
                                Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <TextBlock Text="BANDEJAS DE TAREAS"
-                               Foreground="#95A5A6"
-                               FontSize="12"
+                               Foreground="#B0B8C8"
+                               FontSize="11"
                                FontWeight="Bold"
                                Margin="15,5,15,10">
                         <TextBlock.Style>
@@ -314,10 +326,116 @@
                 </StackPanel>
             </Border>
             
-            <!-- Main Content Area con fondo azul muy claro -->
-            <Border Grid.Column="1" Background="#ECF0F1">
+            <!-- Main Content Area con tema morado medianoche -->
+            <Grid Grid.Column="1">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#0a0a15" Offset="0"/>
+                        <GradientStop Color="#1a1a2e" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <!-- Elementos decorativos de fondo -->
+                <Canvas>
+                    <!-- Círculo decorativo superior derecha -->
+                    <Ellipse Width="300" Height="300"
+                             Canvas.Right="-150" Canvas.Top="-150"
+                             Fill="#155DADE2"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                       From="1" To="1.15" Duration="0:0:8">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                       From="1" To="1.15" Duration="0:0:8">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Ellipse.Triggers>
+                    </Ellipse>
+
+                    <!-- Círculo decorativo inferior izquierda -->
+                    <Ellipse Width="250" Height="250"
+                             Canvas.Left="-125" Canvas.Bottom="-125"
+                             Fill="#203498DB"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                       From="1" To="1.2" Duration="0:0:10"
+                                                       BeginTime="0:0:2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                       From="1" To="1.2" Duration="0:0:10"
+                                                       BeginTime="0:0:2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Ellipse.Triggers>
+                    </Ellipse>
+
+                    <!-- Círculo decorativo central derecha -->
+                    <Ellipse Width="200" Height="200"
+                             Canvas.Right="-100"
+                             Canvas.Top="250"
+                             Fill="#10778da9"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                       From="1" To="1.3" Duration="0:0:12"
+                                                       BeginTime="0:0:1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                       From="1" To="1.3" Duration="0:0:12"
+                                                       BeginTime="0:0:1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Ellipse.Triggers>
+                    </Ellipse>
+                </Canvas>
+
                 <ContentControl Content="{Binding CurrentView}"
-                              Margin="20"/>
-            </Border>
+                              Margin="15"
+                              Panel.ZIndex="1"/>
+            </Grid>
     </Grid>
 </Window>

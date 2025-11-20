@@ -2,26 +2,26 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ========================================== -->
-    <!-- COLORES GLOBALES - PALETA MIDNIGHT BLUE -->
+    <!-- COLORES GLOBALES - PALETA PROFESSIONAL DARK BLUE -->
     <!-- ========================================== -->
 
-    <!-- Fondos -->
-    <SolidColorBrush x:Key="BackgroundDarkest" Color="#0F1419"/>     <!-- Casi negro azulado -->
-    <SolidColorBrush x:Key="BackgroundDark" Color="#1A1F2E"/>        <!-- Azul muy oscuro -->
-    <SolidColorBrush x:Key="BackgroundMedium" Color="#2C3E50"/>      <!-- Azul grisáceo oscuro -->
-    <SolidColorBrush x:Key="BackgroundLight" Color="#34495E"/>       <!-- Azul gris -->
-    <SolidColorBrush x:Key="BackgroundLightColor" Color="#ECF0F1"/>  <!-- Gris muy claro -->
-    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#ECF0F1"/>
+    <!-- Fondos Oscuros (Paleta proporcionada) -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="#0d1b2a"/>     <!-- Azul muy oscuro - Fondos principales -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#1b263b"/>        <!-- Azul oscuro - Sidebar, headers -->
+    <SolidColorBrush x:Key="BackgroundMedium" Color="#415a77"/>      <!-- Azul medio - Cards hover -->
+    <SolidColorBrush x:Key="BackgroundLight" Color="#778da9"/>       <!-- Azul grisáceo claro - Elementos claros -->
+    <SolidColorBrush x:Key="BackgroundLightColor" Color="#e0e1dd"/>  <!-- Gris muy claro - Inputs, cards -->
+    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#e0e1dd"/>
 
-    <!-- Azules principales -->
-    <SolidColorBrush x:Key="PrimaryColor" Color="#3498DB"/>          <!-- Azul claro vibrante -->
-    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#2874A6"/>      <!-- Azul medio -->
-    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#1B4F72"/>    <!-- Azul profundo -->
-    <SolidColorBrush x:Key="PrimaryLightColor" Color="#5DADE2"/>     <!-- Azul eléctrico -->
+    <!-- Azules principales (Actualizado para mejor contraste) -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="#5DADE2"/>          <!-- Azul claro vibrante -->
+    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#3498DB"/>      <!-- Azul medio -->
+    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#2874A6"/>    <!-- Azul profundo -->
+    <SolidColorBrush x:Key="PrimaryLightColor" Color="#85C1E9"/>     <!-- Azul muy claro -->
 
     <!-- Colores de acción -->
-    <SolidColorBrush x:Key="InfoColor" Color="#3498DB"/>             <!-- Azul principal -->
-    <SolidColorBrush x:Key="InfoHoverColor" Color="#2874A6"/>        <!-- Azul oscuro -->
+    <SolidColorBrush x:Key="InfoColor" Color="#5DADE2"/>             <!-- Azul principal -->
+    <SolidColorBrush x:Key="InfoHoverColor" Color="#3498DB"/>        <!-- Azul hover -->
     <SolidColorBrush x:Key="SuccessColor" Color="#1ABC9C"/>          <!-- Turquesa -->
     <SolidColorBrush x:Key="SuccessHoverColor" Color="#148F77"/>     <!-- Turquesa oscuro -->
     <SolidColorBrush x:Key="WarningColor" Color="#F39C12"/>          <!-- Naranja -->
@@ -29,45 +29,57 @@
     <SolidColorBrush x:Key="DangerColor" Color="#E74C3C"/>           <!-- Rojo -->
     <SolidColorBrush x:Key="DangerHoverColor" Color="#C0392B"/>      <!-- Rojo oscuro -->
 
-    <!-- Colores oscuros -->
-    <SolidColorBrush x:Key="DarkColor" Color="#2C3E50"/>
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#1A1F2E"/>
-    <SolidColorBrush x:Key="SidebarColor" Color="#1A1F2E"/>
+    <!-- Colores oscuros para sidebar -->
+    <SolidColorBrush x:Key="DarkColor" Color="#1b263b"/>
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#0d1b2a"/>
+    <SolidColorBrush x:Key="SidebarColor" Color="#1b263b"/>
 
-    <!-- Textos -->
-    <SolidColorBrush x:Key="TextPrimaryColor" Color="#ECF0F1"/>      <!-- Texto claro para fondos oscuros -->
-    <SolidColorBrush x:Key="TextSecondaryColor" Color="#BDC3C7"/>    <!-- Texto secundario -->
-    <SolidColorBrush x:Key="TextMutedColor" Color="#95A5A6"/>        <!-- Texto apagado -->
-    <SolidColorBrush x:Key="TextDarkColor" Color="#2C3E50"/>         <!-- Texto oscuro para fondos claros -->
+    <!-- Textos (mejorado para contraste) -->
+    <SolidColorBrush x:Key="TextPrimaryColor" Color="#FFFFFF"/>      <!-- Blanco puro para fondos oscuros -->
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#e0e1dd"/>    <!-- Gris muy claro -->
+    <SolidColorBrush x:Key="TextMutedColor" Color="#778da9"/>        <!-- Azul grisáceo -->
+    <SolidColorBrush x:Key="TextDarkColor" Color="#0d1b2a"/>         <!-- Texto oscuro para fondos claros -->
 
     <!-- Bordes -->
-    <SolidColorBrush x:Key="BorderColor" Color="#34495E"/>
-    <SolidColorBrush x:Key="BorderLightColor" Color="#BDC3C7"/>
+    <SolidColorBrush x:Key="BorderColor" Color="#415a77"/>
+    <SolidColorBrush x:Key="BorderLightColor" Color="#778da9"/>
 
     <!-- ========================================== -->
-    <!-- DEGRADADOS - MIDNIGHT BLUE THEME -->
+    <!-- DEGRADADOS MODERNOS - PROFESSIONAL DARK THEME -->
     <!-- ========================================== -->
 
-    <!-- Degradado principal (azul) -->
+    <!-- Degradado principal (azul vibrante) -->
     <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#3498DB" Offset="0"/>
-        <GradientStop Color="#2874A6" Offset="1"/>
+        <GradientStop Color="#5DADE2" Offset="0"/>
+        <GradientStop Color="#3498DB" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PrimaryGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#3498DB" Offset="0"/>
-        <GradientStop Color="#2874A6" Offset="1"/>
+        <GradientStop Color="#5DADE2" Offset="0"/>
+        <GradientStop Color="#3498DB" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado oscuro (fondos) -->
+    <!-- Degradado oscuro (fondos principales - paleta custom) -->
     <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#1A1F2E" Offset="0"/>
-        <GradientStop Color="#2C3E50" Offset="1"/>
+        <GradientStop Color="#0d1b2a" Offset="0"/>
+        <GradientStop Color="#1b263b" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1A1F2E" Offset="0"/>
-        <GradientStop Color="#2C3E50" Offset="1"/>
+        <GradientStop Color="#0d1b2a" Offset="0"/>
+        <GradientStop Color="#1b263b" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado sidebar (azules oscuros) -->
+    <LinearGradientBrush x:Key="SidebarGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1b263b" Offset="0"/>
+        <GradientStop Color="#0d1b2a" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado medio (azules medios) -->
+    <LinearGradientBrush x:Key="MediumGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#415a77" Offset="0"/>
+        <GradientStop Color="#778da9" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado turquesa (éxito) -->
@@ -78,14 +90,20 @@
 
     <!-- Degradado azul profundo -->
     <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#2874A6" Offset="0"/>
-        <GradientStop Color="#1B4F72" Offset="1"/>
+        <GradientStop Color="#1b263b" Offset="0"/>
+        <GradientStop Color="#0d1b2a" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado azul claro -->
     <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#5DADE2" Offset="0"/>
-        <GradientStop Color="#3498DB" Offset="1"/>
+        <GradientStop Color="#85C1E9" Offset="0"/>
+        <GradientStop Color="#5DADE2" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado para cards (tema oscuro morado medianoche) -->
+    <LinearGradientBrush x:Key="CardGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1a1a2e" Offset="0"/>
+        <GradientStop Color="#16213e" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- ========================================== -->
@@ -305,7 +323,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2C3E50"/>
+                <Setter Property="Background" Value="#3a4a5e"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
@@ -350,47 +368,50 @@
     <!-- ESTILOS DE CARDS Y CONTAINERS -->
     <!-- ========================================== -->
 
-    <!-- Card con Sombra -->
+    <!-- Card con Sombra (Tema morado medianoche) -->
     <Style x:Key="CardStyle" TargetType="Border">
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
+        <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Padding" Value="20"/>
+        <Setter Property="BorderBrush" Value="#30FFFFFF"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!-- Header de Sección -->
+    <!-- Header de Sección (Con degradado oscuro) -->
     <Style x:Key="SectionHeaderStyle" TargetType="Border">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource DarkGradient}"/>
         <Setter Property="Padding" Value="20"/>
         <Setter Property="Margin" Value="0,0,0,20"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#2C3E50"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Card de Estadísticas -->
-    <Style x:Key="StatsCardStyle" TargetType="Border">
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="Padding" Value="20"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.3" Color="#0d1b2a"/>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!-- Banner de Información -->
+    <!-- Card de Estadísticas (Con degradado de card) -->
+    <Style x:Key="StatsCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.2" Color="#0d1b2a"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Banner de Información (Fondo claro) -->
     <Style x:Key="InfoBannerStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource BackgroundGrayColor}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
         <Setter Property="Padding" Value="15"/>
-        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
@@ -399,42 +420,62 @@
     <!-- ESTILOS DE INPUTS -->
     <!-- ========================================== -->
 
-    <!-- TextBox Moderno -->
+    <!-- TextBox Moderno (tema morado medianoche) -->
     <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#3a4a5e"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="8">
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                    Padding="{TemplateBinding Padding}"
-                                    VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.2" Color="#000000"/>
+                        </Border.Effect>
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Tag}"
+                                      Foreground="#7F8C8D"
+                                      FontSize="13"
+                                      Padding="{TemplateBinding Padding}"
+                                      VerticalAlignment="Center"
+                                      IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                        Padding="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"/>
+                        </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource InfoColor}"/>
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Trigger>
-            <Trigger Property="Validation.HasError" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource DangerColor}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <!-- PasswordBox Moderno -->
@@ -471,15 +512,122 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ComboBox Moderno -->
+    <!-- ComboBox Moderno (tema morado medianoche) -->
     <Style x:Key="ModernComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#3a4a5e"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton x:Name="toggleButton"
+                                     Background="{TemplateBinding Background}"
+                                     BorderBrush="{TemplateBinding BorderBrush}"
+                                     BorderThickness="{TemplateBinding BorderThickness}"
+                                     Focusable="False"
+                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                     ClickMode="Press">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border x:Name="border"
+                                           Background="{TemplateBinding Background}"
+                                           BorderBrush="{TemplateBinding BorderBrush}"
+                                           BorderThickness="{TemplateBinding BorderThickness}"
+                                           CornerRadius="8">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.2" Color="#000000"/>
+                                        </Border.Effect>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Grid.Column="0"
+                                                            Content="{TemplateBinding Content}"
+                                                            Margin="15,0"/>
+                                            <Path Grid.Column="1"
+                                                 Data="M 0 0 L 4 4 L 8 0 Z"
+                                                 Fill="#B0B8C8"
+                                                 Margin="0,0,15,0"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <ContentPresenter x:Name="contentPresenter"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Margin="15,0,30,0"
+                                        IsHitTestVisible="False"/>
+                        <Popup x:Name="PART_Popup"
+                              Placement="Bottom"
+                              IsOpen="{TemplateBinding IsDropDownOpen}"
+                              AllowsTransparency="True"
+                              Focusable="False"
+                              PopupAnimation="Slide">
+                            <Border Background="#1a1a2e"
+                                   BorderBrush="#3a4a5e"
+                                   BorderThickness="1"
+                                   CornerRadius="8"
+                                   Margin="0,4,0,0"
+                                   MaxHeight="200">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                                </Border.Effect>
+                                <ScrollViewer>
+                                    <StackPanel IsItemsHost="True"
+                                              KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                    <Setter Property="Padding" Value="15,10"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="border"
+                                       Background="{TemplateBinding Background}"
+                                       Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsHighlighted" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#16213e"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#16213e"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- ========================================== -->
@@ -618,17 +766,18 @@
     <!-- ESTILOS DE CARDS DE TAREAS -->
     <!-- ========================================== -->
 
-    <!-- Card de Tarea Individual -->
+    <!-- Card de Tarea Individual (Tema morado medianoche) -->
     <Style x:Key="TareaCardStyle" TargetType="Border">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Margin" Value="8"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="BorderThickness" Value="0,0,0,4"/>
+        <Setter Property="BorderThickness" Value="1,1,1,4"/>
+        <Setter Property="BorderBrush" Value="#30FFFFFF"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
             </Setter.Value>
         </Setter>
         <Setter Property="RenderTransform">
@@ -673,23 +822,24 @@
 
     <!-- Header de Card de Tarea (con color de prioridad) -->
     <Style x:Key="TareaCardHeaderStyle" TargetType="StackPanel">
-        <Setter Property="Background" Value="#F8F9FA"/>
+        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Opacity" Value="0.6"/>
     </Style>
 
-    <!-- Título de Tarea en Card -->
+    <!-- Título de Tarea en Card (tema oscuro) -->
     <Style x:Key="TareaCardTitleStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Foreground" Value="#2C3E50"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="Margin" Value="0,0,0,5"/>
     </Style>
 
-    <!-- Descripción de Tarea en Card -->
+    <!-- Descripción de Tarea en Card (tema oscuro) -->
     <Style x:Key="TareaCardDescriptionStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Foreground" Value="#7F8C8D"/>
+        <Setter Property="Foreground" Value="#B0B8C8"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="MaxHeight" Value="40"/>
@@ -717,11 +867,12 @@
         <Setter Property="Background" Value="{StaticResource PrimaryGradient}"/>
     </Style>
 
-    <!-- Texto de Metadata (fechas, etc) -->
+    <!-- Texto de Metadata (fechas, etc - tema oscuro) -->
     <Style x:Key="MetadataTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="#95A5A6"/>
+        <Setter Property="Foreground" Value="#B0B8C8"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Opacity" Value="0.8"/>
     </Style>
 
 </ResourceDictionary>

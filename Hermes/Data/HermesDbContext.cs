@@ -158,7 +158,7 @@ namespace Hermes.Data
                 entity.Property(t => t.UsuarioEmisorId).HasColumnName("usuario_emisor_id");
                 entity.Property(t => t.UsuarioReceptorId).HasColumnName("usuario_receptor_id");
                 entity.Property(t => t.TituloTarea).HasColumnName("titulo_tarea").HasMaxLength(150);
-                entity.Property(t => t.DescripcionTarea).HasColumnName("descripcion_tarea").HasMaxLength(500);
+                entity.Property(t => t.DescripcionTarea).HasColumnName("descripcion_tarea").HasColumnType("NVARCHAR(MAX)");
                 entity.Property(t => t.EstadoTarea).HasColumnName("estado_tarea").HasMaxLength(50);
                 entity.Property(t => t.PrioridadTarea).HasColumnName("prioridad_tarea").HasMaxLength(20);
                 entity.Property(t => t.FechaInicioTarea).HasColumnName("fecha_inicio_tarea");

@@ -478,7 +478,6 @@ C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windo
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\BandejaTareasRecibidasView.g.cs
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\ClientesView.g.cs
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DashboardView.g.cs
-C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaView.g.cs
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaWindow.g.cs
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\EditarEmpleadoWindow.g.cs
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\EditarTareaWindow.g.cs
@@ -499,7 +498,6 @@ C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windo
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\BandejaTareasEnviadasView.baml
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\BandejaTareasRecibidasView.baml
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DashboardView.baml
-C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaView.baml
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaWindow.baml
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\EditarEmpleadoWindow.baml
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\EditarTareaWindow.baml
@@ -523,4 +521,3 @@ C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windo
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\ref\Hermes.dll
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaView.g.cs
 C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\obj\Debug\net8.0-windows\Views\DetalleTareaView.baml
-C:\Users\USUARIO\Downloads\PruebasHermes\v8\Hermes\Hermes\bin\Debug\net8.0-windows\Resources\Plantillas\Reporte_Dashboard_Consolidado.xlsx
