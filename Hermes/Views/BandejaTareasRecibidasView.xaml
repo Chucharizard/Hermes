@@ -35,8 +35,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="(DropShadowEffect.Opacity)"
-                                               Storyboard.TargetName="Effect"
+                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
                                                To="0.4" Duration="0:0:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
