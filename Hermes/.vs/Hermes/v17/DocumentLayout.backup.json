@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\bandejatareasrecibidasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\bandejatareasrecibidasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -183,10 +184,191 @@
       "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+=======
+>>>>>>> Stashed changes
       "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< Updated upstream
+=======
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\nuevatareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\nuevatareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\troubleshooting_password.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:troubleshooting_password.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\clientesview.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\clientesview.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\gestionarusuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\gestionarusuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\services\\rolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:services\\rolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\services\\propiedadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:services\\propiedadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\services\\empleadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:services\\empleadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\services\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:services\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\services\\autenticacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:services\\autenticacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\enums\\tipopropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\enums\\tipopropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\enums\\rolusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\enums\\rolusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\propiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\propiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\helpers\\stringtovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:helpers\\stringtovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\helpers\\inversebooleanconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:helpers\\inversebooleanconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\helpers\\filehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:helpers\\filehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\data\\hermesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:data\\hermesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\data\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:data\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\commands\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:commands\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\helpers\\validationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:helpers\\validationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\loginwindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\loginwindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\gestionempleadosview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\gestionempleadosview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\models\\transaccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:models\\transaccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\resources\\styles.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:resources\\styles.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\usuariosview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\usuariosview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\propiedadesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\propiedadesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\clientesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\clientesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\clientesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\clientesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\propiedadesview.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\propiedadesview.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\usuariosview.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\usuariosview.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\propiedadesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\propiedadesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\usuariosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\usuariosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+>>>>>>> Stashed changes
       "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -230,13 +412,18 @@
       "DocumentGroups": [
         {
           "DockedWidth": 159,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 3,
+=======
+          "SelectedChildIndex": 8,
+>>>>>>> Stashed changes
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+<<<<<<< Updated upstream
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "TROUBLESHOOTING_PASSWORD.md",
@@ -296,6 +483,22 @@
             {
               "$type": "Document",
               "DocumentIndex": 10,
+=======
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TROUBLESHOOTING_PASSWORD.md",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\TROUBLESHOOTING_PASSWORD.md",
+              "RelativeDocumentMoniker": "TROUBLESHOOTING_PASSWORD.md",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\TROUBLESHOOTING_PASSWORD.md",
+              "RelativeToolTip": "TROUBLESHOOTING_PASSWORD.md",
+              "ViewState": "AgIAALMAAAAAAAAAAAAAAK8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-12T16:21:37.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+>>>>>>> Stashed changes
               "Title": "BaseViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\BaseViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\BaseViewModel.cs",
@@ -307,7 +510,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 8,
+=======
+              "DocumentIndex": 5,
+>>>>>>> Stashed changes
               "Title": "ClientesView.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\ClientesView.xaml",
               "RelativeDocumentMoniker": "Views\\ClientesView.xaml",
@@ -319,7 +526,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 15,
+=======
+              "DocumentIndex": 12,
+>>>>>>> Stashed changes
               "Title": "ClienteService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\ClienteService.cs",
               "RelativeDocumentMoniker": "Services\\ClienteService.cs",
@@ -331,7 +542,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 9,
+=======
+              "DocumentIndex": 6,
+>>>>>>> Stashed changes
               "Title": "GestionarUsuarioViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\GestionarUsuarioViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\GestionarUsuarioViewModel.cs",
@@ -343,7 +558,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 11,
+=======
+              "DocumentIndex": 8,
+>>>>>>> Stashed changes
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\UsuarioService.cs",
               "RelativeDocumentMoniker": "Services\\UsuarioService.cs",
@@ -355,7 +574,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 12,
+=======
+              "DocumentIndex": 9,
+>>>>>>> Stashed changes
               "Title": "RolService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\RolService.cs",
               "RelativeDocumentMoniker": "Services\\RolService.cs",
@@ -367,7 +590,48 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 7,
+=======
+              "DocumentIndex": 0,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "Views\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T15:31:13.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml",
+              "RelativeToolTip": "Views\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-20T02:04:39.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NuevaTareaWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevaTareaWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\NuevaTareaWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevaTareaWindow.xaml",
+              "RelativeToolTip": "Views\\NuevaTareaWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-18T02:48:42.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+>>>>>>> Stashed changes
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -379,7 +643,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 13,
+=======
+              "DocumentIndex": 10,
+>>>>>>> Stashed changes
               "Title": "PropiedadService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\PropiedadService.cs",
               "RelativeDocumentMoniker": "Services\\PropiedadService.cs",
@@ -391,7 +659,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 14,
+=======
+              "DocumentIndex": 11,
+>>>>>>> Stashed changes
               "Title": "EmpleadoService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\EmpleadoService.cs",
               "RelativeDocumentMoniker": "Services\\EmpleadoService.cs",
@@ -403,7 +675,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 16,
+=======
+              "DocumentIndex": 13,
+>>>>>>> Stashed changes
               "Title": "AutenticacionService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\AutenticacionService.cs",
               "RelativeDocumentMoniker": "Services\\AutenticacionService.cs",
@@ -415,7 +691,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 17,
+=======
+              "DocumentIndex": 14,
+>>>>>>> Stashed changes
               "Title": "TipoPropiedad.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Enums\\TipoPropiedad.cs",
               "RelativeDocumentMoniker": "Models\\Enums\\TipoPropiedad.cs",
@@ -427,7 +707,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 18,
+=======
+              "DocumentIndex": 15,
+>>>>>>> Stashed changes
               "Title": "RolUsuario.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Enums\\RolUsuario.cs",
               "RelativeDocumentMoniker": "Models\\Enums\\RolUsuario.cs",
@@ -439,7 +723,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 19,
+=======
+              "DocumentIndex": 16,
+>>>>>>> Stashed changes
               "Title": "Rol.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Rol.cs",
               "RelativeDocumentMoniker": "Models\\Rol.cs",
@@ -451,7 +739,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 20,
+=======
+              "DocumentIndex": 17,
+>>>>>>> Stashed changes
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Usuario.cs",
               "RelativeDocumentMoniker": "Models\\Usuario.cs",
@@ -463,7 +755,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 21,
+=======
+              "DocumentIndex": 18,
+>>>>>>> Stashed changes
               "Title": "Empleado.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Empleado.cs",
               "RelativeDocumentMoniker": "Models\\Empleado.cs",
@@ -475,7 +771,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 22,
+=======
+              "DocumentIndex": 19,
+>>>>>>> Stashed changes
               "Title": "Propiedad.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Propiedad.cs",
               "RelativeDocumentMoniker": "Models\\Propiedad.cs",
@@ -487,7 +787,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 23,
+=======
+              "DocumentIndex": 20,
+>>>>>>> Stashed changes
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Cliente.cs",
               "RelativeDocumentMoniker": "Models\\Cliente.cs",
@@ -499,7 +803,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 24,
+=======
+              "DocumentIndex": 21,
+>>>>>>> Stashed changes
               "Title": "StringToVisibilityConverter.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\StringToVisibilityConverter.cs",
               "RelativeDocumentMoniker": "Helpers\\StringToVisibilityConverter.cs",
@@ -511,7 +819,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 25,
+=======
+              "DocumentIndex": 22,
+>>>>>>> Stashed changes
               "Title": "InverseBooleanConverter.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\InverseBooleanConverter.cs",
               "RelativeDocumentMoniker": "Helpers\\InverseBooleanConverter.cs",
@@ -523,7 +835,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 26,
+=======
+              "DocumentIndex": 23,
+>>>>>>> Stashed changes
               "Title": "FileHelper.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\FileHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\FileHelper.cs",
@@ -535,7 +851,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 27,
+=======
+              "DocumentIndex": 24,
+>>>>>>> Stashed changes
               "Title": "HermesDbContext.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Data\\HermesDbContext.cs",
               "RelativeDocumentMoniker": "Data\\HermesDbContext.cs",
@@ -547,7 +867,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 28,
+=======
+              "DocumentIndex": 25,
+>>>>>>> Stashed changes
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Data\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "Data\\DatabaseHelper.cs",
@@ -559,7 +883,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 29,
+=======
+              "DocumentIndex": 26,
+>>>>>>> Stashed changes
               "Title": "RelayCommand.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Commands\\RelayCommand.cs",
               "RelativeDocumentMoniker": "Commands\\RelayCommand.cs",
@@ -571,7 +899,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 30,
+=======
+              "DocumentIndex": 27,
+>>>>>>> Stashed changes
               "Title": "ValidationHelper.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\ValidationHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\ValidationHelper.cs",
@@ -583,7 +915,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 4,
+=======
+              "DocumentIndex": 28,
+>>>>>>> Stashed changes
               "Title": "LoginWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
@@ -591,11 +927,16 @@
               "RelativeToolTip": "Views\\LoginWindow.xaml",
               "ViewState": "AgIAAAkBAAAAAAAAAAAkwAsBAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:31:06.862Z"
+              "WhenOpened": "2025-11-12T15:31:06.862Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 52,
+=======
+              "DocumentIndex": 51,
+>>>>>>> Stashed changes
               "Title": "NuevoEmpleadoViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\NuevoEmpleadoViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\NuevoEmpleadoViewModel.cs",
@@ -607,7 +948,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 53,
+=======
+              "DocumentIndex": 52,
+>>>>>>> Stashed changes
               "Title": "GestionarUsuarioWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionarUsuarioWindow.xaml",
               "RelativeDocumentMoniker": "Views\\GestionarUsuarioWindow.xaml",
@@ -619,7 +964,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 54,
+=======
+              "DocumentIndex": 53,
+>>>>>>> Stashed changes
               "Title": "GestionarUsuarioWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionarUsuarioWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\GestionarUsuarioWindow.xaml.cs",
@@ -631,7 +980,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 51,
+=======
+              "DocumentIndex": 50,
+>>>>>>> Stashed changes
               "Title": "NuevoEmpleadoWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevoEmpleadoWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\NuevoEmpleadoWindow.xaml.cs",
@@ -643,7 +996,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 50,
+=======
+              "DocumentIndex": 49,
+>>>>>>> Stashed changes
               "Title": "NuevoEmpleadoWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevoEmpleadoWindow.xaml",
               "RelativeDocumentMoniker": "Views\\NuevoEmpleadoWindow.xaml",
@@ -655,7 +1012,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 31,
+=======
+              "DocumentIndex": 29,
+>>>>>>> Stashed changes
               "Title": "GestionEmpleadosView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\GestionEmpleadosView.xaml.cs",
@@ -667,7 +1028,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 48,
+=======
+              "DocumentIndex": 47,
+>>>>>>> Stashed changes
               "Title": "GestionEmpleadosView.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml",
               "RelativeDocumentMoniker": "Views\\GestionEmpleadosView.xaml",
@@ -679,7 +1044,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 46,
+=======
+              "DocumentIndex": 45,
+>>>>>>> Stashed changes
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -691,7 +1060,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 49,
+=======
+              "DocumentIndex": 48,
+>>>>>>> Stashed changes
               "Title": "GestionEmpleadosViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\GestionEmpleadosViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\GestionEmpleadosViewModel.cs",
@@ -703,7 +1076,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 47,
+=======
+              "DocumentIndex": 46,
+>>>>>>> Stashed changes
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -715,7 +1092,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 32,
+=======
+              "DocumentIndex": 31,
+>>>>>>> Stashed changes
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -727,6 +1108,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 45,
               "Title": "LoginWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml.cs",
@@ -739,6 +1121,8 @@
             },
             {
               "$type": "Document",
+=======
+>>>>>>> Stashed changes
               "DocumentIndex": 44,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\LoginViewModel.cs",
@@ -775,7 +1159,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 33,
+=======
+              "DocumentIndex": 32,
+>>>>>>> Stashed changes
               "Title": "Transaccion.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Transaccion.cs",
               "RelativeDocumentMoniker": "Models\\Transaccion.cs",
@@ -787,7 +1175,22 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 35,
+=======
+              "DocumentIndex": 30,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-12T14:44:45.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+>>>>>>> Stashed changes
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
@@ -871,7 +1274,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 3,
+=======
+              "DocumentIndex": 35,
+>>>>>>> Stashed changes
               "Title": "Styles.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Resources\\Styles.xaml",
               "RelativeDocumentMoniker": "Resources\\Styles.xaml",
@@ -884,7 +1291,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 34,
+=======
+              "DocumentIndex": 33,
+>>>>>>> Stashed changes
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
