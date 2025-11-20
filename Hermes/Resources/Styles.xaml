@@ -100,10 +100,10 @@
         <GradientStop Color="#5DADE2" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado para cards (claro y profesional) -->
+    <!-- Degradado para cards (tema oscuro morado medianoche) -->
     <LinearGradientBrush x:Key="CardGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#FFFFFF" Offset="0"/>
-        <GradientStop Color="#e0e1dd" Offset="1"/>
+        <GradientStop Color="#1a1a2e" Offset="0"/>
+        <GradientStop Color="#16213e" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- ========================================== -->
@@ -323,7 +323,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#415a77"/>
+                <Setter Property="Background" Value="#3a4a5e"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
@@ -368,14 +368,16 @@
     <!-- ESTILOS DE CARDS Y CONTAINERS -->
     <!-- ========================================== -->
 
-    <!-- Card con Sombra (Moderno con degradado sutil) -->
+    <!-- Card con Sombra (Tema morado medianoche) -->
     <Style x:Key="CardStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource CardGradient}"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Padding" Value="20"/>
+        <Setter Property="BorderBrush" Value="#30FFFFFF"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.2" Color="#0d1b2a"/>
+                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -637,17 +639,18 @@
     <!-- ESTILOS DE CARDS DE TAREAS -->
     <!-- ========================================== -->
 
-    <!-- Card de Tarea Individual -->
+    <!-- Card de Tarea Individual (Tema morado medianoche) -->
     <Style x:Key="TareaCardStyle" TargetType="Border">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Margin" Value="8"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="BorderThickness" Value="0,0,0,4"/>
+        <Setter Property="BorderThickness" Value="1,1,1,4"/>
+        <Setter Property="BorderBrush" Value="#30FFFFFF"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#2C3E50"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
             </Setter.Value>
         </Setter>
         <Setter Property="RenderTransform">
@@ -692,23 +695,24 @@
 
     <!-- Header de Card de Tarea (con color de prioridad) -->
     <Style x:Key="TareaCardHeaderStyle" TargetType="StackPanel">
-        <Setter Property="Background" Value="#F8F9FA"/>
+        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Opacity" Value="0.6"/>
     </Style>
 
-    <!-- Título de Tarea en Card -->
+    <!-- Título de Tarea en Card (tema oscuro) -->
     <Style x:Key="TareaCardTitleStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Foreground" Value="#2C3E50"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="Margin" Value="0,0,0,5"/>
     </Style>
 
-    <!-- Descripción de Tarea en Card -->
+    <!-- Descripción de Tarea en Card (tema oscuro) -->
     <Style x:Key="TareaCardDescriptionStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Foreground" Value="#7F8C8D"/>
+        <Setter Property="Foreground" Value="#B0B8C8"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="MaxHeight" Value="40"/>
@@ -736,11 +740,12 @@
         <Setter Property="Background" Value="{StaticResource PrimaryGradient}"/>
     </Style>
 
-    <!-- Texto de Metadata (fechas, etc) -->
+    <!-- Texto de Metadata (fechas, etc - tema oscuro) -->
     <Style x:Key="MetadataTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="#95A5A6"/>
+        <Setter Property="Foreground" Value="#B0B8C8"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Opacity" Value="0.8"/>
     </Style>
 
 </ResourceDictionary>
