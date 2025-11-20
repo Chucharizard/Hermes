@@ -420,42 +420,62 @@
     <!-- ESTILOS DE INPUTS -->
     <!-- ========================================== -->
 
-    <!-- TextBox Moderno -->
+    <!-- TextBox Moderno (tema morado medianoche) -->
     <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#3a4a5e"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="8">
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                    Padding="{TemplateBinding Padding}"
-                                    VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.2" Color="#000000"/>
+                        </Border.Effect>
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Tag}"
+                                      Foreground="#7F8C8D"
+                                      FontSize="13"
+                                      Padding="{TemplateBinding Padding}"
+                                      VerticalAlignment="Center"
+                                      IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                        Padding="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"/>
+                        </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource InfoColor}"/>
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Trigger>
-            <Trigger Property="Validation.HasError" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource DangerColor}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <!-- PasswordBox Moderno -->
@@ -492,15 +512,122 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ComboBox Moderno -->
+    <!-- ComboBox Moderno (tema morado medianoche) -->
     <Style x:Key="ModernComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#3a4a5e"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton x:Name="toggleButton"
+                                     Background="{TemplateBinding Background}"
+                                     BorderBrush="{TemplateBinding BorderBrush}"
+                                     BorderThickness="{TemplateBinding BorderThickness}"
+                                     Focusable="False"
+                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                     ClickMode="Press">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border x:Name="border"
+                                           Background="{TemplateBinding Background}"
+                                           BorderBrush="{TemplateBinding BorderBrush}"
+                                           BorderThickness="{TemplateBinding BorderThickness}"
+                                           CornerRadius="8">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.2" Color="#000000"/>
+                                        </Border.Effect>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Grid.Column="0"
+                                                            Content="{TemplateBinding Content}"
+                                                            Margin="15,0"/>
+                                            <Path Grid.Column="1"
+                                                 Data="M 0 0 L 4 4 L 8 0 Z"
+                                                 Fill="#B0B8C8"
+                                                 Margin="0,0,15,0"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <ContentPresenter x:Name="contentPresenter"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Margin="15,0,30,0"
+                                        IsHitTestVisible="False"/>
+                        <Popup x:Name="PART_Popup"
+                              Placement="Bottom"
+                              IsOpen="{TemplateBinding IsDropDownOpen}"
+                              AllowsTransparency="True"
+                              Focusable="False"
+                              PopupAnimation="Slide">
+                            <Border Background="#1a1a2e"
+                                   BorderBrush="#3a4a5e"
+                                   BorderThickness="1"
+                                   CornerRadius="8"
+                                   Margin="0,4,0,0"
+                                   MaxHeight="200">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                                </Border.Effect>
+                                <ScrollViewer>
+                                    <StackPanel IsItemsHost="True"
+                                              KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                    <Setter Property="Padding" Value="15,10"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="border"
+                                       Background="{TemplateBinding Background}"
+                                       Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsHighlighted" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#16213e"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#16213e"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- ========================================== -->

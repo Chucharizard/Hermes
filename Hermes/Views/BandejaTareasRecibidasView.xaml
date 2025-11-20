@@ -233,7 +233,7 @@
                         <ItemsControl ItemsSource="{Binding TareasFiltradas}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <!-- Item compacto de tarea tipo Teams -->
+                                    <!-- Item de tarea mejorado con mejor organización -->
                                     <Border Style="{StaticResource TareaListItemStyle}"
                                             MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
                                             Tag="{Binding}">
@@ -243,68 +243,99 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
 
-                                            <!-- Fila 1: Badges de Estado y Prioridad -->
-                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
-                                                <Border Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}"
-                                                        CornerRadius="8"
-                                                        Padding="6,2"
-                                                        Margin="0,0,6,0">
-                                                    <TextBlock Text="{Binding EstadoTarea}"
-                                                               FontSize="9"
-                                                               FontWeight="Bold"
-                                                               Foreground="White"/>
-                                                </Border>
-
-                                                <Border Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
-                                                        CornerRadius="8"
-                                                        Padding="6,2">
-                                                    <TextBlock Text="{Binding PrioridadTarea}"
-                                                               FontSize="9"
-                                                               FontWeight="Bold"
-                                                               Foreground="White"/>
-                                                </Border>
-
-                                                <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
-                                                           FontSize="10"
-                                                           Foreground="#B0B8C8"
-                                                           VerticalAlignment="Center"
-                                                           Margin="8,0,0,0"
-                                                           Opacity="0.9"/>
-                                            </StackPanel>
-
-                                            <!-- Fila 2: Título de la tarea -->
-                                            <TextBlock Grid.Row="1"
+                                            <!-- Fila 1: Título de la tarea -->
+                                            <TextBlock Grid.Row="0"
                                                        Text="{Binding TituloTarea}"
-                                                       FontSize="14"
+                                                       FontSize="15"
                                                        FontWeight="SemiBold"
                                                        Foreground="#FFFFFF"
                                                        TextTrimming="CharacterEllipsis"
-                                                       Margin="0,0,0,4"/>
+                                                       Margin="0,0,0,8"/>
 
-                                            <!-- Fila 3: Emisor y descripción breve -->
-                                            <Grid Grid.Row="2">
+                                            <!-- Separador sutil -->
+                                            <Border Grid.Row="1"
+                                                   Height="1"
+                                                   Background="#30FFFFFF"
+                                                   Margin="0,0,0,8"/>
+
+                                            <!-- Fila 2: Badges y Fecha -->
+                                            <Grid Grid.Row="2" Margin="0,0,0,8">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                    <Border Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}"
+                                                            CornerRadius="10"
+                                                            Padding="8,4"
+                                                            Margin="0,0,6,0">
+                                                        <TextBlock Text="{Binding EstadoTarea}"
+                                                                   FontSize="10"
+                                                                   FontWeight="Bold"
+                                                                   Foreground="White"/>
+                                                    </Border>
+
+                                                    <Border Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                            CornerRadius="10"
+                                                            Padding="8,4">
+                                                        <TextBlock Text="{Binding PrioridadTarea}"
+                                                                   FontSize="10"
+                                                                   FontWeight="Bold"
+                                                                   Foreground="White"/>
+                                                    </Border>
+                                                </StackPanel>
+
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <TextBlock Text="📅"
+                                                              FontSize="12"
+                                                              Margin="0,0,4,0"
+                                                              Opacity="0.7"/>
+                                                    <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
+                                                               FontSize="11"
+                                                               Foreground="#B0B8C8"
+                                                               FontWeight="Medium"
+                                                               VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <!-- Fila 3: Descripción y Emisor -->
+                                            <Grid Grid.Row="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock Grid.Column="0"
-                                                           FontSize="11"
-                                                           Foreground="#B0B8C8"
-                                                           Margin="0,0,10,0"
-                                                           Opacity="0.9">
-                                                    <Run Text="De:"/>
-                                                    <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}" Foreground="#F39C12" FontWeight="SemiBold"/>
-                                                </TextBlock>
-
-                                                <TextBlock Grid.Column="1"
                                                            Text="{Binding DescripcionTarea}"
-                                                           FontSize="11"
+                                                           FontSize="12"
                                                            Foreground="#B0B8C8"
-                                                           Opacity="0.8"
-                                                           TextTrimming="CharacterEllipsis"/>
+                                                           Opacity="0.85"
+                                                           TextTrimming="CharacterEllipsis"
+                                                           VerticalAlignment="Center"
+                                                           Margin="0,0,12,0"/>
+
+                                                <Border Grid.Column="1"
+                                                       Background="#16213e"
+                                                       CornerRadius="12"
+                                                       Padding="10,6">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="👤"
+                                                                  FontSize="11"
+                                                                  Margin="0,0,4,0"
+                                                                  Opacity="0.8"/>
+                                                        <TextBlock FontSize="11"
+                                                                   Foreground="#B0B8C8">
+                                                            <Run Text="De:"/>
+                                                            <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
+                                                                Foreground="#F39C12"
+                                                                FontWeight="SemiBold"/>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Border>
                                             </Grid>
                                         </Grid>
                                     </Border>
