@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
              xmlns:views="clr-namespace:Hermes.Views"
-             xmlns:converters="clr-namespace:Hermes.Converters">
+             xmlns:converters="clr-namespace:Hermes.Converters"
+             xmlns:dd="urn:gong-wpf-dragdrop">
 
     <UserControl.DataContext>
         <viewmodels:BandejaTareasEnviadasViewModel/>
@@ -12,21 +13,20 @@
     <UserControl.Resources>
         <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
         <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
-        <converters:TareaSeleccionadaToGridLengthConverter x:Key="TareaSeleccionadaToGridLengthConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-        <!-- Estilo para item de tarea (tema morado medianoche) -->
-        <Style x:Key="TareaListItemStyle" TargetType="Border">
+        <!-- Estilo para tarjetas Kanban (tema morado medianoche) -->
+        <Style x:Key="KanbanCardStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource CardGradient}"/>
             <Setter Property="BorderBrush" Value="#30FFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="Margin" Value="6"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.25" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.2" Color="#000000"/>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
@@ -40,13 +40,44 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
+                                               To="0.2" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <!-- Estilo para columnas Kanban -->
+        <Style x:Key="KanbanColumnStyle" TargetType="Border">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#0f1419" Offset="0"/>
+                        <GradientStop Color="#0a0a15" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#30FFFFFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -70,7 +101,7 @@
 
                 <!-- Título -->
                 <TextBlock Grid.Column="0"
-                           Text="📤 Bandeja de Tareas Enviadas"
+                           Text="📤 Bandeja de Tareas Enviadas (Vista Kanban)"
                            FontSize="17"
                            FontWeight="Bold"
                            Foreground="#FFFFFF"
@@ -157,191 +188,129 @@
             </Grid>
         </Border>
 
-        <!-- ========================================== -->
-        <!-- VISTA DE LISTA (Mostrar cuando no hay tarea seleccionada) -->
-        <!-- ========================================== -->
-        <Grid Grid.Row="1">
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
+        <!-- Barra de búsqueda -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <!-- LISTA DE TAREAS (tema morado medianoche) -->
-            <Border CornerRadius="12" Padding="12" BorderBrush="#30FFFFFF" BorderThickness="1">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#0f1419" Offset="0"/>
-                        <GradientStop Color="#0a0a15" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Border.Style>
-                    <Style TargetType="Border">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.35" Color="#000000"/>
-                </Border.Effect>
+            <TextBox Grid.Column="0"
+                    Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource ModernTextBoxStyle}"
+                     Tag="🔍 Buscar tareas..."
+                     Margin="0,0,8,0"/>
 
+            <Button Grid.Column="1"
+                    Content="🔄 Refrescar"
+                    Command="{Binding RefrescarCommand}"
+                    Style="{StaticResource InfoButtonStyle}"
+                    Padding="15,8"
+                    FontSize="13"/>
+        </Grid>
+
+        <!-- TABLERO KANBAN - 5 Columnas -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/> <!-- Pendiente -->
+                <ColumnDefinition Width="*"/> <!-- Completado -->
+                <ColumnDefinition Width="*"/> <!-- Vencido -->
+                <ColumnDefinition Width="*"/> <!-- Observado -->
+                <ColumnDefinition Width="*"/> <!-- Archivado -->
+            </Grid.ColumnDefinitions>
+
+            <!-- ========================================== -->
+            <!-- COLUMNA 1: PENDIENTES -->
+            <!-- ========================================== -->
+            <Border Grid.Column="0" Style="{StaticResource KanbanColumnStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Filtros y búsqueda en una sola línea -->
-                    <Grid Grid.Row="0" Margin="12,12,12,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1.5*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                    <!-- Header de columna -->
+                    <Border Grid.Row="0" Background="#F39C12" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="⏳ PENDIENTE"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TareasPendientes.Count, StringFormat='{}{0} tareas'}"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
 
-                        <TextBox Grid.Column="0"
-                                Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource ModernTextBoxStyle}"
-                                 Tag="🔍 Buscar tareas..."
-                                 Margin="0,0,8,0"/>
-
-                        <ComboBox Grid.Column="1"
-                                  ItemsSource="{Binding EstadosFiltro}"
-                                  SelectedItem="{Binding FiltroEstado}"
-                                  Style="{StaticResource ModernComboBoxStyle}"
-                                  Margin="0,0,8,0"/>
-
-                        <Button Grid.Column="2"
-                                Content="🔄"
-                                Command="{Binding RefrescarCommand}"
-                                Style="{StaticResource InfoButtonStyle}"
-                                Width="45"
-                                ToolTip="Refrescar"/>
-                    </Grid>
-
-                    <!-- Lista de tareas en grid de 2 columnas -->
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
-                        <ItemsControl ItemsSource="{Binding TareasFiltradas}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="2"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
+                    <!-- Lista de tareas -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding TareasPendientes}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.DropHandler="{Binding}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <!-- Item de tarea mejorado con mejor organización -->
-                                    <Border Style="{StaticResource TareaListItemStyle}"
+                                    <Border Style="{StaticResource KanbanCardStyle}"
                                             MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
                                             Tag="{Binding}">
-
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
 
-                                            <!-- Fila 1: Título de la tarea -->
+                                            <!-- Título -->
                                             <TextBlock Grid.Row="0"
                                                        Text="{Binding TituloTarea}"
-                                                       FontSize="15"
+                                                       FontSize="13"
                                                        FontWeight="SemiBold"
                                                        Foreground="#FFFFFF"
-                                                       TextTrimming="CharacterEllipsis"
+                                                       TextWrapping="Wrap"
                                                        Margin="0,0,0,8"/>
 
-                                            <!-- Separador sutil -->
-                                            <Border Grid.Row="1"
-                                                   Height="1"
-                                                   Background="#30FFFFFF"
-                                                   Margin="0,0,0,8"/>
-
-                                            <!-- Fila 2: Badges y Fecha -->
-                                            <Grid Grid.Row="2" Margin="0,0,0,8">
+                                            <!-- Prioridad y Fecha -->
+                                            <Grid Grid.Row="1" Margin="0,0,0,8">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                                    <Border Background="{Binding EstadoTarea, Converter={StaticResource EstadoToColorConverter}}"
-                                                            CornerRadius="10"
-                                                            Padding="8,4"
-                                                            Margin="0,0,6,0">
-                                                        <TextBlock Text="{Binding EstadoTarea}"
-                                                                   FontSize="10"
-                                                                   FontWeight="Bold"
-                                                                   Foreground="White"/>
-                                                    </Border>
-
-                                                    <Border Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
-                                                            CornerRadius="10"
-                                                            Padding="8,4">
-                                                        <TextBlock Text="{Binding PrioridadTarea}"
-                                                                   FontSize="10"
-                                                                   FontWeight="Bold"
-                                                                   Foreground="White"/>
-                                                    </Border>
-                                                </StackPanel>
-
-                                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                                                    <TextBlock Text="📅"
-                                                              FontSize="12"
-                                                              Margin="0,0,4,0"
-                                                              Opacity="0.7"/>
-                                                    <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
-                                                               FontSize="11"
-                                                               Foreground="#B0B8C8"
-                                                               FontWeight="Medium"
-                                                               VerticalAlignment="Center"/>
-                                                </StackPanel>
-                                            </Grid>
-
-                                            <!-- Fila 3: Descripción y Receptor -->
-                                            <Grid Grid.Row="3">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <TextBlock Grid.Column="0"
-                                                           Text="{Binding DescripcionTarea}"
-                                                           FontSize="12"
-                                                           Foreground="#B0B8C8"
-                                                           Opacity="0.85"
-                                                           TextTrimming="CharacterEllipsis"
-                                                           VerticalAlignment="Center"
-                                                           Margin="0,0,12,0"/>
-
-                                                <Border Grid.Column="1"
-                                                       Background="#16213e"
-                                                       CornerRadius="12"
-                                                       Padding="10,6">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="👤"
-                                                                  FontSize="11"
-                                                                  Margin="0,0,4,0"
-                                                                  Opacity="0.8"/>
-                                                        <TextBlock FontSize="11"
-                                                                   Foreground="#B0B8C8">
-                                                            <Run Text="Para:"/>
-                                                            <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
-                                                                Foreground="#27AE60"
-                                                                FontWeight="SemiBold"/>
-                                                        </TextBlock>
-                                                    </StackPanel>
+                                                <Border Grid.Column="0"
+                                                        Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,3"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
                                                 </Border>
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding FechaLimiteTarea, StringFormat='📅 {0:dd/MM}'}"
+                                                           FontSize="10"
+                                                           Foreground="#B0B8C8"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Right"/>
                                             </Grid>
+
+                                            <!-- Receptor -->
+                                            <Border Grid.Row="2"
+                                                    Background="#16213e"
+                                                    CornerRadius="8"
+                                                    Padding="6,4">
+                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                    <Run Text="👤 Para:"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
+                                                         Foreground="#27AE60"
+                                                         FontWeight="SemiBold"/>
+                                                </TextBlock>
+                                            </Border>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -351,59 +320,408 @@
                 </Grid>
             </Border>
 
-            <!-- VISTA DE DETALLE COMPLETO (Reemplazo total estilo Teams - tema morado medianoche) -->
-            <Border CornerRadius="12" Padding="0" BorderBrush="#30FFFFFF" BorderThickness="1">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#1a1a2e" Offset="0"/>
-                        <GradientStop Color="#16213e" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Border.Style>
-                    <Style TargetType="Border">
-                        <Setter Property="Visibility" Value="Visible"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.35" Color="#000000"/>
-                </Border.Effect>
-
+            <!-- ========================================== -->
+            <!-- COLUMNA 2: COMPLETADAS -->
+            <!-- ========================================== -->
+            <Border Grid.Column="1" Style="{StaticResource KanbanColumnStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Botón Volver -->
-                    <Border Grid.Row="0" Padding="12" BorderBrush="#30FFFFFF" BorderThickness="0,0,0,1">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#0f1419" Offset="0"/>
-                                <GradientStop Color="#0a0a15" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Button Content="← Volver a Tareas Enviadas"
-                                Command="{Binding VolverCommand}"
-                                Style="{StaticResource InfoButtonStyle}"
-                                HorizontalAlignment="Left"
-                                Padding="12,8"
-                                FontSize="12"/>
+                    <!-- Header de columna -->
+                    <Border Grid.Row="0" Background="#27AE60" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="✅ COMPLETADO"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TareasCompletadas.Count, StringFormat='{}{0} tareas'}"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,2,0,0"/>
+                        </StackPanel>
                     </Border>
 
-                    <!-- Contenido del Detalle -->
+                    <!-- Lista de tareas -->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <ContentControl Content="{Binding DetalleViewModel}">
-                            <ContentControl.ContentTemplate>
+                        <ItemsControl ItemsSource="{Binding TareasCompletadas}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <views:DetalleTareaView/>
+                                    <Border Style="{StaticResource KanbanCardStyle}"
+                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            Tag="{Binding}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Título -->
+                                            <TextBlock Grid.Row="0"
+                                                       Text="{Binding TituloTarea}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#FFFFFF"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,0,8"/>
+
+                                            <!-- Prioridad y Fecha -->
+                                            <Grid Grid.Row="1" Margin="0,0,0,8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0"
+                                                        Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,3"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding FechaCompletadaTarea, StringFormat='✓ {0:dd/MM}'}"
+                                                           FontSize="10"
+                                                           Foreground="#27AE60"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Right"/>
+                                            </Grid>
+
+                                            <!-- Receptor -->
+                                            <Border Grid.Row="2"
+                                                    Background="#16213e"
+                                                    CornerRadius="8"
+                                                    Padding="6,4">
+                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                    <Run Text="👤 Para:"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
+                                                         Foreground="#27AE60"
+                                                         FontWeight="SemiBold"/>
+                                                </TextBlock>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
-                            </ContentControl.ContentTemplate>
-                        </ContentControl>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- ========================================== -->
+            <!-- COLUMNA 3: VENCIDAS -->
+            <!-- ========================================== -->
+            <Border Grid.Column="2" Style="{StaticResource KanbanColumnStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Header de columna -->
+                    <Border Grid.Row="0" Background="#E67E22" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="⚠️ VENCIDO"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TareasVencidas.Count, StringFormat='{}{0} tareas'}"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Lista de tareas -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding TareasVencidas}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource KanbanCardStyle}"
+                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            Tag="{Binding}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Título -->
+                                            <TextBlock Grid.Row="0"
+                                                       Text="{Binding TituloTarea}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#FFFFFF"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,0,8"/>
+
+                                            <!-- Prioridad y Fecha -->
+                                            <Grid Grid.Row="1" Margin="0,0,0,8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0"
+                                                        Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,3"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding TiempoRestante}"
+                                                           FontSize="10"
+                                                           Foreground="#E67E22"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Right"
+                                                           TextWrapping="Wrap"/>
+                                            </Grid>
+
+                                            <!-- Receptor -->
+                                            <Border Grid.Row="2"
+                                                    Background="#16213e"
+                                                    CornerRadius="8"
+                                                    Padding="6,4">
+                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                    <Run Text="👤 Para:"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
+                                                         Foreground="#27AE60"
+                                                         FontWeight="SemiBold"/>
+                                                </TextBlock>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- ========================================== -->
+            <!-- COLUMNA 4: OBSERVADAS -->
+            <!-- ========================================== -->
+            <Border Grid.Column="3" Style="{StaticResource KanbanColumnStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Header de columna -->
+                    <Border Grid.Row="0" Background="#E74C3C" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="👁️ OBSERVADO"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TareasObservadas.Count, StringFormat='{}{0} tareas'}"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Lista de tareas -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding TareasObservadas}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource KanbanCardStyle}"
+                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            Tag="{Binding}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Título -->
+                                            <TextBlock Grid.Row="0"
+                                                       Text="{Binding TituloTarea}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#FFFFFF"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,0,8"/>
+
+                                            <!-- Prioridad y Fecha -->
+                                            <Grid Grid.Row="1" Margin="0,0,0,8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0"
+                                                        Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,3"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding FechaLimiteTarea, StringFormat='📅 {0:dd/MM}'}"
+                                                           FontSize="10"
+                                                           Foreground="#B0B8C8"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Right"/>
+                                            </Grid>
+
+                                            <!-- Receptor -->
+                                            <Border Grid.Row="2"
+                                                    Background="#16213e"
+                                                    CornerRadius="8"
+                                                    Padding="6,4">
+                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                    <Run Text="👤 Para:"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
+                                                         Foreground="#27AE60"
+                                                         FontWeight="SemiBold"/>
+                                                </TextBlock>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- ========================================== -->
+            <!-- COLUMNA 5: ARCHIVADAS -->
+            <!-- ========================================== -->
+            <Border Grid.Column="4" Style="{StaticResource KanbanColumnStyle}" Margin="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Header de columna -->
+                    <Border Grid.Row="0" Background="#95A5A6" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="📦 ARCHIVADO"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TareasArchivadas.Count, StringFormat='{}{0} tareas'}"
+                                       FontSize="11"
+                                       Foreground="White"
+                                       Opacity="0.9"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Lista de tareas -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding TareasArchivadas}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource KanbanCardStyle}"
+                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            Tag="{Binding}"
+                                            Opacity="0.7">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Título -->
+                                            <TextBlock Grid.Row="0"
+                                                       Text="{Binding TituloTarea}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#FFFFFF"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,0,8"/>
+
+                                            <!-- Prioridad y Fecha -->
+                                            <Grid Grid.Row="1" Margin="0,0,0,8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0"
+                                                        Background="{Binding PrioridadTarea, Converter={StaticResource PrioridadToColorConverter}}"
+                                                        CornerRadius="8"
+                                                        Padding="6,3"
+                                                        Margin="0,0,6,0">
+                                                    <TextBlock Text="{Binding PrioridadTarea}"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+                                                </Border>
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding FechaCompletadaTarea, StringFormat='✓ {0:dd/MM}'}"
+                                                           FontSize="10"
+                                                           Foreground="#95A5A6"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Right"/>
+                                            </Grid>
+
+                                            <!-- Receptor -->
+                                            <Border Grid.Row="2"
+                                                    Background="#16213e"
+                                                    CornerRadius="8"
+                                                    Padding="6,4">
+                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                    <Run Text="👤 Para:"/>
+                                                    <Run Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
+                                                         Foreground="#95A5A6"
+                                                         FontWeight="SemiBold"/>
+                                                </TextBlock>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
                 </Grid>
             </Border>

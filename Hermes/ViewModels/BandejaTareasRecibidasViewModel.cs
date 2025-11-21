@@ -2,13 +2,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using GongSolutions.Wpf.DragDrop;
 using Hermes.Commands;
 using Hermes.Models;
 using Hermes.Services;
 
 namespace Hermes.ViewModels
 {
-    public class BandejaTareasRecibidasViewModel : BaseViewModel
+    public class BandejaTareasRecibidasViewModel : BaseViewModel, IDropTarget
     {
         private readonly TareaService _tareaService;
         private readonly TareaComentarioService _comentarioService;
@@ -18,6 +19,12 @@ namespace Hermes.ViewModels
         private string _filtroEstado = "Todas";
         private string _textoBusqueda = string.Empty;
         private ObservableCollection<Tarea> _tareasFiltradas = new();
+
+        // Colecciones Kanban por estado
+        private ObservableCollection<Tarea> _tareasPendientes = new();
+        private ObservableCollection<Tarea> _tareasCompletadas = new();
+        private ObservableCollection<Tarea> _tareasVencidas = new();
+        private ObservableCollection<Tarea> _tareasObservadas = new();
 
         public ObservableCollection<Tarea> TareasRecibidas
         {
@@ -29,6 +36,31 @@ namespace Hermes.ViewModels
         {
             get => _tareasFiltradas;
             set => SetProperty(ref _tareasFiltradas, value);
+        }
+
+        // Colecciones Kanban
+        public ObservableCollection<Tarea> TareasPendientes
+        {
+            get => _tareasPendientes;
+            set => SetProperty(ref _tareasPendientes, value);
+        }
+
+        public ObservableCollection<Tarea> TareasCompletadas
+        {
+            get => _tareasCompletadas;
+            set => SetProperty(ref _tareasCompletadas, value);
+        }
+
+        public ObservableCollection<Tarea> TareasVencidas
+        {
+            get => _tareasVencidas;
+            set => SetProperty(ref _tareasVencidas, value);
+        }
+
+        public ObservableCollection<Tarea> TareasObservadas
+        {
+            get => _tareasObservadas;
+            set => SetProperty(ref _tareasObservadas, value);
         }
 
         public Tarea? TareaSeleccionada
@@ -128,8 +160,40 @@ namespace Hermes.ViewModels
                 }
 
                 AplicarFiltros();
+                OrganizarTareasKanban();
                 ActualizarEstadisticas();
             });
+        }
+
+        private void OrganizarTareasKanban()
+        {
+            TareasPendientes.Clear();
+            TareasCompletadas.Clear();
+            TareasVencidas.Clear();
+            TareasObservadas.Clear();
+
+            var tareasAOrganizar = string.IsNullOrWhiteSpace(TextoBusqueda)
+                ? TareasRecibidas
+                : TareasFiltradas;
+
+            foreach (var tarea in tareasAOrganizar)
+            {
+                switch (tarea.EstadoTarea)
+                {
+                    case "Pendiente":
+                        TareasPendientes.Add(tarea);
+                        break;
+                    case "Completado":
+                        TareasCompletadas.Add(tarea);
+                        break;
+                    case "Vencido":
+                        TareasVencidas.Add(tarea);
+                        break;
+                    case "Observado":
+                        TareasObservadas.Add(tarea);
+                        break;
+                }
+            }
         }
 
         private void AplicarFiltros()
@@ -158,6 +222,9 @@ namespace Hermes.ViewModels
             {
                 TareasFiltradas.Add(tarea);
             }
+
+            // Reorganizar Kanban después de aplicar filtros
+            OrganizarTareasKanban();
         }
 
         private void ActualizarEstadisticas()
@@ -226,6 +293,75 @@ namespace Hermes.ViewModels
         {
             // Limpiar selección para volver a la vista de lista
             TareaSeleccionada = null;
+        }
+
+        // Implementación de IDropTarget para drag & drop
+        public void DragOver(IDropInfo dropInfo)
+        {
+            var sourceItem = dropInfo.Data as Tarea;
+            var targetCollection = dropInfo.TargetCollection;
+
+            if (sourceItem != null && targetCollection != null)
+            {
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
+                dropInfo.Effects = System.Windows.DragDropEffects.Move;
+            }
+        }
+
+        public async void Drop(IDropInfo dropInfo)
+        {
+            var tarea = dropInfo.Data as Tarea;
+            var targetCollection = dropInfo.TargetCollection as ObservableCollection<Tarea>;
+
+            if (tarea == null || targetCollection == null)
+                return;
+
+            // Determinar el nuevo estado basado en la colección de destino
+            string nuevoEstado = DeterminarEstadoPorColeccion(targetCollection);
+
+            if (nuevoEstado == tarea.EstadoTarea)
+                return; // No hacer nada si es el mismo estado
+
+            // Actualizar estado de la tarea
+            var estadoAnterior = tarea.EstadoTarea;
+            tarea.EstadoTarea = nuevoEstado;
+
+            // Si se completa, guardar fecha de completado
+            if (nuevoEstado == "Completado" && estadoAnterior != "Completado")
+            {
+                tarea.FechaCompletadaTarea = DateTime.Now;
+            }
+
+            // Actualizar en base de datos
+            var actualizado = await _tareaService.ActualizarAsync(tarea);
+
+            if (actualizado)
+            {
+                // Reorganizar las colecciones Kanban
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    OrganizarTareasKanban();
+                    ActualizarEstadisticas();
+                });
+            }
+            else
+            {
+                // Revertir cambio si falla
+                tarea.EstadoTarea = estadoAnterior;
+                MessageBox.Show("Error al actualizar el estado de la tarea",
+                              "Error",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
+        }
+
+        private string DeterminarEstadoPorColeccion(ObservableCollection<Tarea> coleccion)
+        {
+            if (coleccion == TareasPendientes) return "Pendiente";
+            if (coleccion == TareasCompletadas) return "Completado";
+            if (coleccion == TareasVencidas) return "Vencido";
+            if (coleccion == TareasObservadas) return "Observado";
+            return "Pendiente"; // Default
         }
     }
 }
