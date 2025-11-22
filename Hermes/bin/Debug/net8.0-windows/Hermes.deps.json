@@ -11,7 +11,8 @@
           "BCrypt.Net-Next": "4.0.3",
           "ClosedXML": "0.104.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.0",
-          "System.Configuration.ConfigurationManager": "10.0.0"
+          "System.Configuration.ConfigurationManager": "10.0.0",
+          "gong-wpf-dragdrop": "3.2.1"
         },
         "runtime": {
           "Hermes.dll": {}
@@ -110,6 +111,14 @@
           "lib/netstandard2.0/ExcelNumberFormat.dll": {
             "assemblyVersion": "1.1.0.0",
             "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "gong-wpf-dragdrop/3.2.1": {
+        "runtime": {
+          "lib/net6.0-windows7.0/GongSolutions.WPF.DragDrop.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.2.1.12"
           }
         }
       },
@@ -637,6 +646,13 @@
       "sha512": "sha512-R3BVHPs9O+RkExbZYTGT0+9HLbi8ZrNij1Yziyw6znd3J7P3uoIR07uwTLGOogtz1p6+0sna66eBoXu7tBiVQA==",
       "path": "excelnumberformat/1.1.0",
       "hashPath": "excelnumberformat.1.1.0.nupkg.sha512"
+    },
+    "gong-wpf-dragdrop/3.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-duqBiOHQobupqRdbLYcr+8BQeeuHkvPDHQs9lnLZ03sYkmJbk5ApXqgUfx7hPP7tN9qopFQKl6OlYIHixnI1iw==",
+      "path": "gong-wpf-dragdrop/3.2.1",
+      "hashPath": "gong-wpf-dragdrop.3.2.1.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

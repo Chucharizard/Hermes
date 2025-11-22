@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jBe8C5g7U54=",
+  "dgSpecHash": "rEsYwJ7D4r0=",
   "success": true,
   "projectFilePath": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Hermes.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\USUARIO\\.nuget\\packages\\documentformat.openxml\\3.0.1\\documentformat.openxml.3.0.1.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\documentformat.openxml.framework\\3.0.1\\documentformat.openxml.framework.3.0.1.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",
+    "C:\\Users\\USUARIO\\.nuget\\packages\\gong-wpf-dragdrop\\3.2.1\\gong-wpf-dragdrop.3.2.1.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",

@@ -3,6 +3,46 @@
   "WorkspaceRootPath": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\detalletareaview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\detalletareaview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\detalletareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\detalletareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\gestionarusuariowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\gestionarusuariowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\gestionempleadosview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\gestionempleadosview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\gestiontareasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\gestiontareasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\editarempleadowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\editarempleadowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\editartareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\editartareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\hermes.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:hermes.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|c:\\users\\usuario\\downloads\\pruebashermes\\v8\\hermes\\hermes\\views\\nuevatareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CB4A6126-3BED-4A47-8C81-8D70FA60BF13}|Hermes.csproj|solutionrelative:views\\nuevatareawindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -222,7 +262,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 159,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -230,7 +270,128 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DashboardView.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\DashboardView.xaml",
+              "RelativeDocumentMoniker": "Views\\DashboardView.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\DashboardView.xaml",
+              "RelativeToolTip": "Views\\DashboardView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:56:19.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DetalleTareaWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\DetalleTareaWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\DetalleTareaWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\DetalleTareaWindow.xaml",
+              "RelativeToolTip": "Views\\DetalleTareaWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:45.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DetalleTareaView.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\DetalleTareaView.xaml",
+              "RelativeDocumentMoniker": "Views\\DetalleTareaView.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\DetalleTareaView.xaml",
+              "RelativeToolTip": "Views\\DetalleTareaView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:43.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GestionarUsuarioWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionarUsuarioWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\GestionarUsuarioWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionarUsuarioWindow.xaml",
+              "RelativeToolTip": "Views\\GestionarUsuarioWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:42.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GestionTareasView.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionTareasView.xaml",
+              "RelativeDocumentMoniker": "Views\\GestionTareasView.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionTareasView.xaml",
+              "RelativeToolTip": "Views\\GestionTareasView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:36.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml",
+              "RelativeToolTip": "Views\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:35.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GestionEmpleadosView.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml",
+              "RelativeDocumentMoniker": "Views\\GestionEmpleadosView.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml",
+              "RelativeToolTip": "Views\\GestionEmpleadosView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:34.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EditarEmpleadoWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\EditarEmpleadoWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\EditarEmpleadoWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\EditarEmpleadoWindow.xaml",
+              "RelativeToolTip": "Views\\EditarEmpleadoWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:30.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EditarTareaWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\EditarTareaWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\EditarTareaWindow.xaml",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\EditarTareaWindow.xaml",
+              "RelativeToolTip": "Views\\EditarTareaWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-22T00:44:25.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Hermes",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Hermes.csproj",
+              "RelativeDocumentMoniker": "Hermes.csproj",
+              "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Hermes.csproj",
+              "RelativeToolTip": "Hermes.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-22T00:37:27.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "NuevaTareaWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevaTareaWindow.xaml",
               "RelativeDocumentMoniker": "Views\\NuevaTareaWindow.xaml",
@@ -242,7 +403,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "TROUBLESHOOTING_PASSWORD.md",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\TROUBLESHOOTING_PASSWORD.md",
               "RelativeDocumentMoniker": "TROUBLESHOOTING_PASSWORD.md",
@@ -250,11 +411,12 @@
               "RelativeToolTip": "TROUBLESHOOTING_PASSWORD.md",
               "ViewState": "AgIAALMAAAAAAAAAAAAAAK8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-11-12T16:21:37.907Z"
+              "WhenOpened": "2025-11-12T16:21:37.907Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 15,
               "Title": "BaseViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\BaseViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\BaseViewModel.cs",
@@ -262,11 +424,12 @@
               "RelativeToolTip": "ViewModels\\BaseViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:08.796Z"
+              "WhenOpened": "2025-11-12T15:16:08.796Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
               "Title": "ClientesView.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\ClientesView.xaml",
               "RelativeDocumentMoniker": "Views\\ClientesView.xaml",
@@ -274,11 +437,12 @@
               "RelativeToolTip": "Views\\ClientesView.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:16:09.891Z"
+              "WhenOpened": "2025-11-12T15:16:09.891Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 20,
               "Title": "ClienteService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\ClienteService.cs",
               "RelativeDocumentMoniker": "Services\\ClienteService.cs",
@@ -286,23 +450,25 @@
               "RelativeToolTip": "Services\\ClienteService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:21:02.971Z"
+              "WhenOpened": "2025-11-12T15:21:02.971Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "GestionarUsuarioViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\GestionarUsuarioViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\GestionarUsuarioViewModel.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\GestionarUsuarioViewModel.cs",
               "RelativeToolTip": "ViewModels\\GestionarUsuarioViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:58:15.616Z"
+              "WhenOpened": "2025-11-12T15:58:15.616Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 16,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\UsuarioService.cs",
               "RelativeDocumentMoniker": "Services\\UsuarioService.cs",
@@ -310,11 +476,12 @@
               "RelativeToolTip": "Services\\UsuarioService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAwwFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:21:13.981Z"
+              "WhenOpened": "2025-11-12T15:21:13.981Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 17,
               "Title": "RolService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\RolService.cs",
               "RelativeDocumentMoniker": "Services\\RolService.cs",
@@ -322,11 +489,12 @@
               "RelativeToolTip": "Services\\RolService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:56:24.045Z"
+              "WhenOpened": "2025-11-12T15:56:24.045Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 12,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -334,11 +502,12 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-11-12T15:33:55.355Z"
+              "WhenOpened": "2025-11-12T15:33:55.355Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "PropiedadService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\PropiedadService.cs",
               "RelativeDocumentMoniker": "Services\\PropiedadService.cs",
@@ -346,35 +515,38 @@
               "RelativeToolTip": "Services\\PropiedadService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:20:49.864Z"
+              "WhenOpened": "2025-11-12T15:20:49.864Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "EmpleadoService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\EmpleadoService.cs",
               "RelativeDocumentMoniker": "Services\\EmpleadoService.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\EmpleadoService.cs",
               "RelativeToolTip": "Services\\EmpleadoService.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAABBwEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:42:58.427Z"
+              "WhenOpened": "2025-11-12T15:42:58.427Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 21,
               "Title": "AutenticacionService.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\AutenticacionService.cs",
               "RelativeDocumentMoniker": "Services\\AutenticacionService.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Services\\AutenticacionService.cs",
               "RelativeToolTip": "Services\\AutenticacionService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAABBwFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:29:50.207Z"
+              "WhenOpened": "2025-11-12T15:29:50.207Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 22,
               "Title": "TipoPropiedad.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Enums\\TipoPropiedad.cs",
               "RelativeDocumentMoniker": "Models\\Enums\\TipoPropiedad.cs",
@@ -382,11 +554,12 @@
               "RelativeToolTip": "Models\\Enums\\TipoPropiedad.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:09.434Z"
+              "WhenOpened": "2025-11-12T15:16:09.434Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 23,
               "Title": "RolUsuario.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Enums\\RolUsuario.cs",
               "RelativeDocumentMoniker": "Models\\Enums\\RolUsuario.cs",
@@ -394,11 +567,12 @@
               "RelativeToolTip": "Models\\Enums\\RolUsuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:07.799Z"
+              "WhenOpened": "2025-11-12T15:16:07.799Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 24,
               "Title": "Rol.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Rol.cs",
               "RelativeDocumentMoniker": "Models\\Rol.cs",
@@ -406,11 +580,12 @@
               "RelativeToolTip": "Models\\Rol.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:28:57.41Z"
+              "WhenOpened": "2025-11-12T15:28:57.41Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 25,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Usuario.cs",
               "RelativeDocumentMoniker": "Models\\Usuario.cs",
@@ -418,23 +593,25 @@
               "RelativeToolTip": "Models\\Usuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:07.824Z"
+              "WhenOpened": "2025-11-12T15:16:07.824Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 26,
               "Title": "Empleado.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Empleado.cs",
               "RelativeDocumentMoniker": "Models\\Empleado.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Empleado.cs",
               "RelativeToolTip": "Models\\Empleado.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:43:45.757Z"
+              "WhenOpened": "2025-11-12T15:43:45.757Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 27,
               "Title": "Propiedad.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Propiedad.cs",
               "RelativeDocumentMoniker": "Models\\Propiedad.cs",
@@ -442,11 +619,12 @@
               "RelativeToolTip": "Models\\Propiedad.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:07.849Z"
+              "WhenOpened": "2025-11-12T15:16:07.849Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 28,
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Cliente.cs",
               "RelativeDocumentMoniker": "Models\\Cliente.cs",
@@ -454,11 +632,12 @@
               "RelativeToolTip": "Models\\Cliente.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:10.184Z"
+              "WhenOpened": "2025-11-12T15:16:10.184Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 29,
               "Title": "StringToVisibilityConverter.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\StringToVisibilityConverter.cs",
               "RelativeDocumentMoniker": "Helpers\\StringToVisibilityConverter.cs",
@@ -466,11 +645,12 @@
               "RelativeToolTip": "Helpers\\StringToVisibilityConverter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:33:09.029Z"
+              "WhenOpened": "2025-11-12T15:33:09.029Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 30,
               "Title": "InverseBooleanConverter.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\InverseBooleanConverter.cs",
               "RelativeDocumentMoniker": "Helpers\\InverseBooleanConverter.cs",
@@ -478,11 +658,12 @@
               "RelativeToolTip": "Helpers\\InverseBooleanConverter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:31:20.126Z"
+              "WhenOpened": "2025-11-12T15:31:20.126Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 31,
               "Title": "FileHelper.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\FileHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\FileHelper.cs",
@@ -490,23 +671,25 @@
               "RelativeToolTip": "Helpers\\FileHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:08.258Z"
+              "WhenOpened": "2025-11-12T15:16:08.258Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 32,
               "Title": "HermesDbContext.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Data\\HermesDbContext.cs",
               "RelativeDocumentMoniker": "Data\\HermesDbContext.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Data\\HermesDbContext.cs",
               "RelativeToolTip": "Data\\HermesDbContext.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAABBwEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:29:27.542Z"
+              "WhenOpened": "2025-11-12T15:29:27.542Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 33,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Data\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "Data\\DatabaseHelper.cs",
@@ -514,11 +697,12 @@
               "RelativeToolTip": "Data\\DatabaseHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:08.583Z"
+              "WhenOpened": "2025-11-12T15:16:08.583Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 34,
               "Title": "RelayCommand.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Commands\\RelayCommand.cs",
               "RelativeDocumentMoniker": "Commands\\RelayCommand.cs",
@@ -526,11 +710,12 @@
               "RelativeToolTip": "Commands\\RelayCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:07.769Z"
+              "WhenOpened": "2025-11-12T15:16:07.769Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 35,
               "Title": "ValidationHelper.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Helpers\\ValidationHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\ValidationHelper.cs",
@@ -538,11 +723,12 @@
               "RelativeToolTip": "Helpers\\ValidationHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:07.982Z"
+              "WhenOpened": "2025-11-12T15:16:07.982Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 36,
               "Title": "LoginWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
@@ -550,11 +736,12 @@
               "RelativeToolTip": "Views\\LoginWindow.xaml",
               "ViewState": "AgIAABYAAAAAAAAAAAAkwCwAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:31:06.862Z"
+              "WhenOpened": "2025-11-12T15:31:06.862Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 60,
               "Title": "NuevoEmpleadoViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\NuevoEmpleadoViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\NuevoEmpleadoViewModel.cs",
@@ -562,11 +749,12 @@
               "RelativeToolTip": "ViewModels\\NuevoEmpleadoViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:56:06.096Z"
+              "WhenOpened": "2025-11-12T15:56:06.096Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 61,
               "Title": "GestionarUsuarioWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionarUsuarioWindow.xaml",
               "RelativeDocumentMoniker": "Views\\GestionarUsuarioWindow.xaml",
@@ -574,11 +762,12 @@
               "RelativeToolTip": "Views\\GestionarUsuarioWindow.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAMYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:59:47.822Z"
+              "WhenOpened": "2025-11-12T15:59:47.822Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 62,
               "Title": "GestionarUsuarioWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionarUsuarioWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\GestionarUsuarioWindow.xaml.cs",
@@ -586,11 +775,12 @@
               "RelativeToolTip": "Views\\GestionarUsuarioWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T16:19:24.291Z"
+              "WhenOpened": "2025-11-12T16:19:24.291Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 59,
               "Title": "NuevoEmpleadoWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevoEmpleadoWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\NuevoEmpleadoWindow.xaml.cs",
@@ -598,11 +788,12 @@
               "RelativeToolTip": "Views\\NuevoEmpleadoWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:55:52.64Z"
+              "WhenOpened": "2025-11-12T15:55:52.64Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 58,
               "Title": "NuevoEmpleadoWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\NuevoEmpleadoWindow.xaml",
               "RelativeDocumentMoniker": "Views\\NuevoEmpleadoWindow.xaml",
@@ -610,11 +801,12 @@
               "RelativeToolTip": "Views\\NuevoEmpleadoWindow.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAL0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:55:44.431Z"
+              "WhenOpened": "2025-11-12T15:55:44.431Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 37,
               "Title": "GestionEmpleadosView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\GestionEmpleadosView.xaml.cs",
@@ -622,47 +814,51 @@
               "RelativeToolTip": "Views\\GestionEmpleadosView.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:42:26.297Z"
+              "WhenOpened": "2025-11-12T15:42:26.297Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 56,
               "Title": "GestionEmpleadosView.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml",
               "RelativeDocumentMoniker": "Views\\GestionEmpleadosView.xaml",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\GestionEmpleadosView.xaml",
               "RelativeToolTip": "Views\\GestionEmpleadosView.xaml",
-              "ViewState": "AgIAAOAAAAAAAAAAAABBwOEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAxwKwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:42:20.187Z"
+              "WhenOpened": "2025-11-12T15:42:20.187Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 54,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.xaml.cs",
               "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAEBVwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:31:45.69Z"
+              "WhenOpened": "2025-11-12T15:31:45.69Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 57,
               "Title": "GestionEmpleadosViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\GestionEmpleadosViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\GestionEmpleadosViewModel.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\GestionEmpleadosViewModel.cs",
               "RelativeToolTip": "ViewModels\\GestionEmpleadosViewModel.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAIBJwJYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJIAAAAAAAAAAEBVwJYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:42:48.645Z"
+              "WhenOpened": "2025-11-12T15:42:48.645Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 55,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -670,11 +866,12 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-11-12T15:31:52.553Z"
+              "WhenOpened": "2025-11-12T15:31:52.553Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 39,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -686,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 53,
               "Title": "LoginWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\LoginWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\LoginWindow.xaml.cs",
@@ -694,11 +891,12 @@
               "RelativeToolTip": "Views\\LoginWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:31:13.46Z"
+              "WhenOpened": "2025-11-12T15:31:13.46Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 52,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\LoginViewModel.cs",
@@ -706,23 +904,25 @@
               "RelativeToolTip": "ViewModels\\LoginViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:30:30.696Z"
+              "WhenOpened": "2025-11-12T15:30:30.696Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 51,
               "Title": "UsuariosViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\UsuariosViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\UsuariosViewModel.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\UsuariosViewModel.cs",
               "RelativeToolTip": "ViewModels\\UsuariosViewModel.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAABRwEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAIBZwEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:20:18.843Z"
+              "WhenOpened": "2025-11-12T15:20:18.843Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 50,
               "Title": "PropiedadesViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\PropiedadesViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\PropiedadesViewModel.cs",
@@ -730,11 +930,12 @@
               "RelativeToolTip": "ViewModels\\PropiedadesViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:20:04.049Z"
+              "WhenOpened": "2025-11-12T15:20:04.049Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 40,
               "Title": "Transaccion.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Models\\Transaccion.cs",
               "RelativeDocumentMoniker": "Models\\Transaccion.cs",
@@ -742,119 +943,128 @@
               "RelativeToolTip": "Models\\Transaccion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:09.778Z"
+              "WhenOpened": "2025-11-12T15:16:09.778Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 38,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T14:44:45.314Z"
+              "WhenOpened": "2025-11-12T14:44:45.314Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 42,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\MainViewModel.cs",
               "RelativeToolTip": "ViewModels\\MainViewModel.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAABRwEUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAIBZwEUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:07.89Z"
+              "WhenOpened": "2025-11-12T15:16:07.89Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 49,
               "Title": "UsuariosView.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\UsuariosView.xaml",
               "RelativeDocumentMoniker": "Views\\UsuariosView.xaml",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\UsuariosView.xaml",
               "RelativeToolTip": "Views\\UsuariosView.xaml",
-              "ViewState": "AgIAAAUAAAAAAAAAAIBJwAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAABRwAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:16:10.275Z"
+              "WhenOpened": "2025-11-12T15:16:10.275Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 48,
               "Title": "PropiedadesView.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\PropiedadesView.xaml",
               "RelativeDocumentMoniker": "Views\\PropiedadesView.xaml",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\PropiedadesView.xaml",
               "RelativeToolTip": "Views\\PropiedadesView.xaml",
-              "ViewState": "AgIAAAUAAAAAAAAAAIBJwAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAABRwAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-12T15:16:09.685Z"
+              "WhenOpened": "2025-11-12T15:16:09.685Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 47,
               "Title": "ClientesView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\ClientesView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\ClientesView.xaml.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\ClientesView.xaml.cs",
               "RelativeToolTip": "Views\\ClientesView.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAABBwA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAABRwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:09.182Z"
+              "WhenOpened": "2025-11-12T15:16:09.182Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 46,
               "Title": "ClientesViewModel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\ClientesViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\ClientesViewModel.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\ViewModels\\ClientesViewModel.cs",
               "RelativeToolTip": "ViewModels\\ClientesViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAABRwAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAIBZwAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:08.905Z"
+              "WhenOpened": "2025-11-12T15:16:08.905Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 45,
               "Title": "PropiedadesView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\PropiedadesView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\PropiedadesView.xaml.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\PropiedadesView.xaml.cs",
               "RelativeToolTip": "Views\\PropiedadesView.xaml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAABRwAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAIBZwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:08.689Z"
+              "WhenOpened": "2025-11-12T15:16:08.689Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 44,
               "Title": "UsuariosView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\UsuariosView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\UsuariosView.xaml.cs",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Views\\UsuariosView.xaml.cs",
               "RelativeToolTip": "Views\\UsuariosView.xaml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAABRwAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAIBZwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:16:08.367Z"
+              "WhenOpened": "2025-11-12T15:16:08.367Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 43,
               "Title": "Styles.xaml",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Resources\\Styles.xaml",
               "RelativeDocumentMoniker": "Resources\\Styles.xaml",
               "ToolTip": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\Resources\\Styles.xaml",
               "RelativeToolTip": "Resources\\Styles.xaml",
-              "ViewState": "AgIAACEAAAAAAAAAAABBwCIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAIBJwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-11-12T15:16:08.152Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 41,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Downloads\\PruebasHermes\\v8\\Hermes\\Hermes\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
@@ -862,7 +1072,8 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T14:44:42.846Z"
+              "WhenOpened": "2025-11-12T14:44:42.846Z",
+              "EditorCaption": ""
             }
           ]
         }
