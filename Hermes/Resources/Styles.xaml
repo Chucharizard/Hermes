@@ -634,7 +634,7 @@
     <!-- ESTILOS DE DATAGRID -->
     <!-- ========================================== -->
 
-    <!-- DataGrid Moderno -->
+    <!-- DataGrid Moderno (Tema oscuro morado medianoche) -->
     <Style x:Key="ModernDataGridStyle" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="IsReadOnly" Value="True"/>
@@ -644,7 +644,8 @@
         <Setter Property="GridLinesVisibility" Value="None"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="AlternatingRowBackground" Value="{StaticResource BackgroundLightColor}"/>
+        <Setter Property="Background" Value="#0a0a15"/>
+        <Setter Property="AlternatingRowBackground" Value="#16213e"/>
         <Setter Property="RowHeight" Value="45"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
@@ -661,28 +662,30 @@
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
     </Style>
 
-    <!-- Celda de DataGrid -->
+    <!-- Celda de DataGrid (Tema oscuro) -->
     <Style x:Key="ModernDataGridCellStyle" TargetType="DataGridCell">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="15,10"/>
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#E8F4F8"/>
-                <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+                <Setter Property="Background" Value="#2d3748"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <!-- Fila de DataGrid -->
+    <!-- Fila de DataGrid (Tema oscuro morado medianoche) -->
     <Style x:Key="ModernDataGridRowStyle" TargetType="DataGridRow">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="#1a1a2e"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#F0F8FF"/>
+                <Setter Property="Background" Value="#2d3748"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#E8F4F8"/>
+                <Setter Property="Background" Value="#3a4a5e"/>
             </Trigger>
         </Style.Triggers>
     </Style>

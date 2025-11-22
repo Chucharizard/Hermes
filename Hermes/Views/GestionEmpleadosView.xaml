@@ -149,21 +149,40 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 
-                <!-- Footer con estadisticas -->
+                <!-- Footer con estadisticas (Tema oscuro morado medianoche) -->
                 <Border Grid.Row="2"
-                        Background="#ECF0F1"
+                        Background="#16213e"
+                        BorderBrush="#30FFFFFF"
+                        BorderThickness="1"
                         Padding="15"
                         Margin="0,15,0,0"
-                        CornerRadius="5">
+                        CornerRadius="8">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                    </Border.Effect>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="📊 Total empleados: " FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TotalEmpleados}" Foreground="#34495E" FontWeight="Bold"/>
+                        <TextBlock Text="📊 Total empleados: "
+                                   FontWeight="SemiBold"
+                                   Foreground="#ECF0F1"/>
+                        <TextBlock Text="{Binding TotalEmpleados}"
+                                   Foreground="#5DADE2"
+                                   FontWeight="Bold"/>
 
-                        <TextBlock Text="  |  ✅ Activos: " FontWeight="SemiBold" Margin="10,0,0,0"/>
-                        <TextBlock Text="{Binding EmpleadosActivos}" Foreground="#27AE60" FontWeight="Bold"/>
+                        <TextBlock Text="  |  ✅ Activos: "
+                                   FontWeight="SemiBold"
+                                   Foreground="#ECF0F1"
+                                   Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding EmpleadosActivos}"
+                                   Foreground="#1ABC9C"
+                                   FontWeight="Bold"/>
 
-                        <TextBlock Text="  |  ❌ Inactivos: " FontWeight="SemiBold" Margin="10,0,0,0"/>
-                        <TextBlock Text="{Binding EmpleadosInactivos}" Foreground="#E74C3C" FontWeight="Bold"/>
+                        <TextBlock Text="  |  ❌ Inactivos: "
+                                   FontWeight="SemiBold"
+                                   Foreground="#ECF0F1"
+                                   Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding EmpleadosInactivos}"
+                                   Foreground="#E74C3C"
+                                   FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
             </Grid>
