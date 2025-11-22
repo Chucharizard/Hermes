@@ -7,110 +7,212 @@
         <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
     </UserControl.Resources>
 
-    <StackPanel>
-        <TextBlock Text="👤 Gestionar Usuario del Empleado"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   Foreground="#ECF0F1"
-                   Margin="0,0,0,30"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <!-- Header con icono grande -->
+            <Border Background="#16213e" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="👤" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    <TextBlock Text="Gestionar Usuario"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="#ECF0F1"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Configura el acceso al sistema del empleado"
+                               FontSize="11"
+                               Foreground="#BDC3C7"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
 
-        <Border Background="#16213e"
-                Padding="15"
-                CornerRadius="5"
-                Margin="0,0,0,20">
-            <StackPanel>
+            <!-- Info del Empleado -->
+            <Border Background="#9B59B6" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
+                </Border.Effect>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="👨‍💼 " FontSize="16" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding EmpleadoNombreCompleto}"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                        <TextBlock Text="CI: " FontSize="12" Foreground="#ECF0F1" Opacity="0.9"/>
+                        <TextBlock Text="{Binding Empleado.CiEmpleado}" FontSize="12" Foreground="#ECF0F1" Opacity="0.9"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Sección: Credenciales -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="🔐 CREDENCIALES DE ACCESO" FontSize="12" FontWeight="Bold" Foreground="#9B59B6" Margin="0,0,0,15"/>
+
+                    <!-- Nombre de Usuario -->
+                    <TextBlock Text="👤 Nombre de Usuario:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Usuario.NombreUsuario, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Margin="0,0,0,12"/>
+
+                    <!-- Contraseña -->
+                    <TextBlock Text="🔑 Contraseña:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <PasswordBox x:Name="PasswordBox"
+                                 Height="35"
+                                 FontSize="13"
+                                 Padding="10,8"
+                                 Margin="0,0,0,12"
+                                 PasswordChanged="PasswordBox_PasswordChanged"
+                                 Background="#0a0a15"
+                                 Foreground="#ECF0F1"
+                                 BorderBrush="#30FFFFFF"
+                                 BorderThickness="1"/>
+
+                    <!-- Confirmar Contraseña -->
+                    <TextBlock Text="🔒 Confirmar Contraseña:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <PasswordBox x:Name="ConfirmPasswordBox"
+                                 Height="35"
+                                 FontSize="13"
+                                 Padding="10,8"
+                                 Margin="0,0,0,0"
+                                 PasswordChanged="ConfirmPasswordBox_PasswordChanged"
+                                 Background="#0a0a15"
+                                 Foreground="#ECF0F1"
+                                 BorderBrush="#30FFFFFF"
+                                 BorderThickness="1"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Sección: Permisos -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="🛡 PERMISOS Y ROL" FontSize="12" FontWeight="Bold" Foreground="#E67E22" Margin="0,0,0,15"/>
+
+                    <!-- Rol -->
+                    <TextBlock Text="⚡ Rol del Usuario:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <ComboBox ItemsSource="{Binding Roles}"
+                              SelectedItem="{Binding RolSeleccionado}"
+                              DisplayMemberPath="NombreRol"
+                              Style="{StaticResource ModernComboBoxStyle}"
+                              Margin="0,0,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Sección: Estado -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#F39C12" Margin="0,0,0,15"/>
+
+                    <Border Background="#1a1a2e" CornerRadius="6" Padding="12">
+                        <CheckBox Content="✅ Usuario Activo"
+                                  IsChecked="{Binding Usuario.EsActivoUsuario}"
+                                  FontSize="12"
+                                  FontWeight="SemiBold"
+                                  Foreground="#ECF0F1"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Mensaje de Error -->
+            <Border Background="#3a1f1f"
+                    BorderBrush="#E74C3C"
+                    BorderThickness="2"
+                    CornerRadius="6"
+                    Padding="12"
+                    Margin="0,0,0,15"
+                    Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                </Border.Effect>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Empleado: " FontWeight="Bold" FontSize="14" Foreground="#ECF0F1"/>
-                    <TextBlock Text="{Binding EmpleadoNombreCompleto}" FontSize="14" Foreground="#ECF0F1"/>
+                    <TextBlock Text="⚠" FontSize="16" Foreground="#E74C3C" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding MensajeError}"
+                               Foreground="#E74C3C"
+                               FontSize="11"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="CI: " FontSize="12" Foreground="#BDC3C7"/>
-                    <TextBlock Text="{Binding Empleado.CiEmpleado}" FontSize="12" Foreground="#BDC3C7"/>
+            </Border>
+
+            <!-- Mensaje de Éxito -->
+            <Border Background="#1f3a1f"
+                    BorderBrush="#1ABC9C"
+                    BorderThickness="2"
+                    CornerRadius="6"
+                    Padding="12"
+                    Margin="0,0,0,15"
+                    Visibility="{Binding MensajeExito, Converter={StaticResource StringToVisibilityConverter}}">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#1ABC9C"/>
+                </Border.Effect>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="✓" FontSize="16" Foreground="#1ABC9C" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding MensajeExito}"
+                               Foreground="#1ABC9C"
+                               FontSize="11"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"/>
                 </StackPanel>
-            </StackPanel>
-        </Border>
+            </Border>
 
-        <TextBlock Text="Nombre de Usuario:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <TextBox Text="{Binding Usuario.NombreUsuario, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource ModernTextBoxStyle}"
-                 Margin="0,0,0,15"/>
+            <!-- Botones -->
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Contraseña:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <PasswordBox x:Name="PasswordBox"
-                     Height="35"
-                     FontSize="14"
-                     Padding="10,5"
-                     Margin="0,0,0,15"
-                     PasswordChanged="PasswordBox_PasswordChanged"/>
+                <Button Grid.Column="0"
+                        Content="✖ Cancelar"
+                        Command="{Binding CancelarCommand}"
+                        Style="{StaticResource WarningButtonStyle}"
+                        Padding="0,12"
+                        FontSize="13"
+                        FontWeight="SemiBold"/>
 
-        <TextBlock Text="Confirmar Contraseña:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <PasswordBox x:Name="ConfirmPasswordBox"
-                     Height="35"
-                     FontSize="14"
-                     Padding="10,5"
-                     Margin="0,0,0,15"
-                     PasswordChanged="ConfirmPasswordBox_PasswordChanged"/>
-
-        <TextBlock Text="Rol:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <ComboBox ItemsSource="{Binding Roles}"
-                  SelectedItem="{Binding RolSeleccionado}"
-                  DisplayMemberPath="NombreRol"
-                  Style="{StaticResource ModernComboBoxStyle}"
-                  Margin="0,0,0,15"/>
-
-        <CheckBox Content="Usuario Activo"
-                  IsChecked="{Binding Usuario.EsActivoUsuario}"
-                  FontSize="12"
-                  Foreground="#BDC3C7"
-                  Margin="0,0,0,20"/>
-
-        <!-- Mensaje de Error -->
-        <Border Background="#3a1f1f"
-                BorderBrush="#E74C3C"
-                BorderThickness="1"
-                CornerRadius="4"
-                Padding="10,8"
-                Margin="0,0,0,15"
-                Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
-            <TextBlock Text="{Binding MensajeError}"
-                       Foreground="#E74C3C"
-                       FontSize="11"
-                       TextWrapping="Wrap"/>
-        </Border>
-
-        <!-- Mensaje de Éxito -->
-        <Border Background="#1f3a1f"
-                BorderBrush="#1ABC9C"
-                BorderThickness="1"
-                CornerRadius="4"
-                Padding="10,8"
-                Margin="0,0,0,15"
-                Visibility="{Binding MensajeExito, Converter={StaticResource StringToVisibilityConverter}}">
-            <TextBlock Text="{Binding MensajeExito}"
-                       Foreground="#1ABC9C"
-                       FontSize="11"
-                       TextWrapping="Wrap"/>
-        </Border>
-
-        <Grid Margin="0,10,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0"
-                    Content="Cancelar"
-                    Command="{Binding CancelarCommand}"
-                    Style="{StaticResource WarningButtonStyle}"
-                    Padding="15,10"
-                    Margin="0,0,5,0"/>
-
-            <Button Grid.Column="1"
-                    Content="{Binding TextoBotonGuardar}"
-                    Command="{Binding GuardarUsuarioCommand}"
-                    Style="{StaticResource SuccessButtonStyle}"
-                    Padding="15,10"
-                    Margin="5,0,0,0"/>
-        </Grid>
-    </StackPanel>
+                <Button Grid.Column="2"
+                        Content="{Binding TextoBotonGuardar}"
+                        Command="{Binding GuardarUsuarioCommand}"
+                        Background="#9B59B6"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Padding="0,12"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="6"
+                                                Padding="{TemplateBinding Padding}">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                                            </Border.Effect>
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#8E44AD"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -8,7 +8,7 @@ namespace Hermes.Converters
     /// <summary>
     /// Convierte la presencia de una acción a GridLength para pantalla dividida
     /// Sin acción: Lista 100%, Panel oculto
-    /// Con acción: Lista 45%, Separador 10px, Panel 55%
+    /// Con acción: Lista 60%, Separador 10px, Panel 40%
     /// Parámetros: "Lista", "Separador", "Detalle"
     /// </summary>
     public class AccionToGridLengthConverter : IValueConverter
@@ -20,9 +20,9 @@ namespace Hermes.Converters
 
             return columna switch
             {
-                // Sin acción: Lista ocupa todo | Con acción: Lista 45%
+                // Sin acción: Lista ocupa todo | Con acción: Lista 60%
                 "Lista" => hayAccion
-                    ? new GridLength(0.45, GridUnitType.Star)
+                    ? new GridLength(0.6, GridUnitType.Star)
                     : new GridLength(1, GridUnitType.Star),
 
                 // Separador: 0 sin acción, 10px con acción
@@ -30,9 +30,9 @@ namespace Hermes.Converters
                     ? new GridLength(10, GridUnitType.Pixel)
                     : new GridLength(0, GridUnitType.Pixel),
 
-                // Sin acción: Panel oculto | Con acción: Panel 55%
+                // Sin acción: Panel oculto | Con acción: Panel 40%
                 "Detalle" => hayAccion
-                    ? new GridLength(0.55, GridUnitType.Star)
+                    ? new GridLength(0.4, GridUnitType.Star)
                     : new GridLength(0, GridUnitType.Pixel),
 
                 _ => new GridLength(1, GridUnitType.Star)

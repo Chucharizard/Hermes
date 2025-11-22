@@ -12,84 +12,132 @@
         <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
     </UserControl.Resources>
 
-    <StackPanel>
-        <TextBlock Text="➕ Registrar Nuevo Empleado"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   Foreground="#ECF0F1"
-                   Margin="0,0,0,30"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <!-- Header con icono grande -->
+            <Border Background="#16213e" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="👤" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    <TextBlock Text="Nuevo Empleado"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="#ECF0F1"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Registra un nuevo empleado en el sistema"
+                               FontSize="11"
+                               Foreground="#BDC3C7"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
 
-        <!-- CI -->
-        <TextBlock Text="Cédula de Identidad (CI):" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <TextBox Text="{Binding Empleado.CiEmpleado, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource ModernTextBoxStyle}"
-                 Margin="0,0,0,15"/>
+            <!-- Sección: Información Personal -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="📋 INFORMACIÓN PERSONAL" FontSize="12" FontWeight="Bold" Foreground="#5DADE2" Margin="0,0,0,15"/>
 
-        <!-- Nombres -->
-        <TextBlock Text="Nombres:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <TextBox Text="{Binding Empleado.NombresEmpleado, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource ModernTextBoxStyle}"
-                 Margin="0,0,0,15"/>
+                    <!-- CI -->
+                    <TextBlock Text="🆔 Cédula de Identidad (CI):" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Empleado.CiEmpleado, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Margin="0,0,0,12"/>
 
-        <!-- Apellidos -->
-        <TextBlock Text="Apellidos:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <TextBox Text="{Binding Empleado.ApellidosEmpleado, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource ModernTextBoxStyle}"
-                 Margin="0,0,0,15"/>
+                    <!-- Nombres -->
+                    <TextBlock Text="✍ Nombres:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Empleado.NombresEmpleado, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Margin="0,0,0,12"/>
 
-        <!-- Teléfono -->
-        <TextBlock Text="Teléfono:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <TextBox Text="{Binding Empleado.TelefonoEmpleado, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource ModernTextBoxStyle}"
-                 Margin="0,0,0,15"/>
+                    <!-- Apellidos -->
+                    <TextBlock Text="✍ Apellidos:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Empleado.ApellidosEmpleado, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Margin="0,0,0,0"/>
+                </StackPanel>
+            </Border>
 
-        <!-- Correo -->
-        <TextBlock Text="Correo Electrónico:" FontSize="12" Foreground="#BDC3C7" Margin="0,0,0,5"/>
-        <TextBox Text="{Binding Empleado.CorreoEmpleado, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource ModernTextBoxStyle}"
-                 Margin="0,0,0,15"/>
+            <!-- Sección: Información de Contacto -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="12" FontWeight="Bold" Foreground="#1ABC9C" Margin="0,0,0,15"/>
 
-        <!-- Activo -->
-        <CheckBox Content="Empleado Activo"
-                  IsChecked="{Binding Empleado.EsActivoEmpleado}"
-                  FontSize="12"
-                  Foreground="#BDC3C7"
-                  Margin="0,0,0,20"/>
+                    <!-- Teléfono -->
+                    <TextBlock Text="📱 Teléfono:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Empleado.TelefonoEmpleado, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Margin="0,0,0,12"/>
 
-        <!-- Mensaje de Error -->
-        <Border Background="#3a1f1f"
-                BorderBrush="#E74C3C"
-                BorderThickness="1"
-                CornerRadius="4"
-                Padding="10,8"
-                Margin="0,0,0,15"
-                Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
-            <TextBlock Text="{Binding MensajeError}"
-                       Foreground="#E74C3C"
-                       FontSize="11"
-                       TextWrapping="Wrap"/>
-        </Border>
+                    <!-- Correo -->
+                    <TextBlock Text="✉ Correo Electrónico:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Empleado.CorreoEmpleado, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBoxStyle}"
+                             Margin="0,0,0,0"/>
+                </StackPanel>
+            </Border>
 
-        <!-- Botones -->
-        <Grid Margin="0,10,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <!-- Sección: Estado -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#F39C12" Margin="0,0,0,15"/>
 
-            <Button Grid.Column="0"
-                    Content="Cancelar"
-                    Command="{Binding CancelarCommand}"
-                    Style="{StaticResource WarningButtonStyle}"
-                    Padding="15,10"
-                    Margin="0,0,5,0"/>
+                    <Border Background="#1a1a2e" CornerRadius="6" Padding="12">
+                        <CheckBox Content="✅ Empleado Activo"
+                                  IsChecked="{Binding Empleado.EsActivoEmpleado}"
+                                  FontSize="12"
+                                  FontWeight="SemiBold"
+                                  Foreground="#ECF0F1"/>
+                    </Border>
+                </StackPanel>
+            </Border>
 
-            <Button Grid.Column="1"
-                    Content="Guardar Empleado"
-                    Command="{Binding GuardarCommand}"
-                    Style="{StaticResource SuccessButtonStyle}"
-                    Padding="15,10"
-                    Margin="5,0,0,0"/>
-        </Grid>
-    </StackPanel>
+            <!-- Mensaje de Error -->
+            <Border Background="#3a1f1f"
+                    BorderBrush="#E74C3C"
+                    BorderThickness="2"
+                    CornerRadius="6"
+                    Padding="12"
+                    Margin="0,0,0,15"
+                    Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                </Border.Effect>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="⚠" FontSize="16" Foreground="#E74C3C" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding MensajeError}"
+                               Foreground="#E74C3C"
+                               FontSize="11"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Botones -->
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="✖ Cancelar"
+                        Command="{Binding CancelarCommand}"
+                        Style="{StaticResource WarningButtonStyle}"
+                        Padding="0,12"
+                        FontSize="13"
+                        FontWeight="SemiBold"/>
+
+                <Button Grid.Column="2"
+                        Content="💾 Guardar"
+                        Command="{Binding GuardarCommand}"
+                        Style="{StaticResource SuccessButtonStyle}"
+                        Padding="0,12"
+                        FontSize="13"
+                        FontWeight="SemiBold"/>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
