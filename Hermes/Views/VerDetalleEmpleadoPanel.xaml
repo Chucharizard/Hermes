@@ -4,95 +4,60 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <!-- Header con degradado y efectos mejorados -->
-            <Border CornerRadius="12" Padding="25" Margin="0,0,0,25">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#1a1a2e" Offset="0"/>
-                        <GradientStop Color="#16213e" Offset="0.5"/>
-                        <GradientStop Color="#0f3460" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <!-- Header compacto y profesional -->
+            <Border Background="#16213e" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.4" Color="#9B59B6"/>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
                 </Border.Effect>
-                <StackPanel HorizontalAlignment="Center">
-                    <!-- Icono con efecto brillante -->
-                    <Border Background="#9B59B6" CornerRadius="30" Width="60" Height="60" Margin="0,0,0,15">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.6" Color="#9B59B6"/>
-                        </Border.Effect>
-                        <TextBlock Text="👁" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Border Background="#9B59B6" CornerRadius="6" Padding="8" Margin="0,0,12,0">
+                        <TextBlock Text="👁" FontSize="18"/>
                     </Border>
-                    <TextBlock Text="Detalle del Empleado"
-                               FontSize="24"
-                               FontWeight="Bold"
-                               Foreground="#ECF0F1"
-                               HorizontalAlignment="Center">
-                        <TextBlock.Effect>
-                            <DropShadowEffect BlurRadius="4" ShadowDepth="1" Opacity="0.5" Color="#000000"/>
-                        </TextBlock.Effect>
-                    </TextBlock>
-                    <TextBlock Text="Información completa del empleado y su cuenta de usuario"
-                               FontSize="12"
-                               Foreground="#BDC3C7"
-                               HorizontalAlignment="Center"
-                               Margin="0,8,0,0"
-                               FontStyle="Italic"/>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Detalle del Empleado"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Foreground="#ECF0F1"/>
+                        <TextBlock Text="Información completa del empleado"
+                                   FontSize="10"
+                                   Foreground="#95A5A6"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 
-            <!-- Card con foto de perfil mejorada -->
-            <Border CornerRadius="12" Padding="30" Margin="0,0,0,25">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#8E44AD" Offset="0"/>
-                        <GradientStop Color="#9B59B6" Offset="0.5"/>
-                        <GradientStop Color="#AF7AC5" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <!-- Card de perfil compacta -->
+            <Border Background="#9B59B6" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.3" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
                 </Border.Effect>
-                <StackPanel HorizontalAlignment="Center">
-                    <!-- Avatar circular con efecto brillante -->
-                    <Border Width="120" Height="120" CornerRadius="60" Margin="0,0,0,20">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#6C3483" Offset="0"/>
-                                <GradientStop Color="#8E44AD" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.5" Color="#9B59B6"/>
-                        </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Avatar compacto -->
+                    <Border Grid.Column="0" Width="70" Height="70" CornerRadius="35" Background="#8E44AD" Margin="0,0,15,0">
                         <TextBlock Text="👤"
-                                   FontSize="56"
+                                   FontSize="36"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
                     </Border>
 
-                    <!-- Nombre completo con efecto sombra -->
-                    <TextBlock HorizontalAlignment="Center" Margin="0,0,0,8">
-                        <TextBlock.Effect>
-                            <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.4" Color="#000000"/>
-                        </TextBlock.Effect>
-                        <Run Text="{Binding Empleado.NombresEmpleado}" FontSize="22" FontWeight="Bold" Foreground="White"/>
-                        <Run Text=" " />
-                        <Run Text="{Binding Empleado.ApellidosEmpleado}" FontSize="22" FontWeight="Bold" Foreground="White"/>
-                    </TextBlock>
-
-                    <!-- CI con badge estilo -->
-                    <Border Background="#6C3483" CornerRadius="15" Padding="15,8" HorizontalAlignment="Center">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="5" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
-                        </Border.Effect>
+                    <!-- Información del empleado -->
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,0,4">
+                            <Run Text="{Binding Empleado.NombresEmpleado}" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                            <Run Text=" " />
+                            <Run Text="{Binding Empleado.ApellidosEmpleado}" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                        </TextBlock>
                         <TextBlock Text="{Binding Empleado.CiEmpleado, StringFormat='CI: {0}'}"
-                                   FontSize="14"
-                                   FontWeight="SemiBold"
-                                   Foreground="#ECF0F1"/>
-                    </Border>
-                </StackPanel>
+                                   FontSize="13"
+                                   Foreground="#ECF0F1"
+                                   Opacity="0.9"/>
+                    </StackPanel>
+                </Grid>
             </Border>
 
             <!-- Sección: Información de Contacto -->
