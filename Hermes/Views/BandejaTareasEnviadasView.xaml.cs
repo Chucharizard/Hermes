@@ -16,10 +16,12 @@ namespace Hermes.Views
         /// <summary>
         /// Manejador para doble click en un item de tarea
         /// Establece la tarea seleccionada para mostrar el detalle inline
+        /// El clic simple (manteniendo pulsado) permite arrastrar la tarea
         /// </summary>
-        private void TareaItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void TareaItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Border border && border.Tag is Tarea tarea)
+            // Solo actuar si es doble clic (ClickCount == 2)
+            if (e.ClickCount == 2 && sender is Border border && border.Tag is Tarea tarea)
             {
                 // Establecer la tarea seleccionada en el ViewModel
                 // Esto hará que se muestre el DetalleTareaView inline
@@ -27,7 +29,11 @@ namespace Hermes.Views
                 {
                     viewModel.TareaSeleccionada = tarea;
                 }
+
+                // Marcar el evento como manejado para que no interfiera con el drag & drop
+                e.Handled = true;
             }
+            // Si ClickCount == 1, no hacemos nada y dejamos que el drag & drop funcione
         }
     }
 }
