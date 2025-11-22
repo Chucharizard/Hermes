@@ -18,14 +18,15 @@ namespace Hermes.Converters
 
             return columna switch
             {
+                // Sin selección: Lista ocupa todo | Con selección: Lista desaparece
                 "Lista" => haySeleccion
-                    ? new GridLength(400, GridUnitType.Pixel)
+                    ? new GridLength(0, GridUnitType.Pixel)
                     : new GridLength(1, GridUnitType.Star),
 
-                "Separador" => haySeleccion
-                    ? new GridLength(12, GridUnitType.Pixel)
-                    : new GridLength(0, GridUnitType.Pixel),
+                // Separador siempre 0 (no necesario)
+                "Separador" => new GridLength(0, GridUnitType.Pixel),
 
+                // Sin selección: Detalle no visible | Con selección: Detalle ocupa todo
                 "Detalle" => haySeleccion
                     ? new GridLength(1, GridUnitType.Star)
                     : new GridLength(0, GridUnitType.Pixel),

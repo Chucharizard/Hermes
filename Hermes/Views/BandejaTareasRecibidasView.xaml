@@ -640,12 +640,73 @@
         <!-- ========================================== -->
         <!-- COLUMNA 2: PANEL DE DETALLE -->
         <!-- ========================================== -->
-        <Border Grid.Column="2"
-                Background="#0a0a15"
-                BorderBrush="#30FFFFFF"
-                BorderThickness="1,0,0,0"
-                Visibility="{Binding DetalleViewModel, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <views:DetalleTareaView DataContext="{Binding DetalleViewModel}"/>
-        </Border>
+        <Grid Grid.Column="2"
+              Visibility="{Binding DetalleViewModel, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header con botón Volver -->
+            <Border Grid.Row="0"
+                    Background="#1a1a2e"
+                    BorderBrush="#30FFFFFF"
+                    BorderThickness="0,0,0,1"
+                    Padding="15,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Content="⬅ Volver"
+                            Command="{Binding VolverCommand}"
+                            Background="#3498DB"
+                            Foreground="White"
+                            Padding="12,6"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            BorderThickness="0"
+                            Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="6"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2980B9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <TextBlock Grid.Column="1"
+                               Text="Detalle de Tarea"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <!-- Contenido del detalle -->
+            <Border Grid.Row="1"
+                    Background="#0a0a15">
+                <views:DetalleTareaView DataContext="{Binding DetalleViewModel}"/>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
