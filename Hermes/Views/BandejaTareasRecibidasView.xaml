@@ -13,6 +13,7 @@
     <UserControl.Resources>
         <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
         <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
+        <converters:TareaSeleccionadaToGridLengthConverter x:Key="TareaSeleccionadaToGridLengthConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
         <!-- Estilo para tarjetas Kanban (tema morado medianoche) -->
@@ -76,13 +77,24 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <!-- Columnas dinámicas: se ajustan según si hay tarea seleccionada -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding TareaSeleccionada, Converter={StaticResource TareaSeleccionadaToGridLengthConverter}, ConverterParameter=Lista}"/>
+            <ColumnDefinition Width="{Binding TareaSeleccionada, Converter={StaticResource TareaSeleccionadaToGridLengthConverter}, ConverterParameter=Separador}"/>
+            <ColumnDefinition Width="{Binding TareaSeleccionada, Converter={StaticResource TareaSeleccionadaToGridLengthConverter}, ConverterParameter=Detalle}"/>
+        </Grid.ColumnDefinitions>
 
-        <!-- Header compacto + Estadísticas inline (tema morado medianoche) -->
+        <!-- ========================================== -->
+        <!-- COLUMNA 1: TABLERO KANBAN -->
+        <!-- ========================================== -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header compacto + Estadísticas inline (tema morado medianoche) -->
         <Border Grid.Row="0" CornerRadius="12" Padding="18,12" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -623,5 +635,17 @@
                 </Grid>
             </Border>
         </Grid>
+        </Grid><!-- Cierre del Grid Grid.Column="0" (Tablero Kanban) -->
+
+        <!-- ========================================== -->
+        <!-- COLUMNA 2: PANEL DE DETALLE -->
+        <!-- ========================================== -->
+        <Border Grid.Column="2"
+                Background="#0a0a15"
+                BorderBrush="#30FFFFFF"
+                BorderThickness="1,0,0,0"
+                Visibility="{Binding DetalleViewModel, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <views:DetalleTareaView DataContext="{Binding DetalleViewModel}"/>
+        </Border>
     </Grid>
 </UserControl>
