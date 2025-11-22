@@ -94,6 +94,84 @@
                 </StackPanel>
             </Border>
 
+            <!-- Sección: Cuenta de Usuario -->
+            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="🔐 CUENTA DE USUARIO" FontSize="12" FontWeight="Bold" Foreground="#9B59B6" Margin="0,0,0,20"/>
+
+                    <!-- Tiene usuario -->
+                    <StackPanel Visibility="{Binding TieneUsuario, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Nombre de Usuario --><StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,15">
+                                <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
+                                    <TextBlock Text="👤" FontSize="20"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Nombre de Usuario" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding Usuario.NombreUsuario}" FontSize="14" FontWeight="SemiBold" Foreground="#ECF0F1"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Rol -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,15">
+                                <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
+                                    <TextBlock Text="🛡" FontSize="20"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Rol" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding Usuario.RolId, StringFormat='Rol ID: {0}'}" FontSize="14" FontWeight="SemiBold" Foreground="#ECF0F1"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Estado de Usuario -->
+                            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                                <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
+                                    <TextBlock Text="⚡" FontSize="20"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Estado de Acceso" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
+                                    <TextBlock FontSize="14" FontWeight="SemiBold">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="Inactivo"/>
+                                                <Setter Property="Foreground" Value="#E74C3C"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Usuario.EsActivoUsuario}" Value="True">
+                                                        <Setter Property="Text" Value="Activo"/>
+                                                        <Setter Property="Foreground" Value="#1ABC9C"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- No tiene usuario -->
+                    <Border CornerRadius="6" Padding="15" Background="#3a2f1f" Visibility="{Binding TieneUsuario, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="ℹ" FontSize="24" Margin="0,0,15,0" Foreground="#F39C12"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Sin Cuenta de Usuario" FontSize="16" FontWeight="Bold" Foreground="#F39C12"/>
+                                <TextBlock Text="Este empleado no tiene una cuenta de usuario asignada" FontSize="11" Foreground="#BDC3C7" Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
             <!-- Sección: Estado del Empleado -->
             <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                 <StackPanel>
