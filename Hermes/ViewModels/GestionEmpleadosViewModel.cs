@@ -103,6 +103,7 @@ namespace Hermes.ViewModels
                 "Nuevo" => new NuevoEmpleadoViewModel(),
                 "Editar" when EmpleadoEnAccion != null => new EditarEmpleadoViewModel(EmpleadoEnAccion),
                 "Usuario" when EmpleadoEnAccion != null => new GestionarUsuarioViewModel(EmpleadoEnAccion),
+                "VerDetalle" when EmpleadoEnAccion != null => new VerDetalleEmpleadoViewModel(EmpleadoEnAccion),
                 _ => null
             };
         }

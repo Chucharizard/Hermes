@@ -248,6 +248,11 @@
                         <DataTemplate DataType="{x:Type viewmodels:GestionarUsuarioViewModel}">
                             <views:GestionarUsuarioPanel/>
                         </DataTemplate>
+
+                        <!-- Template para VerDetalleEmpleadoViewModel -->
+                        <DataTemplate DataType="{x:Type viewmodels:VerDetalleEmpleadoViewModel}">
+                            <views:VerDetalleEmpleadoPanel/>
+                        </DataTemplate>
                     </ContentPresenter.Resources>
                 </ContentPresenter>
             </Grid>
