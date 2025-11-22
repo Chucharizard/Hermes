@@ -16,6 +16,8 @@ namespace Hermes.ViewModels
         private Empleado? _empleadoSeleccionado;
         private string _filtroTexto = string.Empty;
         private string _filtroEstado = "Todos";
+        private string? _accionActual;
+        private Empleado? _empleadoEnAccion;
 
         public ObservableCollection<Empleado> Empleados
         {
@@ -55,6 +57,18 @@ namespace Hermes.ViewModels
             }
         }
 
+        public string? AccionActual
+        {
+            get => _accionActual;
+            set => SetProperty(ref _accionActual, value);
+        }
+
+        public Empleado? EmpleadoEnAccion
+        {
+            get => _empleadoEnAccion;
+            set => SetProperty(ref _empleadoEnAccion, value);
+        }
+
         // Lista de opciones para el filtro de estado
         public List<string> OpcionesFiltroEstado { get; } = new()
         {
@@ -72,6 +86,8 @@ namespace Hermes.ViewModels
         public ICommand EditarEmpleadoCommand { get; }
         public ICommand VerDetalleCommand { get; }
         public ICommand GestionarUsuarioCommand { get; }
+        public ICommand VolverCommand { get; }
+        public ICommand CerrarAccionCommand { get; }
 
         public GestionEmpleadosViewModel()
         {
@@ -84,6 +100,8 @@ namespace Hermes.ViewModels
             EditarEmpleadoCommand = new RelayCommand(empleado => EditarEmpleado(empleado as Empleado));
             VerDetalleCommand = new RelayCommand(empleado => VerDetalle(empleado as Empleado));
             GestionarUsuarioCommand = new RelayCommand(empleado => GestionarUsuario(empleado as Empleado));
+            VolverCommand = new RelayCommand(_ => Volver());
+            CerrarAccionCommand = new RelayCommand(_ => CerrarAccion());
 
             // Cargar datos iniciales
             Task.Run(async () => await CargarEmpleadosAsync());
@@ -136,47 +154,42 @@ namespace Hermes.ViewModels
 
         private void AbrirNuevoEmpleado()
         {
-            var ventana = new Views.NuevoEmpleadoWindow();
-            ventana.Owner = Application.Current.MainWindow;
-            if (ventana.ShowDialog() == true)
-            {
-                Task.Run(async () => await CargarEmpleadosAsync());
-            }
+            EmpleadoEnAccion = new Empleado { EsActivoEmpleado = true };
+            AccionActual = "Nuevo";
         }
 
         private void EditarEmpleado(Empleado? empleado)
         {
             if (empleado == null) return;
-
-            var ventana = new Views.EditarEmpleadoWindow(empleado);
-            ventana.Owner = Application.Current.MainWindow;
-            if (ventana.ShowDialog() == true)
-            {
-                Task.Run(async () => await CargarEmpleadosAsync());
-            }
+            EmpleadoEnAccion = empleado;
+            AccionActual = "Editar";
         }
 
         private void VerDetalle(Empleado? empleado)
         {
             if (empleado == null) return;
-
-            MessageBox.Show($"Detalle de {empleado.NombresEmpleado} {empleado.ApellidosEmpleado}\n\n" +
-                           $"CI: {empleado.CiEmpleado}\n" +
-                           $"Telefono: {empleado.TelefonoEmpleado}\n" +
-                           $"Correo: {empleado.CorreoEmpleado}\n" +
-                           $"Activo: {(empleado.EsActivoEmpleado ? "Si" : "No")}",
-                           "Informacion del Empleado",
-                           MessageBoxButton.OK,
-                           MessageBoxImage.Information);
+            EmpleadoEnAccion = empleado;
+            AccionActual = "VerDetalle";
         }
 
         private void GestionarUsuario(Empleado? empleado)
         {
             if (empleado == null) return;
+            EmpleadoEnAccion = empleado;
+            AccionActual = "Usuario";
+        }
 
-            var ventana = new Views.GestionarUsuarioWindow(empleado);
-            ventana.Owner = Application.Current.MainWindow;
-            ventana.ShowDialog();
+        private void Volver()
+        {
+            AccionActual = null;
+            EmpleadoEnAccion = null;
+            Task.Run(async () => await CargarEmpleadosAsync());
+        }
+
+        private void CerrarAccion()
+        {
+            AccionActual = null;
+            EmpleadoEnAccion = null;
         }
     }
 }
