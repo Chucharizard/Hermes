@@ -20,35 +20,75 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <Border Grid.Row="0" Style="{StaticResource SectionHeaderStyle}">
+        <!-- Header compacto y profesional -->
+        <Border Grid.Row="0" Background="#16213e" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="📊 Dashboard - Estadísticas de Tareas"
-                               Style="{StaticResource TitleTextStyle}"/>
-                    <TextBlock Text="Visualiza el estado general de las tareas del sistema"
-                               Style="{StaticResource SubtitleTextStyle}"
-                               Margin="0,5,0,0"/>
+                <!-- Título con icono -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Border Background="#9B59B6" CornerRadius="8" Padding="10" Margin="0,0,12,0">
+                        <TextBlock Text="📊" FontSize="20"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Dashboard"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#FFFFFF"/>
+                        <TextBlock Text="Estadísticas generales del sistema"
+                                   FontSize="11"
+                                   Foreground="#95A5A6"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <!-- Botón Dashboard Consolidado -->
-                    <Button Command="{Binding GenerarDashboardConsolidadoCommand}"
-                            IsEnabled="{Binding GenerandoReporte, Converter={StaticResource InverseBooleanConverter}}"
-                            Style="{StaticResource InfoButtonStyle}"
-                            Padding="25,12"
-                            FontSize="15">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📊" FontSize="18" Margin="0,0,8,0"/>
-                            <TextBlock Text="Generar Dashboard Consolidado" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+                <!-- Botón Dashboard Consolidado -->
+                <Button Grid.Column="2"
+                        Command="{Binding GenerarDashboardConsolidadoCommand}"
+                        IsEnabled="{Binding GenerandoReporte, Converter={StaticResource InverseBooleanConverter}}"
+                        Background="#3498DB"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="#3498DB"/>
+                                            </Border.Effect>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#2E86AB"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊" FontSize="16" Margin="0,0,8,0"/>
+                        <TextBlock Text="Generar Reporte Excel" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
             </Grid>
         </Border>
 
@@ -62,23 +102,20 @@
                     <RowDefinition Height="Auto"/> <!-- Botón Actualizar -->
                 </Grid.RowDefinitions>
 
-                <!-- Tarjetas de Estadísticas con Degradados Azul Medianoche -->
+                <!-- Tarjetas de Estadísticas compactas y modernas -->
                 <UniformGrid Grid.Row="0" Rows="1" Columns="5" Margin="0,0,0,20">
                     <!-- Total Tareas -->
-                    <Border CornerRadius="12"
-                            Margin="0,0,10,0"
-                            Padding="20"
+                    <Border Background="#16213e"
+                            BorderBrush="#9B59B6"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Margin="0,0,8,0"
+                            Padding="18,15"
                             Cursor="Hand"
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Total">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#2C3E50" Offset="0"/>
-                                <GradientStop Color="#34495E" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#1A1F2E"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -90,17 +127,19 @@
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1a2942"/>
+                                        <Setter Property="BorderBrush" Value="#9B59B6"/>
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
                                                     </DoubleAnimation>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
@@ -123,38 +162,35 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <TextBlock Text="📋"
-                                       FontSize="32"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,10"/>
+                            <Border Background="#9B59B6" CornerRadius="8" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="📋" FontSize="24"/>
+                            </Border>
                             <TextBlock Text="{Binding TotalTareas}"
-                                       FontSize="42"
+                                       FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="White"
+                                       Foreground="#FFFFFF"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Total Tareas"
-                                       FontSize="13"
-                                       Foreground="#ECF0F1"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#95A5A6"
                                        HorizontalAlignment="Center"
-                                       Margin="0,5,0,0"/>
+                                       Margin="0,6,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Pendientes -->
-                    <Border CornerRadius="12"
-                            Margin="0,0,10,0"
-                            Padding="20"
+                    <Border Background="#16213e"
+                            BorderBrush="#3498DB"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Margin="0,0,8,0"
+                            Padding="18,15"
                             Cursor="Hand"
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Pendiente">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#3498DB" Offset="0"/>
-                                <GradientStop Color="#2874A6" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#2874A6"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -166,17 +202,19 @@
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1a2942"/>
+                                        <Setter Property="BorderBrush" Value="#3498DB"/>
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
                                                     </DoubleAnimation>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
@@ -199,38 +237,35 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <TextBlock Text="⏳"
-                                       FontSize="32"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,10"/>
+                            <Border Background="#3498DB" CornerRadius="8" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="⏳" FontSize="24"/>
+                            </Border>
                             <TextBlock Text="{Binding TareasPendientes}"
-                                       FontSize="42"
+                                       FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="White"
+                                       Foreground="#FFFFFF"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Pendientes"
-                                       FontSize="13"
-                                       Foreground="White"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#95A5A6"
                                        HorizontalAlignment="Center"
-                                       Margin="0,5,0,0"/>
+                                       Margin="0,6,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Completadas -->
-                    <Border CornerRadius="12"
-                            Margin="0,0,10,0"
-                            Padding="20"
+                    <Border Background="#16213e"
+                            BorderBrush="#1ABC9C"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Margin="0,0,8,0"
+                            Padding="18,15"
                             Cursor="Hand"
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Completado">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1ABC9C" Offset="0"/>
-                                <GradientStop Color="#148F77" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#148F77"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -242,17 +277,19 @@
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1a2942"/>
+                                        <Setter Property="BorderBrush" Value="#1ABC9C"/>
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
                                                     </DoubleAnimation>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
@@ -275,38 +312,35 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <TextBlock Text="✓"
-                                       FontSize="32"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,10"/>
+                            <Border Background="#1ABC9C" CornerRadius="8" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="✓" FontSize="24"/>
+                            </Border>
                             <TextBlock Text="{Binding TareasCompletadas}"
-                                       FontSize="42"
+                                       FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="White"
+                                       Foreground="#FFFFFF"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Completadas"
-                                       FontSize="13"
-                                       Foreground="White"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#95A5A6"
                                        HorizontalAlignment="Center"
-                                       Margin="0,5,0,0"/>
+                                       Margin="0,6,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Vencidas -->
-                    <Border CornerRadius="12"
-                            Margin="0,0,10,0"
-                            Padding="20"
+                    <Border Background="#16213e"
+                            BorderBrush="#E74C3C"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Margin="0,0,8,0"
+                            Padding="18,15"
                             Cursor="Hand"
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Vencido">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#E74C3C" Offset="0"/>
-                                <GradientStop Color="#C0392B" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#C0392B"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -318,17 +352,19 @@
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1a2942"/>
+                                        <Setter Property="BorderBrush" Value="#E74C3C"/>
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
                                                     </DoubleAnimation>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
@@ -351,37 +387,35 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <TextBlock Text="⚠"
-                                       FontSize="32"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,10"/>
+                            <Border Background="#E74C3C" CornerRadius="8" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="⚠" FontSize="24"/>
+                            </Border>
                             <TextBlock Text="{Binding TareasVencidas}"
-                                       FontSize="42"
+                                       FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="White"
+                                       Foreground="#FFFFFF"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Vencidas"
-                                       FontSize="13"
-                                       Foreground="White"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#95A5A6"
                                        HorizontalAlignment="Center"
-                                       Margin="0,5,0,0"/>
+                                       Margin="0,6,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Observadas -->
-                    <Border CornerRadius="12"
-                            Padding="20"
+                    <Border Background="#16213e"
+                            BorderBrush="#F39C12"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Margin="0,0,0,0"
+                            Padding="18,15"
                             Cursor="Hand"
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Observado">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#F39C12" Offset="0"/>
-                                <GradientStop Color="#D68910" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3" Color="#D68910"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -393,17 +427,19 @@
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1a2942"/>
+                                        <Setter Property="BorderBrush" Value="#F39C12"/>
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
                                                     </DoubleAnimation>
                                                     <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
-                                                                   To="1.05" Duration="0:0:0.2">
+                                                                   To="1.03" Duration="0:0:0.2">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
@@ -426,20 +462,20 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <TextBlock Text="👁"
-                                       FontSize="32"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,10"/>
+                            <Border Background="#F39C12" CornerRadius="8" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="👁" FontSize="24"/>
+                            </Border>
                             <TextBlock Text="{Binding TareasObservadas}"
-                                       FontSize="42"
+                                       FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="White"
+                                       Foreground="#FFFFFF"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Observadas"
-                                       FontSize="13"
-                                       Foreground="White"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#95A5A6"
                                        HorizontalAlignment="Center"
-                                       Margin="0,5,0,0"/>
+                                       Margin="0,6,0,0"/>
                         </StackPanel>
                     </Border>
                 </UniformGrid>
