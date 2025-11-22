@@ -14,6 +14,7 @@
         <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
         <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
         <converters:TareaSeleccionadaToGridLengthConverter x:Key="TareaSeleccionadaToGridLengthConverter"/>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
         <!-- Estilo para tarjetas Kanban (tema morado medianoche) -->
@@ -641,7 +642,7 @@
         <!-- COLUMNA 2: PANEL DE DETALLE -->
         <!-- ========================================== -->
         <Grid Grid.Column="2"
-              Visibility="{Binding DetalleViewModel, Converter={StaticResource BooleanToVisibilityConverter}}">
+              Visibility="{Binding DetalleViewModel, Converter={StaticResource NullToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
