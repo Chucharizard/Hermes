@@ -8,8 +8,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="CanResize"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="#0a0a15">
     
     <Window.DataContext>
         <viewmodels:MainViewModel/>
@@ -63,10 +62,7 @@
     </Window.Resources>
 
     <!-- Contenedor principal con bordes redondeados -->
-    <Border Background="#0a0a15" CornerRadius="12" BorderBrush="#9B59B6" BorderThickness="2">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.6" Color="#000000"/>
-        </Border.Effect>
+    <Border Background="#0a0a15" CornerRadius="0" BorderBrush="#9B59B6" BorderThickness="0">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> <!-- Barra de título personalizada -->
@@ -78,7 +74,7 @@
             <!-- ========================================== -->
             <Border Grid.Row="0"
                     Background="#0d1b2a"
-                    CornerRadius="12,12,0,0"
+                    CornerRadius="0"
                     MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"
                     Height="40">
                 <Grid>
@@ -190,7 +186,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}" CornerRadius="0,12,0,0">
+                                                <Border Background="{TemplateBinding Background}">
                                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
                                             </ControlTemplate>
