@@ -166,8 +166,8 @@ namespace Hermes.ViewModels
 
             // Calcular Top 3 Usuarios por tareas completadas
             var usuariosStats = tareas
-                .Where(t => !string.IsNullOrWhiteSpace(t.Receptor))
-                .GroupBy(t => t.Receptor)
+                .Where(t => t.UsuarioReceptor != null && !string.IsNullOrWhiteSpace(t.UsuarioReceptor.NombreUsuario))
+                .GroupBy(t => t.UsuarioReceptor!.NombreUsuario)
                 .Select(g => new UsuarioStats
                 {
                     NombreUsuario = g.Key,
@@ -192,28 +192,29 @@ namespace Hermes.ViewModels
             var tasaCompletadoCalc = (tareas.Count(t => t.EstadoTarea == "Completado") / (double)totalTareasCount) * 100;
 
             var tareasConFecha = tareas.Where(t => t.FechaLimiteTarea.HasValue && t.EstadoTarea == "Completado").ToList();
-            var tareasATiempo = tareasConFecha.Count(t => t.FechaFinTarea.HasValue && t.FechaFinTarea <= t.FechaLimiteTarea);
+            var tareasATiempo = tareasConFecha.Count(t => t.FechaCompletadaTarea.HasValue && t.FechaCompletadaTarea <= t.FechaLimiteTarea);
             var tasaTiempoCalc = tareasConFecha.Count > 0 ? (tareasATiempo / (double)tareasConFecha.Count) * 100 : 0;
 
             var eficienciaGeneralCalc = (tasaCompletadoCalc + tasaTiempoCalc) / 2;
 
             // Calcular mini estadísticas
             var tareasCompletadasConFechas = tareas
-                .Where(t => t.EstadoTarea == "Completado" && t.FechaInicioTarea.HasValue && t.FechaFinTarea.HasValue)
+                .Where(t => t.EstadoTarea == "Completado" && t.FechaCompletadaTarea.HasValue)
                 .ToList();
 
             var tiempoPromedioCalc = tareasCompletadasConFechas.Count > 0
-                ? tareasCompletadasConFechas.Average(t => (t.FechaFinTarea!.Value - t.FechaInicioTarea!.Value).TotalDays)
+                ? tareasCompletadasConFechas.Average(t => (t.FechaCompletadaTarea!.Value - t.FechaInicioTarea).TotalDays)
                 : 0;
 
-            var totalUsuarios = tareas.Where(t => !string.IsNullOrWhiteSpace(t.Receptor)).Select(t => t.Receptor).Distinct().Count();
+            var totalUsuarios = tareas.Where(t => t.UsuarioReceptor != null && !string.IsNullOrWhiteSpace(t.UsuarioReceptor.NombreUsuario))
+                .Select(t => t.UsuarioReceptor!.NombreUsuario).Distinct().Count();
             var tareasPorUsuarioCalc = totalUsuarios > 0 ? tareas.Count / (double)totalUsuarios : 0;
 
             // Productividad semanal: tareas completadas en los últimos 7 días
             var tareasUltimaSemana = tareas.Count(t =>
                 t.EstadoTarea == "Completado" &&
-                t.FechaFinTarea.HasValue &&
-                t.FechaFinTarea >= DateTime.Now.AddDays(-7));
+                t.FechaCompletadaTarea.HasValue &&
+                t.FechaCompletadaTarea >= DateTime.Now.AddDays(-7));
             var productividadSemanalCalc = tareasUltimaSemana;
 
             Application.Current.Dispatcher.Invoke(() =>
