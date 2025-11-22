@@ -7,6 +7,12 @@ using Hermes.Services;
 
 namespace Hermes.ViewModels
 {
+    public class UsuarioStats
+    {
+        public string NombreUsuario { get; set; } = string.Empty;
+        public int TareasCompletadas { get; set; }
+    }
+
     public class DashboardViewModel : BaseViewModel
     {
         private readonly TareaService _tareaService;
@@ -19,6 +25,13 @@ namespace Hermes.ViewModels
         private bool _generandoReporte;
         private ObservableCollection<Tarea> _tareasUrgentes;
         private ObservableCollection<Tarea> _actividadReciente;
+        private ObservableCollection<UsuarioStats> _top3Usuarios;
+        private double _tasaCompletado;
+        private double _tasaTiempo;
+        private double _eficienciaGeneral;
+        private double _tiempoPromedioCompletado;
+        private double _tareasPorUsuario;
+        private double _productividadSemanal;
 
         public int TotalTareas
         {
@@ -68,6 +81,48 @@ namespace Hermes.ViewModels
             set => SetProperty(ref _actividadReciente, value);
         }
 
+        public ObservableCollection<UsuarioStats> Top3Usuarios
+        {
+            get => _top3Usuarios;
+            set => SetProperty(ref _top3Usuarios, value);
+        }
+
+        public double TasaCompletado
+        {
+            get => _tasaCompletado;
+            set => SetProperty(ref _tasaCompletado, value);
+        }
+
+        public double TasaTiempo
+        {
+            get => _tasaTiempo;
+            set => SetProperty(ref _tasaTiempo, value);
+        }
+
+        public double EficienciaGeneral
+        {
+            get => _eficienciaGeneral;
+            set => SetProperty(ref _eficienciaGeneral, value);
+        }
+
+        public double TiempoPromedioCompletado
+        {
+            get => _tiempoPromedioCompletado;
+            set => SetProperty(ref _tiempoPromedioCompletado, value);
+        }
+
+        public double TareasPorUsuario
+        {
+            get => _tareasPorUsuario;
+            set => SetProperty(ref _tareasPorUsuario, value);
+        }
+
+        public double ProductividadSemanal
+        {
+            get => _productividadSemanal;
+            set => SetProperty(ref _productividadSemanal, value);
+        }
+
         public ICommand GenerarDashboardConsolidadoCommand { get; }
         public ICommand ActualizarEstadisticasCommand { get; }
 
@@ -78,6 +133,7 @@ namespace Hermes.ViewModels
 
             TareasUrgentes = new ObservableCollection<Tarea>();
             ActividadReciente = new ObservableCollection<Tarea>();
+            Top3Usuarios = new ObservableCollection<UsuarioStats>();
 
             GenerarDashboardConsolidadoCommand = new RelayCommand(async _ => await GenerarDashboardConsolidadoAsync());
             ActualizarEstadisticasCommand = new RelayCommand(async _ => await CargarEstadisticasAsync());
@@ -108,6 +164,58 @@ namespace Hermes.ViewModels
                 .Take(5)
                 .ToList();
 
+            // Calcular Top 3 Usuarios por tareas completadas
+            var usuariosStats = tareas
+                .Where(t => !string.IsNullOrWhiteSpace(t.Receptor))
+                .GroupBy(t => t.Receptor)
+                .Select(g => new UsuarioStats
+                {
+                    NombreUsuario = g.Key,
+                    TareasCompletadas = g.Count(t => t.EstadoTarea == "Completado")
+                })
+                .OrderByDescending(u => u.TareasCompletadas)
+                .Take(3)
+                .ToList();
+
+            // Asegurar que siempre haya 3 usuarios (con valores por defecto si no hay suficientes)
+            while (usuariosStats.Count < 3)
+            {
+                usuariosStats.Add(new UsuarioStats
+                {
+                    NombreUsuario = $"Usuario {usuariosStats.Count + 1}",
+                    TareasCompletadas = 0
+                });
+            }
+
+            // Calcular indicadores de progreso
+            var totalTareasCount = tareas.Count > 0 ? tareas.Count : 1;
+            var tasaCompletadoCalc = (tareas.Count(t => t.EstadoTarea == "Completado") / (double)totalTareasCount) * 100;
+
+            var tareasConFecha = tareas.Where(t => t.FechaLimiteTarea.HasValue && t.EstadoTarea == "Completado").ToList();
+            var tareasATiempo = tareasConFecha.Count(t => t.FechaFinTarea.HasValue && t.FechaFinTarea <= t.FechaLimiteTarea);
+            var tasaTiempoCalc = tareasConFecha.Count > 0 ? (tareasATiempo / (double)tareasConFecha.Count) * 100 : 0;
+
+            var eficienciaGeneralCalc = (tasaCompletadoCalc + tasaTiempoCalc) / 2;
+
+            // Calcular mini estadísticas
+            var tareasCompletadasConFechas = tareas
+                .Where(t => t.EstadoTarea == "Completado" && t.FechaInicioTarea.HasValue && t.FechaFinTarea.HasValue)
+                .ToList();
+
+            var tiempoPromedioCalc = tareasCompletadasConFechas.Count > 0
+                ? tareasCompletadasConFechas.Average(t => (t.FechaFinTarea!.Value - t.FechaInicioTarea!.Value).TotalDays)
+                : 0;
+
+            var totalUsuarios = tareas.Where(t => !string.IsNullOrWhiteSpace(t.Receptor)).Select(t => t.Receptor).Distinct().Count();
+            var tareasPorUsuarioCalc = totalUsuarios > 0 ? tareas.Count / (double)totalUsuarios : 0;
+
+            // Productividad semanal: tareas completadas en los últimos 7 días
+            var tareasUltimaSemana = tareas.Count(t =>
+                t.EstadoTarea == "Completado" &&
+                t.FechaFinTarea.HasValue &&
+                t.FechaFinTarea >= DateTime.Now.AddDays(-7));
+            var productividadSemanalCalc = tareasUltimaSemana;
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 TotalTareas = tareas.Count;
@@ -115,6 +223,14 @@ namespace Hermes.ViewModels
                 TareasCompletadas = tareas.Count(t => t.EstadoTarea == "Completado");
                 TareasVencidas = tareas.Count(t => t.EstadoTarea == "Vencido");
                 TareasObservadas = tareas.Count(t => t.EstadoTarea == "Observado");
+
+                // Actualizar estadísticas de widgets
+                TasaCompletado = tasaCompletadoCalc;
+                TasaTiempo = tasaTiempoCalc;
+                EficienciaGeneral = eficienciaGeneralCalc;
+                TiempoPromedioCompletado = tiempoPromedioCalc;
+                TareasPorUsuario = tareasPorUsuarioCalc;
+                ProductividadSemanal = productividadSemanalCalc;
 
                 // Actualizar colecciones
                 TareasUrgentes.Clear();
@@ -124,6 +240,10 @@ namespace Hermes.ViewModels
                 ActividadReciente.Clear();
                 foreach (var tarea in actividadReciente)
                     ActividadReciente.Add(tarea);
+
+                Top3Usuarios.Clear();
+                foreach (var usuario in usuariosStats)
+                    Top3Usuarios.Add(usuario);
             });
         }
 

@@ -97,6 +97,7 @@
             <Grid Margin="0,0,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/> <!-- Stats Cards -->
+                    <RowDefinition Height="Auto"/> <!-- Compact Widgets: Top 3 Usuarios, Indicadores, Mini Stats -->
                     <RowDefinition Height="Auto"/> <!-- Tareas Urgentes + Actividad -->
                     <RowDefinition Height="Auto"/> <!-- Información del reporte -->
                     <RowDefinition Height="Auto"/> <!-- Botón Actualizar -->
@@ -480,8 +481,257 @@
                     </Border>
                 </UniformGrid>
 
-                <!-- Tareas Urgentes y Actividad Reciente -->
+                <!-- Widgets Compactos: Top 3 Usuarios, Indicadores de progreso, Mini estadísticas -->
                 <Grid Grid.Row="1" Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Top 3 Usuarios -->
+                    <Border Grid.Column="0" Background="#16213e" BorderBrush="#9B59B6" BorderThickness="2" CornerRadius="10" Padding="15" Margin="0,0,8,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <!-- Header -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <Border Background="#9B59B6" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                    <TextBlock Text="👥" FontSize="14"/>
+                                </Border>
+                                <TextBlock Text="Top 3 Usuarios" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- Usuario 1 -->
+                            <Border Background="#1a1a2e" CornerRadius="8" Padding="10" Margin="0,0,0,6">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Width="30" Height="30" CornerRadius="15" Background="#9B59B6" Margin="0,0,10,0">
+                                        <TextBlock Text="1" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Top3Usuarios[0].NombreUsuario, FallbackValue='Usuario 1'}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="Tareas completadas" FontSize="9" Foreground="#95A5A6"/>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="2" Background="#1ABC9C" CornerRadius="6" Padding="8,4">
+                                        <TextBlock Text="{Binding Top3Usuarios[0].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                            <!-- Usuario 2 -->
+                            <Border Background="#1a1a2e" CornerRadius="8" Padding="10" Margin="0,0,0,6">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Width="30" Height="30" CornerRadius="15" Background="#3498DB" Margin="0,0,10,0">
+                                        <TextBlock Text="2" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Top3Usuarios[1].NombreUsuario, FallbackValue='Usuario 2'}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="Tareas completadas" FontSize="9" Foreground="#95A5A6"/>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="2" Background="#1ABC9C" CornerRadius="6" Padding="8,4">
+                                        <TextBlock Text="{Binding Top3Usuarios[1].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                            <!-- Usuario 3 -->
+                            <Border Background="#1a1a2e" CornerRadius="8" Padding="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Width="30" Height="30" CornerRadius="15" Background="#F39C12" Margin="0,0,10,0">
+                                        <TextBlock Text="3" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Top3Usuarios[2].NombreUsuario, FallbackValue='Usuario 3'}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="Tareas completadas" FontSize="9" Foreground="#95A5A6"/>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="2" Background="#1ABC9C" CornerRadius="6" Padding="8,4">
+                                        <TextBlock Text="{Binding Top3Usuarios[2].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Indicadores de progreso -->
+                    <Border Grid.Column="1" Background="#16213e" BorderBrush="#3498DB" BorderThickness="2" CornerRadius="10" Padding="15" Margin="4,0,4,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <!-- Header -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <Border Background="#3498DB" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                    <TextBlock Text="📊" FontSize="14"/>
+                                </Border>
+                                <TextBlock Text="Indicadores de progreso" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- Tasa de Completado -->
+                            <StackPanel Margin="0,0,0,10">
+                                <Grid Margin="0,0,0,4">
+                                    <TextBlock Text="Tasa de Completado" FontSize="11" Foreground="#95A5A6" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding TasaCompletado, StringFormat={}{0:0}%, FallbackValue='0%'}" FontSize="11" FontWeight="Bold" Foreground="#1ABC9C" HorizontalAlignment="Right"/>
+                                </Grid>
+                                <Grid Height="8" Background="#1a1a2e" ClipToBounds="True">
+                                    <Rectangle Fill="#1ABC9C" HorizontalAlignment="Left">
+                                        <Rectangle.Width>
+                                            <MultiBinding>
+                                                <MultiBinding.Converter>
+                                                    <converters:PercentageWidthConverter/>
+                                                </MultiBinding.Converter>
+                                                <Binding Path="TasaCompletado" FallbackValue="0"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="ActualWidth"/>
+                                            </MultiBinding>
+                                        </Rectangle.Width>
+                                    </Rectangle>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Tareas a Tiempo -->
+                            <StackPanel Margin="0,0,0,10">
+                                <Grid Margin="0,0,0,4">
+                                    <TextBlock Text="Tareas a Tiempo" FontSize="11" Foreground="#95A5A6" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding TasaTiempo, StringFormat={}{0:0}%, FallbackValue='0%'}" FontSize="11" FontWeight="Bold" Foreground="#3498DB" HorizontalAlignment="Right"/>
+                                </Grid>
+                                <Grid Height="8" Background="#1a1a2e" ClipToBounds="True">
+                                    <Rectangle Fill="#3498DB" HorizontalAlignment="Left">
+                                        <Rectangle.Width>
+                                            <MultiBinding>
+                                                <MultiBinding.Converter>
+                                                    <converters:PercentageWidthConverter/>
+                                                </MultiBinding.Converter>
+                                                <Binding Path="TasaTiempo" FallbackValue="0"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="ActualWidth"/>
+                                            </MultiBinding>
+                                        </Rectangle.Width>
+                                    </Rectangle>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Eficiencia General -->
+                            <StackPanel>
+                                <Grid Margin="0,0,0,4">
+                                    <TextBlock Text="Eficiencia General" FontSize="11" Foreground="#95A5A6" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding EficienciaGeneral, StringFormat={}{0:0}%, FallbackValue='0%'}" FontSize="11" FontWeight="Bold" Foreground="#9B59B6" HorizontalAlignment="Right"/>
+                                </Grid>
+                                <Grid Height="8" Background="#1a1a2e" ClipToBounds="True">
+                                    <Rectangle Fill="#9B59B6" HorizontalAlignment="Left">
+                                        <Rectangle.Width>
+                                            <MultiBinding>
+                                                <MultiBinding.Converter>
+                                                    <converters:PercentageWidthConverter/>
+                                                </MultiBinding.Converter>
+                                                <Binding Path="EficienciaGeneral" FallbackValue="0"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="ActualWidth"/>
+                                            </MultiBinding>
+                                        </Rectangle.Width>
+                                    </Rectangle>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Mini estadísticas -->
+                    <Border Grid.Column="2" Background="#16213e" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="15" Margin="8,0,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <!-- Header -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <Border Background="#1ABC9C" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                    <TextBlock Text="📈" FontSize="14"/>
+                                </Border>
+                                <TextBlock Text="Mini estadísticas" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- Tiempo promedio de completado -->
+                            <Border Background="#1a1a2e" CornerRadius="8" Padding="12,10" Margin="0,0,0,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Background="#3498DB" CornerRadius="6" Padding="8" Margin="0,0,10,0">
+                                        <TextBlock Text="⏱" FontSize="16"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TiempoPromedioCompletado, StringFormat={}{0:0.0} días, FallbackValue='0 días'}" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="Tiempo promedio" FontSize="9" Foreground="#95A5A6"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Tareas por usuario -->
+                            <Border Background="#1a1a2e" CornerRadius="8" Padding="12,10" Margin="0,0,0,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Background="#F39C12" CornerRadius="6" Padding="8" Margin="0,0,10,0">
+                                        <TextBlock Text="👤" FontSize="16"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TareasPorUsuario, StringFormat={}{0:0.0}, FallbackValue='0'}" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="Tareas por usuario" FontSize="9" Foreground="#95A5A6"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Productividad semanal -->
+                            <Border Background="#1a1a2e" CornerRadius="8" Padding="12,10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Background="#E74C3C" CornerRadius="6" Padding="8" Margin="0,0,10,0">
+                                        <TextBlock Text="📅" FontSize="16"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding ProductividadSemanal, StringFormat={}{0:0.0}, FallbackValue='0'}" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="Tareas/semana" FontSize="9" Foreground="#95A5A6"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- Tareas Urgentes y Actividad Reciente -->
+                <Grid Grid.Row="2" Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -653,7 +903,7 @@
                 </Grid>
 
                 <!-- Información del reporte -->
-                <Border Grid.Row="2" Style="{StaticResource CardStyle}" Padding="30" Margin="0,0,0,20">
+                <Border Grid.Row="3" Style="{StaticResource CardStyle}" Padding="30" Margin="0,0,0,20">
 
                     <StackPanel>
                         <TextBlock Text="📊 Dashboard Consolidado Excel"
@@ -726,7 +976,7 @@
                 </Border>
 
                 <!-- Botón Actualizar -->
-                <Border Grid.Row="3" Style="{StaticResource CardStyle}">
+                <Border Grid.Row="4" Style="{StaticResource CardStyle}">
                     <Button Content="🔄 Actualizar Estadísticas"
                             Command="{Binding ActualizarEstadisticasCommand}"
                             Style="{StaticResource InfoButtonStyle}"
