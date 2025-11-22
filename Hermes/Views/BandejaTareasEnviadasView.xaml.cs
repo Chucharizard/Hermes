@@ -22,9 +22,7 @@ namespace Hermes.Views
             if (sender is Border border && border.Tag is Tarea tarea)
             {
                 // Crear y mostrar ventana modal de detalle
-                var detalleWindow = new DetalleTareaWindow();
-                var detalleViewModel = new DetalleTareaViewModel(tarea);
-                detalleWindow.DataContext = detalleViewModel;
+                var detalleWindow = new DetalleTareaWindow(tarea);
 
                 // Mostrar como diálogo modal
                 detalleWindow.ShowDialog();
