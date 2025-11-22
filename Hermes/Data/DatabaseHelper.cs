@@ -4,7 +4,7 @@ namespace Hermes.Data
     {
         public static string GetConnectionString()
         {
-            return @"Server=PANADERO\PANCITO;Database=HERMES;Trusted_Connection=True;TrustServerCertificate=True;";
+            return @"Server=pan\SQLEXPRESS;Database=HERMES;Trusted_Connection=True;TrustServerCertificate=True;";
         }
     }
 }

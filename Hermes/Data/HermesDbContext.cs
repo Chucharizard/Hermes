@@ -18,7 +18,7 @@ namespace Hermes.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=PANADERO\PANCITO;Database=HERMES;Trusted_Connection=True;TrustServerCertificate=True;",
+                @"Server=pan\SQLEXPRESS;Database=HERMES;Trusted_Connection=True;TrustServerCertificate=True;",
                 options => options.EnableRetryOnFailure()
             );
 
