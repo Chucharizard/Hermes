@@ -86,7 +86,13 @@ namespace Hermes.ViewModels
 
         private void ActualizarViewModelAccion()
         {
-            if (AccionActual == null || EmpleadoEnAccion == null)
+            if (AccionActual == null)
+            {
+                ViewModelAccion = null;
+                return;
+            }
+
+            if (EmpleadoEnAccion == null && AccionActual != "Nuevo")
             {
                 ViewModelAccion = null;
                 return;
@@ -95,8 +101,8 @@ namespace Hermes.ViewModels
             ViewModelAccion = AccionActual switch
             {
                 "Nuevo" => new NuevoEmpleadoViewModel(),
-                "Editar" => new EditarEmpleadoViewModel(EmpleadoEnAccion),
-                "Usuario" => new GestionarUsuarioViewModel(EmpleadoEnAccion),
+                "Editar" when EmpleadoEnAccion != null => new EditarEmpleadoViewModel(EmpleadoEnAccion),
+                "Usuario" when EmpleadoEnAccion != null => new GestionarUsuarioViewModel(EmpleadoEnAccion),
                 _ => null
             };
         }

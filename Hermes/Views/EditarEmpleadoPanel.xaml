@@ -122,7 +122,7 @@
 
                 <Button Grid.Column="0"
                         Content="✖ Cancelar"
-                        Command="{Binding CancelarCommand}"
+                        Command="{Binding DataContext.VolverCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=2}}"
                         Style="{StaticResource WarningButtonStyle}"
                         Padding="0,12"
                         FontSize="13"
