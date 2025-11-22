@@ -16,18 +16,18 @@
 
         <!-- Estilo para item de tarea seleccionado -->
         <Style x:Key="TareaListItemStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="Background" Value="#1a1a2e"/>
+            <Setter Property="BorderBrush" Value="#30FFFFFF"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="Padding" Value="12,10"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#F5F8FA"/>
+                    <Setter Property="Background" Value="#2d3748"/>
                 </Trigger>
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                    <Setter Property="Background" Value="#E3F2FD"/>
-                    <Setter Property="BorderBrush" Value="#2196F3"/>
+                    <Setter Property="Background" Value="#16213e"/>
+                    <Setter Property="BorderBrush" Value="#5DADE2"/>
                     <Setter Property="BorderThickness" Value="0,0,3,1"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -42,9 +42,9 @@
         </Grid.RowDefinitions>
 
         <!-- Header compacto + Estadísticas inline + Nueva Tarea -->
-        <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
+        <Border Grid.Row="0" Background="#1a1a2e" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.08" Color="#000000"/>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
             </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -58,7 +58,7 @@
                            Text="🔧 Gestión de Tareas"
                            FontSize="16"
                            FontWeight="Bold"
-                           Foreground="#2C3E50"
+                           Foreground="#ECF0F1"
                            VerticalAlignment="Center"
                            Margin="0,0,20,0"/>
 
@@ -138,9 +138,9 @@
         <!-- ========================================== -->
         <!-- CALENDARIO SEMANAL -->
         <!-- ========================================== -->
-        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="15" Margin="0,0,0,10">
+        <Border Grid.Row="1" Background="#1a1a2e" CornerRadius="8" Padding="15" Margin="0,0,0,10">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.08" Color="#000000"/>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
@@ -161,13 +161,13 @@
                                Text="📅 Calendario Semanal"
                                FontSize="13"
                                FontWeight="Bold"
-                               Foreground="#2C3E50"
+                               Foreground="#ECF0F1"
                                VerticalAlignment="Center"/>
 
                     <TextBlock Grid.Column="1"
                                Text="{Binding TituloSemana}"
                                FontSize="12"
-                               Foreground="#7F8C8D"
+                               Foreground="#BDC3C7"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>
 
@@ -196,8 +196,8 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="White"
-                                    BorderBrush="#E0E0E0"
+                            <Border Background="#16213e"
+                                    BorderBrush="#30FFFFFF"
                                     BorderThickness="1"
                                     Margin="2"
                                     Padding="8"
@@ -212,11 +212,11 @@
                                     <Style TargetType="Border">
                                         <Style.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#F5F8FA"/>
+                                                <Setter Property="Background" Value="#2d3748"/>
                                             </Trigger>
                                             <DataTrigger Binding="{Binding EsSeleccionado}" Value="True">
-                                                <Setter Property="Background" Value="#E3F2FD"/>
-                                                <Setter Property="BorderBrush" Value="#2196F3"/>
+                                                <Setter Property="Background" Value="#1a1a2e"/>
+                                                <Setter Property="BorderBrush" Value="#5DADE2"/>
                                                 <Setter Property="BorderThickness" Value="2"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -227,14 +227,14 @@
                                     <TextBlock Text="{Binding DiaNombre}"
                                                FontSize="10"
                                                FontWeight="Bold"
-                                               Foreground="#7F8C8D"
+                                               Foreground="#BDC3C7"
                                                HorizontalAlignment="Center"
                                                Margin="0,0,0,4"/>
 
                                     <TextBlock Text="{Binding DiaNumero}"
                                                FontSize="14"
                                                FontWeight="Bold"
-                                               Foreground="#2C3E50"
+                                               Foreground="#ECF0F1"
                                                HorizontalAlignment="Center"
                                                Margin="0,0,0,4"/>
 
@@ -264,9 +264,9 @@
             <!-- ========================================== -->
             <!-- MASTER: LISTA DE TAREAS COMPACTA -->
             <!-- ========================================== -->
-            <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="0">
+            <Border Grid.Column="0" Background="#1a1a2e" CornerRadius="8" Padding="0">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                 </Border.Effect>
 
                 <Grid>
@@ -340,14 +340,14 @@
                                                        Text="{Binding TituloTarea}"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"
-                                                       Foreground="#2C3E50"
+                                                       Foreground="#ECF0F1"
                                                        TextTrimming="CharacterEllipsis"
                                                        Margin="0,0,0,4"/>
 
                                             <!-- Fila 3: Emisor → Receptor -->
                                             <TextBlock Grid.Row="2"
                                                        FontSize="10"
-                                                       Foreground="#7F8C8D"
+                                                       Foreground="#BDC3C7"
                                                        Margin="0,0,0,6">
                                                 <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}" Foreground="#E67E22" FontWeight="SemiBold"/>
                                                 <Run Text=" → "/>
@@ -431,9 +431,9 @@
             <!-- ========================================== -->
             <!-- DETAIL: PANEL DE EDICIÓN DE TAREA -->
             <!-- ========================================== -->
-            <Border Grid.Column="2" Background="White" CornerRadius="8">
+            <Border Grid.Column="2" Background="#1a1a2e" CornerRadius="8">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.1" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                 </Border.Effect>
 
                 <Grid>
@@ -454,16 +454,17 @@
                                    FontSize="64"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,15"
-                                   Opacity="0.3"/>
+                                   Opacity="0.3"
+                                   Foreground="#ECF0F1"/>
                         <TextBlock Text="Selecciona una tarea"
                                    FontSize="18"
                                    FontWeight="SemiBold"
-                                   Foreground="#95A5A6"
+                                   Foreground="#BDC3C7"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,5"/>
                         <TextBlock Text="para editarla y gestionarla"
                                    FontSize="14"
-                                   Foreground="#BDC3C7"
+                                   Foreground="#95A5A6"
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
@@ -485,7 +486,7 @@
                             <TextBlock Text="📋 Editar Tarea"
                                        FontSize="18"
                                        FontWeight="Bold"
-                                       Foreground="#2C3E50"
+                                       Foreground="#ECF0F1"
                                        Margin="0,0,0,20"/>
 
                             <!-- Título -->
@@ -552,14 +553,14 @@
 
                             <!-- Emisor (solo lectura) -->
                             <TextBlock Text="Emisor:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                            <Border Background="#ECF0F1"
-                                    BorderBrush="#BDC3C7"
+                            <Border Background="#16213e"
+                                    BorderBrush="#30FFFFFF"
                                     BorderThickness="1"
                                     CornerRadius="4"
                                     Padding="10,8"
                                     Margin="0,0,0,15">
                                 <TextBlock Text="{Binding EmisorInfo}"
-                                           Foreground="#7F8C8D"
+                                           Foreground="#BDC3C7"
                                            FontStyle="Italic"/>
                             </Border>
 
