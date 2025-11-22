@@ -483,134 +483,280 @@
                             </Style>
                         </ScrollViewer.Style>
 
-                        <StackPanel Margin="20">
-                            <!-- Encabezado con botón cerrar -->
-                            <Grid Margin="0,0,0,20">
-                                <TextBlock Text="📋 Editar Tarea"
-                                           FontSize="18"
-                                           FontWeight="Bold"
-                                           Foreground="#ECF0F1"
-                                           VerticalAlignment="Center"/>
-                                <Button Content="✖"
-                                        Command="{Binding CerrarPanelCommand}"
-                                        HorizontalAlignment="Right"
-                                        Background="#E74C3C"
-                                        Foreground="White"
-                                        Width="30"
-                                        Height="30"
-                                        FontSize="14"
-                                        BorderThickness="0"
-                                        Cursor="Hand"
-                                        ToolTip="Cerrar panel">
-                                    <Button.Style>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
-                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#C0392B"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
-                                </Button>
-                            </Grid>
-
-                            <!-- Título -->
-                            <TextBlock Text="Título:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                            <TextBox Text="{Binding TituloEditable, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource ModernTextBoxStyle}"
-                                     Margin="0,0,0,15"/>
-
-                            <!-- Descripción -->
-                            <TextBlock Text="Descripción:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                            <TextBox Text="{Binding DescripcionEditable, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource ModernTextBoxStyle}"
-                                     TextWrapping="Wrap"
-                                     AcceptsReturn="True"
-                                     Height="100"
-                                     VerticalScrollBarVisibility="Auto"
-                                     Margin="0,0,0,15"/>
-
-                            <!-- Estado y Prioridad (Grid 2 columnas) -->
-                            <Grid Margin="0,0,0,15">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Estado -->
-                                <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Estado:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                                    <ComboBox ItemsSource="{Binding EstadosDisponibles}"
-                                              SelectedItem="{Binding EstadoEditable}"
-                                              Style="{StaticResource ModernComboBoxStyle}"/>
-                                </StackPanel>
-
-                                <!-- Prioridad -->
-                                <StackPanel Grid.Column="2">
-                                    <TextBlock Text="Prioridad:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                                    <ComboBox ItemsSource="{Binding PrioridadesDisponibles}"
-                                              SelectedItem="{Binding PrioridadEditable}"
-                                              Style="{StaticResource ModernComboBoxStyle}"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <!-- Fecha Inicio y Fecha Límite (Grid 2 columnas) -->
-                            <Grid Margin="0,0,0,15">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Fecha Inicio -->
-                                <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Fecha Inicio:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                                    <DatePicker SelectedDate="{Binding FechaInicioEditable}"/>
-                                </StackPanel>
-
-                                <!-- Fecha Límite -->
-                                <StackPanel Grid.Column="2">
-                                    <TextBlock Text="Fecha Límite:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                                    <DatePicker SelectedDate="{Binding FechaLimiteEditable}"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <!-- Emisor (solo lectura) -->
-                            <TextBlock Text="Emisor:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                            <Border Background="#16213e"
-                                    BorderBrush="#30FFFFFF"
-                                    BorderThickness="1"
-                                    CornerRadius="4"
-                                    Padding="10,8"
-                                    Margin="0,0,0,15">
-                                <TextBlock Text="{Binding EmisorInfo}"
-                                           Foreground="#BDC3C7"
-                                           FontStyle="Italic"/>
+                        <StackPanel>
+                            <!-- Header compacto y profesional -->
+                            <Border Background="#16213e" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <Border Background="#9B59B6" CornerRadius="6" Padding="8" Margin="0,0,12,0">
+                                            <TextBlock Text="📋" FontSize="18"/>
+                                        </Border>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="Editar Tarea"
+                                                       FontSize="16"
+                                                       FontWeight="Bold"
+                                                       Foreground="#ECF0F1"/>
+                                            <TextBlock Text="Modifica los detalles de la tarea"
+                                                       FontSize="10"
+                                                       Foreground="#95A5A6"
+                                                       Margin="0,2,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Button Content="✖"
+                                            Command="{Binding CerrarPanelCommand}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Background="#E74C3C"
+                                            Foreground="White"
+                                            Width="30"
+                                            Height="30"
+                                            FontSize="14"
+                                            BorderThickness="0"
+                                            Cursor="Hand"
+                                            ToolTip="Cerrar panel">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#C0392B"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </Grid>
                             </Border>
 
-                            <!-- Receptor -->
-                            <TextBlock Text="Receptor:" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                            <ComboBox ItemsSource="{Binding UsuariosDisponibles}"
-                                      SelectedItem="{Binding UsuarioReceptorEditable}"
-                                      DisplayMemberPath="Empleado.NombresEmpleado"
-                                      Style="{StaticResource ModernComboBoxStyle}"
-                                      Margin="0,0,0,20"/>
+                            <!-- Sección: Información Básica -->
+                            <Border Background="#16213e" BorderBrush="#9B59B6" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#9B59B6"/>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <!-- Header de sección -->
+                                    <Border Background="#9B59B6" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                        <TextBlock Text="📝 INFORMACIÓN BÁSICA" FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    </Border>
+
+                                    <!-- Título -->
+                                    <StackPanel Margin="0,0,0,15">
+                                        <TextBlock Text="Título de la Tarea"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#95A5A6"
+                                                   Margin="0,0,0,6"/>
+                                        <TextBox Text="{Binding TituloEditable, UpdateSourceTrigger=PropertyChanged}"
+                                                 Style="{StaticResource ModernTextBoxStyle}"
+                                                 FontSize="14"/>
+                                    </StackPanel>
+
+                                    <!-- Descripción -->
+                                    <StackPanel>
+                                        <TextBlock Text="Descripción Detallada"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#95A5A6"
+                                                   Margin="0,0,0,6"/>
+                                        <TextBox Text="{Binding DescripcionEditable, UpdateSourceTrigger=PropertyChanged}"
+                                                 Style="{StaticResource ModernTextBoxStyle}"
+                                                 TextWrapping="Wrap"
+                                                 AcceptsReturn="True"
+                                                 Height="100"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 FontSize="13"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Sección: Configuración -->
+                            <Border Background="#16213e" BorderBrush="#3498DB" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#3498DB"/>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <!-- Header de sección -->
+                                    <Border Background="#3498DB" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                        <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    </Border>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="15"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Estado -->
+                                        <StackPanel Grid.Column="0">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                                <Border Background="#3498DB" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                    <TextBlock Text="📊" FontSize="16"/>
+                                                </Border>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="Estado"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#95A5A6"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <ComboBox ItemsSource="{Binding EstadosDisponibles}"
+                                                      SelectedItem="{Binding EstadoEditable}"
+                                                      Style="{StaticResource ModernComboBoxStyle}"
+                                                      FontSize="13"/>
+                                        </StackPanel>
+
+                                        <!-- Prioridad -->
+                                        <StackPanel Grid.Column="2">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                                <Border Background="#E67E22" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                    <TextBlock Text="⚡" FontSize="16"/>
+                                                </Border>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="Prioridad"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#95A5A6"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <ComboBox ItemsSource="{Binding PrioridadesDisponibles}"
+                                                      SelectedItem="{Binding PrioridadEditable}"
+                                                      Style="{StaticResource ModernComboBoxStyle}"
+                                                      FontSize="13"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Sección: Cronología -->
+                            <Border Background="#16213e" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#1ABC9C"/>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <!-- Header de sección -->
+                                    <Border Background="#1ABC9C" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                        <TextBlock Text="📅 CRONOLOGÍA" FontSize="12" FontWeight="Bold" Foreground="#0a0a15"/>
+                                    </Border>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="15"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Fecha Inicio -->
+                                        <StackPanel Grid.Column="0">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                                <Border Background="#1ABC9C" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                    <TextBlock Text="▶" FontSize="16"/>
+                                                </Border>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="Fecha Inicio"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#95A5A6"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <DatePicker SelectedDate="{Binding FechaInicioEditable}"
+                                                        FontSize="13"/>
+                                        </StackPanel>
+
+                                        <!-- Fecha Límite -->
+                                        <StackPanel Grid.Column="2">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                                <Border Background="#E74C3C" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                    <TextBlock Text="⏰" FontSize="16"/>
+                                                </Border>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="Fecha Límite"
+                                                               FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#95A5A6"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <DatePicker SelectedDate="{Binding FechaLimiteEditable}"
+                                                        FontSize="13"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Sección: Asignación -->
+                            <Border Background="#16213e" BorderBrush="#F39C12" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#F39C12"/>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <!-- Header de sección -->
+                                    <Border Background="#F39C12" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                        <TextBlock Text="👥 ASIGNACIÓN" FontSize="12" FontWeight="Bold" Foreground="#0a0a15"/>
+                                    </Border>
+
+                                    <!-- Emisor (solo lectura) -->
+                                    <StackPanel Margin="0,0,0,15">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                            <Border Background="#9B59B6" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <TextBlock Text="📤" FontSize="16"/>
+                                            </Border>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="Emisor de la Tarea"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#95A5A6"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <Border Background="#1a1a2e"
+                                                BorderBrush="#9B59B6"
+                                                BorderThickness="1"
+                                                CornerRadius="8"
+                                                Padding="12,10">
+                                            <TextBlock Text="{Binding EmisorInfo}"
+                                                       Foreground="#9B59B6"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"/>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <!-- Receptor -->
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                            <Border Background="#3498DB" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <TextBlock Text="📥" FontSize="16"/>
+                                            </Border>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="Receptor de la Tarea"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#95A5A6"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <ComboBox ItemsSource="{Binding UsuariosDisponibles}"
+                                                  SelectedItem="{Binding UsuarioReceptorEditable}"
+                                                  DisplayMemberPath="Empleado.NombresEmpleado"
+                                                  Style="{StaticResource ModernComboBoxStyle}"
+                                                  FontSize="13"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
 
                             <!-- Botones de acción -->
-                            <Grid>
+                            <Grid Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="15"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
@@ -618,16 +764,18 @@
                                         Content="💾 Guardar Cambios"
                                         Command="{Binding GuardarCambiosCommand}"
                                         Style="{StaticResource SuccessButtonStyle}"
-                                        Padding="12,10"
-                                        FontSize="13"/>
+                                        Padding="14,12"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"/>
 
                                 <Button Grid.Column="2"
                                         Content="🗑 Eliminar Tarea"
                                         Command="{Binding EliminarTareaCommand}"
                                         CommandParameter="{Binding TareaSeleccionada}"
                                         Style="{StaticResource DangerButtonStyle}"
-                                        Padding="12,10"
-                                        FontSize="13"/>
+                                        Padding="14,12"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"/>
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
