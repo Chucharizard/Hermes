@@ -232,114 +232,24 @@
                 </Border>
 
                 <!-- Contenido dinámico según AccionActual -->
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ContentControl Margin="20">
-                        <ContentControl.Style>
-                            <Style TargetType="ContentControl">
-                                <Setter Property="Content" Value="{x:Null}"/>
-                                <!-- Placeholder cuando no hay acción -->
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding AccionActual}" Value="{x:Null}">
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="40">
-                                                    <TextBlock Text="👤" FontSize="64" HorizontalAlignment="Center" Margin="0,0,0,15" Opacity="0.3" Foreground="#ECF0F1"/>
-                                                    <TextBlock Text="Selecciona una acción" FontSize="18" FontWeight="SemiBold" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
-                                                </StackPanel>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
+                <ContentPresenter Grid.Row="1" Content="{Binding ViewModelAccion}" Margin="20">
+                    <ContentPresenter.Resources>
+                        <!-- Template para NuevoEmpleadoViewModel -->
+                        <DataTemplate DataType="{x:Type viewmodels:NuevoEmpleadoViewModel}">
+                            <views:NuevoEmpleadoPanel/>
+                        </DataTemplate>
 
-                                    <!-- Vista: Ver Detalle -->
-                                    <DataTrigger Binding="{Binding AccionActual}" Value="VerDetalle">
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <StackPanel>
-                                                    <TextBlock Text="👁 Detalle del Empleado" FontSize="24" FontWeight="Bold" Foreground="#ECF0F1" Margin="0,0,0,30"/>
+                        <!-- Template para EditarEmpleadoViewModel -->
+                        <DataTemplate DataType="{x:Type viewmodels:EditarEmpleadoViewModel}">
+                            <views:EditarEmpleadoPanel/>
+                        </DataTemplate>
 
-                                                    <Border Background="#16213e" Padding="20" CornerRadius="8" Margin="0,0,0,15">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="150"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                            </Grid.RowDefinitions>
-
-                                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="CI:" FontWeight="Bold" Foreground="#BDC3C7" Margin="0,0,0,15"/>
-                                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding EmpleadoEnAccion.CiEmpleado}" Foreground="#ECF0F1" Margin="0,0,0,15"/>
-
-                                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Nombres:" FontWeight="Bold" Foreground="#BDC3C7" Margin="0,0,0,15"/>
-                                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding EmpleadoEnAccion.NombresEmpleado}" Foreground="#ECF0F1" Margin="0,0,0,15"/>
-
-                                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Apellidos:" FontWeight="Bold" Foreground="#BDC3C7" Margin="0,0,0,15"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding EmpleadoEnAccion.ApellidosEmpleado}" Foreground="#ECF0F1" Margin="0,0,0,15"/>
-
-                                                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Teléfono:" FontWeight="Bold" Foreground="#BDC3C7" Margin="0,0,0,15"/>
-                                                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding EmpleadoEnAccion.TelefonoEmpleado}" Foreground="#ECF0F1" Margin="0,0,0,15"/>
-
-                                                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Correo:" FontWeight="Bold" Foreground="#BDC3C7" Margin="0,0,0,15"/>
-                                                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding EmpleadoEnAccion.CorreoEmpleado}" Foreground="#ECF0F1" Margin="0,0,0,15"/>
-
-                                                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Estado:" FontWeight="Bold" Foreground="#BDC3C7"/>
-                                                            <TextBlock Grid.Row="5" Grid.Column="1" Foreground="#ECF0F1">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Text" Value="❌ Inactivo"/>
-                                                                        <Setter Property="Foreground" Value="#E74C3C"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding EmpleadoEnAccion.EsActivoEmpleado}" Value="True">
-                                                                                <Setter Property="Text" Value="✅ Activo"/>
-                                                                                <Setter Property="Foreground" Value="#1ABC9C"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                        </Grid>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-
-                                    <!-- Vista: Nuevo Empleado -->
-                                    <DataTrigger Binding="{Binding AccionActual}" Value="Nuevo">
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <views:NuevoEmpleadoPanel DataContext="{Binding ViewModelAccion}"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-
-                                    <!-- Vista: Editar Empleado -->
-                                    <DataTrigger Binding="{Binding AccionActual}" Value="Editar">
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <views:EditarEmpleadoPanel DataContext="{Binding ViewModelAccion}"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-
-                                    <!-- Vista: Gestionar Usuario -->
-                                    <DataTrigger Binding="{Binding AccionActual}" Value="Usuario">
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <views:GestionarUsuarioPanel DataContext="{Binding ViewModelAccion}"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ContentControl.Style>
-                    </ContentControl>
-                </ScrollViewer>
+                        <!-- Template para GestionarUsuarioViewModel -->
+                        <DataTemplate DataType="{x:Type viewmodels:GestionarUsuarioViewModel}">
+                            <views:GestionarUsuarioPanel/>
+                        </DataTemplate>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
             </Grid>
         </Border>
     </Grid>
