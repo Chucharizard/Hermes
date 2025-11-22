@@ -35,7 +35,10 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid TextOptions.TextFormattingMode="Display"
+          TextOptions.TextRenderingMode="ClearType"
+          UseLayoutRounding="True"
+          SnapsToDevicePixels="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

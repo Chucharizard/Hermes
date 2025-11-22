@@ -68,7 +68,10 @@
 
     <!-- Contenedor principal con bordes redondeados -->
     <Border Background="#0a0a15" CornerRadius="0" BorderBrush="#9B59B6" BorderThickness="0">
-        <Grid>
+        <Grid TextOptions.TextFormattingMode="Display"
+              TextOptions.TextRenderingMode="ClearType"
+              UseLayoutRounding="True"
+              SnapsToDevicePixels="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> <!-- Barra de título personalizada -->
                 <RowDefinition Height="*"/> <!-- Contenido principal -->

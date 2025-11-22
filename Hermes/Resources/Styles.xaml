@@ -2,6 +2,34 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ========================================== -->
+    <!-- RENDERIZADO DE TEXTO GLOBAL - APLICADO A TODA LA APP -->
+    <!-- ========================================== -->
+
+    <!-- Estilo base para TextBlock - Mejora la nitidez del texto -->
+    <Style TargetType="TextBlock">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+    </Style>
+
+    <!-- Estilo base para Label - Mejora la nitidez del texto -->
+    <Style TargetType="Label">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+    </Style>
+
+    <!-- Estilo base para TextBox - Mejora la nitidez del texto -->
+    <Style TargetType="TextBox">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+    </Style>
+
+    <!-- Estilo base para Button - Mejora la nitidez del texto -->
+    <Style TargetType="Button">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+    </Style>
+
+    <!-- ========================================== -->
     <!-- COLORES GLOBALES - PALETA PROFESSIONAL DARK BLUE -->
     <!-- ========================================== -->
 
