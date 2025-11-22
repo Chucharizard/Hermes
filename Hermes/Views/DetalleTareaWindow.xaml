@@ -15,7 +15,15 @@
         <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Window.Resources>
 
-    <Grid Background="#ECF0F1">
+    <!-- FONDO TEMA MORADO MEDIANOCHE -->
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0d1b2a" Offset="0"/>
+                <GradientStop Color="#1b263b" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -25,13 +33,16 @@
         <!-- ========================================== -->
         <!-- HEADER: Título, Estado, Prioridad, Fechas -->
         <!-- ========================================== -->
-        <Border Grid.Row="0" Padding="30,20">
+        <Border Grid.Row="0" Padding="30,20" CornerRadius="0,0,15,15" Margin="0,0,0,15">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#2C3E50" Offset="0"/>
-                    <GradientStop Color="#34495E" Offset="1"/>
+                    <GradientStop Color="#1a1a2e" Offset="0"/>
+                    <GradientStop Color="#16213e" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+            </Border.Effect>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -44,7 +55,7 @@
                            Text="{Binding Tarea.TituloTarea}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Foreground="White"
+                           Foreground="#FFFFFF"
                            TextWrapping="Wrap"
                            Margin="0,0,0,15"/>
 
@@ -62,6 +73,9 @@
                             CornerRadius="15"
                             Padding="12,6"
                             Margin="0,0,10,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#F39C12"/>
+                        </Border.Effect>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="●" FontSize="12" Foreground="White" Margin="0,0,6,0"/>
                             <TextBlock Text="{Binding Tarea.EstadoTarea}"
@@ -77,6 +91,9 @@
                             CornerRadius="15"
                             Padding="12,6"
                             Margin="0,0,15,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                        </Border.Effect>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⚡" FontSize="12" Margin="0,0,6,0"/>
                             <TextBlock Text="{Binding Tarea.PrioridadTarea}"
@@ -90,19 +107,19 @@
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
                             <TextBlock Text="📅" FontSize="14" Margin="0,0,6,0"/>
-                            <TextBlock Text="Inicio:" FontSize="13" Foreground="#ECF0F1" Margin="0,0,5,0"/>
+                            <TextBlock Text="Inicio:" FontSize="13" Foreground="#B0B8C8" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding Tarea.FechaInicioTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                        FontSize="13"
                                        FontWeight="SemiBold"
-                                       Foreground="White"/>
+                                       Foreground="#FFFFFF"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⏰" FontSize="14" Margin="0,0,6,0"/>
-                            <TextBlock Text="Límite:" FontSize="13" Foreground="#ECF0F1" Margin="0,0,5,0"/>
+                            <TextBlock Text="Límite:" FontSize="13" Foreground="#B0B8C8" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding Tarea.FechaLimiteTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                        FontSize="13"
                                        FontWeight="SemiBold"
-                                       Foreground="White"/>
+                                       Foreground="#FFFFFF"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -112,7 +129,7 @@
         <!-- ========================================== -->
         <!-- CONTENIDO: 3 COLUMNAS -->
         <!-- ========================================== -->
-        <Grid Grid.Row="1" Margin="20">
+        <Grid Grid.Row="1" Margin="20,0,20,15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="15"/>
@@ -124,9 +141,15 @@
             <!-- ========================================== -->
             <!-- COLUMNA 1: COMENTARIOS -->
             <!-- ========================================== -->
-            <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="20">
+            <Border Grid.Column="0" CornerRadius="12" Padding="20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1a1a2e" Offset="0"/>
+                        <GradientStop Color="#16213e" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
                 </Border.Effect>
 
                 <Grid>
@@ -142,6 +165,9 @@
                             CornerRadius="8"
                             Padding="15,10"
                             Margin="0,0,0,15">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#3498DB"/>
+                        </Border.Effect>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -172,12 +198,17 @@
                         <ItemsControl ItemsSource="{Binding Comentarios}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#F8FBFD"
-                                            BorderBrush="#E3F2FD"
-                                            BorderThickness="0,0,0,2"
-                                            CornerRadius="8"
+                                    <Border CornerRadius="8"
                                             Padding="12"
-                                            Margin="0,0,0,10">
+                                            Margin="0,0,0,10"
+                                            BorderBrush="#30FFFFFF"
+                                            BorderThickness="1">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#252d42" Offset="0"/>
+                                                <GradientStop Color="#1e2538" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
                                         <StackPanel>
                                             <Grid Margin="0,0,0,8">
                                                 <Grid.ColumnDefinitions>
@@ -199,21 +230,21 @@
                                                 </Border>
 
                                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                    <TextBlock FontWeight="Bold" Foreground="#2C3E50" FontSize="13">
+                                                    <TextBlock FontWeight="Bold" Foreground="#FFFFFF" FontSize="13">
                                                         <Run Text="{Binding Usuario.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                                         <Run Text=" "/>
                                                         <Run Text="{Binding Usuario.Empleado.ApellidosEmpleado, Mode=OneWay}"/>
                                                     </TextBlock>
                                                     <TextBlock Text="{Binding FechaComentario, StringFormat=dd/MM/yyyy HH:mm}"
                                                                FontSize="10"
-                                                               Foreground="#95A5A6"
+                                                               Foreground="#7F8C8D"
                                                                Margin="0,2,0,0"/>
                                                 </StackPanel>
                                             </Grid>
 
                                             <TextBlock Text="{Binding Comentario}"
                                                        TextWrapping="Wrap"
-                                                       Foreground="#34495E"
+                                                       Foreground="#D0D8E8"
                                                        FontSize="12"
                                                        LineHeight="18"
                                                        Margin="42,0,0,0"/>
@@ -226,14 +257,16 @@
 
                     <!-- Agregar comentario -->
                     <Border Grid.Row="2"
-                            Background="#F8F9FA"
+                            Background="#252d42"
                             CornerRadius="8"
                             Padding="12"
-                            Margin="0,15,0,0">
+                            Margin="0,15,0,0"
+                            BorderBrush="#30FFFFFF"
+                            BorderThickness="1">
                         <StackPanel>
                             <TextBlock Text="✍ Nuevo Comentario"
                                        FontWeight="SemiBold"
-                                       Foreground="#2C3E50"
+                                       Foreground="#FFFFFF"
                                        FontSize="13"
                                        Margin="0,0,0,8"/>
                             <TextBox Text="{Binding NuevoComentario, UpdateSourceTrigger=PropertyChanged}"
@@ -242,9 +275,11 @@
                                      MinHeight="60"
                                      Padding="10"
                                      FontSize="12"
-                                     BorderBrush="#BDC3C7"
+                                     BorderBrush="#50FFFFFF"
                                      BorderThickness="1"
-                                     Background="White"
+                                     Background="#1e2538"
+                                     Foreground="#FFFFFF"
+                                     CaretBrush="#FFFFFF"
                                      VerticalScrollBarVisibility="Auto"/>
                             <Button Content="📤 Enviar"
                                     Command="{Binding AgregarComentarioCommand}"
@@ -265,6 +300,9 @@
                                                     <Border Background="{TemplateBinding Background}"
                                                             CornerRadius="6"
                                                             Padding="{TemplateBinding Padding}">
+                                                        <Border.Effect>
+                                                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#3498DB"/>
+                                                        </Border.Effect>
                                                         <ContentPresenter HorizontalAlignment="Center"
                                                                         VerticalAlignment="Center"/>
                                                     </Border>
@@ -287,9 +325,15 @@
             <!-- ========================================== -->
             <!-- COLUMNA 2: ADJUNTOS (Emisor y Receptor) -->
             <!-- ========================================== -->
-            <Border Grid.Column="2" Background="White" CornerRadius="10" Padding="20">
+            <Border Grid.Column="2" CornerRadius="12" Padding="20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1a1a2e" Offset="0"/>
+                        <GradientStop Color="#16213e" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
                 </Border.Effect>
 
                 <Grid>
@@ -307,6 +351,9 @@
                             CornerRadius="8"
                             Padding="12,8"
                             Margin="0,0,0,10">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E67E22"/>
+                        </Border.Effect>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -336,7 +383,7 @@
                         <ItemsControl ItemsSource="{Binding AdjuntosEmisor}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#FEF5E7" CornerRadius="6" Padding="10" Margin="0,0,0,8">
+                                    <Border Background="#252d42" CornerRadius="6" Padding="10" Margin="0,0,0,8" BorderBrush="#30FFFFFF" BorderThickness="1">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
@@ -348,13 +395,13 @@
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="{Binding NombreArchivo}"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#2C3E50"
+                                                           Foreground="#FFFFFF"
                                                            FontSize="11"
                                                            TextTrimming="CharacterEllipsis"
                                                            ToolTip="{Binding NombreArchivo}"/>
                                                 <TextBlock Text="{Binding TamañoArchivo, StringFormat={}{0:N0} bytes}"
                                                            FontSize="9"
-                                                           Foreground="#95A5A6"
+                                                           Foreground="#7F8C8D"
                                                            Margin="0,2,0,0"/>
                                             </StackPanel>
 
@@ -435,6 +482,9 @@
                             CornerRadius="8"
                             Padding="12,8"
                             Margin="0,0,0,10">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#27AE60"/>
+                        </Border.Effect>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -496,7 +546,7 @@
                     <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <!-- Mensaje si no puede subir archivos -->
-                            <Border Background="#FFF3CD"
+                            <Border Background="#443d1e"
                                     BorderBrush="#FFC107"
                                     BorderThickness="1"
                                     CornerRadius="6"
@@ -512,7 +562,7 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-                                <TextBlock FontSize="10" Foreground="#856404" TextWrapping="Wrap">
+                                <TextBlock FontSize="10" Foreground="#FFC107" TextWrapping="Wrap">
                                     <Run Text="⚠ No se pueden subir archivos (tarea cerrada o completada)"/>
                                 </TextBlock>
                             </Border>
@@ -520,7 +570,7 @@
                             <ItemsControl ItemsSource="{Binding AdjuntosReceptor}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="#E8F8F5" CornerRadius="6" Padding="10" Margin="0,0,0,8">
+                                        <Border Background="#252d42" CornerRadius="6" Padding="10" Margin="0,0,0,8" BorderBrush="#30FFFFFF" BorderThickness="1">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
@@ -532,13 +582,13 @@
                                                 <StackPanel Grid.Column="1">
                                                     <TextBlock Text="{Binding NombreArchivo}"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#2C3E50"
+                                                               Foreground="#FFFFFF"
                                                                FontSize="11"
                                                                TextTrimming="CharacterEllipsis"
                                                                ToolTip="{Binding NombreArchivo}"/>
                                                     <TextBlock Text="{Binding TamañoArchivo, StringFormat={}{0:N0} bytes}"
                                                                FontSize="9"
-                                                               Foreground="#95A5A6"
+                                                               Foreground="#7F8C8D"
                                                                Margin="0,2,0,0"/>
                                                 </StackPanel>
 
@@ -622,9 +672,15 @@
             <ScrollViewer Grid.Column="4" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <!-- Descripción de la tarea -->
-                    <Border Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                    <Border CornerRadius="12" Padding="20" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#1a1a2e" Offset="0"/>
+                                <GradientStop Color="#16213e" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                         </Border.Effect>
 
                         <StackPanel>
@@ -632,6 +688,9 @@
                                     CornerRadius="8"
                                     Padding="12,8"
                                     Margin="0,0,0,12">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#1ABC9C"/>
+                                </Border.Effect>
                                 <TextBlock Text="📝 Descripción"
                                            FontSize="14"
                                            FontWeight="Bold"
@@ -641,15 +700,21 @@
                             <TextBlock Text="{Binding Tarea.DescripcionTarea, TargetNullValue='Sin descripción'}"
                                        TextWrapping="Wrap"
                                        FontSize="12"
-                                       Foreground="#2C3E50"
+                                       Foreground="#D0D8E8"
                                        LineHeight="20"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Usuario Emisor -->
-                    <Border Background="White" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                    <Border CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#1a1a2e" Offset="0"/>
+                                <GradientStop Color="#16213e" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                         </Border.Effect>
 
                         <Grid>
@@ -664,6 +729,9 @@
                                     CornerRadius="30"
                                     Background="#E67E22"
                                     Margin="0,0,12,0">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#E67E22"/>
+                                </Border.Effect>
                                 <TextBlock Text="📤"
                                            FontSize="28"
                                            Foreground="White"
@@ -679,7 +747,7 @@
                                            Margin="0,0,0,4"/>
                                 <TextBlock FontSize="14"
                                            FontWeight="Bold"
-                                           Foreground="#2C3E50"
+                                           Foreground="#FFFFFF"
                                            TextWrapping="Wrap">
                                     <Run Text="{Binding Tarea.UsuarioEmisor.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                     <Run Text=" "/>
@@ -693,9 +761,15 @@
                     </Border>
 
                     <!-- Usuario Receptor -->
-                    <Border Background="White" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                    <Border CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#1a1a2e" Offset="0"/>
+                                <GradientStop Color="#16213e" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                         </Border.Effect>
 
                         <Grid>
@@ -710,6 +784,9 @@
                                     CornerRadius="30"
                                     Background="#27AE60"
                                     Margin="0,0,12,0">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#27AE60"/>
+                                </Border.Effect>
                                 <TextBlock Text="📥"
                                            FontSize="28"
                                            Foreground="White"
@@ -725,7 +802,7 @@
                                            Margin="0,0,0,4"/>
                                 <TextBlock FontSize="14"
                                            FontWeight="Bold"
-                                           Foreground="#2C3E50"
+                                           Foreground="#FFFFFF"
                                            TextWrapping="Wrap">
                                     <Run Text="{Binding Tarea.UsuarioReceptor.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                     <Run Text=" "/>
@@ -739,20 +816,20 @@
                     </Border>
 
                     <!-- Reasignación (si es necesario) -->
-                    <Border Background="#FFF3CD"
+                    <Border Background="#443d1e"
                             BorderBrush="#FFC107"
                             BorderThickness="2"
-                            CornerRadius="10"
+                            CornerRadius="12"
                             Padding="15"
                             Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.15" Color="#2C3E50"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                         </Border.Effect>
 
                         <StackPanel>
                             <TextBlock Text="⚠ Reasignar Tarea"
                                        FontWeight="Bold"
-                                       Foreground="#856404"
+                                       Foreground="#FFC107"
                                        FontSize="13"
                                        Margin="0,0,0,10"/>
                             <ComboBox ItemsSource="{Binding UsuariosReceptores}"
@@ -760,7 +837,9 @@
                                       DisplayMemberPath="Empleado.NombresEmpleado"
                                       Padding="8"
                                       FontSize="12"
-                                      Background="White"/>
+                                      Background="#252d42"
+                                      Foreground="#FFFFFF"
+                                      BorderBrush="#50FFFFFF"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -770,7 +849,13 @@
         <!-- ========================================== -->
         <!-- FOOTER: Botones de acción -->
         <!-- ========================================== -->
-        <Border Grid.Row="2" Background="White" BorderBrush="#BDC3C7" BorderThickness="0,1,0,0" Padding="20">
+        <Border Grid.Row="2" BorderBrush="#30FFFFFF" BorderThickness="0,1,0,0" Padding="20" CornerRadius="15,15,0,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#1a1a2e" Offset="0"/>
+                    <GradientStop Color="#0d1b2a" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                 <Button Content="✅ Completar"
@@ -789,7 +874,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#27AE60"/>
+                                            </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -820,7 +908,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                                            </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -851,7 +942,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#F39C12"/>
+                                            </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -882,7 +976,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#95A5A6"/>
+                                            </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -913,7 +1010,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#9B59B6"/>
+                                            </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -924,16 +1024,16 @@
                                     <Setter Property="Background" Value="#8E44AD"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Background" Value="#BDC3C7"/>
+                                    <Setter Property="Background" Value="#6C7A89"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
 
-                <Button Content="Cerrar"
+                <Button Content="❌ Cerrar"
                         Command="{Binding CerrarCommand}"
-                        Background="#7F8C8D"
+                        Background="#34495E"
                         Foreground="White"
                         Padding="15,10"
                         FontSize="13"
@@ -945,7 +1045,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -953,7 +1053,7 @@
                             </Setter>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#636E72"/>
+                                    <Setter Property="Background" Value="#2C3E50"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
