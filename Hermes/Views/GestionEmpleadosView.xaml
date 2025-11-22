@@ -313,7 +313,7 @@
                                     <DataTrigger Binding="{Binding AccionActual}" Value="Nuevo">
                                         <Setter Property="Content">
                                             <Setter.Value>
-                                                <views:NuevoEmpleadoPanel/>
+                                                <views:NuevoEmpleadoPanel DataContext="{Binding ViewModelAccion}"/>
                                             </Setter.Value>
                                         </Setter>
                                     </DataTrigger>
@@ -322,7 +322,7 @@
                                     <DataTrigger Binding="{Binding AccionActual}" Value="Editar">
                                         <Setter Property="Content">
                                             <Setter.Value>
-                                                <views:EditarEmpleadoPanel x:Name="EditarPanel"/>
+                                                <views:EditarEmpleadoPanel DataContext="{Binding ViewModelAccion}"/>
                                             </Setter.Value>
                                         </Setter>
                                     </DataTrigger>
@@ -331,7 +331,7 @@
                                     <DataTrigger Binding="{Binding AccionActual}" Value="Usuario">
                                         <Setter Property="Content">
                                             <Setter.Value>
-                                                <views:GestionarUsuarioPanel x:Name="UsuarioPanel"/>
+                                                <views:GestionarUsuarioPanel DataContext="{Binding ViewModelAccion}"/>
                                             </Setter.Value>
                                         </Setter>
                                     </DataTrigger>

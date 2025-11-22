@@ -60,13 +60,45 @@ namespace Hermes.ViewModels
         public string? AccionActual
         {
             get => _accionActual;
-            set => SetProperty(ref _accionActual, value);
+            set
+            {
+                SetProperty(ref _accionActual, value);
+                ActualizarViewModelAccion();
+            }
         }
 
         public Empleado? EmpleadoEnAccion
         {
             get => _empleadoEnAccion;
-            set => SetProperty(ref _empleadoEnAccion, value);
+            set
+            {
+                SetProperty(ref _empleadoEnAccion, value);
+                ActualizarViewModelAccion();
+            }
+        }
+
+        private object? _viewModelAccion;
+        public object? ViewModelAccion
+        {
+            get => _viewModelAccion;
+            set => SetProperty(ref _viewModelAccion, value);
+        }
+
+        private void ActualizarViewModelAccion()
+        {
+            if (AccionActual == null || EmpleadoEnAccion == null)
+            {
+                ViewModelAccion = null;
+                return;
+            }
+
+            ViewModelAccion = AccionActual switch
+            {
+                "Nuevo" => new NuevoEmpleadoViewModel(),
+                "Editar" => new EditarEmpleadoViewModel(EmpleadoEnAccion),
+                "Usuario" => new GestionarUsuarioViewModel(EmpleadoEnAccion),
+                _ => null
+            };
         }
 
         // Lista de opciones para el filtro de estado

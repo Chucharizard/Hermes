@@ -1,12 +1,7 @@
 <UserControl x:Class="Hermes.Views.NuevoEmpleadoPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
              xmlns:helpers="clr-namespace:Hermes.Helpers">
-
-    <UserControl.DataContext>
-        <viewmodels:NuevoEmpleadoViewModel/>
-    </UserControl.DataContext>
 
     <UserControl.Resources>
         <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
