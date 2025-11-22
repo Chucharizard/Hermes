@@ -14,23 +14,18 @@ namespace Hermes.Views
         }
 
         /// <summary>
-        /// Manejador para el click en un item de tarea
-        /// Abre una ventana modal con los detalles de la tarea
+        /// Manejador para doble click en un item de tarea
+        /// Establece la tarea seleccionada para mostrar el detalle inline
         /// </summary>
-        private void TareaItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TareaItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is Border border && border.Tag is Tarea tarea)
             {
-                // Crear y mostrar ventana modal de detalle
-                var detalleWindow = new DetalleTareaWindow(tarea);
-
-                // Mostrar como diálogo modal
-                detalleWindow.ShowDialog();
-
-                // Refrescar la lista de tareas después de cerrar la ventana de detalle
+                // Establecer la tarea seleccionada en el ViewModel
+                // Esto hará que se muestre el DetalleTareaView inline
                 if (DataContext is BandejaTareasEnviadasViewModel viewModel)
                 {
-                    viewModel.RefrescarCommand.Execute(null);
+                    viewModel.TareaSeleccionada = tarea;
                 }
             }
         }

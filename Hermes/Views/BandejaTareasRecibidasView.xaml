@@ -254,7 +254,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
-                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            MouseDoubleClick="TareaItem_MouseDoubleClick"
                                             Tag="{Binding}">
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -355,7 +355,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
-                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            MouseDoubleClick="TareaItem_MouseDoubleClick"
                                             Tag="{Binding}">
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -456,7 +456,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
-                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            MouseDoubleClick="TareaItem_MouseDoubleClick"
                                             Tag="{Binding}">
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -558,7 +558,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
-                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            MouseDoubleClick="TareaItem_MouseDoubleClick"
                                             Tag="{Binding}">
                                         <Grid>
                                             <Grid.RowDefinitions>
