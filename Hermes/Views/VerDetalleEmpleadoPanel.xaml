@@ -279,11 +279,7 @@
                             </Style>
                         </Border.Style>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3">
-                                <DropShadowEffect.Color>
-                                    <SolidColorBrush Color="#E74C3C"/>
-                                </DropShadowEffect.Color>
-                            </DropShadowEffect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#E74C3C"/>
                         </Border.Effect>
 
                         <StackPanel Orientation="Horizontal">
@@ -299,11 +295,7 @@
                                     </Style>
                                 </Border.Style>
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5">
-                                        <DropShadowEffect.Color>
-                                            <SolidColorBrush Color="#E74C3C"/>
-                                        </DropShadowEffect.Color>
-                                    </DropShadowEffect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5" Color="#E74C3C"/>
                                 </Border.Effect>
                                 <TextBlock FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock.Style>
