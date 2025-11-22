@@ -13,17 +13,21 @@ namespace Hermes.Views
         }
 
         /// <summary>
-        /// Manejador para el click en un item de tarea
-        /// Selecciona la tarea y muestra el detalle inline
+        /// Manejador para el doble click en un item de tarea
+        /// Abre el panel de edición en la columna derecha
         /// </summary>
-        private void TareaItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TareaItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Border border && border.Tag is Tarea tarea)
+            // Solo responder a doble click con botón izquierdo
+            if (e.ClickCount == 2 && e.ChangedButton == MouseButton.Left)
             {
-                // Obtener el ViewModel y seleccionar la tarea
-                if (DataContext is GestionTareasViewModel viewModel)
+                if (sender is Border border && border.Tag is Tarea tarea)
                 {
-                    viewModel.TareaSeleccionada = tarea;
+                    // Obtener el ViewModel y activar el panel de edición
+                    if (DataContext is GestionTareasViewModel viewModel)
+                    {
+                        viewModel.EditarTareaCommand.Execute(tarea);
+                    }
                 }
             }
         }

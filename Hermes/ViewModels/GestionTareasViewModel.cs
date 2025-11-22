@@ -48,6 +48,7 @@ namespace Hermes.ViewModels
         private string _filtroTexto = string.Empty;
         private DateTime _semanaActual;
         private DateTime? _diaSeleccionado;
+        private bool _mostrarPanelEdicion;
 
         // Propiedades editables
         private string _tituloEditable = string.Empty;
@@ -80,6 +81,12 @@ namespace Hermes.ViewModels
                     CargarDatosEditables();
                 }
             }
+        }
+
+        public bool MostrarPanelEdicion
+        {
+            get => _mostrarPanelEdicion;
+            set => SetProperty(ref _mostrarPanelEdicion, value);
         }
 
         public string FiltroTexto
@@ -201,6 +208,7 @@ namespace Hermes.ViewModels
         public ICommand SemanaSiguienteCommand { get; }
         public ICommand SeleccionarDiaCommand { get; }
         public ICommand GuardarCambiosCommand { get; }
+        public ICommand CerrarPanelCommand { get; }
 
         public GestionTareasViewModel()
         {
@@ -219,6 +227,7 @@ namespace Hermes.ViewModels
             SemanaSiguienteCommand = new RelayCommand(_ => SemanaActual = SemanaActual.AddDays(7));
             SeleccionarDiaCommand = new RelayCommand(dia => SeleccionarDia(dia as DiaCalendario));
             GuardarCambiosCommand = new RelayCommand(async _ => await GuardarCambiosAsync(), _ => TareaSeleccionada != null);
+            CerrarPanelCommand = new RelayCommand(_ => CerrarPanel());
 
             // Cargar datos iniciales
             ActualizarDiasSemana();
@@ -305,12 +314,8 @@ namespace Hermes.ViewModels
         {
             if (tarea == null) return;
 
-            var ventana = new Views.EditarTareaWindow(tarea);
-            ventana.Owner = Application.Current.MainWindow;
-            if (ventana.ShowDialog() == true)
-            {
-                Task.Run(async () => await CargarTareasAsync());
-            }
+            TareaSeleccionada = tarea;
+            MostrarPanelEdicion = true;
         }
 
         private async Task EliminarTareaAsync(Tarea? tarea)
@@ -346,36 +351,14 @@ namespace Hermes.ViewModels
         {
             if (tarea == null) return;
 
-            var emisor = tarea.UsuarioEmisor?.Empleado != null
-                ? $"{tarea.UsuarioEmisor.Empleado.NombresEmpleado} {tarea.UsuarioEmisor.Empleado.ApellidosEmpleado}"
-                : "No especificado";
+            TareaSeleccionada = tarea;
+            MostrarPanelEdicion = true;
+        }
 
-            var receptor = tarea.UsuarioReceptor?.Empleado != null
-                ? $"{tarea.UsuarioReceptor.Empleado.NombresEmpleado} {tarea.UsuarioReceptor.Empleado.ApellidosEmpleado}"
-                : "No especificado";
-
-            var fechaLimite = tarea.FechaLimiteTarea.HasValue
-                ? tarea.FechaLimiteTarea.Value.ToString("dd/MM/yyyy")
-                : "Sin fecha limite";
-
-            var fechaCompletada = tarea.FechaCompletadaTarea.HasValue
-                ? tarea.FechaCompletadaTarea.Value.ToString("dd/MM/yyyy HH:mm")
-                : "No completada";
-
-            MessageBox.Show(
-                $"DETALLE DE TAREA\n\n" +
-                $"Titulo: {tarea.TituloTarea}\n" +
-                $"Descripcion: {tarea.DescripcionTarea ?? "Sin descripcion"}\n\n" +
-                $"Estado: {tarea.EstadoTarea}\n" +
-                $"Prioridad: {tarea.PrioridadTarea}\n\n" +
-                $"Emisor: {emisor}\n" +
-                $"Receptor: {receptor}\n\n" +
-                $"Fecha Inicio: {tarea.FechaInicioTarea:dd/MM/yyyy}\n" +
-                $"Fecha Limite: {fechaLimite}\n" +
-                $"Fecha Completada: {fechaCompletada}",
-                "Informacion de la Tarea",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+        private void CerrarPanel()
+        {
+            MostrarPanelEdicion = false;
+            TareaSeleccionada = null;
         }
 
         private async Task CargarUsuariosAsync()

@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <converters:PrioridadToColorConverter x:Key="PrioridadToColorConverter"/>
         <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
+        <converters:BoolToGridLengthConverter x:Key="BoolToGridLengthConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
         <!-- Estilo para item de tarea seleccionado -->
@@ -250,15 +251,16 @@
         </Border>
 
         <!-- ========================================== -->
-        <!-- LAYOUT MASTER-DETAIL (Tipo Gmail/Outlook) -->
+        <!-- LAYOUT MASTER-DETAIL CON COLUMNAS DINÁMICAS (60/40) -->
         <!-- ========================================== -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <!-- Lista de tareas (master) -->
-                <ColumnDefinition Width="380"/>
-                <ColumnDefinition Width="12"/>
-                <!-- Detalle de tarea (detail) -->
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="{Binding MostrarPanelEdicion, Converter={StaticResource BoolToGridLengthConverter}, ConverterParameter=Lista}"/>
+                <!-- Separador -->
+                <ColumnDefinition Width="{Binding MostrarPanelEdicion, Converter={StaticResource BoolToGridLengthConverter}, ConverterParameter=Separador}"/>
+                <!-- Panel de edición (detail) -->
+                <ColumnDefinition Width="{Binding MostrarPanelEdicion, Converter={StaticResource BoolToGridLengthConverter}, ConverterParameter=Panel}"/>
             </Grid.ColumnDefinitions>
 
             <!-- ========================================== -->
@@ -296,7 +298,7 @@
                                 <DataTemplate>
                                     <!-- Item compacto de tarea tipo Gmail -->
                                     <Border Style="{StaticResource TareaListItemStyle}"
-                                            MouseLeftButtonDown="TareaItem_MouseLeftButtonDown"
+                                            MouseDown="TareaItem_MouseDown"
                                             Tag="{Binding}">
 
                                         <Grid>
@@ -482,12 +484,44 @@
                         </ScrollViewer.Style>
 
                         <StackPanel Margin="20">
-                            <!-- Encabezado -->
-                            <TextBlock Text="📋 Editar Tarea"
-                                       FontSize="18"
-                                       FontWeight="Bold"
-                                       Foreground="#ECF0F1"
-                                       Margin="0,0,0,20"/>
+                            <!-- Encabezado con botón cerrar -->
+                            <Grid Margin="0,0,0,20">
+                                <TextBlock Text="📋 Editar Tarea"
+                                           FontSize="18"
+                                           FontWeight="Bold"
+                                           Foreground="#ECF0F1"
+                                           VerticalAlignment="Center"/>
+                                <Button Content="✖"
+                                        Command="{Binding CerrarPanelCommand}"
+                                        HorizontalAlignment="Right"
+                                        Background="#E74C3C"
+                                        Foreground="White"
+                                        Width="30"
+                                        Height="30"
+                                        FontSize="14"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        ToolTip="Cerrar panel">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#C0392B"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
 
                             <!-- Título -->
                             <TextBlock Text="Título:" FontWeight="SemiBold" Margin="0,0,0,4"/>
