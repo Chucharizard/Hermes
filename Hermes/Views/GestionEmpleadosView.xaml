@@ -11,7 +11,7 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <converters:TareaSeleccionadaToGridLengthConverter x:Key="AccionToGridLengthConverter"/>
+        <converters:AccionToGridLengthConverter x:Key="AccionToGridLengthConverter"/>
     </UserControl.Resources>
 
     <Grid>
