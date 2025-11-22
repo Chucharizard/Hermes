@@ -34,20 +34,17 @@ namespace Hermes
                 // Doble click: Maximizar/Restaurar
                 MaximizeButton_Click(sender, e);
             }
-            else
+            else if (e.LeftButton == MouseButtonState.Pressed)
             {
                 // Click simple: Arrastrar ventana
-                if (this.WindowState == WindowState.Maximized)
+                try
                 {
-                    // Si está maximizada, restaurar primero
-                    this.WindowState = WindowState.Normal;
-
-                    // Ajustar la posición de la ventana al cursor
-                    var point = PointToScreen(e.GetPosition(this));
-                    this.Left = point.X - (this.RestoreBounds.Width / 2);
-                    this.Top = point.Y - 20;
+                    this.DragMove();
                 }
-                this.DragMove();
+                catch
+                {
+                    // Ignorar excepciones si DragMove falla
+                }
             }
         }
 

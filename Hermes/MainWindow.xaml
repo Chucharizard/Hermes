@@ -6,9 +6,14 @@
         Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        WindowStyle="None"
-        ResizeMode="CanResize"
         Background="#0a0a15">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40"
+                      ResizeBorderThickness="5"
+                      GlassFrameThickness="0"
+                      CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
     
     <Window.DataContext>
         <viewmodels:MainViewModel/>
@@ -111,6 +116,7 @@
                         <!-- Minimizar -->
                         <Button Content="─"
                                 Click="MinimizeButton_Click"
+                                WindowChrome.IsHitTestVisibleInChrome="True"
                                 Background="Transparent"
                                 Foreground="#95A5A6"
                                 Width="40"
@@ -143,6 +149,7 @@
                         <Button x:Name="MaximizeButton"
                                 Content="▢"
                                 Click="MaximizeButton_Click"
+                                WindowChrome.IsHitTestVisibleInChrome="True"
                                 Background="Transparent"
                                 Foreground="#95A5A6"
                                 Width="40"
@@ -174,6 +181,7 @@
                         <!-- Cerrar -->
                         <Button Content="✖"
                                 Click="CloseButton_Click"
+                                WindowChrome.IsHitTestVisibleInChrome="True"
                                 Background="Transparent"
                                 Foreground="#95A5A6"
                                 Width="40"
