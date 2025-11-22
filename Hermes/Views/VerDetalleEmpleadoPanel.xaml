@@ -4,60 +4,107 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <!-- Header con icono grande -->
-            <Border Background="#16213e" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+            <!-- Header con degradado y efectos mejorados -->
+            <Border CornerRadius="12" Padding="25" Margin="0,0,0,25">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#1a1a2e" Offset="0"/>
+                        <GradientStop Color="#16213e" Offset="0.5"/>
+                        <GradientStop Color="#0f3460" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.4" Color="#9B59B6"/>
                 </Border.Effect>
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="👁" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    <!-- Icono con efecto brillante -->
+                    <Border Background="#9B59B6" CornerRadius="30" Width="60" Height="60" Margin="0,0,0,15">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.6" Color="#9B59B6"/>
+                        </Border.Effect>
+                        <TextBlock Text="👁" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
                     <TextBlock Text="Detalle del Empleado"
-                               FontSize="20"
+                               FontSize="24"
                                FontWeight="Bold"
                                Foreground="#ECF0F1"
-                               HorizontalAlignment="Center"/>
-                    <TextBlock Text="Información completa del empleado"
-                               FontSize="11"
+                               HorizontalAlignment="Center">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="4" ShadowDepth="1" Opacity="0.5" Color="#000000"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock Text="Información completa del empleado y su cuenta de usuario"
+                               FontSize="12"
                                Foreground="#BDC3C7"
                                HorizontalAlignment="Center"
-                               Margin="0,5,0,0"/>
+                               Margin="0,8,0,0"
+                               FontStyle="Italic"/>
                 </StackPanel>
             </Border>
 
-            <!-- Card con foto de perfil simulada -->
-            <Border Background="#9B59B6" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+            <!-- Card con foto de perfil mejorada -->
+            <Border CornerRadius="12" Padding="30" Margin="0,0,0,25">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#8E44AD" Offset="0"/>
+                        <GradientStop Color="#9B59B6" Offset="0.5"/>
+                        <GradientStop Color="#AF7AC5" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.3" Color="#000000"/>
                 </Border.Effect>
                 <StackPanel HorizontalAlignment="Center">
-                    <!-- Avatar circular -->
-                    <Border Width="100" Height="100" CornerRadius="50" Background="#8E44AD" Margin="0,0,0,15">
+                    <!-- Avatar circular con efecto brillante -->
+                    <Border Width="120" Height="120" CornerRadius="60" Margin="0,0,0,20">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#6C3483" Offset="0"/>
+                                <GradientStop Color="#8E44AD" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.5" Color="#9B59B6"/>
+                        </Border.Effect>
                         <TextBlock Text="👤"
-                                   FontSize="48"
+                                   FontSize="56"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
                     </Border>
 
-                    <!-- Nombre completo -->
-                    <TextBlock HorizontalAlignment="Center" Margin="0,0,0,5">
-                        <Run Text="{Binding Empleado.NombresEmpleado}" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <!-- Nombre completo con efecto sombra -->
+                    <TextBlock HorizontalAlignment="Center" Margin="0,0,0,8">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.4" Color="#000000"/>
+                        </TextBlock.Effect>
+                        <Run Text="{Binding Empleado.NombresEmpleado}" FontSize="22" FontWeight="Bold" Foreground="White"/>
                         <Run Text=" " />
-                        <Run Text="{Binding Empleado.ApellidosEmpleado}" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                        <Run Text="{Binding Empleado.ApellidosEmpleado}" FontSize="22" FontWeight="Bold" Foreground="White"/>
                     </TextBlock>
 
-                    <!-- CI -->
-                    <TextBlock Text="{Binding Empleado.CiEmpleado, StringFormat='CI: {0}'}"
-                               FontSize="13"
-                               Foreground="#ECF0F1"
-                               HorizontalAlignment="Center"
-                               Opacity="0.9"/>
+                    <!-- CI con badge estilo -->
+                    <Border Background="#6C3483" CornerRadius="15" Padding="15,8" HorizontalAlignment="Center">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="5" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                        </Border.Effect>
+                        <TextBlock Text="{Binding Empleado.CiEmpleado, StringFormat='CI: {0}'}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="#ECF0F1"/>
+                    </Border>
                 </StackPanel>
             </Border>
 
             <!-- Sección: Información de Contacto -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <Border Background="#16213e" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#1ABC9C"/>
+                </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="12" FontWeight="Bold" Foreground="#1ABC9C" Margin="0,0,0,20"/>
+                    <!-- Header de sección mejorado -->
+                    <Border Background="#1ABC9C" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
+                        <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="13" FontWeight="Bold" Foreground="#0a0a15"/>
+                    </Border>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -70,24 +117,30 @@
                         </Grid.RowDefinitions>
 
                         <!-- Teléfono -->
-                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,15">
-                            <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
-                                <TextBlock Text="📱" FontSize="20"/>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
+                            <Border Background="#1ABC9C" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#1ABC9C"/>
+                                </Border.Effect>
+                                <TextBlock Text="📱" FontSize="24"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Teléfono" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
-                                <TextBlock Text="{Binding Empleado.TelefonoEmpleado}" FontSize="14" FontWeight="SemiBold" Foreground="#ECF0F1"/>
+                                <TextBlock Text="Teléfono" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Empleado.TelefonoEmpleado}" FontSize="16" FontWeight="Bold" Foreground="#1ABC9C"/>
                             </StackPanel>
                         </StackPanel>
 
                         <!-- Correo -->
                         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                            <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
-                                <TextBlock Text="✉" FontSize="20"/>
+                            <Border Background="#3498DB" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#3498DB"/>
+                                </Border.Effect>
+                                <TextBlock Text="✉" FontSize="24"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Correo Electrónico" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
-                                <TextBlock Text="{Binding Empleado.CorreoEmpleado}" FontSize="14" FontWeight="SemiBold" Foreground="#ECF0F1"/>
+                                <TextBlock Text="Correo Electrónico" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Empleado.CorreoEmpleado}" FontSize="16" FontWeight="Bold" Foreground="#3498DB"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -95,9 +148,15 @@
             </Border>
 
             <!-- Sección: Cuenta de Usuario -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <Border Background="#16213e" BorderBrush="#9B59B6" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#9B59B6"/>
+                </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="🔐 CUENTA DE USUARIO" FontSize="12" FontWeight="Bold" Foreground="#9B59B6" Margin="0,0,0,20"/>
+                    <!-- Header de sección mejorado -->
+                    <Border Background="#9B59B6" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
+                        <TextBlock Text="🔐 CUENTA DE USUARIO" FontSize="13" FontWeight="Bold" Foreground="#FFFFFF"/>
+                    </Border>
 
                     <!-- Tiene usuario -->
                     <StackPanel Visibility="{Binding TieneUsuario, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -112,35 +171,55 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- Nombre de Usuario --><StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,15">
-                                <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
-                                    <TextBlock Text="👤" FontSize="20"/>
+                            <!-- Nombre de Usuario -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
+                                <Border Background="#9B59B6" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#9B59B6"/>
+                                    </Border.Effect>
+                                    <TextBlock Text="👤" FontSize="24"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Nombre de Usuario" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
-                                    <TextBlock Text="{Binding Usuario.NombreUsuario}" FontSize="14" FontWeight="SemiBold" Foreground="#ECF0F1"/>
+                                    <TextBlock Text="Nombre de Usuario" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Usuario.NombreUsuario}" FontSize="16" FontWeight="Bold" Foreground="#9B59B6"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <!-- Rol -->
-                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,15">
-                                <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
-                                    <TextBlock Text="🛡" FontSize="20"/>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
+                                <Border Background="#E67E22" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#E67E22"/>
+                                    </Border.Effect>
+                                    <TextBlock Text="🛡" FontSize="24"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Rol" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
-                                    <TextBlock Text="{Binding Usuario.RolId, StringFormat='Rol ID: {0}'}" FontSize="14" FontWeight="SemiBold" Foreground="#ECF0F1"/>
+                                    <TextBlock Text="Rol del Sistema" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Usuario.RolId, StringFormat='Rol ID: {0}'}" FontSize="16" FontWeight="Bold" Foreground="#E67E22"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <!-- Estado de Usuario -->
                             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
-                                <Border Background="#1a1a2e" CornerRadius="6" Padding="10" Margin="0,0,10,0">
-                                    <TextBlock Text="⚡" FontSize="20"/>
+                                <Border CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#E74C3C"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Usuario.EsActivoUsuario}" Value="True">
+                                                    <Setter Property="Background" Value="#1ABC9C"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#9B59B6"/>
+                                    </Border.Effect>
+                                    <TextBlock Text="⚡" FontSize="24"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Estado de Acceso" FontSize="10" Foreground="#95A5A6" Margin="0,0,0,2"/>
-                                    <TextBlock FontSize="14" FontWeight="SemiBold">
+                                    <TextBlock Text="Estado de Acceso" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                    <TextBlock FontSize="16" FontWeight="Bold">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="Text" Value="Inactivo"/>
@@ -160,12 +239,17 @@
                     </StackPanel>
 
                     <!-- No tiene usuario -->
-                    <Border CornerRadius="6" Padding="15" Background="#3a2f1f" Visibility="{Binding TieneUsuario, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <Border CornerRadius="8" Padding="20" Background="#3a2f1f" Visibility="{Binding TieneUsuario, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#F39C12"/>
+                        </Border.Effect>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="ℹ" FontSize="24" Margin="0,0,15,0" Foreground="#F39C12"/>
+                            <Border Background="#F39C12" CornerRadius="25" Width="50" Height="50" Margin="0,0,20,0">
+                                <TextBlock Text="ℹ" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0a0a15"/>
+                            </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Sin Cuenta de Usuario" FontSize="16" FontWeight="Bold" Foreground="#F39C12"/>
-                                <TextBlock Text="Este empleado no tiene una cuenta de usuario asignada" FontSize="11" Foreground="#BDC3C7" Margin="0,2,0,0"/>
+                                <TextBlock Text="Sin Cuenta de Usuario" FontSize="18" FontWeight="Bold" Foreground="#F39C12"/>
+                                <TextBlock Text="Este empleado no tiene una cuenta de usuario asignada" FontSize="12" Foreground="#BDC3C7" Margin="0,5,0,0"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -173,11 +257,17 @@
             </Border>
 
             <!-- Sección: Estado del Empleado -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <Border Background="#16213e" BorderBrush="#F39C12" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#F39C12"/>
+                </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="⚙ ESTADO" FontSize="12" FontWeight="Bold" Foreground="#F39C12" Margin="0,0,0,15"/>
+                    <!-- Header de sección mejorado -->
+                    <Border Background="#F39C12" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
+                        <TextBlock Text="⚙ ESTADO DEL EMPLEADO" FontSize="13" FontWeight="Bold" Foreground="#0a0a15"/>
+                    </Border>
 
-                    <Border CornerRadius="6" Padding="15">
+                    <Border CornerRadius="8" Padding="20">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#3a1f1f"/>
@@ -188,23 +278,49 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3">
+                                <DropShadowEffect.Color>
+                                    <SolidColorBrush Color="#E74C3C"/>
+                                </DropShadowEffect.Color>
+                            </DropShadowEffect>
+                        </Border.Effect>
 
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="24" Margin="0,0,15,0">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Text" Value="❌"/>
+                            <Border CornerRadius="30" Width="60" Height="60" Margin="0,0,20,0">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#E74C3C"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Empleado.EsActivoEmpleado}" Value="True">
-                                                <Setter Property="Text" Value="✅"/>
+                                                <Setter Property="Background" Value="#1ABC9C"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
+                                </Border.Style>
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5">
+                                        <DropShadowEffect.Color>
+                                            <SolidColorBrush Color="#E74C3C"/>
+                                        </DropShadowEffect.Color>
+                                    </DropShadowEffect>
+                                </Border.Effect>
+                                <TextBlock FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="❌"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Empleado.EsActivoEmpleado}" Value="True">
+                                                    <Setter Property="Text" Value="✅"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Border>
 
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock FontSize="16" FontWeight="Bold">
+                                <TextBlock FontSize="20" FontWeight="Bold">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Text" Value="Empleado Inactivo"/>
@@ -218,7 +334,7 @@
                                         </Style>
                                     </TextBlock.Style>
                                 </TextBlock>
-                                <TextBlock FontSize="11" Foreground="#BDC3C7" Margin="0,2,0,0">
+                                <TextBlock FontSize="12" Foreground="#BDC3C7" Margin="0,5,0,0">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Text" Value="Este empleado no está disponible para asignaciones"/>

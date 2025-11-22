@@ -108,7 +108,8 @@
                           Style="{StaticResource ModernDataGridStyle}"
                           ColumnHeaderStyle="{StaticResource ModernDataGridHeaderStyle}"
                           CellStyle="{StaticResource ModernDataGridCellStyle}"
-                          RowStyle="{StaticResource ModernDataGridRowStyle}">
+                          RowStyle="{StaticResource ModernDataGridRowStyle}"
+                          MouseDoubleClick="DataGrid_MouseDoubleClick">
                     
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="CI" 
@@ -130,16 +131,10 @@
                                               Binding="{Binding EsActivoEmpleado}" 
                                               Width="80"/>
                         
-                        <DataGridTemplateColumn Header="Acciones" Width="300">
+                        <DataGridTemplateColumn Header="Acciones" Width="200">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="👁 Ver"
-                                                Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Style="{StaticResource InfoButtonStyle}"
-                                                Padding="10,5"
-                                                Margin="2"/>
                                         <Button Content="✏ Editar"
                                                 Command="{Binding DataContext.EditarEmpleadoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}"
