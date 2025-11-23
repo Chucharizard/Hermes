@@ -400,14 +400,32 @@ namespace Hermes.ViewModels
             }
 
             // ========================================
-            // REGLA 3: Las tareas COMPLETADAS solo pueden moverse a ARCHIVADO
+            // REGLA 3: Las tareas COMPLETADAS pueden volver a PENDIENTE (si no pasó la fecha límite) o moverse a ARCHIVADO
             // ========================================
             if (estadoActual == "Completado")
             {
-                if (nuevoEstado != "Archivado")
+                // Permitir mover a Archivado siempre
+                if (nuevoEstado == "Archivado")
                 {
-                    return (false, "❌ Las tareas completadas NO se pueden mover a otros estados.\n\n💡 Solo puedes archivar una tarea completada.");
+                    return (true, string.Empty);
                 }
+
+                // Permitir mover a Pendiente solo si NO ha pasado la fecha límite
+                if (nuevoEstado == "Pendiente")
+                {
+                    if (tarea.FechaLimiteTarea.HasValue)
+                    {
+                        if (ahora > tarea.FechaLimiteTarea.Value)
+                        {
+                            return (false, "❌ No puedes mover esta tarea completada de vuelta a Pendiente porque ya pasó la fecha límite.\n\n💡 Solo puedes archivarla.");
+                        }
+                    }
+                    // Si no tiene fecha límite o no ha pasado, permitir el movimiento
+                    return (true, string.Empty);
+                }
+
+                // No permitir mover a otros estados (Vencido, Observado)
+                return (false, "❌ Las tareas completadas solo se pueden:\n• Mover a 'Pendiente' (si no pasó la fecha límite)\n• Archivar");
             }
 
             // ========================================
@@ -462,14 +480,6 @@ namespace Hermes.ViewModels
                 {
                     return (false, "❌ No puedes completar esta tarea porque ya venció y NO permite entrega con retraso.\n\n💡 La tarea debería estar en 'Vencido'. Márcala como 'Observado' si hay un problema.");
                 }
-            }
-
-            // ========================================
-            // REGLA 7: No permitir mover de COMPLETADO a OBSERVADO
-            // ========================================
-            if (estadoActual == "Completado" && nuevoEstado == "Observado")
-            {
-                return (false, "❌ No puedes mover una tarea completada a Observado.\n\n💡 Las tareas completadas solo pueden archivarse.");
             }
 
             // ✅ Todas las validaciones pasaron
