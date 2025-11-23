@@ -322,6 +322,17 @@ namespace Hermes.ViewModels
             if (nuevoEstado == tarea.EstadoTarea)
                 return; // No hacer nada si es el mismo estado
 
+            // ✅ VALIDAR REGLAS DE NEGOCIO ANTES DE PERMITIR EL CAMBIO
+            var (esValido, mensajeError) = ValidarCambioEstado(tarea, nuevoEstado);
+            if (!esValido)
+            {
+                MessageBox.Show(mensajeError,
+                              "Movimiento no permitido",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Warning);
+                return;
+            }
+
             // Actualizar estado de la tarea
             var estadoAnterior = tarea.EstadoTarea;
             tarea.EstadoTarea = nuevoEstado;
@@ -353,6 +364,107 @@ namespace Hermes.ViewModels
                               MessageBoxButton.OK,
                               MessageBoxImage.Error);
             }
+        }
+
+        /// <summary>
+        /// Valida si un cambio de estado es permitido según las reglas de negocio
+        /// </summary>
+        private (bool esValido, string mensajeError) ValidarCambioEstado(Tarea tarea, string nuevoEstado)
+        {
+            var ahora = DateTime.Now;
+            var estadoActual = tarea.EstadoTarea;
+
+            // ========================================
+            // REGLA 1: Las tareas OBSERVADAS no se pueden mover (son inmutables)
+            // ========================================
+            if (estadoActual == "Observado")
+            {
+                return (false, "❌ Las tareas en Observado no se pueden mover.\n\n💡 Una tarea observada requiere revisión del emisor y no puede cambiar de estado.");
+            }
+
+            // ========================================
+            // REGLA 2: Las tareas ARCHIVADAS no se pueden mover (son inmutables)
+            // ========================================
+            if (estadoActual == "Archivado")
+            {
+                return (false, "❌ Las tareas archivadas no se pueden modificar.");
+            }
+
+            // ========================================
+            // REGLA 3: Las tareas COMPLETADAS solo pueden moverse a ARCHIVADO
+            // ========================================
+            if (estadoActual == "Completado")
+            {
+                if (nuevoEstado != "Archivado")
+                {
+                    return (false, "❌ Las tareas completadas NO se pueden mover a otros estados.\n\n💡 Solo puedes archivar una tarea completada (esto debe hacerlo el emisor en Tareas Enviadas).");
+                }
+            }
+
+            // ========================================
+            // REGLA 4: Validar movimiento desde VENCIDO a COMPLETADO
+            // ========================================
+            if (estadoActual == "Vencido" && nuevoEstado == "Completado")
+            {
+                // Si la tarea NO permite entrega con retraso, no se puede completar después de vencida
+                if (!tarea.PermiteEntregaConRetraso)
+                {
+                    return (false, "❌ Esta tarea NO permite entrega con retraso.\n\n💡 Una vez vencida, no se puede completar. Solo puedes moverla a 'Observado' para reportar el problema al emisor.");
+                }
+
+                // Si permite retraso (estilo Teams), verificar que haya fecha límite
+                if (!tarea.FechaLimiteTarea.HasValue)
+                {
+                    return (true, string.Empty); // Sin fecha límite, se puede completar
+                }
+
+                // Informar al usuario sobre el retraso y pedir confirmación
+                var diasRetraso = (ahora - tarea.FechaLimiteTarea.Value).Days;
+                if (diasRetraso > 0)
+                {
+                    var resultado = MessageBox.Show(
+                        $"⚠️ Esta tarea se completará con {diasRetraso} día(s) de retraso.\n\n" +
+                        $"📅 Fecha límite: {tarea.FechaLimiteTarea.Value:dd/MM/yyyy}\n" +
+                        $"📅 Fecha actual: {ahora:dd/MM/yyyy}\n\n" +
+                        $"Esta tarea permite entrega con retraso (estilo Teams).\n\n" +
+                        $"¿Deseas continuar?",
+                        "Completar con retraso",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning);
+
+                    return (resultado == MessageBoxResult.Yes, "Operación cancelada por el usuario.");
+                }
+            }
+
+            // ========================================
+            // REGLA 5: No permitir mover de VENCIDO a PENDIENTE
+            // ========================================
+            if (estadoActual == "Vencido" && nuevoEstado == "Pendiente")
+            {
+                return (false, "❌ No puedes mover una tarea vencida de vuelta a Pendiente.\n\n💡 Si necesitas reactivarla, márcala como 'Observado' y reporta el problema al emisor.");
+            }
+
+            // ========================================
+            // REGLA 6: Validar que al COMPLETAR, la tarea no esté vencida (si no permite retraso)
+            // ========================================
+            if (estadoActual == "Pendiente" && nuevoEstado == "Completado" && tarea.FechaLimiteTarea.HasValue)
+            {
+                if (ahora > tarea.FechaLimiteTarea.Value && !tarea.PermiteEntregaConRetraso)
+                {
+                    return (false, "❌ No puedes completar esta tarea porque ya venció y NO permite entrega con retraso.\n\n💡 La tarea debería estar en 'Vencido'. Muévela a 'Observado' para reportar el problema.");
+                }
+            }
+
+            // ========================================
+            // REGLA 7: No permitir mover de COMPLETADO a OBSERVADO
+            // ========================================
+            if (estadoActual == "Completado" && nuevoEstado == "Observado")
+            {
+                return (false, "❌ No puedes mover una tarea completada a Observado.\n\n💡 Las tareas completadas solo pueden archivarse.");
+            }
+
+            // ✅ Todas las validaciones pasaron
+            return (true, string.Empty);
         }
 
         private string DeterminarEstadoPorColeccion(ObservableCollection<Tarea> coleccion)
