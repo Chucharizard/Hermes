@@ -263,9 +263,15 @@
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding TareasPendientes}"
                                       MinHeight="300"
+                                      Background="Transparent"
                                       dd:DragDrop.IsDragSource="True"
                                       dd:DragDrop.IsDropTarget="True"
                                       dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
@@ -365,9 +371,15 @@
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding TareasCompletadas}"
                                       MinHeight="300"
+                                      Background="Transparent"
                                       dd:DragDrop.IsDragSource="True"
                                       dd:DragDrop.IsDropTarget="True"
                                       dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
@@ -467,9 +479,15 @@
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding TareasVencidas}"
                                       MinHeight="300"
+                                      Background="Transparent"
                                       dd:DragDrop.IsDragSource="True"
                                       dd:DragDrop.IsDropTarget="True"
                                       dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
@@ -570,9 +588,15 @@
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding TareasObservadas}"
                                       MinHeight="300"
+                                      Background="Transparent"
                                       dd:DragDrop.IsDragSource="True"
                                       dd:DragDrop.IsDropTarget="True"
                                       dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
@@ -672,9 +696,15 @@
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding TareasArchivadas}"
                                       MinHeight="300"
+                                      Background="Transparent"
                                       dd:DragDrop.IsDragSource="True"
                                       dd:DragDrop.IsDropTarget="True"
                                       dd:DragDrop.DropHandler="{Binding}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource KanbanCardStyle}"
