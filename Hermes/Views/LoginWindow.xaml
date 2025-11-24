@@ -28,7 +28,7 @@
 
     <Border CornerRadius="20" Background="White">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="40" ShadowDepth="5" Opacity="0.4" Color="{Binding Source={DynamicResource BackgroundDarkest}, Path=Color}"/>
+            <DropShadowEffect BlurRadius="40" ShadowDepth="5" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
         </Border.Effect>
 
         <!-- Animación de entrada -->
@@ -76,9 +76,9 @@
             <Border Grid.Column="0" CornerRadius="20,0,0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="{Binding Source={DynamicResource BackgroundDark}, Path=Color}" Offset="0"/>
-                        <GradientStop Color="{Binding Source={DynamicResource BackgroundDarkest}, Path=Color}" Offset="0.5"/>
-                        <GradientStop Color="{Binding Source={DynamicResource BackgroundDark}, Path=Color}" Offset="1"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0.5"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
 
@@ -270,7 +270,7 @@
                                 BorderThickness="2"
                                 RenderTransformOrigin="0.5,0.5">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5" Color="{Binding Source={DynamicResource PrimaryColor}, Path=Color}"/>
+                                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5" Color="{DynamicResource PrimaryColorValue}"/>
                             </Border.Effect>
                             <Border.RenderTransform>
                                 <RotateTransform Angle="0"/>
@@ -387,8 +387,8 @@
                 <!-- Fondo degradado dinámico según tema -->
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="{Binding Source={DynamicResource BackgroundDarkest}, Path=Color}" Offset="0"/>
-                        <GradientStop Color="{Binding Source={DynamicResource BackgroundDark}, Path=Color}" Offset="1"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -496,8 +496,8 @@
                         BorderThickness="1">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="{Binding Source={DynamicResource BackgroundDarkest}, Path=Color}" Offset="0"/>
-                            <GradientStop Color="{Binding Source={DynamicResource BackgroundDark}, Path=Color}" Offset="1"/>
+                            <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
                     <Border.Effect>
@@ -563,7 +563,7 @@
                             Background="{DynamicResource BackgroundDarkest}"
                             Margin="0,0,0,20">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="{Binding Source={DynamicResource PrimaryColor}, Path=Color}"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="{DynamicResource PrimaryColorValue}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -608,7 +608,7 @@
                             Background="{DynamicResource BackgroundDarkest}"
                             Margin="0,0,0,25">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="{Binding Source={DynamicResource PrimaryColor}, Path=Color}"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="{DynamicResource PrimaryColorValue}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -739,7 +739,7 @@
                                             <Border Background="{TemplateBinding Background}"
                                                     CornerRadius="12">
                                                 <Border.Effect>
-                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="{Binding Source={DynamicResource PrimaryColor}, Path=Color}"/>
+                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                                 </Border.Effect>
                                                 <ContentPresenter HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"/>
