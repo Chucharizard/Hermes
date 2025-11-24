@@ -70,7 +70,7 @@
                                     <ControlTemplate TargetType="Button">
                                         <Border Background="{TemplateBinding Background}" CornerRadius="8">
                                             <Border.Effect>
-                                                <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource PrimaryColor}"/>
+                                                <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="{Binding Source={DynamicResource PrimaryColor}, Path=Color}"/>
                                             </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
