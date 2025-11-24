@@ -40,6 +40,9 @@
 
     <!-- Colores de texto -->
     <SolidColorBrush x:Key="TextPrimaryColor" Color="#ECF0F1"/>      <!-- Texto principal (blanco/gris claro) -->
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#e0e1dd"/>    <!-- Texto secundario (gris muy claro) -->
+    <SolidColorBrush x:Key="TextMutedColor" Color="#a8b5b2"/>        <!-- Texto apagado (verde grisáceo) -->
+    <SolidColorBrush x:Key="TextDarkColor" Color="#1a4d4d"/>         <!-- Texto oscuro (para fondos claros) -->
     <SolidColorBrush x:Key="TextAccentColor" Color="#50c878"/>       <!-- Texto con acento (verde esmeralda) -->
     <SolidColorBrush x:Key="TextSuccessColor" Color="#50c878"/>      <!-- Texto éxito (verde esmeralda) -->
     <SolidColorBrush x:Key="TextDangerColor" Color="#c45c4d"/>       <!-- Texto peligro (terracota) -->
