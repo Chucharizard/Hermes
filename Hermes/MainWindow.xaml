@@ -181,7 +181,7 @@
                 </Grid.ColumnDefinitions>
             
             <!-- Sidebar Menu con degradado vertical morado medianoche -->
-            <Border Grid.Column="0" Padding="0,20">
+            <Border x:Name="SidebarBorder" Grid.Column="0" Padding="0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>

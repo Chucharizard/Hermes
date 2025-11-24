@@ -69,8 +69,53 @@ namespace Hermes
                     {
                         // Guardar la preferencia en la base de datos
                         ThemeService.Instance.SaveUserThemePreference(themeName);
+
+                        // FORZAR REFRESH del sidebar para que se actualicen los colores inmediatamente
+                        RefreshSidebar();
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Fuerza la actualización visual del sidebar completo
+        /// </summary>
+        private void RefreshSidebar()
+        {
+            // Usar Dispatcher para asegurar que el refresh se ejecute después de que el tema se aplique
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                // Forzar actualización del sidebar y todos sus hijos
+                SidebarBorder.InvalidateVisual();
+                SidebarBorder.UpdateLayout();
+
+                // Forzar actualización de todos los elementos hijos recursivamente
+                RefreshVisualTree(SidebarBorder);
+            }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+
+        /// <summary>
+        /// Refresca recursivamente todos los elementos visuales en el árbol
+        /// </summary>
+        private void RefreshVisualTree(DependencyObject parent)
+        {
+            if (parent == null) return;
+
+            int childCount = VisualTreeHelper.GetChildrenCount(parent);
+
+            for (int i = 0; i < childCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                // Si el hijo es un FrameworkElement, forzar actualización
+                if (child is FrameworkElement element)
+                {
+                    element.InvalidateVisual();
+                    element.UpdateLayout();
+                }
+
+                // Recursión para procesar todos los descendientes
+                RefreshVisualTree(child);
             }
         }
 
