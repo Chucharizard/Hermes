@@ -172,25 +172,25 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="📊 Total empleados: "
                                    FontWeight="SemiBold"
-                                   Foreground="#ECF0F1"/>
+                                   Foreground="{DynamicResource TextPrimaryColor}"/>
                         <TextBlock Text="{Binding TotalEmpleados}"
-                                   Foreground="#5DADE2"
+                                   Foreground="{DynamicResource TextAccentColor}"
                                    FontWeight="Bold"/>
 
                         <TextBlock Text="  |  ✅ Activos: "
                                    FontWeight="SemiBold"
-                                   Foreground="#ECF0F1"
+                                   Foreground="{DynamicResource TextPrimaryColor}"
                                    Margin="10,0,0,0"/>
                         <TextBlock Text="{Binding EmpleadosActivos}"
-                                   Foreground="#1ABC9C"
+                                   Foreground="{DynamicResource TextSuccessColor}"
                                    FontWeight="Bold"/>
 
                         <TextBlock Text="  |  ❌ Inactivos: "
                                    FontWeight="SemiBold"
-                                   Foreground="#ECF0F1"
+                                   Foreground="{DynamicResource TextPrimaryColor}"
                                    Margin="10,0,0,0"/>
                         <TextBlock Text="{Binding EmpleadosInactivos}"
-                                   Foreground="#E74C3C"
+                                   Foreground="{DynamicResource TextDangerColor}"
                                    FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
@@ -216,7 +216,7 @@
                         <TextBlock Text="Acción"
                                    FontSize="18"
                                    FontWeight="Bold"
-                                   Foreground="#ECF0F1"
+                                   Foreground="{DynamicResource TextPrimaryColor}"
                                    VerticalAlignment="Center"/>
                         <Button Content="← Volver"
                                 Command="{Binding VolverCommand}"

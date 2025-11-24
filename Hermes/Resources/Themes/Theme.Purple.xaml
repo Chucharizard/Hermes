@@ -48,6 +48,9 @@
     <SolidColorBrush x:Key="TextSecondaryColor" Color="#e0e1dd"/>    <!-- Gris muy claro -->
     <SolidColorBrush x:Key="TextMutedColor" Color="#778da9"/>        <!-- Azul grisáceo -->
     <SolidColorBrush x:Key="TextDarkColor" Color="#0d1b2a"/>         <!-- Texto oscuro para fondos claros -->
+    <SolidColorBrush x:Key="TextAccentColor" Color="#5DADE2"/>       <!-- Texto con acento (azul principal) -->
+    <SolidColorBrush x:Key="TextSuccessColor" Color="#1ABC9C"/>      <!-- Texto éxito (turquesa) -->
+    <SolidColorBrush x:Key="TextDangerColor" Color="#E74C3C"/>       <!-- Texto peligro (rojo) -->
 
     <!-- Bordes -->
     <SolidColorBrush x:Key="BorderColor" Color="#415a77"/>           <!-- Azul medio para bordes -->

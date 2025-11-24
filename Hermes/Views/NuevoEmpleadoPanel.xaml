@@ -10,44 +10,44 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <!-- Header con icono grande -->
-            <Border Background="#16213e" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+            <Border Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="20" Margin="0,0,0,20">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="👤" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                     <TextBlock Text="Nuevo Empleado"
                                FontSize="20"
                                FontWeight="Bold"
-                               Foreground="#ECF0F1"
+                               Foreground="{DynamicResource TextPrimaryColor}"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Registra un nuevo empleado en el sistema"
                                FontSize="11"
-                               Foreground="#BDC3C7"
+                               Foreground="{DynamicResource TextSecondaryColor}"
                                HorizontalAlignment="Center"
                                Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
             <!-- Sección: Información Personal -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <StackPanel>
-                    <TextBlock Text="📋 INFORMACIÓN PERSONAL" FontSize="12" FontWeight="Bold" Foreground="#5DADE2" Margin="0,0,0,15"/>
+                    <TextBlock Text="📋 INFORMACIÓN PERSONAL" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextAccentColor}" Margin="0,0,0,15"/>
 
                     <!-- CI -->
-                    <TextBlock Text="🆔 Cédula de Identidad (CI):" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="🆔 Cédula de Identidad (CI):" FontSize="11" Foreground="{DynamicResource TextSecondaryColor}" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Empleado.CiEmpleado, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource ModernTextBoxStyle}"
                              Margin="0,0,0,12"/>
 
                     <!-- Nombres -->
-                    <TextBlock Text="✍ Nombres:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="✍ Nombres:" FontSize="11" Foreground="{DynamicResource TextSecondaryColor}" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Empleado.NombresEmpleado, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource ModernTextBoxStyle}"
                              Margin="0,0,0,12"/>
 
                     <!-- Apellidos -->
-                    <TextBlock Text="✍ Apellidos:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="✍ Apellidos:" FontSize="11" Foreground="{DynamicResource TextSecondaryColor}" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Empleado.ApellidosEmpleado, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource ModernTextBoxStyle}"
                              Margin="0,0,0,0"/>
@@ -55,18 +55,18 @@
             </Border>
 
             <!-- Sección: Información de Contacto -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <StackPanel>
-                    <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="12" FontWeight="Bold" Foreground="#1ABC9C" Margin="0,0,0,15"/>
+                    <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextSuccessColor}" Margin="0,0,0,15"/>
 
                     <!-- Teléfono -->
-                    <TextBlock Text="📱 Teléfono:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="📱 Teléfono:" FontSize="11" Foreground="{DynamicResource TextSecondaryColor}" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Empleado.TelefonoEmpleado, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource ModernTextBoxStyle}"
                              Margin="0,0,0,12"/>
 
                     <!-- Correo -->
-                    <TextBlock Text="✉ Correo Electrónico:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="✉ Correo Electrónico:" FontSize="11" Foreground="{DynamicResource TextSecondaryColor}" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Empleado.CorreoEmpleado, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource ModernTextBoxStyle}"
                              Margin="0,0,0,0"/>
@@ -74,35 +74,35 @@
             </Border>
 
             <!-- Sección: Estado -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <StackPanel>
-                    <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#F39C12" Margin="0,0,0,15"/>
+                    <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource WarningColor}" Margin="0,0,0,15"/>
 
-                    <Border Background="#1a1a2e" CornerRadius="6" Padding="12">
+                    <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="6" Padding="12">
                         <CheckBox Content="✅ Empleado Activo"
                                   IsChecked="{Binding Empleado.EsActivoEmpleado}"
                                   FontSize="12"
                                   FontWeight="SemiBold"
-                                  Foreground="#ECF0F1"/>
+                                  Foreground="{DynamicResource TextPrimaryColor}"/>
                     </Border>
                 </StackPanel>
             </Border>
 
             <!-- Mensaje de Error -->
-            <Border Background="#3a1f1f"
-                    BorderBrush="#E74C3C"
+            <Border Background="{DynamicResource DangerColor}"
+                    BorderBrush="{DynamicResource DangerColor}"
                     BorderThickness="2"
                     CornerRadius="6"
                     Padding="12"
                     Margin="0,0,0,15"
                     Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                 </Border.Effect>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="⚠" FontSize="16" Foreground="#E74C3C" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="⚠" FontSize="16" Foreground="{DynamicResource TextDangerColor}" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding MensajeError}"
-                               Foreground="#E74C3C"
+                               Foreground="{DynamicResource TextDangerColor}"
                                FontSize="11"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"/>

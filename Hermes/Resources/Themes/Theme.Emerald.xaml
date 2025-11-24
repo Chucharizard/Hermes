@@ -38,6 +38,12 @@
     <SolidColorBrush x:Key="DangerColor" Color="#c45c4d"/>           <!-- Terracota suave (peligro) -->
     <SolidColorBrush x:Key="DangerHoverColor" Color="#a84a3d"/>      <!-- Terracota oscuro (hover) -->
 
+    <!-- Colores de texto -->
+    <SolidColorBrush x:Key="TextPrimaryColor" Color="#ECF0F1"/>      <!-- Texto principal (blanco/gris claro) -->
+    <SolidColorBrush x:Key="TextAccentColor" Color="#50c878"/>       <!-- Texto con acento (verde esmeralda) -->
+    <SolidColorBrush x:Key="TextSuccessColor" Color="#50c878"/>      <!-- Texto éxito (verde esmeralda) -->
+    <SolidColorBrush x:Key="TextDangerColor" Color="#c45c4d"/>       <!-- Texto peligro (terracota) -->
+
     <!-- Colores oscuros para sidebar -->
     <SolidColorBrush x:Key="DarkColor" Color="#234e52"/>             <!-- Verde petróleo oscuro -->
     <SolidColorBrush x:Key="DarkHoverColor" Color="#1a4d4d"/>        <!-- Verde petróleo muy oscuro -->
