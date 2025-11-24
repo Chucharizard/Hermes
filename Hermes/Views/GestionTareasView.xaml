@@ -17,18 +17,18 @@
 
         <!-- Estilo para item de tarea seleccionado -->
         <Style x:Key="TareaListItemStyle" TargetType="Border">
-            <Setter Property="Background" Value="#1a1a2e"/>
+            <Setter Property="Background" Value="#234e52"/>
             <Setter Property="BorderBrush" Value="#30FFFFFF"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="Padding" Value="12,10"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2d3748"/>
+                    <Setter Property="Background" Value="#2d5a5a"/>
                 </Trigger>
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                    <Setter Property="Background" Value="#16213e"/>
-                    <Setter Property="BorderBrush" Value="#5DADE2"/>
+                    <Setter Property="Background" Value="#1a4d4d"/>
+                    <Setter Property="BorderBrush" Value="#50c878"/>
                     <Setter Property="BorderThickness" Value="0,0,3,1"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -46,7 +46,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header compacto + Estadísticas inline + Nueva Tarea -->
-        <Border Grid.Row="0" Background="#1a1a2e" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
+        <Border Grid.Row="0" Background="#234e52" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
             </Border.Effect>
@@ -69,7 +69,7 @@
                 <!-- Estadísticas inline compactas -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Total -->
-                    <Border Background="#3498DB" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="#50c878" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalTareas}"
                                        FontSize="14"
@@ -84,7 +84,7 @@
                     </Border>
 
                     <!-- Pendientes -->
-                    <Border Background="#F39C12" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="#cd7f32" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TareasPendientes}"
                                        FontSize="14"
@@ -99,7 +99,7 @@
                     </Border>
 
                     <!-- Completadas -->
-                    <Border Background="#27AE60" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="#50c878" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TareasCompletadas}"
                                        FontSize="14"
@@ -114,7 +114,7 @@
                     </Border>
 
                     <!-- Vencidas -->
-                    <Border Background="#E74C3C" CornerRadius="12" Padding="10,4">
+                    <Border Background="#c45c4d" CornerRadius="12" Padding="10,4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TareasVencidas}"
                                        FontSize="14"
@@ -142,7 +142,7 @@
         <!-- ========================================== -->
         <!-- CALENDARIO SEMANAL MEJORADO -->
         <!-- ========================================== -->
-        <Border Grid.Row="1" Background="#16213e" BorderBrush="#3498DB" BorderThickness="2" CornerRadius="10" Padding="18" Margin="0,0,0,10">
+        <Border Grid.Row="1" Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="18" Margin="0,0,0,10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
             </Border.Effect>
@@ -153,7 +153,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Título del calendario y navegación mejorado -->
-                <Border Grid.Row="0" Background="#3498DB" CornerRadius="8" Padding="12,8" Margin="0,0,0,15">
+                <Border Grid.Row="0" Background="#50c878" CornerRadius="8" Padding="12,8" Margin="0,0,0,15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -163,7 +163,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <Border Background="#2E86AB" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                            <Border Background="#2e8b57" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                 <TextBlock Text="📅" FontSize="16"/>
                             </Border>
                             <TextBlock Text="Calendario Semanal"
@@ -173,7 +173,7 @@
                                        VerticalAlignment="Center"/>
                         </StackPanel>
 
-                        <Border Grid.Column="1" Background="#2E86AB" CornerRadius="6" Padding="8,4" HorizontalAlignment="Center">
+                        <Border Grid.Column="1" Background="#2e8b57" CornerRadius="6" Padding="8,4" HorizontalAlignment="Center">
                             <TextBlock Text="{Binding TituloSemana}"
                                        FontSize="12"
                                        FontWeight="SemiBold"
@@ -184,7 +184,7 @@
                         <Button Grid.Column="2"
                                 Content="◀"
                                 Command="{Binding SemanaAnteriorCommand}"
-                                Background="#2E86AB"
+                                Background="#2e8b57"
                                 Foreground="White"
                                 Padding="12,6"
                                 FontSize="12"
@@ -205,7 +205,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#1F5F7D"/>
+                                            <Setter Property="Background" Value="#1e6e3f"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -215,7 +215,7 @@
                         <Button Grid.Column="3"
                                 Content="▶"
                                 Command="{Binding SemanaSiguienteCommand}"
-                                Background="#2E86AB"
+                                Background="#2e8b57"
                                 Foreground="White"
                                 Padding="12,6"
                                 FontSize="12"
@@ -235,7 +235,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#1F5F7D"/>
+                                            <Setter Property="Background" Value="#1e6e3f"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -253,8 +253,8 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="#1a1a2e"
-                                    BorderBrush="#3498DB"
+                            <Border Background="#234e52"
+                                    BorderBrush="#50c878"
                                     BorderThickness="1"
                                     Margin="3"
                                     Padding="10"
@@ -272,13 +272,13 @@
                                     <Style TargetType="Border">
                                         <Style.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#2d3748"/>
-                                                <Setter Property="BorderBrush" Value="#5DADE2"/>
+                                                <Setter Property="Background" Value="#2d5a5a"/>
+                                                <Setter Property="BorderBrush" Value="#50c878"/>
                                                 <Setter Property="BorderThickness" Value="2"/>
                                             </Trigger>
                                             <DataTrigger Binding="{Binding EsSeleccionado}" Value="True">
-                                                <Setter Property="Background" Value="#3498DB"/>
-                                                <Setter Property="BorderBrush" Value="#5DADE2"/>
+                                                <Setter Property="Background" Value="#50c878"/>
+                                                <Setter Property="BorderBrush" Value="#50c878"/>
                                                 <Setter Property="BorderThickness" Value="3"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -327,7 +327,7 @@
             <!-- ========================================== -->
             <!-- MASTER: LISTA DE TAREAS COMPACTA -->
             <!-- ========================================== -->
-            <Border Grid.Column="0" Background="#1a1a2e" CornerRadius="8" Padding="0">
+            <Border Grid.Column="0" Background="#234e52" CornerRadius="8" Padding="0">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                 </Border.Effect>
@@ -358,8 +358,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <!-- Tarjeta de tarea mejorada con diseño más bonito -->
-                                    <Border Background="#16213e"
-                                            BorderBrush="#9B59B6"
+                                    <Border Background="#1a4d4d"
+                                            BorderBrush="#50c878"
                                             BorderThickness="0,0,0,3"
                                             CornerRadius="10"
                                             Padding="15"
@@ -374,8 +374,8 @@
                                             <Style TargetType="Border">
                                                 <Style.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#1a2942"/>
-                                                        <Setter Property="BorderBrush" Value="#3498DB"/>
+                                                        <Setter Property="Background" Value="#2d5a5a"/>
+                                                        <Setter Property="BorderBrush" Value="#50c878"/>
                                                     </Trigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -417,7 +417,7 @@
                                                                Foreground="White"/>
                                                 </Border>
 
-                                                <Border Background="#2d3748" CornerRadius="8" Padding="6,3">
+                                                <Border Background="#2d5a5a" CornerRadius="8" Padding="6,3">
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="📅" FontSize="10" Margin="0,0,4,0"/>
                                                         <TextBlock Text="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
@@ -438,24 +438,24 @@
                                                        Margin="0,0,0,8"/>
 
                                             <!-- Fila 3: Emisor → Receptor con iconos -->
-                                            <Border Grid.Row="2" Background="#1a1a2e" CornerRadius="6" Padding="8,6" Margin="0,0,0,8">
+                                            <Border Grid.Row="2" Background="#234e52" CornerRadius="6" Padding="8,6" Margin="0,0,0,8">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <Border Background="#9B59B6" CornerRadius="4" Padding="4" Margin="0,0,6,0">
+                                                    <Border Background="#50c878" CornerRadius="4" Padding="4" Margin="0,0,6,0">
                                                         <TextBlock Text="📤" FontSize="11"/>
                                                     </Border>
                                                     <TextBlock Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                                               Foreground="#9B59B6"
+                                                               Foreground="#50c878"
                                                                FontWeight="SemiBold"
                                                                FontSize="11"
                                                                VerticalAlignment="Center"/>
 
                                                     <TextBlock Text=" → " Foreground="#95A5A6" FontSize="11" Margin="6,0" VerticalAlignment="Center"/>
 
-                                                    <Border Background="#3498DB" CornerRadius="4" Padding="4" Margin="0,0,6,0">
+                                                    <Border Background="#50c878" CornerRadius="4" Padding="4" Margin="0,0,6,0">
                                                         <TextBlock Text="📥" FontSize="11"/>
                                                     </Border>
                                                     <TextBlock Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
-                                                               Foreground="#3498DB"
+                                                               Foreground="#50c878"
                                                                FontWeight="SemiBold"
                                                                FontSize="11"
                                                                VerticalAlignment="Center"/>
@@ -467,7 +467,7 @@
                                                 <Button Content="✏"
                                                         Command="{Binding DataContext.EditarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        Background="#F39C12"
+                                                        Background="#cd7f32"
                                                         Foreground="White"
                                                         Width="24"
                                                         Height="24"
@@ -489,7 +489,7 @@
                                                             </Setter>
                                                             <Style.Triggers>
                                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="Background" Value="#E67E22"/>
+                                                                    <Setter Property="Background" Value="#b87333"/>
                                                                 </Trigger>
                                                             </Style.Triggers>
                                                         </Style>
@@ -499,7 +499,7 @@
                                                 <Button Content="🗑"
                                                         Command="{Binding DataContext.EliminarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        Background="#E74C3C"
+                                                        Background="#c45c4d"
                                                         Foreground="White"
                                                         Width="24"
                                                         Height="24"
@@ -539,7 +539,7 @@
             <!-- ========================================== -->
             <!-- DETAIL: PANEL DE EDICIÓN DE TAREA -->
             <!-- ========================================== -->
-            <Border Grid.Column="2" Background="#1a1a2e" CornerRadius="8">
+            <Border Grid.Column="2" Background="#234e52" CornerRadius="8">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
                 </Border.Effect>
@@ -591,13 +591,13 @@
 
                         <StackPanel>
                             <!-- Header compacto y profesional -->
-                            <Border Background="#16213e" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                            <Border Background="#1a4d4d" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
                                 </Border.Effect>
                                 <Grid>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                        <Border Background="#9B59B6" CornerRadius="6" Padding="8" Margin="0,0,12,0">
+                                        <Border Background="#50c878" CornerRadius="6" Padding="8" Margin="0,0,12,0">
                                             <TextBlock Text="📋" FontSize="18"/>
                                         </Border>
                                         <StackPanel VerticalAlignment="Center">
@@ -615,7 +615,7 @@
                                             Command="{Binding CerrarPanelCommand}"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
-                                            Background="#E74C3C"
+                                            Background="#c45c4d"
                                             Foreground="White"
                                             Width="30"
                                             Height="30"
@@ -646,13 +646,13 @@
                             </Border>
 
                             <!-- Sección: Información Básica -->
-                            <Border Background="#16213e" BorderBrush="#9B59B6" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#9B59B6"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#50c878"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#9B59B6" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                    <Border Background="#50c878" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
                                         <TextBlock Text="📝 INFORMACIÓN BÁSICA" FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"/>
                                     </Border>
 
@@ -687,13 +687,13 @@
                             </Border>
 
                             <!-- Sección: Configuración -->
-                            <Border Background="#16213e" BorderBrush="#3498DB" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#3498DB"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#50c878"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#3498DB" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                    <Border Background="#50c878" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
                                         <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"/>
                                     </Border>
 
@@ -707,7 +707,7 @@
                                         <!-- Estado -->
                                         <StackPanel Grid.Column="0">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#3498DB" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="📊" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
@@ -726,7 +726,7 @@
                                         <!-- Prioridad -->
                                         <StackPanel Grid.Column="2">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#E67E22" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="#b87333" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="⚡" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
@@ -746,7 +746,7 @@
                             </Border>
 
                             <!-- Sección: Cronología -->
-                            <Border Background="#16213e" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="#1a4d4d" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#1ABC9C"/>
                                 </Border.Effect>
@@ -783,7 +783,7 @@
                                         <!-- Fecha Límite -->
                                         <StackPanel Grid.Column="2">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#E74C3C" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="#c45c4d" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="⏰" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
@@ -801,20 +801,20 @@
                             </Border>
 
                             <!-- Sección: Asignación -->
-                            <Border Background="#16213e" BorderBrush="#F39C12" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="#1a4d4d" BorderBrush="#cd7f32" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#F39C12"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#cd7f32"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#F39C12" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                    <Border Background="#cd7f32" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
                                         <TextBlock Text="👥 ASIGNACIÓN" FontSize="12" FontWeight="Bold" Foreground="#0a0a15"/>
                                     </Border>
 
                                     <!-- Emisor (solo lectura) -->
                                     <StackPanel Margin="0,0,0,15">
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                            <Border Background="#9B59B6" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                            <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                 <TextBlock Text="📤" FontSize="16"/>
                                             </Border>
                                             <StackPanel VerticalAlignment="Center">
@@ -824,13 +824,13 @@
                                                            Foreground="#95A5A6"/>
                                             </StackPanel>
                                         </StackPanel>
-                                        <Border Background="#1a1a2e"
-                                                BorderBrush="#9B59B6"
+                                        <Border Background="#234e52"
+                                                BorderBrush="#50c878"
                                                 BorderThickness="1"
                                                 CornerRadius="8"
                                                 Padding="12,10">
                                             <TextBlock Text="{Binding EmisorInfo}"
-                                                       Foreground="#9B59B6"
+                                                       Foreground="#50c878"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"/>
                                         </Border>
@@ -839,7 +839,7 @@
                                     <!-- Receptor -->
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                            <Border Background="#3498DB" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                            <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                 <TextBlock Text="📥" FontSize="16"/>
                                             </Border>
                                             <StackPanel VerticalAlignment="Center">
