@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hermes.Services;
 
 namespace Hermes
 {
@@ -16,12 +17,61 @@ namespace Hermes
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool _isInitialized = false;
+
         public MainWindow()
         {
             InitializeComponent();
 
             // Actualizar el ícono del botón maximizar según el estado de la ventana
             this.StateChanged += MainWindow_StateChanged;
+
+            // Cargar el tema actual
+            LoadCurrentTheme();
+            _isInitialized = true;
+        }
+
+        /// <summary>
+        /// Carga el tema actual y actualiza el ComboBox
+        /// </summary>
+        private void LoadCurrentTheme()
+        {
+            var currentTheme = ThemeService.Instance.GetCurrentTheme();
+
+            // Establecer el índice del ComboBox según el tema actual
+            if (currentTheme == "Emerald")
+            {
+                ThemeComboBox.SelectedIndex = 0;
+            }
+            else if (currentTheme == "Purple")
+            {
+                ThemeComboBox.SelectedIndex = 1;
+            }
+        }
+
+        /// <summary>
+        /// Maneja el cambio de selección en el ComboBox de tema
+        /// </summary>
+        private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Evitar cambiar el tema durante la inicialización
+            if (!_isInitialized)
+                return;
+
+            if (ThemeComboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                var themeName = selectedItem.Tag?.ToString();
+
+                if (!string.IsNullOrEmpty(themeName))
+                {
+                    // Aplicar el tema a la interfaz
+                    if (ThemeService.Instance.ApplyTheme(themeName))
+                    {
+                        // Guardar la preferencia en la base de datos
+                        ThemeService.Instance.SaveUserThemePreference(themeName);
+                    }
+                }
+            }
         }
 
         /// <summary>

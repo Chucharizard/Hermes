@@ -65,6 +65,7 @@ namespace Hermes.Data
                 entity.Property(u => u.NombreUsuario).HasColumnName("nombre_usuario").HasMaxLength(50);
                 entity.Property(u => u.PasswordUsuario).HasColumnName("password_usuario").HasMaxLength(255);
                 entity.Property(u => u.EsActivoUsuario).HasColumnName("es_activo_usuario");
+                entity.Property(u => u.TemaPreferido).HasColumnName("tema_preferido").HasMaxLength(50).HasDefaultValue("Emerald");
 
                 // Relaciones
                 entity.HasOne(u => u.Empleado)

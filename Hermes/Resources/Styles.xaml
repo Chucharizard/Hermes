@@ -2,6 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ========================================== -->
+    <!-- CARGAR TEMA DE COLORES (debe ir primero en XAML) -->
+    <!-- Los colores se definen en archivos de tema separados -->
+    <!-- Cambia entre Theme.Emerald.xaml, Theme.Purple.xaml, etc. -->
+    <!-- ========================================== -->
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- TEMA ACTIVO: Verde Esmeralda/Petróleo (Profesional para inmobiliaria) -->
+        <ResourceDictionary Source="Themes/Theme.Emerald.xaml"/>
+
+        <!-- Otros temas disponibles (comentados): -->
+        <!-- <ResourceDictionary Source="Themes/Theme.Purple.xaml"/> --> <!-- Morado/Azul original -->
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- ========================================== -->
     <!-- RENDERIZADO DE TEXTO GLOBAL - APLICADO A TODA LA APP -->
     <!-- ========================================== -->
 
@@ -28,20 +42,6 @@
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
         <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
     </Style>
-
-    <!-- ========================================== -->
-    <!-- CARGAR TEMA DE COLORES -->
-    <!-- Los colores se definen en archivos de tema separados -->
-    <!-- Cambia entre Theme.Emerald.xaml, Theme.Purple.xaml, etc. -->
-    <!-- ========================================== -->
-
-    <ResourceDictionary.MergedDictionaries>
-        <!-- TEMA ACTIVO: Verde Esmeralda/Petróleo (Profesional para inmobiliaria) -->
-        <ResourceDictionary Source="Themes/Theme.Emerald.xaml"/>
-
-        <!-- Otros temas disponibles (comentados): -->
-        <!-- <ResourceDictionary Source="Themes/Theme.Purple.xaml"/> --> <!-- Morado/Azul original -->
-    </ResourceDictionary.MergedDictionaries>
 
     <!-- ========================================== -->
     <!-- ESTILOS DE BOTONES -->

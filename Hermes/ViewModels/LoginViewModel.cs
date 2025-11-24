@@ -76,6 +76,12 @@ namespace Hermes.ViewModels
                 // Guardar usuario en sesión
                 App.UsuarioActual = usuario;
 
+                // Cargar tema preferido del usuario
+                if (!string.IsNullOrEmpty(usuario.TemaPreferido))
+                {
+                    ThemeService.Instance.ApplyTheme(usuario.TemaPreferido);
+                }
+
                 // Abrir ventana principal (todos los roles tienen acceso)
                 // El menú se adapta automáticamente según el rol en MainViewModel
                 var mainWindow = new MainWindow();

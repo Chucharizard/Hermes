@@ -484,6 +484,117 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
+
+                    <!-- Separador para sección de Tema -->
+                    <Separator Margin="10,15" Background="#2d5a5a" Height="1" Opacity="0.5"/>
+
+                    <!-- Selector de Tema -->
+                    <StackPanel Margin="10,10,10,15">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+
+                        <TextBlock Text="🎨 TEMA"
+                                   Foreground="#B0B8C8"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   Margin="5,0,0,10"/>
+
+                        <ComboBox x:Name="ThemeComboBox"
+                                  SelectionChanged="ThemeComboBox_SelectionChanged"
+                                  SelectedIndex="0"
+                                  FontSize="13"
+                                  Height="35">
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="Background" Value="#234e52"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="#50c878"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="Padding" Value="10,5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ComboBox">
+                                                <Grid>
+                                                    <Border Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            CornerRadius="6">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <ContentPresenter Grid.Column="0"
+                                                                            Content="{TemplateBinding SelectionBoxItem}"
+                                                                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                                            Margin="{TemplateBinding Padding}"
+                                                                            VerticalAlignment="Center"
+                                                                            HorizontalAlignment="Left"/>
+                                                            <TextBlock Grid.Column="1"
+                                                                     Text="▼"
+                                                                     FontSize="10"
+                                                                     Foreground="#50c878"
+                                                                     VerticalAlignment="Center"
+                                                                     Margin="0,0,10,0"/>
+                                                        </Grid>
+                                                    </Border>
+                                                    <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                                           Placement="Bottom"
+                                                           AllowsTransparency="True">
+                                                        <Border Background="#234e52"
+                                                                BorderBrush="#50c878"
+                                                                BorderThickness="1"
+                                                                CornerRadius="6"
+                                                                Margin="0,5,0,0">
+                                                            <ScrollViewer>
+                                                                <ItemsPresenter/>
+                                                            </ScrollViewer>
+                                                        </Border>
+                                                    </Popup>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ComboBox.Style>
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Background" Value="#234e52"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Padding" Value="10,8"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ComboBoxItem">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#2d5a5a"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" Value="#50c878"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                            <ComboBoxItem Content="🌿 Verde Esmeralda" Tag="Emerald"/>
+                            <ComboBoxItem Content="💜 Morado Azul" Tag="Purple"/>
+                        </ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </Border>
             
