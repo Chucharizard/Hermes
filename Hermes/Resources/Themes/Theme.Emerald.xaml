@@ -49,12 +49,6 @@
     <SolidColorBrush x:Key="DarkHoverColor" Color="#1a4d4d"/>        <!-- Verde petróleo muy oscuro -->
     <SolidColorBrush x:Key="SidebarColor" Color="#234e52"/>          <!-- Verde petróleo oscuro -->
 
-    <!-- Textos (mejorado para contraste) -->
-    <SolidColorBrush x:Key="TextPrimaryColor" Color="#FFFFFF"/>      <!-- Blanco puro para fondos oscuros -->
-    <SolidColorBrush x:Key="TextSecondaryColor" Color="#e0e1dd"/>    <!-- Gris muy claro -->
-    <SolidColorBrush x:Key="TextMutedColor" Color="#a8b5b2"/>        <!-- Verde grisáceo -->
-    <SolidColorBrush x:Key="TextDarkColor" Color="#1a4d4d"/>         <!-- Texto oscuro para fondos claros -->
-
     <!-- Bordes -->
     <SolidColorBrush x:Key="BorderColor" Color="#3d6b6b"/>           <!-- Verde petróleo para bordes -->
     <SolidColorBrush x:Key="BorderLightColor" Color="#5a8585"/>      <!-- Verde petróleo claro -->
