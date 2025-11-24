@@ -90,15 +90,18 @@ namespace Hermes
         /// </summary>
         private void RefreshSidebar()
         {
-            // Usar Dispatcher para asegurar que el refresh se ejecute después de que el tema se aplique
+            // Forzar re-evaluación de recursos cambiando el DataContext temporalmente
+            var originalContext = SidebarBorder.DataContext;
+            SidebarBorder.DataContext = null;
+
+            // Usar Dispatcher para restaurar el DataContext después de un frame
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                // Forzar actualización del sidebar y todos sus hijos
+                SidebarBorder.DataContext = originalContext;
+
+                // Forzar actualización completa
                 SidebarBorder.InvalidateVisual();
                 SidebarBorder.UpdateLayout();
-
-                // Forzar actualización de todos los elementos hijos recursivamente
-                RefreshVisualTree(SidebarBorder);
             }), System.Windows.Threading.DispatcherPriority.Render);
         }
 
