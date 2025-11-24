@@ -15,16 +15,8 @@
         <viewmodels:LoginViewModel/>
     </Window.DataContext>
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
-        </ResourceDictionary>
-    </Window.Resources>
+    <!-- Los recursos se heredan automáticamente de Application.Resources -->
+    <!-- NO cargar Styles.xaml localmente, para que DynamicResource detecte cambios de tema -->
 
     <Border CornerRadius="20" Background="White">
         <Border.Effect>

@@ -260,7 +260,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2d5a5a"/>
+                <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
@@ -362,9 +362,9 @@
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="#1a4d4d"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
-        <Setter Property="BorderBrush" Value="#2d5a5a"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundMedium}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -403,10 +403,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#50c878"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#50c878"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -454,9 +454,9 @@
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="#1a4d4d"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
-        <Setter Property="BorderBrush" Value="#2d5a5a"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundMedium}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -498,7 +498,7 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="BorderBrush" Value="#50c878"/>
+                                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -553,10 +553,10 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsHighlighted" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#234e52"/>
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource BackgroundDark}"/>
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#234e52"/>
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource BackgroundDark}"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -582,7 +582,7 @@
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="#0f2424"/>
-        <Setter Property="AlternatingRowBackground" Value="#1a4d4d"/>
+        <Setter Property="AlternatingRowBackground" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="RowHeight" Value="45"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
@@ -615,11 +615,11 @@
 
     <!-- Fila de DataGrid (Tema oscuro verde petróleo) -->
     <Style x:Key="ModernDataGridRowStyle" TargetType="DataGridRow">
-        <Setter Property="Background" Value="#1a4d4d"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2d5a5a"/>
+                <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="#3d6b6b"/>
