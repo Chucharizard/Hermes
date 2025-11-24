@@ -30,108 +30,110 @@
     </Style>
 
     <!-- ========================================== -->
-    <!-- COLORES GLOBALES - PALETA PROFESSIONAL DARK BLUE -->
+    <!-- COLORES GLOBALES - PALETA INMOBILIARIA: VERDE ESMERALDA/PETRÓLEO -->
+    <!-- Elegante, sofisticado, profesional para público adulto -->
     <!-- ========================================== -->
 
-    <!-- Fondos Oscuros (Paleta proporcionada) -->
-    <SolidColorBrush x:Key="BackgroundDarkest" Color="#0d1b2a"/>     <!-- Azul muy oscuro - Fondos principales -->
-    <SolidColorBrush x:Key="BackgroundDark" Color="#1b263b"/>        <!-- Azul oscuro - Sidebar, headers -->
-    <SolidColorBrush x:Key="BackgroundMedium" Color="#415a77"/>      <!-- Azul medio - Cards hover -->
-    <SolidColorBrush x:Key="BackgroundLight" Color="#778da9"/>       <!-- Azul grisáceo claro - Elementos claros -->
-    <SolidColorBrush x:Key="BackgroundLightColor" Color="#e0e1dd"/>  <!-- Gris muy claro - Inputs, cards -->
-    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#e0e1dd"/>
+    <!-- Fondos Oscuros (Verde Petróleo) -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="#1a4d4d"/>     <!-- Verde petróleo muy oscuro - Fondos principales -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#234e52"/>        <!-- Verde petróleo oscuro - Sidebar, headers -->
+    <SolidColorBrush x:Key="BackgroundMedium" Color="#2d5a5a"/>      <!-- Verde petróleo medio - Cards -->
+    <SolidColorBrush x:Key="BackgroundCharcoal" Color="#2d3748"/>    <!-- Gris carbón - Alternativo -->
+    <SolidColorBrush x:Key="BackgroundLight" Color="#e8dcc4"/>       <!-- Beige claro - Elementos claros -->
+    <SolidColorBrush x:Key="BackgroundLightColor" Color="#f7f3e9"/>  <!-- Crema - Inputs, cards -->
+    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#e8dcc4"/>
 
-    <!-- Azules principales (Actualizado para mejor contraste) -->
-    <SolidColorBrush x:Key="PrimaryColor" Color="#5DADE2"/>          <!-- Azul claro vibrante -->
-    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#3498DB"/>      <!-- Azul medio -->
-    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#2874A6"/>    <!-- Azul profundo -->
-    <SolidColorBrush x:Key="PrimaryLightColor" Color="#85C1E9"/>     <!-- Azul muy claro -->
+    <!-- Verde Esmeralda (Color principal - Acentos) -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="#50c878"/>          <!-- Verde esmeralda vibrante -->
+    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#2e8b57"/>      <!-- Verde esmeralda oscuro -->
+    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#1e6e3f"/>    <!-- Verde esmeralda más oscuro -->
+    <SolidColorBrush x:Key="PrimaryLightColor" Color="#7fd4a8"/>     <!-- Verde esmeralda claro -->
 
     <!-- Colores de acción -->
-    <SolidColorBrush x:Key="InfoColor" Color="#5DADE2"/>             <!-- Azul principal -->
-    <SolidColorBrush x:Key="InfoHoverColor" Color="#3498DB"/>        <!-- Azul hover -->
-    <SolidColorBrush x:Key="SuccessColor" Color="#1ABC9C"/>          <!-- Turquesa -->
-    <SolidColorBrush x:Key="SuccessHoverColor" Color="#148F77"/>     <!-- Turquesa oscuro -->
-    <SolidColorBrush x:Key="WarningColor" Color="#F39C12"/>          <!-- Naranja -->
-    <SolidColorBrush x:Key="WarningHoverColor" Color="#D68910"/>     <!-- Naranja oscuro -->
-    <SolidColorBrush x:Key="DangerColor" Color="#E74C3C"/>           <!-- Rojo -->
-    <SolidColorBrush x:Key="DangerHoverColor" Color="#C0392B"/>      <!-- Rojo oscuro -->
+    <SolidColorBrush x:Key="InfoColor" Color="#50c878"/>             <!-- Verde esmeralda (info) -->
+    <SolidColorBrush x:Key="InfoHoverColor" Color="#2e8b57"/>        <!-- Verde esmeralda oscuro (hover) -->
+    <SolidColorBrush x:Key="SuccessColor" Color="#50c878"/>          <!-- Verde esmeralda (éxito) -->
+    <SolidColorBrush x:Key="SuccessHoverColor" Color="#2e8b57"/>     <!-- Verde esmeralda oscuro (hover) -->
+    <SolidColorBrush x:Key="WarningColor" Color="#cd7f32"/>          <!-- Bronce/cobre (advertencia) -->
+    <SolidColorBrush x:Key="WarningHoverColor" Color="#b87333"/>     <!-- Bronce oscuro (hover) -->
+    <SolidColorBrush x:Key="DangerColor" Color="#c45c4d"/>           <!-- Terracota suave (peligro) -->
+    <SolidColorBrush x:Key="DangerHoverColor" Color="#a84a3d"/>      <!-- Terracota oscuro (hover) -->
 
     <!-- Colores oscuros para sidebar -->
-    <SolidColorBrush x:Key="DarkColor" Color="#1b263b"/>
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#0d1b2a"/>
-    <SolidColorBrush x:Key="SidebarColor" Color="#1b263b"/>
+    <SolidColorBrush x:Key="DarkColor" Color="#234e52"/>             <!-- Verde petróleo oscuro -->
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#1a4d4d"/>        <!-- Verde petróleo muy oscuro -->
+    <SolidColorBrush x:Key="SidebarColor" Color="#234e52"/>          <!-- Verde petróleo oscuro -->
 
     <!-- Textos (mejorado para contraste) -->
     <SolidColorBrush x:Key="TextPrimaryColor" Color="#FFFFFF"/>      <!-- Blanco puro para fondos oscuros -->
     <SolidColorBrush x:Key="TextSecondaryColor" Color="#e0e1dd"/>    <!-- Gris muy claro -->
-    <SolidColorBrush x:Key="TextMutedColor" Color="#778da9"/>        <!-- Azul grisáceo -->
-    <SolidColorBrush x:Key="TextDarkColor" Color="#0d1b2a"/>         <!-- Texto oscuro para fondos claros -->
+    <SolidColorBrush x:Key="TextMutedColor" Color="#a8b5b2"/>        <!-- Verde grisáceo -->
+    <SolidColorBrush x:Key="TextDarkColor" Color="#1a4d4d"/>         <!-- Texto oscuro para fondos claros -->
 
     <!-- Bordes -->
-    <SolidColorBrush x:Key="BorderColor" Color="#415a77"/>
-    <SolidColorBrush x:Key="BorderLightColor" Color="#778da9"/>
+    <SolidColorBrush x:Key="BorderColor" Color="#3d6b6b"/>           <!-- Verde petróleo para bordes -->
+    <SolidColorBrush x:Key="BorderLightColor" Color="#5a8585"/>      <!-- Verde petróleo claro -->
 
     <!-- ========================================== -->
     <!-- DEGRADADOS MODERNOS - PROFESSIONAL DARK THEME -->
     <!-- ========================================== -->
 
-    <!-- Degradado principal (azul vibrante) -->
+    <!-- Degradado principal (verde esmeralda vibrante) -->
     <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#5DADE2" Offset="0"/>
-        <GradientStop Color="#3498DB" Offset="1"/>
+        <GradientStop Color="#50c878" Offset="0"/>
+        <GradientStop Color="#2e8b57" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PrimaryGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#5DADE2" Offset="0"/>
-        <GradientStop Color="#3498DB" Offset="1"/>
+        <GradientStop Color="#50c878" Offset="0"/>
+        <GradientStop Color="#2e8b57" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado oscuro (fondos principales - paleta custom) -->
+    <!-- Degradado oscuro (fondos principales - verde petróleo) -->
     <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#0d1b2a" Offset="0"/>
-        <GradientStop Color="#1b263b" Offset="1"/>
+        <GradientStop Color="#1a4d4d" Offset="0"/>
+        <GradientStop Color="#234e52" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#0d1b2a" Offset="0"/>
-        <GradientStop Color="#1b263b" Offset="1"/>
+        <GradientStop Color="#1a4d4d" Offset="0"/>
+        <GradientStop Color="#234e52" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado sidebar (azules oscuros) -->
+    <!-- Degradado sidebar (verde petróleo oscuro) -->
     <LinearGradientBrush x:Key="SidebarGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1b263b" Offset="0"/>
-        <GradientStop Color="#0d1b2a" Offset="1"/>
+        <GradientStop Color="#234e52" Offset="0"/>
+        <GradientStop Color="#1a4d4d" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado medio (azules medios) -->
+    <!-- Degradado medio (verde petróleo medio) -->
     <LinearGradientBrush x:Key="MediumGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#415a77" Offset="0"/>
-        <GradientStop Color="#778da9" Offset="1"/>
+        <GradientStop Color="#2d5a5a" Offset="0"/>
+        <GradientStop Color="#3d6b6b" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado turquesa (éxito) -->
+    <!-- Degradado éxito (verde esmeralda) -->
     <LinearGradientBrush x:Key="SuccessGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#1ABC9C" Offset="0"/>
-        <GradientStop Color="#148F77" Offset="1"/>
+        <GradientStop Color="#50c878" Offset="0"/>
+        <GradientStop Color="#2e8b57" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado azul profundo -->
+    <!-- Degradado verde profundo -->
     <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#1b263b" Offset="0"/>
-        <GradientStop Color="#0d1b2a" Offset="1"/>
+        <GradientStop Color="#234e52" Offset="0"/>
+        <GradientStop Color="#1a4d4d" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado azul claro -->
+    <!-- Degradado verde claro -->
     <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#85C1E9" Offset="0"/>
-        <GradientStop Color="#5DADE2" Offset="1"/>
+        <GradientStop Color="#7fd4a8" Offset="0"/>
+        <GradientStop Color="#50c878" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado para cards (tema oscuro morado medianoche) -->
+    <!-- Degradado para cards (tema oscuro verde petróleo) -->
     <LinearGradientBrush x:Key="CardGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1a1a2e" Offset="0"/>
-        <GradientStop Color="#16213e" Offset="1"/>
+        <GradientStop Color="#1a4d4d" Offset="0"/>
+        <GradientStop Color="#234e52" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- ========================================== -->
@@ -351,7 +353,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#3a4a5e"/>
+                <Setter Property="Background" Value="#2d5a5a"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
@@ -448,14 +450,14 @@
     <!-- ESTILOS DE INPUTS -->
     <!-- ========================================== -->
 
-    <!-- TextBox Moderno (tema morado medianoche) -->
+    <!-- TextBox Moderno (tema verde petróleo) -->
     <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Background" Value="#1a4d4d"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
-        <Setter Property="BorderBrush" Value="#3a4a5e"/>
+        <Setter Property="BorderBrush" Value="#2d5a5a"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -494,10 +496,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#50c878"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#50c878"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -540,14 +542,14 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ComboBox Moderno (tema morado medianoche) -->
+    <!-- ComboBox Moderno (tema verde petróleo) -->
     <Style x:Key="ModernComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Background" Value="#1a4d4d"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
-        <Setter Property="BorderBrush" Value="#3a4a5e"/>
+        <Setter Property="BorderBrush" Value="#2d5a5a"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -589,7 +591,7 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="BorderBrush" Value="#5DADE2"/>
+                                            <Setter TargetName="border" Property="BorderBrush" Value="#50c878"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -609,8 +611,8 @@
                               AllowsTransparency="True"
                               Focusable="False"
                               PopupAnimation="Slide">
-                            <Border Background="#1a1a2e"
-                                   BorderBrush="#3a4a5e"
+                            <Border Background="#1a4d4d"
+                                   BorderBrush="#2d5a5a"
                                    BorderThickness="1"
                                    CornerRadius="8"
                                    Margin="0,4,0,0"
@@ -644,10 +646,10 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsHighlighted" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#16213e"/>
+                                        <Setter TargetName="border" Property="Background" Value="#234e52"/>
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#16213e"/>
+                                        <Setter TargetName="border" Property="Background" Value="#234e52"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -662,7 +664,7 @@
     <!-- ESTILOS DE DATAGRID -->
     <!-- ========================================== -->
 
-    <!-- DataGrid Moderno (Tema oscuro morado medianoche) -->
+    <!-- DataGrid Moderno (Tema oscuro verde petróleo) -->
     <Style x:Key="ModernDataGridStyle" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="IsReadOnly" Value="True"/>
@@ -672,8 +674,8 @@
         <Setter Property="GridLinesVisibility" Value="None"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="#0a0a15"/>
-        <Setter Property="AlternatingRowBackground" Value="#16213e"/>
+        <Setter Property="Background" Value="#0f2424"/>
+        <Setter Property="AlternatingRowBackground" Value="#1a4d4d"/>
         <Setter Property="RowHeight" Value="45"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
@@ -704,16 +706,16 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Fila de DataGrid (Tema oscuro morado medianoche) -->
+    <!-- Fila de DataGrid (Tema oscuro verde petróleo) -->
     <Style x:Key="ModernDataGridRowStyle" TargetType="DataGridRow">
-        <Setter Property="Background" Value="#1a1a2e"/>
+        <Setter Property="Background" Value="#1a4d4d"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2d3748"/>
+                <Setter Property="Background" Value="#2d5a5a"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#3a4a5e"/>
+                <Setter Property="Background" Value="#3d6b6b"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -853,7 +855,7 @@
 
     <!-- Header de Card de Tarea (con color de prioridad) -->
     <Style x:Key="TareaCardHeaderStyle" TargetType="StackPanel">
-        <Setter Property="Background" Value="#0f1419"/>
+        <Setter Property="Background" Value="#0f2424"/>
         <Setter Property="Opacity" Value="0.6"/>
     </Style>
 

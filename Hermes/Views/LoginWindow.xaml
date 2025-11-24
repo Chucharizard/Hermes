@@ -28,7 +28,7 @@
 
     <Border CornerRadius="20" Background="White">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="40" ShadowDepth="5" Opacity="0.4" Color="#0d1b2a"/>
+            <DropShadowEffect BlurRadius="40" ShadowDepth="5" Opacity="0.4" Color="#1a4d4d"/>
         </Border.Effect>
 
         <!-- Animación de entrada -->
@@ -72,13 +72,13 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Panel Izquierdo - Branding (Nueva paleta oscura) -->
+            <!-- Panel Izquierdo - Branding (Paleta verde petróleo) -->
             <Border Grid.Column="0" CornerRadius="20,0,0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#1b263b" Offset="0"/>
-                        <GradientStop Color="#0d1b2a" Offset="0.5"/>
-                        <GradientStop Color="#1b263b" Offset="1"/>
+                        <GradientStop Color="#234e52" Offset="0"/>
+                        <GradientStop Color="#1a4d4d" Offset="0.5"/>
+                        <GradientStop Color="#234e52" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
 
@@ -270,7 +270,7 @@
                                 BorderThickness="2"
                                 RenderTransformOrigin="0.5,0.5">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5" Color="#5DADE2"/>
+                                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5" Color="#50c878"/>
                             </Border.Effect>
                             <Border.RenderTransform>
                                 <RotateTransform Angle="0"/>
@@ -326,7 +326,7 @@
                                            FontSize="14"
                                            Margin="0,5"
                                            Opacity="0">
-                                    <Run Text="✓" FontWeight="Bold" Foreground="#5DADE2"/>
+                                    <Run Text="✓" FontWeight="Bold" Foreground="#50c878"/>
                                     <Run Text=" Control de tareas"/>
                                     <TextBlock.Triggers>
                                         <EventTrigger RoutedEvent="Loaded">
@@ -344,7 +344,7 @@
                                            FontSize="14"
                                            Margin="0,5"
                                            Opacity="0">
-                                    <Run Text="✓" FontWeight="Bold" Foreground="#5DADE2"/>
+                                    <Run Text="✓" FontWeight="Bold" Foreground="#50c878"/>
                                     <Run Text=" Gestión de empleados"/>
                                     <TextBlock.Triggers>
                                         <EventTrigger RoutedEvent="Loaded">
@@ -362,7 +362,7 @@
                                            FontSize="14"
                                            Margin="0,5"
                                            Opacity="0">
-                                    <Run Text="✓" FontWeight="Bold" Foreground="#5DADE2"/>
+                                    <Run Text="✓" FontWeight="Bold" Foreground="#50c878"/>
                                     <Run Text=" Reportes en Excel"/>
                                     <TextBlock.Triggers>
                                         <EventTrigger RoutedEvent="Loaded">
@@ -384,11 +384,11 @@
 
             <!-- Panel Derecho - Formulario -->
             <Grid Grid.Column="1">
-                <!-- Fondo degradado morado medianoche -->
+                <!-- Fondo degradado verde petróleo -->
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#0a0a15" Offset="0"/>
-                        <GradientStop Color="#1a1a2e" Offset="1"/>
+                        <GradientStop Color="#0f2424" Offset="0"/>
+                        <GradientStop Color="#1a4d4d" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -397,7 +397,7 @@
                     <!-- Círculo superior derecha -->
                     <Ellipse Width="180" Height="180"
                              Canvas.Right="-90" Canvas.Top="-90"
-                             Fill="#155DADE2"
+                             Fill="#1550c878"
                              RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -427,7 +427,7 @@
                     <!-- Círculo inferior izquierda -->
                     <Ellipse Width="140" Height="140"
                              Canvas.Left="-70" Canvas.Bottom="-70"
-                             Fill="#203498DB"
+                             Fill="#202e8b57"
                              RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -494,8 +494,8 @@
                         BorderThickness="1">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#1a1a2e" Offset="0"/>
-                            <GradientStop Color="#16213e" Offset="1"/>
+                            <GradientStop Color="#1a4d4d" Offset="0"/>
+                            <GradientStop Color="#234e52" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
                     <Border.Effect>
@@ -555,19 +555,19 @@
                                Margin="0,0,0,8"/>
 
                     <Border x:Name="CiBorder"
-                            BorderBrush="#3a4a5e"
+                            BorderBrush="#2d5a5a"
                             BorderThickness="2"
                             CornerRadius="10"
-                            Background="#0f1419"
+                            Background="#1a4d4d"
                             Margin="0,0,0,20">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#5DADE2"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#50c878"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="#5DADE2"/>
+                                        <Setter Property="BorderBrush" Value="#50c878"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -600,19 +600,19 @@
                                Margin="0,0,0,8"/>
 
                     <Border x:Name="PasswordBorder"
-                            BorderBrush="#3a4a5e"
+                            BorderBrush="#2d5a5a"
                             BorderThickness="2"
                             CornerRadius="10"
-                            Background="#0f1419"
+                            Background="#1a4d4d"
                             Margin="0,0,0,25">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#5DADE2"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#50c878"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="#5DADE2"/>
+                                        <Setter Property="BorderBrush" Value="#50c878"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -731,8 +731,8 @@
                                 <Setter Property="Background">
                                     <Setter.Value>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="#5DADE2" Offset="0"/>
-                                            <GradientStop Color="#3498DB" Offset="1"/>
+                                            <GradientStop Color="#50c878" Offset="0"/>
+                                            <GradientStop Color="#2e8b57" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Setter.Value>
                                 </Setter>
@@ -744,7 +744,7 @@
                                             <Border Background="{TemplateBinding Background}"
                                                     CornerRadius="12">
                                                 <Border.Effect>
-                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="#3498DB"/>
+                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="#50c878"/>
                                                 </Border.Effect>
                                                 <ContentPresenter HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"/>
@@ -788,8 +788,8 @@
                     <ProgressBar IsIndeterminate="True"
                                  Height="4"
                                  Margin="0,15,0,0"
-                                 Foreground="#5DADE2"
-                                 Background="#0f1419"
+                                 Foreground="#50c878"
+                                 Background="#1a4d4d"
                                  BorderThickness="0"
                                  Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
