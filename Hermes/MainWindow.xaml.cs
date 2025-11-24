@@ -78,50 +78,55 @@ namespace Hermes
         }
 
         /// <summary>
-        /// Botón manual para refrescar el sidebar
-        /// </summary>
-        private void RefreshSidebarButton_Click(object sender, RoutedEventArgs e)
-        {
-            RefreshSidebar();
-        }
-
-        /// <summary>
-        /// Fuerza la actualización visual del sidebar completo
+        /// Fuerza la actualización visual del sidebar y main content area
         /// </summary>
         private void RefreshSidebar()
         {
-            // RECREAR el LinearGradientBrush del sidebar con los colores actualizados
+            // RECREAR los LinearGradientBrush con los colores actualizados
             // Este es el único método que funciona cuando DynamicResource no actualiza automáticamente
 
             try
             {
-                // Obtener el color actual del tema
-                var backgroundColor = (Color)Application.Current.FindResource("BackgroundDarkestColor");
+                // Obtener colores actuales del tema
+                var backgroundDarkest = (Color)Application.Current.FindResource("BackgroundDarkestColor");
+                var backgroundDark = (Color)Application.Current.FindResource("BackgroundDarkColor");
 
-                // Crear nuevo LinearGradientBrush con los colores actualizados
-                var newBrush = new LinearGradientBrush
+                // ===== SIDEBAR =====
+                // Crear nuevo LinearGradientBrush vertical para sidebar
+                var sidebarBrush = new LinearGradientBrush
                 {
                     StartPoint = new Point(0, 0),
                     EndPoint = new Point(0, 1)
                 };
+                sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 0));
+                sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 0.5));
+                sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 1));
+                SidebarBorder.Background = sidebarBrush;
 
-                newBrush.GradientStops.Add(new GradientStop(backgroundColor, 0));
-                newBrush.GradientStops.Add(new GradientStop(backgroundColor, 0.5));
-                newBrush.GradientStops.Add(new GradientStop(backgroundColor, 1));
+                // ===== MAIN CONTENT AREA (Dashboard) =====
+                // Crear nuevo LinearGradientBrush diagonal para main content
+                var mainContentBrush = new LinearGradientBrush
+                {
+                    StartPoint = new Point(0, 0),
+                    EndPoint = new Point(1, 1)
+                };
+                mainContentBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 0));
+                mainContentBrush.GradientStops.Add(new GradientStop(backgroundDark, 1));
+                MainContentGrid.Background = mainContentBrush;
 
-                // Asignar el nuevo brush al sidebar
-                SidebarBorder.Background = newBrush;
-
-                // Forzar actualización visual
+                // Forzar actualización visual de ambos
                 SidebarBorder.InvalidateVisual();
                 SidebarBorder.UpdateLayout();
+                MainContentGrid.InvalidateVisual();
+                MainContentGrid.UpdateLayout();
 
-                // Recorrer todos los elementos hijos para forzar actualización
+                // Recorrer elementos hijos para forzar actualización
                 RefreshVisualTree(SidebarBorder);
+                RefreshVisualTree(MainContentGrid);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al refrescar sidebar: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error al refrescar tema: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
