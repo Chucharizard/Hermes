@@ -78,6 +78,14 @@ namespace Hermes
         }
 
         /// <summary>
+        /// Botón manual para refrescar el sidebar
+        /// </summary>
+        private void RefreshSidebarButton_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshSidebar();
+        }
+
+        /// <summary>
         /// Fuerza la actualización visual del sidebar completo
         /// </summary>
         private void RefreshSidebar()
