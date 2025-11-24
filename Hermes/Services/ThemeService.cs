@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using Hermes.Data;
 
 namespace Hermes.Services
@@ -78,6 +79,9 @@ namespace Hermes.Services
                     stylesDict.MergedDictionaries.Add(newTheme);
                 }
 
+                // Forzar actualización inmediata de todas las ventanas abiertas
+                RefreshAllWindows();
+
                 // Guardar como último tema usado (para LoginWindow)
                 SaveLastUsedTheme(themeName);
 
@@ -87,6 +91,53 @@ namespace Hermes.Services
             {
                 MessageBox.Show($"Error al cambiar tema: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Fuerza la actualización visual de todas las ventanas abiertas
+        /// para que reflejen los cambios de tema inmediatamente
+        /// </summary>
+        private void RefreshAllWindows()
+        {
+            // Iterar sobre todas las ventanas abiertas
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window != null)
+                {
+                    // Forzar actualización del layout visual
+                    window.InvalidateVisual();
+                    window.UpdateLayout();
+
+                    // Refrescar todos los elementos hijos recursivamente
+                    RefreshVisualTree(window);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Refresca recursivamente todos los elementos visuales en el árbol
+        /// </summary>
+        private void RefreshVisualTree(DependencyObject parent)
+        {
+            if (parent == null) return;
+
+            // Contar hijos visuales
+            int childCount = System.Windows.Media.VisualTreeHelper.GetChildrenCount(parent);
+
+            for (int i = 0; i < childCount; i++)
+            {
+                var child = System.Windows.Media.VisualTreeHelper.GetChild(parent, i);
+
+                // Si el hijo es un FrameworkElement, forzar actualización
+                if (child is FrameworkElement element)
+                {
+                    element.InvalidateVisual();
+                    element.UpdateLayout();
+                }
+
+                // Recursión para procesar todos los descendientes
+                RefreshVisualTree(child);
             }
         }
 
