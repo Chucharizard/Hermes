@@ -6,7 +6,7 @@
         Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Background="#0f2424">
+        Background="{DynamicResource BackgroundDarkest}">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="40"
@@ -48,7 +48,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2d5a5a"/>
+                    <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -67,7 +67,7 @@
     </Window.Resources>
 
     <!-- Contenedor principal con bordes redondeados -->
-    <Border Background="#0f2424" CornerRadius="0" BorderBrush="#50c878" BorderThickness="0">
+    <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="0" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="0">
         <Grid TextOptions.TextFormattingMode="Display"
               TextOptions.TextRenderingMode="ClearType"
               UseLayoutRounding="True"
@@ -81,7 +81,7 @@
             <!-- BARRA DE TÍTULO PERSONALIZADA -->
             <!-- ========================================== -->
             <Border Grid.Row="0"
-                    Background="#1a4d4d"
+                    Background="{DynamicResource BackgroundDarkest}"
                     CornerRadius="0"
                     MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"
                     Height="40">
@@ -94,7 +94,7 @@
 
                     <!-- Logo y Título -->
                     <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,0,0,0" VerticalAlignment="Center">
-                        <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,10,0">
+                        <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,10,0">
                             <TextBlock Text="🏢" FontSize="16"/>
                         </Border>
                         <TextBlock Text="HERMES"
@@ -141,7 +141,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#2d5a5a"/>
+                                            <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -174,7 +174,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#2d5a5a"/>
+                                            <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -229,9 +229,9 @@
             <Border Grid.Column="0" Padding="0,20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#1a4d4d" Offset="0"/>
-                        <GradientStop Color="#0f2424" Offset="0.5"/>
-                        <GradientStop Color="#1a4d4d" Offset="1"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0.5"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
@@ -276,8 +276,8 @@
                             BorderThickness="1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#234e52" Offset="0"/>
-                                <GradientStop Color="#1a4d4d" Offset="1"/>
+                                <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="0"/>
+                                <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
                         <Border.Effect>
@@ -303,7 +303,7 @@
                                        Margin="0,0,0,6"/>
                             <TextBlock FontSize="13"
                                        FontWeight="SemiBold"
-                                       Foreground="#50c878"
+                                       Foreground="{DynamicResource PrimaryColor}"
                                        TextAlignment="Center">
                                 <Run Text="("/><Run Text="{Binding RolUsuario, Mode=OneWay}"/><Run Text=")"/>
                             </TextBlock>
@@ -337,7 +337,7 @@
                     </Button>
 
                     <!-- Separador -->
-                    <Separator Margin="10,0,10,15" Background="#2d5a5a" Height="1" Opacity="0.5"/>
+                    <Separator Margin="10,0,10,15" Background="{DynamicResource BackgroundMedium}" Height="1" Opacity="0.5"/>
 
                     <!-- Opciones de administración (solo Broker) -->
                     <Button Command="{Binding MostrarDashboardCommand}"
@@ -414,7 +414,7 @@
                     </Button>
 
                     <!-- Separador para sección de Bandejas (visible solo si hay opciones arriba O si puede enviar tareas) -->
-                    <Separator Margin="10,15" Background="#2d5a5a" Height="1" Opacity="0.5"
+                    <Separator Margin="10,15" Background="{DynamicResource BackgroundMedium}" Height="1" Opacity="0.5"
                                Visibility="{Binding EsAdministrador, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <TextBlock Text="BANDEJAS DE TAREAS"
@@ -514,9 +514,9 @@
                                   Height="35">
                             <ComboBox.Style>
                                 <Style TargetType="ComboBox">
-                                    <Setter Property="Background" Value="#234e52"/>
+                                    <Setter Property="Background" Value="{DynamicResource BackgroundDark}"/>
                                     <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="BorderBrush" Value="#50c878"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Padding" Value="10,5"/>
                                     <Setter Property="Template">
@@ -557,12 +557,12 @@
                                                         </ToggleButton.Template>
                                                         <ToggleButton.Style>
                                                             <Style TargetType="ToggleButton">
-                                                                <Setter Property="Background" Value="#234e52"/>
-                                                                <Setter Property="BorderBrush" Value="#50c878"/>
+                                                                <Setter Property="Background" Value="{DynamicResource BackgroundDark}"/>
+                                                                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                                                                 <Setter Property="BorderThickness" Value="1"/>
                                                                 <Style.Triggers>
                                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Setter Property="Background" Value="#2d5a5a"/>
+                                                                        <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
                                                                     </Trigger>
                                                                 </Style.Triggers>
                                                             </Style>
@@ -593,7 +593,7 @@
                             </ComboBox.Style>
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="ComboBoxItem">
-                                    <Setter Property="Background" Value="#234e52"/>
+                                    <Setter Property="Background" Value="{DynamicResource BackgroundDark}"/>
                                     <Setter Property="Foreground" Value="White"/>
                                     <Setter Property="Padding" Value="10,8"/>
                                     <Setter Property="Template">
@@ -605,10 +605,10 @@
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#2d5a5a"/>
+                                                        <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="True">
-                                                        <Setter Property="Background" Value="#50c878"/>
+                                                        <Setter Property="Background" Value="{DynamicResource PrimaryColor}"/>
                                                         <Setter Property="Foreground" Value="White"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
@@ -628,8 +628,8 @@
             <Grid Grid.Column="1">
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#0f2424" Offset="0"/>
-                        <GradientStop Color="#234e52" Offset="1"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
