@@ -19,52 +19,7 @@
         <viewmodels:MainViewModel/>
     </Window.DataContext>
 
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-
-        <!-- Estilo para botones hamburguesa -->
-        <Style x:Key="HamburgerButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <!-- Estilo adaptable para botones del menú del sidebar -->
-        <Style x:Key="AdaptiveMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="20,0"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="Padding" Value="5,0"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
+    <!-- Los recursos (estilos y converters) se heredan automáticamente de Application.Resources -->
 
     <!-- Contenedor principal con bordes redondeados -->
     <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="0" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="0">

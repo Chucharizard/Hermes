@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using Hermes.ViewModels;
-using Hermes.Services;
 
 namespace Hermes.Views
 {
@@ -15,22 +14,6 @@ namespace Hermes.Views
         public LoginWindow()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Cambia al tema Verde Esmeralda
-        /// </summary>
-        private void EmeraldThemeButton_Click(object sender, RoutedEventArgs e)
-        {
-            ThemeService.Instance.ApplyTheme("Emerald");
-        }
-
-        /// <summary>
-        /// Cambia al tema Morado Azul
-        /// </summary>
-        private void PurpleThemeButton_Click(object sender, RoutedEventArgs e)
-        {
-            ThemeService.Instance.ApplyTheme("Purple");
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
