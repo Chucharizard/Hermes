@@ -160,14 +160,14 @@
                 
                 <!-- Footer con estadisticas (Tema oscuro morado medianoche) -->
                 <Border Grid.Row="2"
-                        Background="#16213e"
-                        BorderBrush="#30FFFFFF"
+                        Background="{DynamicResource BackgroundDark}"
+                        BorderBrush="{DynamicResource PrimaryColor}"
                         BorderThickness="1"
                         Padding="15"
                         Margin="0,15,0,0"
                         CornerRadius="8">
                     <Border.Effect>
-                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                     </Border.Effect>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="📊 Total empleados: "
@@ -199,9 +199,9 @@
         </Grid>
 
         <!-- ===== COLUMNA DERECHA: PANEL DE ACCIÓN ===== -->
-        <Border Grid.Column="2" Background="#1a1a2e" CornerRadius="8" Padding="0">
+        <Border Grid.Column="2" Background="{DynamicResource BackgroundDarkest}" CornerRadius="8" Padding="0">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
 
             <Grid>
@@ -211,7 +211,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Header con botón Volver -->
-                <Border Grid.Row="0" Background="#16213e" Padding="15" CornerRadius="8,8,0,0">
+                <Border Grid.Row="0" Background="{DynamicResource BackgroundDark}" Padding="15" CornerRadius="8,8,0,0">
                     <Grid>
                         <TextBlock Text="Acción"
                                    FontSize="18"
