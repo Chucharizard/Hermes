@@ -428,7 +428,8 @@
                     <!-- Círculo inferior izquierda -->
                     <Ellipse Width="140" Height="140"
                              Canvas.Left="-70" Canvas.Bottom="-70"
-                             Fill="#202e8b57"
+                             Fill="{DynamicResource PrimaryDarkColor}"
+                             Opacity="0.12"
                              RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -495,8 +496,8 @@
                         BorderThickness="1">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#1a4d4d" Offset="0"/>
-                            <GradientStop Color="#234e52" Offset="1"/>
+                            <GradientStop Color="{DynamicResource BackgroundDarkest}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource BackgroundDark}" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
                     <Border.Effect>
@@ -556,19 +557,19 @@
                                Margin="0,0,0,8"/>
 
                     <Border x:Name="CiBorder"
-                            BorderBrush="#2d5a5a"
+                            BorderBrush="{DynamicResource BackgroundMedium}"
                             BorderThickness="2"
                             CornerRadius="10"
-                            Background="#1a4d4d"
+                            Background="{DynamicResource BackgroundDarkest}"
                             Margin="0,0,0,20">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#50c878"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="{DynamicResource PrimaryColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="#50c878"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -601,19 +602,19 @@
                                Margin="0,0,0,8"/>
 
                     <Border x:Name="PasswordBorder"
-                            BorderBrush="#2d5a5a"
+                            BorderBrush="{DynamicResource BackgroundMedium}"
                             BorderThickness="2"
                             CornerRadius="10"
-                            Background="#1a4d4d"
+                            Background="{DynamicResource BackgroundDarkest}"
                             Margin="0,0,0,25">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="#50c878"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0" Color="{DynamicResource PrimaryColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="#50c878"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -729,14 +730,7 @@
                         </Button.RenderTransform>
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="#50c878" Offset="0"/>
-                                            <GradientStop Color="#2e8b57" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="Background" Value="{DynamicResource PrimaryGradient}"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Template">
@@ -745,7 +739,7 @@
                                             <Border Background="{TemplateBinding Background}"
                                                     CornerRadius="12">
                                                 <Border.Effect>
-                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="#50c878"/>
+                                                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColor}"/>
                                                 </Border.Effect>
                                                 <ContentPresenter HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"/>
@@ -785,12 +779,12 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Loading Indicator con nuevo color -->
+                    <!-- Loading Indicator dinámico -->
                     <ProgressBar IsIndeterminate="True"
                                  Height="4"
                                  Margin="0,15,0,0"
-                                 Foreground="#50c878"
-                                 Background="#1a4d4d"
+                                 Foreground="{DynamicResource PrimaryColor}"
+                                 Background="{DynamicResource BackgroundDarkest}"
                                  BorderThickness="0"
                                  Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
