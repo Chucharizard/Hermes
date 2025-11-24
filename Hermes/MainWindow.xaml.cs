@@ -90,19 +90,39 @@ namespace Hermes
         /// </summary>
         private void RefreshSidebar()
         {
-            // Forzar re-evaluación de recursos cambiando el DataContext temporalmente
-            var originalContext = SidebarBorder.DataContext;
-            SidebarBorder.DataContext = null;
+            // RECREAR el LinearGradientBrush del sidebar con los colores actualizados
+            // Este es el único método que funciona cuando DynamicResource no actualiza automáticamente
 
-            // Usar Dispatcher para restaurar el DataContext después de un frame
-            Dispatcher.BeginInvoke(new Action(() =>
+            try
             {
-                SidebarBorder.DataContext = originalContext;
+                // Obtener el color actual del tema
+                var backgroundColor = (Color)Application.Current.FindResource("BackgroundDarkestColor");
 
-                // Forzar actualización completa
+                // Crear nuevo LinearGradientBrush con los colores actualizados
+                var newBrush = new LinearGradientBrush
+                {
+                    StartPoint = new Point(0, 0),
+                    EndPoint = new Point(0, 1)
+                };
+
+                newBrush.GradientStops.Add(new GradientStop(backgroundColor, 0));
+                newBrush.GradientStops.Add(new GradientStop(backgroundColor, 0.5));
+                newBrush.GradientStops.Add(new GradientStop(backgroundColor, 1));
+
+                // Asignar el nuevo brush al sidebar
+                SidebarBorder.Background = newBrush;
+
+                // Forzar actualización visual
                 SidebarBorder.InvalidateVisual();
                 SidebarBorder.UpdateLayout();
-            }), System.Windows.Threading.DispatcherPriority.Render);
+
+                // Recorrer todos los elementos hijos para forzar actualización
+                RefreshVisualTree(SidebarBorder);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al refrescar sidebar: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
