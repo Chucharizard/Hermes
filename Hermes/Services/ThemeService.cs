@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using Hermes.Data;
@@ -12,6 +13,11 @@ namespace Hermes.Services
     {
         private static ThemeService? _instance;
         private static readonly object _lock = new object();
+        private static readonly string _configFilePath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "Hermes",
+            "theme.config"
+        );
 
         // Singleton pattern
         public static ThemeService Instance
@@ -35,6 +41,12 @@ namespace Hermes.Services
         private ThemeService()
         {
             // Constructor privado para patrón singleton
+            // Asegurar que existe el directorio de configuración
+            var directory = Path.GetDirectoryName(_configFilePath);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
         }
 
         /// <summary>
@@ -65,6 +77,9 @@ namespace Hermes.Services
                     // Si no hay tema cargado, agregarlo
                     stylesDict.MergedDictionaries.Add(newTheme);
                 }
+
+                // Guardar como último tema usado (para LoginWindow)
+                SaveLastUsedTheme(themeName);
 
                 return true;
             }
@@ -152,6 +167,47 @@ namespace Hermes.Services
                 MessageBox.Show($"Error al guardar preferencia de tema: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Guarda el último tema usado en un archivo de configuración local
+        /// (Para que LoginWindow pueda cargar el tema de la última sesión)
+        /// </summary>
+        private void SaveLastUsedTheme(string themeName)
+        {
+            try
+            {
+                File.WriteAllText(_configFilePath, themeName);
+            }
+            catch
+            {
+                // Ignorar errores al guardar configuración local
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el último tema usado desde el archivo de configuración local
+        /// </summary>
+        /// <returns>Nombre del último tema usado, o "Emerald" por defecto</returns>
+        public string GetLastUsedTheme()
+        {
+            try
+            {
+                if (File.Exists(_configFilePath))
+                {
+                    var theme = File.ReadAllText(_configFilePath).Trim();
+                    if (!string.IsNullOrEmpty(theme))
+                    {
+                        return theme;
+                    }
+                }
+            }
+            catch
+            {
+                // Si hay error, retornar tema por defecto
+            }
+
+            return "Emerald"; // Tema por defecto
         }
     }
 }

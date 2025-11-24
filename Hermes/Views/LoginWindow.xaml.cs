@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using Hermes.ViewModels;
+using Hermes.Services;
 
 namespace Hermes.Views
 {
@@ -14,6 +15,10 @@ namespace Hermes.Views
         public LoginWindow()
         {
             InitializeComponent();
+
+            // Cargar el último tema usado (de la última sesión)
+            var lastTheme = ThemeService.Instance.GetLastUsedTheme();
+            ThemeService.Instance.ApplyTheme(lastTheme);
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

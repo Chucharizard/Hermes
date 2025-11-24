@@ -486,7 +486,7 @@
                     </Button>
 
                     <!-- Separador para sección de Tema -->
-                    <Separator Margin="10,15" Background="#2d5a5a" Height="1" Opacity="0.5"/>
+                    <Separator Margin="10,15" Background="{DynamicResource BackgroundMedium}" Height="1" Opacity="0.5"/>
 
                     <!-- Selector de Tema -->
                     <StackPanel Margin="10,10,10,15">
@@ -548,7 +548,7 @@
                                                                         <TextBlock Grid.Column="1"
                                                                                  Text="▼"
                                                                                  FontSize="10"
-                                                                                 Foreground="#50c878"
+                                                                                 Foreground="{DynamicResource PrimaryColor}"
                                                                                  VerticalAlignment="Center"
                                                                                  Margin="0,0,10,0"/>
                                                                     </Grid>
@@ -574,8 +574,8 @@
                                                            AllowsTransparency="True"
                                                            Focusable="False"
                                                            PopupAnimation="Slide">
-                                                        <Border Background="#234e52"
-                                                                BorderBrush="#50c878"
+                                                        <Border Background="{DynamicResource BackgroundDark}"
+                                                                BorderBrush="{DynamicResource PrimaryColor}"
                                                                 BorderThickness="1"
                                                                 CornerRadius="6"
                                                                 Margin="0,5,0,0"
