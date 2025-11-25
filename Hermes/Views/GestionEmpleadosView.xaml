@@ -146,11 +146,8 @@
                                                 CommandParameter="{Binding}"
                                                 Style="{StaticResource CompactButtonStyle}"
                                                 Padding="10,5"
-                                                Margin="2">
-                                            <Button.Background>
-                                                <SolidColorBrush Color="#9B59B6"/>
-                                            </Button.Background>
-                                        </Button>
+                                                Margin="2"
+                                                Background="{DynamicResource PrimaryColor}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
