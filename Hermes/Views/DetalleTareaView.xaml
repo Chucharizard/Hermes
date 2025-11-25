@@ -17,9 +17,9 @@
         <!-- ========================================== -->
         <!-- HEADER: Título, Estado, Prioridad, Fechas -->
         <!-- ========================================== -->
-        <Border Grid.Row="0" Padding="20,15" Background="#1a1a2e">
+        <Border Grid.Row="0" Padding="20,15" Background="{DynamicResource BackgroundDarkest}">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
 
             <Grid>
@@ -79,7 +79,7 @@
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal" Margin="0,0,15,0">
                             <TextBlock Text="📅" FontSize="12" Margin="0,0,5,0"/>
-                            <TextBlock Text="Inicio:" FontSize="11" Foreground="#ECF0F1" Margin="0,0,4,0"/>
+                            <TextBlock Text="Inicio:" FontSize="11" Foreground="{DynamicResource TextPrimaryColor}" Margin="0,0,4,0"/>
                             <TextBlock Text="{Binding Tarea.FechaInicioTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                        FontSize="11"
                                        FontWeight="SemiBold"
@@ -87,7 +87,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⏰" FontSize="12" Margin="0,0,5,0"/>
-                            <TextBlock Text="Límite:" FontSize="11" Foreground="#ECF0F1" Margin="0,0,4,0"/>
+                            <TextBlock Text="Límite:" FontSize="11" Foreground="{DynamicResource TextPrimaryColor}" Margin="0,0,4,0"/>
                             <TextBlock Text="{Binding Tarea.FechaLimiteTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                        FontSize="11"
                                        FontWeight="SemiBold"
@@ -113,7 +113,7 @@
             <!-- ========================================== -->
             <!-- COLUMNA 1: COMENTARIOS -->
             <!-- ========================================== -->
-            <Border Grid.Column="0" Background="#16213e" CornerRadius="8" Padding="15">
+            <Border Grid.Column="0" Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="15">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
                 </Border.Effect>
@@ -161,8 +161,8 @@
                         <ItemsControl ItemsSource="{Binding Comentarios}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#1a1a2e"
-                                            BorderBrush="#30FFFFFF"
+                                    <Border Background="{DynamicResource BackgroundDarkest}"
+                                            BorderBrush="{DynamicResource PrimaryColor}"
                                             BorderThickness="0,0,0,1"
                                             CornerRadius="6"
                                             Padding="10"
@@ -188,7 +188,7 @@
                                                 </Border>
 
                                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                    <TextBlock FontWeight="Bold" Foreground="#ECF0F1" FontSize="12">
+                                                    <TextBlock FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" FontSize="12">
                                                         <Run Text="{Binding Usuario.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                                         <Run Text=" "/>
                                                         <Run Text="{Binding Usuario.Empleado.ApellidosEmpleado, Mode=OneWay}"/>
@@ -202,7 +202,7 @@
 
                                             <TextBlock Text="{Binding Comentario}"
                                                        TextWrapping="Wrap"
-                                                       Foreground="#BDC3C7"
+                                                       Foreground="{DynamicResource TextSecondaryColor}"
                                                        FontSize="11"
                                                        LineHeight="16"
                                                        Margin="36,0,0,0"/>
@@ -215,14 +215,14 @@
 
                     <!-- Agregar comentario -->
                     <Border Grid.Row="2"
-                            Background="#1a1a2e"
+                            Background="{DynamicResource BackgroundDarkest}"
                             CornerRadius="6"
                             Padding="10"
                             Margin="0,10,0,0">
                         <StackPanel>
                             <TextBlock Text="✍ Nuevo Comentario"
                                        FontWeight="SemiBold"
-                                       Foreground="#ECF0F1"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        FontSize="11"
                                        Margin="0,0,0,6"/>
                             <TextBox Text="{Binding NuevoComentario, UpdateSourceTrigger=PropertyChanged}"
@@ -276,7 +276,7 @@
             <!-- ========================================== -->
             <!-- COLUMNA 2: ADJUNTOS (Emisor y Receptor) -->
             <!-- ========================================== -->
-            <Border Grid.Column="2" Background="#16213e" CornerRadius="8" Padding="15">
+            <Border Grid.Column="2" Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="15">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
                 </Border.Effect>
@@ -325,7 +325,7 @@
                         <ItemsControl ItemsSource="{Binding AdjuntosEmisor}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#1a1a2e" CornerRadius="5" Padding="8" Margin="0,0,0,6">
+                                    <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="5" Padding="8" Margin="0,0,0,6">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
@@ -337,7 +337,7 @@
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="{Binding NombreArchivo}"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#ECF0F1"
+                                                           Foreground="{DynamicResource TextPrimaryColor}"
                                                            FontSize="10"
                                                            TextTrimming="CharacterEllipsis"
                                                            ToolTip="{Binding NombreArchivo}"/>
@@ -544,7 +544,7 @@
                             <ItemsControl ItemsSource="{Binding AdjuntosReceptor}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="#1a1a2e" CornerRadius="5" Padding="8" Margin="0,0,0,6">
+                                        <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="5" Padding="8" Margin="0,0,0,6">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
@@ -556,7 +556,7 @@
                                                 <StackPanel Grid.Column="1">
                                                     <TextBlock Text="{Binding NombreArchivo}"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#ECF0F1"
+                                                               Foreground="{DynamicResource TextPrimaryColor}"
                                                                FontSize="10"
                                                                TextTrimming="CharacterEllipsis"
                                                                ToolTip="{Binding NombreArchivo}"/>
@@ -647,7 +647,7 @@
             <ScrollViewer Grid.Column="4" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <!-- Descripción de la tarea -->
-                    <Border Background="#16213e" CornerRadius="8" Padding="15" Margin="0,0,0,12">
+                    <Border Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="15" Margin="0,0,0,12">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
                         </Border.Effect>
@@ -666,13 +666,13 @@
                             <TextBlock Text="{Binding Tarea.DescripcionTarea, TargetNullValue='Sin descripción'}"
                                        TextWrapping="Wrap"
                                        FontSize="11"
-                                       Foreground="#BDC3C7"
+                                       Foreground="{DynamicResource TextSecondaryColor}"
                                        LineHeight="17"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Usuario Emisor -->
-                    <Border Background="#16213e" CornerRadius="8" Padding="12" Margin="0,0,0,12">
+                    <Border Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="12" Margin="0,0,0,12">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
                         </Border.Effect>
@@ -704,7 +704,7 @@
                                            Margin="0,0,0,3"/>
                                 <TextBlock FontSize="12"
                                            FontWeight="Bold"
-                                           Foreground="#ECF0F1"
+                                           Foreground="{DynamicResource TextPrimaryColor}"
                                            TextWrapping="Wrap">
                                     <Run Text="{Binding Tarea.UsuarioEmisor.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                     <Run Text=" "/>
@@ -718,7 +718,7 @@
                     </Border>
 
                     <!-- Usuario Receptor -->
-                    <Border Background="#16213e" CornerRadius="8" Padding="12" Margin="0,0,0,12">
+                    <Border Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="12" Margin="0,0,0,12">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
                         </Border.Effect>
@@ -750,7 +750,7 @@
                                            Margin="0,0,0,3"/>
                                 <TextBlock FontSize="12"
                                            FontWeight="Bold"
-                                           Foreground="#ECF0F1"
+                                           Foreground="{DynamicResource TextPrimaryColor}"
                                            TextWrapping="Wrap">
                                     <Run Text="{Binding Tarea.UsuarioReceptor.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                     <Run Text=" "/>
@@ -793,7 +793,7 @@
                     <!-- ========================================== -->
                     <!-- BOTONES DE ACCIÓN -->
                     <!-- ========================================== -->
-                    <Border Background="#16213e" CornerRadius="8" Padding="12">
+                    <Border Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="12">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="12" ShadowDepth="0" Opacity="0.12" Color="#2C3E50"/>
                         </Border.Effect>
@@ -803,7 +803,7 @@
                             <TextBlock Text="⚡ Acciones"
                                        FontSize="11"
                                        FontWeight="Bold"
-                                       Foreground="#ECF0F1"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        Margin="0,0,0,10"/>
 
                             <!-- Completar -->

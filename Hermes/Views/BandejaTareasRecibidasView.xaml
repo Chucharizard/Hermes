@@ -28,7 +28,7 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.2" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.2" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
@@ -71,7 +71,7 @@
             <Setter Property="Margin" Value="0,0,8,0"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -96,7 +96,7 @@
             </Grid.RowDefinitions>
 
             <!-- Header compacto + Estadísticas inline (tema morado medianoche) -->
-        <Border Grid.Row="0" CornerRadius="12" Padding="18,12" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+        <Border Grid.Row="0" CornerRadius="12" Padding="18,12" Margin="0,0,0,15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="#1a1a2e" Offset="0"/>
@@ -104,7 +104,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Border.Effect>
-                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.35" Color="#000000"/>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.35" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -117,7 +117,7 @@
                            Text="📥 Bandeja de Tareas Recibidas (Vista Kanban)"
                            FontSize="17"
                            FontWeight="Bold"
-                           Foreground="#FFFFFF"
+                           Foreground="{DynamicResource TextPrimaryColor}"
                            VerticalAlignment="Center"
                            Margin="0,0,20,0"/>
 
@@ -288,7 +288,7 @@
                                                        Text="{Binding TituloTarea}"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"
-                                                       Foreground="#FFFFFF"
+                                                       Foreground="{DynamicResource TextPrimaryColor}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,0,0,8"/>
 
@@ -320,13 +320,13 @@
 
                                             <!-- Emisor -->
                                             <Border Grid.Row="2"
-                                                    Background="#16213e"
+                                                    Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
                                                 <TextBlock FontSize="10" Foreground="#B0B8C8">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                                         Foreground="#F39C12"
+                                                         Foreground="{DynamicResource WarningColor}"
                                                          FontWeight="SemiBold"/>
                                                 </TextBlock>
                                             </Border>
@@ -396,7 +396,7 @@
                                                        Text="{Binding TituloTarea}"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"
-                                                       Foreground="#FFFFFF"
+                                                       Foreground="{DynamicResource TextPrimaryColor}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,0,0,8"/>
 
@@ -428,13 +428,13 @@
 
                                             <!-- Emisor -->
                                             <Border Grid.Row="2"
-                                                    Background="#16213e"
+                                                    Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
                                                 <TextBlock FontSize="10" Foreground="#B0B8C8">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                                         Foreground="#F39C12"
+                                                         Foreground="{DynamicResource WarningColor}"
                                                          FontWeight="SemiBold"/>
                                                 </TextBlock>
                                             </Border>
@@ -504,7 +504,7 @@
                                                        Text="{Binding TituloTarea}"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"
-                                                       Foreground="#FFFFFF"
+                                                       Foreground="{DynamicResource TextPrimaryColor}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,0,0,8"/>
 
@@ -537,13 +537,13 @@
 
                                             <!-- Emisor -->
                                             <Border Grid.Row="2"
-                                                    Background="#16213e"
+                                                    Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
                                                 <TextBlock FontSize="10" Foreground="#B0B8C8">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                                         Foreground="#F39C12"
+                                                         Foreground="{DynamicResource WarningColor}"
                                                          FontWeight="SemiBold"/>
                                                 </TextBlock>
                                             </Border>
@@ -613,7 +613,7 @@
                                                        Text="{Binding TituloTarea}"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"
-                                                       Foreground="#FFFFFF"
+                                                       Foreground="{DynamicResource TextPrimaryColor}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,0,0,8"/>
 
@@ -645,13 +645,13 @@
 
                                             <!-- Emisor -->
                                             <Border Grid.Row="2"
-                                                    Background="#16213e"
+                                                    Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
                                                 <TextBlock FontSize="10" Foreground="#B0B8C8">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                                         Foreground="#F39C12"
+                                                         Foreground="{DynamicResource WarningColor}"
                                                          FontWeight="SemiBold"/>
                                                 </TextBlock>
                                             </Border>
@@ -678,8 +678,8 @@
 
             <!-- Header con botón Volver -->
             <Border Grid.Row="0"
-                    Background="#1a1a2e"
-                    BorderBrush="#30FFFFFF"
+                    Background="{DynamicResource BackgroundDarkest}"
+                    BorderBrush="{DynamicResource PrimaryColor}"
                     BorderThickness="0,0,0,1"
                     Padding="15,10">
                 <Grid>

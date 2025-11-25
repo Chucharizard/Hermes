@@ -48,7 +48,7 @@
         <!-- Header compacto + Estadísticas inline + Nueva Tarea -->
         <Border Grid.Row="0" Background="#234e52" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -62,7 +62,7 @@
                            Text="🔧 Gestión de Tareas"
                            FontSize="16"
                            FontWeight="Bold"
-                           Foreground="#ECF0F1"
+                           Foreground="{DynamicResource TextPrimaryColor}"
                            VerticalAlignment="Center"
                            Margin="0,0,20,0"/>
 
@@ -144,7 +144,7 @@
         <!-- ========================================== -->
         <Border Grid.Row="1" Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="18" Margin="0,0,0,10">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
@@ -261,7 +261,7 @@
                                     CornerRadius="8"
                                     Cursor="Hand">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                                 </Border.Effect>
                                 <Border.InputBindings>
                                     <MouseBinding Gesture="LeftClick"
@@ -296,7 +296,7 @@
                                     <TextBlock Text="{Binding DiaNumero}"
                                                FontSize="16"
                                                FontWeight="Bold"
-                                               Foreground="#FFFFFF"
+                                               Foreground="{DynamicResource TextPrimaryColor}"
                                                HorizontalAlignment="Center"
                                                Margin="0,0,0,4"/>
 
@@ -329,7 +329,7 @@
             <!-- ========================================== -->
             <Border Grid.Column="0" Background="#234e52" CornerRadius="8" Padding="0">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
 
                 <Grid>
@@ -368,7 +368,7 @@
                                             MouseDown="TareaItem_MouseDown"
                                             Tag="{Binding}">
                                         <Border.Effect>
-                                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                                         </Border.Effect>
                                         <Border.Style>
                                             <Style TargetType="Border">
@@ -396,7 +396,7 @@
                                                         Padding="8,3"
                                                         Margin="0,0,8,0">
                                                     <Border.Effect>
-                                                        <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                                                        <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                                                     </Border.Effect>
                                                     <TextBlock Text="{Binding EstadoTarea}"
                                                                FontSize="10"
@@ -409,7 +409,7 @@
                                                         Padding="8,3"
                                                         Margin="0,0,8,0">
                                                     <Border.Effect>
-                                                        <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+                                                        <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                                                     </Border.Effect>
                                                     <TextBlock Text="{Binding PrioridadTarea}"
                                                                FontSize="10"
@@ -433,7 +433,7 @@
                                                        Text="{Binding TituloTarea}"
                                                        FontSize="14"
                                                        FontWeight="Bold"
-                                                       Foreground="#FFFFFF"
+                                                       Foreground="{DynamicResource TextPrimaryColor}"
                                                        TextTrimming="CharacterEllipsis"
                                                        Margin="0,0,0,8"/>
 
@@ -541,7 +541,7 @@
             <!-- ========================================== -->
             <Border Grid.Column="2" Background="#234e52" CornerRadius="8">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
 
                 <Grid>
@@ -563,11 +563,11 @@
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,15"
                                    Opacity="0.3"
-                                   Foreground="#ECF0F1"/>
+                                   Foreground="{DynamicResource TextPrimaryColor}"/>
                         <TextBlock Text="Selecciona una tarea"
                                    FontSize="18"
                                    FontWeight="SemiBold"
-                                   Foreground="#BDC3C7"
+                                   Foreground="{DynamicResource TextSecondaryColor}"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,5"/>
                         <TextBlock Text="para editarla y gestionarla"
@@ -593,7 +593,7 @@
                             <!-- Header compacto y profesional -->
                             <Border Background="#1a4d4d" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="{DynamicResource BackgroundDarkestColor}"/>
                                 </Border.Effect>
                                 <Grid>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -604,7 +604,7 @@
                                             <TextBlock Text="Editar Tarea"
                                                        FontSize="16"
                                                        FontWeight="Bold"
-                                                       Foreground="#ECF0F1"/>
+                                                       Foreground="{DynamicResource TextPrimaryColor}"/>
                                             <TextBlock Text="Modifica los detalles de la tarea"
                                                        FontSize="10"
                                                        Foreground="#95A5A6"
@@ -653,7 +653,7 @@
                                 <StackPanel>
                                     <!-- Header de sección -->
                                     <Border Background="#50c878" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
-                                        <TextBlock Text="📝 INFORMACIÓN BÁSICA" FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="📝 INFORMACIÓN BÁSICA" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
 
                                     <!-- Título -->
@@ -694,7 +694,7 @@
                                 <StackPanel>
                                     <!-- Header de sección -->
                                     <Border Background="#50c878" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
-                                        <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
 
                                     <Grid>
@@ -746,9 +746,9 @@
                             </Border>
 
                             <!-- Sección: Cronología -->
-                            <Border Background="#1a4d4d" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="#1a4d4d" BorderBrush="{DynamicResource SuccessColor}" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#1ABC9C"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->

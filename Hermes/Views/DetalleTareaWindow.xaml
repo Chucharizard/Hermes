@@ -41,7 +41,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Border.Effect>
-                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
 
             <Grid>
@@ -55,7 +55,7 @@
                            Text="{Binding Tarea.TituloTarea}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Foreground="#FFFFFF"
+                           Foreground="{DynamicResource TextPrimaryColor}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,15"/>
 
@@ -92,7 +92,7 @@
                             Padding="12,6"
                             Margin="0,0,15,0">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                         </Border.Effect>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⚡" FontSize="12" Margin="0,0,6,0"/>
@@ -111,7 +111,7 @@
                             <TextBlock Text="{Binding Tarea.FechaInicioTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                        FontSize="13"
                                        FontWeight="SemiBold"
-                                       Foreground="#FFFFFF"/>
+                                       Foreground="{DynamicResource TextPrimaryColor}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⏰" FontSize="14" Margin="0,0,6,0"/>
@@ -119,7 +119,7 @@
                             <TextBlock Text="{Binding Tarea.FechaLimiteTarea, StringFormat=dd/MM/yyyy HH:mm}"
                                        FontSize="13"
                                        FontWeight="SemiBold"
-                                       Foreground="#FFFFFF"/>
+                                       Foreground="{DynamicResource TextPrimaryColor}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -149,7 +149,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
 
                 <Grid>
@@ -201,7 +201,7 @@
                                     <Border CornerRadius="8"
                                             Padding="12"
                                             Margin="0,0,0,10"
-                                            BorderBrush="#30FFFFFF"
+                                            BorderBrush="{DynamicResource PrimaryColor}"
                                             BorderThickness="1">
                                         <Border.Background>
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -230,7 +230,7 @@
                                                 </Border>
 
                                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                    <TextBlock FontWeight="Bold" Foreground="#FFFFFF" FontSize="13">
+                                                    <TextBlock FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" FontSize="13">
                                                         <Run Text="{Binding Usuario.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                                         <Run Text=" "/>
                                                         <Run Text="{Binding Usuario.Empleado.ApellidosEmpleado, Mode=OneWay}"/>
@@ -261,12 +261,12 @@
                             CornerRadius="8"
                             Padding="12"
                             Margin="0,15,0,0"
-                            BorderBrush="#30FFFFFF"
+                            BorderBrush="{DynamicResource PrimaryColor}"
                             BorderThickness="1">
                         <StackPanel>
                             <TextBlock Text="✍ Nuevo Comentario"
                                        FontWeight="SemiBold"
-                                       Foreground="#FFFFFF"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        FontSize="13"
                                        Margin="0,0,0,8"/>
                             <TextBox Text="{Binding NuevoComentario, UpdateSourceTrigger=PropertyChanged}"
@@ -278,7 +278,7 @@
                                      BorderBrush="#50FFFFFF"
                                      BorderThickness="1"
                                      Background="#1e2538"
-                                     Foreground="#FFFFFF"
+                                     Foreground="{DynamicResource TextPrimaryColor}"
                                      CaretBrush="#FFFFFF"
                                      VerticalScrollBarVisibility="Auto"/>
                             <Button Content="📤 Enviar"
@@ -333,7 +333,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
 
                 <Grid>
@@ -383,7 +383,7 @@
                         <ItemsControl ItemsSource="{Binding AdjuntosEmisor}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#252d42" CornerRadius="6" Padding="10" Margin="0,0,0,8" BorderBrush="#30FFFFFF" BorderThickness="1">
+                                    <Border Background="#252d42" CornerRadius="6" Padding="10" Margin="0,0,0,8" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
@@ -395,7 +395,7 @@
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="{Binding NombreArchivo}"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#FFFFFF"
+                                                           Foreground="{DynamicResource TextPrimaryColor}"
                                                            FontSize="11"
                                                            TextTrimming="CharacterEllipsis"
                                                            ToolTip="{Binding NombreArchivo}"/>
@@ -570,7 +570,7 @@
                             <ItemsControl ItemsSource="{Binding AdjuntosReceptor}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="#252d42" CornerRadius="6" Padding="10" Margin="0,0,0,8" BorderBrush="#30FFFFFF" BorderThickness="1">
+                                        <Border Background="#252d42" CornerRadius="6" Padding="10" Margin="0,0,0,8" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
@@ -582,7 +582,7 @@
                                                 <StackPanel Grid.Column="1">
                                                     <TextBlock Text="{Binding NombreArchivo}"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#FFFFFF"
+                                                               Foreground="{DynamicResource TextPrimaryColor}"
                                                                FontSize="11"
                                                                TextTrimming="CharacterEllipsis"
                                                                ToolTip="{Binding NombreArchivo}"/>
@@ -672,7 +672,7 @@
             <ScrollViewer Grid.Column="4" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <!-- Descripción de la tarea -->
-                    <Border CornerRadius="12" Padding="20" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+                    <Border CornerRadius="12" Padding="20" Margin="0,0,0,15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#1a1a2e" Offset="0"/>
@@ -680,7 +680,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
 
                         <StackPanel>
@@ -689,7 +689,7 @@
                                     Padding="12,8"
                                     Margin="0,0,0,12">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#1ABC9C"/>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                 </Border.Effect>
                                 <TextBlock Text="📝 Descripción"
                                            FontSize="14"
@@ -706,7 +706,7 @@
                     </Border>
 
                     <!-- Usuario Emisor -->
-                    <Border CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+                    <Border CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#1a1a2e" Offset="0"/>
@@ -714,7 +714,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
 
                         <Grid>
@@ -747,7 +747,7 @@
                                            Margin="0,0,0,4"/>
                                 <TextBlock FontSize="14"
                                            FontWeight="Bold"
-                                           Foreground="#FFFFFF"
+                                           Foreground="{DynamicResource TextPrimaryColor}"
                                            TextWrapping="Wrap">
                                     <Run Text="{Binding Tarea.UsuarioEmisor.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                     <Run Text=" "/>
@@ -761,7 +761,7 @@
                     </Border>
 
                     <!-- Usuario Receptor -->
-                    <Border CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderBrush="#30FFFFFF" BorderThickness="1">
+                    <Border CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#1a1a2e" Offset="0"/>
@@ -769,7 +769,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
 
                         <Grid>
@@ -802,7 +802,7 @@
                                            Margin="0,0,0,4"/>
                                 <TextBlock FontSize="14"
                                            FontWeight="Bold"
-                                           Foreground="#FFFFFF"
+                                           Foreground="{DynamicResource TextPrimaryColor}"
                                            TextWrapping="Wrap">
                                     <Run Text="{Binding Tarea.UsuarioReceptor.Empleado.NombresEmpleado, Mode=OneWay}"/>
                                     <Run Text=" "/>
@@ -823,7 +823,7 @@
                             Padding="15"
                             Visibility="{Binding PuedeReasignar, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
 
                         <StackPanel>
@@ -838,7 +838,7 @@
                                       Padding="8"
                                       FontSize="12"
                                       Background="#252d42"
-                                      Foreground="#FFFFFF"
+                                      Foreground="{DynamicResource TextPrimaryColor}"
                                       BorderBrush="#50FFFFFF"/>
                         </StackPanel>
                     </Border>
@@ -849,7 +849,7 @@
         <!-- ========================================== -->
         <!-- FOOTER: Botones de acción -->
         <!-- ========================================== -->
-        <Border Grid.Row="2" BorderBrush="#30FFFFFF" BorderThickness="0,1,0,0" Padding="20" CornerRadius="15,15,0,0">
+        <Border Grid.Row="2" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="0,1,0,0" Padding="20" CornerRadius="15,15,0,0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="#1a1a2e" Offset="0"/>
@@ -910,7 +910,7 @@
                                     <ControlTemplate TargetType="Button">
                                         <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
                                             <Border.Effect>
-                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                             </Border.Effect>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
