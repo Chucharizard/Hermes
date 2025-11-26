@@ -311,7 +311,7 @@
                                 Padding="20,15"
                                 Background="#15FFFFFF">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                             </Border.Effect>
                             <StackPanel>
                                 <TextBlock Foreground="White"
@@ -484,7 +484,7 @@
                         Panel.ZIndex="5"
                         Opacity="0"
                         RenderTransformOrigin="0.5,0.5"
-                        BorderBrush="#30FFFFFF"
+                        BorderBrush="{DynamicResource PrimaryColor}"
                         BorderThickness="1">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -493,7 +493,7 @@
                         </LinearGradientBrush>
                     </Border.Background>
                     <Border.Effect>
-                        <DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.5" Color="#000000"/>
+                        <DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.5" Color="{DynamicResource BackgroundDarkestColor}"/>
                     </Border.Effect>
                     <Border.RenderTransform>
                         <TranslateTransform Y="20"/>
@@ -533,7 +533,7 @@
                     <TextBlock Text="Bienvenido"
                                FontSize="36"
                                FontWeight="Bold"
-                               Foreground="#FFFFFF"
+                               Foreground="{DynamicResource TextPrimaryColor}"
                                Margin="0,0,0,10"/>
 
                     <TextBlock Text="Inicia sesión para continuar"
@@ -569,7 +569,7 @@
                         <Grid>
                             <TextBlock Text="👤"
                                        FontSize="18"
-                                       Foreground="#778da9"
+                                       Foreground="{DynamicResource TextMutedColor}"
                                        VerticalAlignment="Center"
                                        Margin="15,0,0,0"/>
                             <TextBox x:Name="CiTextBox"
@@ -579,7 +579,7 @@
                                      Padding="45,10,15,10"
                                      Background="Transparent"
                                      BorderThickness="0"
-                                     Foreground="#FFFFFF"
+                                     Foreground="{DynamicResource TextPrimaryColor}"
                                      VerticalContentAlignment="Center"
                                      GotFocus="Input_GotFocus"
                                      LostFocus="Input_LostFocus"/>
@@ -614,7 +614,7 @@
                         <Grid>
                             <TextBlock Text="🔒"
                                        FontSize="18"
-                                       Foreground="#778da9"
+                                       Foreground="{DynamicResource TextMutedColor}"
                                        VerticalAlignment="Center"
                                        Margin="15,0,0,0"/>
                             <PasswordBox x:Name="PasswordBox"
@@ -623,7 +623,7 @@
                                          Padding="45,10,15,10"
                                          Background="Transparent"
                                          BorderThickness="0"
-                                         Foreground="#FFFFFF"
+                                         Foreground="{DynamicResource TextPrimaryColor}"
                                          VerticalContentAlignment="Center"
                                          PasswordChanged="PasswordBox_PasswordChanged"
                                          GotFocus="Input_GotFocus"

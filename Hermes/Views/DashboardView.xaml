@@ -26,7 +26,7 @@
         <!-- Header compacto y profesional -->
         <Border Grid.Row="0" Background="{DynamicResource BackgroundDarkest}" CornerRadius="10" Padding="15" Margin="0,0,0,15">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -44,7 +44,7 @@
                         <TextBlock Text="Dashboard"
                                    FontSize="18"
                                    FontWeight="Bold"
-                                   Foreground="#FFFFFF"/>
+                                   Foreground="{DynamicResource TextPrimaryColor}"/>
                         <TextBlock Text="Estadísticas generales del sistema"
                                    FontSize="11"
                                    Foreground="#95A5A6"
@@ -119,7 +119,7 @@
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Total">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -172,7 +172,7 @@
                             <TextBlock Text="{Binding TotalTareas}"
                                        FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="#FFFFFF"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Total Tareas"
                                        FontSize="12"
@@ -194,7 +194,7 @@
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Pendiente">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -247,7 +247,7 @@
                             <TextBlock Text="{Binding TareasPendientes}"
                                        FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="#FFFFFF"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Pendientes"
                                        FontSize="12"
@@ -269,7 +269,7 @@
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Completado">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -322,7 +322,7 @@
                             <TextBlock Text="{Binding TareasCompletadas}"
                                        FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="#FFFFFF"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Completadas"
                                        FontSize="12"
@@ -344,7 +344,7 @@
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Vencido">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -397,7 +397,7 @@
                             <TextBlock Text="{Binding TareasVencidas}"
                                        FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="#FFFFFF"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Vencidas"
                                        FontSize="12"
@@ -419,7 +419,7 @@
                             MouseLeftButtonDown="StatsCard_MouseLeftButtonDown"
                             Tag="Observado">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
@@ -472,7 +472,7 @@
                             <TextBlock Text="{Binding TareasObservadas}"
                                        FontSize="36"
                                        FontWeight="Bold"
-                                       Foreground="#FFFFFF"
+                                       Foreground="{DynamicResource TextPrimaryColor}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Observadas"
                                        FontSize="12"
@@ -495,7 +495,7 @@
                     <!-- Top 3 Usuarios -->
                     <Border Grid.Column="0" Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="15" Margin="0,0,8,0">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <StackPanel>
                             <!-- Header -->
@@ -503,7 +503,7 @@
                                 <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                     <TextBlock Text="👥" FontSize="14"/>
                                 </Border>
-                                <TextBlock Text="Top 3 Usuarios" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                                <TextBlock Text="Top 3 Usuarios" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <!-- Usuario 1 -->
@@ -516,16 +516,16 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border Grid.Column="0" Width="30" Height="30" CornerRadius="15" Background="{DynamicResource PrimaryColor}" Margin="0,0,10,0">
-                                        <TextBlock Text="1" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Top3Usuarios[0].NombreUsuario, FallbackValue='Usuario 1'}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding Top3Usuarios[0].NombreUsuario, FallbackValue='Usuario 1'}" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                         <TextBlock Text="Tareas completadas" FontSize="9" Foreground="#95A5A6"/>
                                     </StackPanel>
 
                                     <Border Grid.Column="2" Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="8,4">
-                                        <TextBlock Text="{Binding Top3Usuarios[0].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding Top3Usuarios[0].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
                                 </Grid>
                             </Border>
@@ -540,16 +540,16 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border Grid.Column="0" Width="30" Height="30" CornerRadius="15" Background="{DynamicResource PrimaryColor}" Margin="0,0,10,0">
-                                        <TextBlock Text="2" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Top3Usuarios[1].NombreUsuario, FallbackValue='Usuario 2'}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding Top3Usuarios[1].NombreUsuario, FallbackValue='Usuario 2'}" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                         <TextBlock Text="Tareas completadas" FontSize="9" Foreground="#95A5A6"/>
                                     </StackPanel>
 
                                     <Border Grid.Column="2" Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="8,4">
-                                        <TextBlock Text="{Binding Top3Usuarios[1].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding Top3Usuarios[1].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
                                 </Grid>
                             </Border>
@@ -564,16 +564,16 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border Grid.Column="0" Width="30" Height="30" CornerRadius="15" Background="#cd7f32" Margin="0,0,10,0">
-                                        <TextBlock Text="3" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Top3Usuarios[2].NombreUsuario, FallbackValue='Usuario 3'}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding Top3Usuarios[2].NombreUsuario, FallbackValue='Usuario 3'}" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                         <TextBlock Text="Tareas completadas" FontSize="9" Foreground="#95A5A6"/>
                                     </StackPanel>
 
                                     <Border Grid.Column="2" Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="8,4">
-                                        <TextBlock Text="{Binding Top3Usuarios[2].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding Top3Usuarios[2].TareasCompletadas, FallbackValue='0'}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
                                 </Grid>
                             </Border>
@@ -583,7 +583,7 @@
                     <!-- Indicadores de progreso -->
                     <Border Grid.Column="1" Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="15" Margin="4,0,4,0">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <StackPanel>
                             <!-- Header -->
@@ -591,7 +591,7 @@
                                 <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                     <TextBlock Text="📊" FontSize="14"/>
                                 </Border>
-                                <TextBlock Text="Indicadores de progreso" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                                <TextBlock Text="Indicadores de progreso" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <!-- Tasa de Completado -->
@@ -662,7 +662,7 @@
                     <!-- Mini estadísticas -->
                     <Border Grid.Column="2" Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="15" Margin="8,0,0,0">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <StackPanel>
                             <!-- Header -->
@@ -670,7 +670,7 @@
                                 <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                     <TextBlock Text="📈" FontSize="14"/>
                                 </Border>
-                                <TextBlock Text="Mini estadísticas" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                                <TextBlock Text="Mini estadísticas" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <!-- Tiempo promedio de completado -->
@@ -686,7 +686,7 @@
                                     </Border>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding TiempoPromedioCompletado, StringFormat={}{0:0.0} días, FallbackValue='0 días'}" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding TiempoPromedioCompletado, StringFormat={}{0:0.0} días, FallbackValue='0 días'}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                         <TextBlock Text="Tiempo promedio" FontSize="9" Foreground="#95A5A6"/>
                                     </StackPanel>
                                 </Grid>
@@ -705,7 +705,7 @@
                                     </Border>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding TareasPorUsuario, StringFormat={}{0:0.0}, FallbackValue='0'}" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding TareasPorUsuario, StringFormat={}{0:0.0}, FallbackValue='0'}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                         <TextBlock Text="Tareas por usuario" FontSize="9" Foreground="#95A5A6"/>
                                     </StackPanel>
                                 </Grid>
@@ -724,7 +724,7 @@
                                     </Border>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding ProductividadSemanal, StringFormat={}{0:0.0}, FallbackValue='0'}" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                        <TextBlock Text="{Binding ProductividadSemanal, StringFormat={}{0:0.0}, FallbackValue='0'}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                         <TextBlock Text="Tareas/semana" FontSize="9" Foreground="#95A5A6"/>
                                     </StackPanel>
                                 </Grid>
@@ -743,7 +743,7 @@
                     <!-- Tareas Urgentes -->
                     <Border Grid.Column="0" Background="{DynamicResource BackgroundDarkest}" BorderBrush="#c45c4d" BorderThickness="2" CornerRadius="10" Padding="15" Margin="0,0,8,0">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <StackPanel>
                             <!-- Header compacto -->
@@ -751,9 +751,9 @@
                                 <Border Background="#c45c4d" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                     <TextBlock Text="🔥" FontSize="14"/>
                                 </Border>
-                                <TextBlock Text="Tareas Urgentes" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                                <TextBlock Text="Tareas Urgentes" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" VerticalAlignment="Center"/>
                                 <Border Background="#c45c4d" CornerRadius="4" Padding="6,2" Margin="8,0,0,0">
-                                    <TextBlock Text="{Binding TareasUrgentes.Count}" FontSize="11" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    <TextBlock Text="{Binding TareasUrgentes.Count}" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                 </Border>
                             </StackPanel>
 
@@ -780,7 +780,7 @@
                                                            Text="{Binding TituloTarea}"
                                                            FontSize="12"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#FFFFFF"
+                                                           Foreground="{DynamicResource TextPrimaryColor}"
                                                            TextTrimming="CharacterEllipsis"/>
 
                                                 <!-- Estado y Prioridad -->
@@ -809,7 +809,7 @@
                                                     <TextBlock Text="⏰" FontSize="10" Margin="0,0,4,0"/>
                                                     <TextBlock Text="{Binding FechaLimiteTarea, StringFormat=dd/MM/yyyy}"
                                                                FontSize="10"
-                                                               Foreground="#c45c4d"
+                                                               Foreground="{DynamicResource TextDangerColor}"
                                                                FontWeight="SemiBold"/>
                                                 </StackPanel>
                                             </Grid>
@@ -823,7 +823,7 @@
                     <!-- Actividad Reciente -->
                     <Border Grid.Column="1" Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="15" Margin="8,0,0,0">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <StackPanel>
                             <!-- Header compacto -->
@@ -831,9 +831,9 @@
                                 <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                     <TextBlock Text="📌" FontSize="14"/>
                                 </Border>
-                                <TextBlock Text="Actividad Reciente" FontSize="14" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                                <TextBlock Text="Actividad Reciente" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}" VerticalAlignment="Center"/>
                                 <Border Background="{DynamicResource PrimaryColor}" CornerRadius="4" Padding="6,2" Margin="8,0,0,0">
-                                    <TextBlock Text="{Binding ActividadReciente.Count}" FontSize="11" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    <TextBlock Text="{Binding ActividadReciente.Count}" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                 </Border>
                             </StackPanel>
 
@@ -860,7 +860,7 @@
                                                            Text="{Binding TituloTarea}"
                                                            FontSize="12"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#FFFFFF"
+                                                           Foreground="{DynamicResource TextPrimaryColor}"
                                                            TextTrimming="CharacterEllipsis"/>
 
                                                 <!-- Estado -->
@@ -928,7 +928,7 @@
                                 <Run Text="Formatos profesionales con colores y bordes"/>
                             </TextBlock>
                             <TextBlock FontSize="14" Foreground="#34495E" Margin="0,5">
-                                <Run Text="✓ " FontWeight="Bold" Foreground="#cd7f32"/>
+                                <Run Text="✓ " FontWeight="Bold" Foreground="{DynamicResource WarningColor}"/>
                                 <Run Text="Métricas de rendimiento con evaluación automática"/>
                             </TextBlock>
                         </StackPanel>
