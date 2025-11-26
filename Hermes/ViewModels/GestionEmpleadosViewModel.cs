@@ -100,7 +100,7 @@ namespace Hermes.ViewModels
 
             ViewModelAccion = AccionActual switch
             {
-                "Nuevo" => new NuevoEmpleadoViewModel(),
+                "Nuevo" => new NuevoEmpleadoViewModel(Volver),
                 "Editar" when EmpleadoEnAccion != null => new EditarEmpleadoViewModel(EmpleadoEnAccion),
                 "Usuario" when EmpleadoEnAccion != null => new GestionarUsuarioViewModel(EmpleadoEnAccion),
                 "VerDetalle" when EmpleadoEnAccion != null => new VerDetalleEmpleadoViewModel(EmpleadoEnAccion),

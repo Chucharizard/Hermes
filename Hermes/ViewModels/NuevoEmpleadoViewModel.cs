@@ -10,6 +10,7 @@ namespace Hermes.ViewModels
     public class NuevoEmpleadoViewModel : BaseViewModel
     {
         private readonly EmpleadoService _empleadoService;
+        private readonly Action? _onSaveCompleted;
         private Empleado _empleado = new();
         private string _mensajeError = string.Empty;
 
@@ -26,18 +27,17 @@ namespace Hermes.ViewModels
         }
 
         public ICommand GuardarCommand { get; }
-        public ICommand CancelarCommand { get; }
 
-        public NuevoEmpleadoViewModel()
+        public NuevoEmpleadoViewModel(Action? onSaveCompleted = null)
         {
             _empleadoService = new EmpleadoService();
+            _onSaveCompleted = onSaveCompleted;
             Empleado = new Empleado
             {
                 EsActivoEmpleado = true
             };
 
             GuardarCommand = new RelayCommand(async _ => await GuardarAsync());
-            CancelarCommand = new RelayCommand(_ => Cancelar());
         }
 
         private async Task GuardarAsync()
@@ -81,17 +81,13 @@ namespace Hermes.ViewModels
                               MessageBoxButton.OK,
                               MessageBoxImage.Information);
 
-                Application.Current.Windows.OfType<Views.NuevoEmpleadoWindow>().FirstOrDefault()?.Close();
+                // Notificar al padre que la operación se completó (cerrar panel y recargar lista)
+                _onSaveCompleted?.Invoke();
             }
             else
             {
                 MensajeError = "Error al guardar el empleado";
             }
-        }
-
-        private void Cancelar()
-        {
-            Application.Current.Windows.OfType<Views.NuevoEmpleadoWindow>().FirstOrDefault()?.Close();
         }
     }
 }
