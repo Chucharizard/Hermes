@@ -10,7 +10,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <!-- Header con icono grande -->
-            <Border Background="#16213e" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+            <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="8" Padding="20" Margin="0,0,0,20">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
                 </Border.Effect>
@@ -19,18 +19,18 @@
                     <TextBlock Text="Gestionar Usuario"
                                FontSize="20"
                                FontWeight="Bold"
-                               Foreground="#ECF0F1"
+                               Foreground="{DynamicResource TextPrimaryColor}"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Configura el acceso al sistema del empleado"
                                FontSize="11"
-                               Foreground="#BDC3C7"
+                               Foreground="{DynamicResource TextMutedColor}"
                                HorizontalAlignment="Center"
                                Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
             <!-- Info del Empleado -->
-            <Border Background="#9B59B6" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource PrimaryColor}" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="6" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
                 </Border.Effect>
@@ -44,58 +44,58 @@
                                    VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                        <TextBlock Text="CI: " FontSize="12" Foreground="#ECF0F1" Opacity="0.9"/>
-                        <TextBlock Text="{Binding Empleado.CiEmpleado}" FontSize="12" Foreground="#ECF0F1" Opacity="0.9"/>
+                        <TextBlock Text="CI: " FontSize="12" Foreground="{DynamicResource TextPrimaryColor}" Opacity="0.9"/>
+                        <TextBlock Text="{Binding Empleado.CiEmpleado}" FontSize="12" Foreground="{DynamicResource TextPrimaryColor}" Opacity="0.9"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
 
             <!-- Sección: Credenciales -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <StackPanel>
-                    <TextBlock Text="🔐 CREDENCIALES DE ACCESO" FontSize="12" FontWeight="Bold" Foreground="#9B59B6" Margin="0,0,0,15"/>
+                    <TextBlock Text="🔐 CREDENCIALES DE ACCESO" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,15"/>
 
                     <!-- Nombre de Usuario -->
-                    <TextBlock Text="👤 Nombre de Usuario:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="👤 Nombre de Usuario:" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Usuario.NombreUsuario, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource ModernTextBoxStyle}"
                              Margin="0,0,0,12"/>
 
                     <!-- Contraseña -->
-                    <TextBlock Text="🔑 Contraseña:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="🔑 Contraseña:" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,5"/>
                     <PasswordBox x:Name="PasswordBox"
                                  Height="35"
                                  FontSize="13"
                                  Padding="10,8"
                                  Margin="0,0,0,12"
                                  PasswordChanged="PasswordBox_PasswordChanged"
-                                 Background="#0a0a15"
-                                 Foreground="#ECF0F1"
+                                 Background="{DynamicResource BackgroundDarkest}"
+                                 Foreground="{DynamicResource TextPrimaryColor}"
                                  BorderBrush="#30FFFFFF"
                                  BorderThickness="1"/>
 
                     <!-- Confirmar Contraseña -->
-                    <TextBlock Text="🔒 Confirmar Contraseña:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="🔒 Confirmar Contraseña:" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,5"/>
                     <PasswordBox x:Name="ConfirmPasswordBox"
                                  Height="35"
                                  FontSize="13"
                                  Padding="10,8"
                                  Margin="0,0,0,0"
                                  PasswordChanged="ConfirmPasswordBox_PasswordChanged"
-                                 Background="#0a0a15"
-                                 Foreground="#ECF0F1"
+                                 Background="{DynamicResource BackgroundDarkest}"
+                                 Foreground="{DynamicResource TextPrimaryColor}"
                                  BorderBrush="#30FFFFFF"
                                  BorderThickness="1"/>
                 </StackPanel>
             </Border>
 
             <!-- Sección: Permisos -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <StackPanel>
-                    <TextBlock Text="🛡 PERMISOS Y ROL" FontSize="12" FontWeight="Bold" Foreground="#E67E22" Margin="0,0,0,15"/>
+                    <TextBlock Text="🛡 PERMISOS Y ROL" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource WarningColor}" Margin="0,0,0,15"/>
 
                     <!-- Rol -->
-                    <TextBlock Text="⚡ Rol del Usuario:" FontSize="11" Foreground="#BDC3C7" Margin="0,0,0,5"/>
+                    <TextBlock Text="⚡ Rol del Usuario:" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,5"/>
                     <ComboBox ItemsSource="{Binding Roles}"
                               SelectedItem="{Binding RolSeleccionado}"
                               DisplayMemberPath="NombreRol"
@@ -105,23 +105,23 @@
             </Border>
 
             <!-- Sección: Estado -->
-            <Border Background="#16213e" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="#30FFFFFF" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                 <StackPanel>
-                    <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="#F39C12" Margin="0,0,0,15"/>
+                    <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource WarningColor}" Margin="0,0,0,15"/>
 
-                    <Border Background="#1a1a2e" CornerRadius="6" Padding="12">
+                    <Border Background="{DynamicResource BackgroundDark}" CornerRadius="6" Padding="12">
                         <CheckBox Content="✅ Usuario Activo"
                                   IsChecked="{Binding Usuario.EsActivoUsuario}"
                                   FontSize="12"
                                   FontWeight="SemiBold"
-                                  Foreground="#ECF0F1"/>
+                                  Foreground="{DynamicResource TextPrimaryColor}"/>
                     </Border>
                 </StackPanel>
             </Border>
 
             <!-- Mensaje de Error -->
             <Border Background="#3a1f1f"
-                    BorderBrush="#E74C3C"
+                    BorderBrush="{DynamicResource DangerColor}"
                     BorderThickness="2"
                     CornerRadius="6"
                     Padding="12"
@@ -131,9 +131,9 @@
                     <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#E74C3C"/>
                 </Border.Effect>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="⚠" FontSize="16" Foreground="#E74C3C" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="⚠" FontSize="16" Foreground="{DynamicResource TextDangerColor}" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding MensajeError}"
-                               Foreground="#E74C3C"
+                               Foreground="{DynamicResource TextDangerColor}"
                                FontSize="11"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"/>
@@ -142,7 +142,7 @@
 
             <!-- Mensaje de Éxito -->
             <Border Background="#1f3a1f"
-                    BorderBrush="#1ABC9C"
+                    BorderBrush="{DynamicResource SuccessColor}"
                     BorderThickness="2"
                     CornerRadius="6"
                     Padding="12"
@@ -152,9 +152,9 @@
                     <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="#1ABC9C"/>
                 </Border.Effect>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="✓" FontSize="16" Foreground="#1ABC9C" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="✓" FontSize="16" Foreground="{DynamicResource TextSuccessColor}" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding MensajeExito}"
-                               Foreground="#1ABC9C"
+                               Foreground="{DynamicResource TextSuccessColor}"
                                FontSize="11"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"/>
@@ -180,7 +180,7 @@
                 <Button Grid.Column="2"
                         Content="{Binding TextoBotonGuardar}"
                         Command="{Binding GuardarUsuarioCommand}"
-                        Background="#9B59B6"
+                        Background="{DynamicResource PrimaryColor}"
                         Foreground="White"
                         BorderThickness="0"
                         Padding="0,12"
