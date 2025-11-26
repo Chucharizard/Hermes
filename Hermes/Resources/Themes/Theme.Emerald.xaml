@@ -12,6 +12,10 @@
     <Color x:Key="BackgroundMediumColor">#2d5a5a</Color>
     <Color x:Key="PrimaryColorValue">#50c878</Color>
     <Color x:Key="PrimaryDarkColorValue">#2e8b57</Color>
+    <Color x:Key="SuccessColorValue">#50c878</Color>
+    <Color x:Key="InfoColorValue">#50c878</Color>
+    <Color x:Key="WarningColorValue">#cd7f32</Color>
+    <Color x:Key="DangerColorValue">#c45c4d</Color>
 
     <!-- Fondos Oscuros (Verde Petróleo) -->
     <SolidColorBrush x:Key="BackgroundDarkest" Color="{StaticResource BackgroundDarkestColor}"/>

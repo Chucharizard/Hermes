@@ -12,6 +12,10 @@
     <Color x:Key="BackgroundMediumColor">#415a77</Color>
     <Color x:Key="PrimaryColorValue">#5DADE2</Color>
     <Color x:Key="PrimaryDarkColorValue">#3498DB</Color>
+    <Color x:Key="SuccessColorValue">#1ABC9C</Color>
+    <Color x:Key="InfoColorValue">#3498DB</Color>
+    <Color x:Key="WarningColorValue">#F39C12</Color>
+    <Color x:Key="DangerColorValue">#E74C3C</Color>
 
     <!-- Fondos Oscuros (Azul Medianoche) -->
     <SolidColorBrush x:Key="BackgroundDarkest" Color="{StaticResource BackgroundDarkestColor}"/>

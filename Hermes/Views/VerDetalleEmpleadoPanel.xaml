@@ -10,7 +10,7 @@
                     <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Border Background="#9B59B6" CornerRadius="6" Padding="8" Margin="0,0,12,0">
+                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="8" Margin="0,0,12,0">
                         <TextBlock Text="👁" FontSize="18"/>
                     </Border>
                     <StackPanel VerticalAlignment="Center">
@@ -20,14 +20,14 @@
                                    Foreground="{DynamicResource TextPrimaryColor}"/>
                         <TextBlock Text="Información completa del empleado"
                                    FontSize="10"
-                                   Foreground="#95A5A6"
+                                   Foreground="{DynamicResource TextMutedColor}"
                                    Margin="0,2,0,0"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
 
             <!-- Card de perfil compacta -->
-            <Border Background="#9B59B6" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <Border Background="{DynamicResource PrimaryColor}" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
@@ -38,7 +38,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Avatar compacto -->
-                    <Border Grid.Column="0" Width="70" Height="70" CornerRadius="35" Background="#8E44AD" Margin="0,0,15,0">
+                    <Border Grid.Column="0" Width="70" Height="70" CornerRadius="35" Background="{DynamicResource PrimaryDarkColor}" Margin="0,0,15,0">
                         <TextBlock Text="👤"
                                    FontSize="36"
                                    HorizontalAlignment="Center"
@@ -61,13 +61,13 @@
             </Border>
 
             <!-- Sección: Información de Contacto -->
-            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="#1ABC9C" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="{DynamicResource SuccessColor}" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,20">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#1ABC9C"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource SuccessColorValue}"/>
                 </Border.Effect>
                 <StackPanel>
                     <!-- Header de sección mejorado -->
-                    <Border Background="#1ABC9C" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
+                    <Border Background="{DynamicResource SuccessColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
                         <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="13" FontWeight="Bold" Foreground="#0a0a15"/>
                     </Border>
 
@@ -83,29 +83,29 @@
 
                         <!-- Teléfono -->
                         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
-                            <Border Background="#1ABC9C" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                            <Border Background="{DynamicResource SuccessColor}" CornerRadius="8" Padding="12" Margin="0,0,15,0">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#1ABC9C"/>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource SuccessColorValue}"/>
                                 </Border.Effect>
                                 <TextBlock Text="📱" FontSize="24"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Teléfono" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                <TextBlock Text="Teléfono" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,4" FontWeight="SemiBold"/>
                                 <TextBlock Text="{Binding Empleado.TelefonoEmpleado}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextSuccessColor}"/>
                             </StackPanel>
                         </StackPanel>
 
                         <!-- Correo -->
                         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                            <Border Background="#3498DB" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                            <Border Background="{DynamicResource InfoColor}" CornerRadius="8" Padding="12" Margin="0,0,15,0">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#3498DB"/>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource InfoColorValue}"/>
                                 </Border.Effect>
                                 <TextBlock Text="✉" FontSize="24"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Correo Electrónico" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding Empleado.CorreoEmpleado}" FontSize="16" FontWeight="Bold" Foreground="#3498DB"/>
+                                <TextBlock Text="Correo Electrónico" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Empleado.CorreoEmpleado}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource InfoColor}"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -113,14 +113,14 @@
             </Border>
 
             <!-- Sección: Cuenta de Usuario -->
-            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="#9B59B6" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,20">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#9B59B6"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                 </Border.Effect>
                 <StackPanel>
                     <!-- Header de sección mejorado -->
-                    <Border Background="#9B59B6" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
-                        <TextBlock Text="🔐 CUENTA DE USUARIO" FontSize="13" FontWeight="Bold" Foreground="#FFFFFF"/>
+                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
+                        <TextBlock Text="🔐 CUENTA DE USUARIO" FontSize="13" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                     </Border>
 
                     <!-- Tiene usuario -->
@@ -138,29 +138,29 @@
 
                             <!-- Nombre de Usuario -->
                             <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
-                                <Border Background="#9B59B6" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                <Border Background="{DynamicResource PrimaryColor}" CornerRadius="8" Padding="12" Margin="0,0,15,0">
                                     <Border.Effect>
-                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#9B59B6"/>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource PrimaryColorValue}"/>
                                     </Border.Effect>
                                     <TextBlock Text="👤" FontSize="24"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Nombre de Usuario" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding Usuario.NombreUsuario}" FontSize="16" FontWeight="Bold" Foreground="#9B59B6"/>
+                                    <TextBlock Text="Nombre de Usuario" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Usuario.NombreUsuario}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <!-- Rol -->
                             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
-                                <Border Background="#E67E22" CornerRadius="8" Padding="12" Margin="0,0,15,0">
+                                <Border Background="{DynamicResource WarningColor}" CornerRadius="8" Padding="12" Margin="0,0,15,0">
                                     <Border.Effect>
-                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#E67E22"/>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource WarningColorValue}"/>
                                     </Border.Effect>
                                     <TextBlock Text="🛡" FontSize="24"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Rol del Sistema" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding Usuario.RolId, StringFormat='Rol ID: {0}'}" FontSize="16" FontWeight="Bold" Foreground="#E67E22"/>
+                                    <TextBlock Text="Rol del Sistema" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Usuario.RolId, StringFormat='Rol ID: {0}'}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource WarningColor}"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -178,12 +178,12 @@
                                         </Style>
                                     </Border.Style>
                                     <Border.Effect>
-                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="#9B59B6"/>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource PrimaryColorValue}"/>
                                     </Border.Effect>
                                     <TextBlock Text="⚡" FontSize="24"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Estado de Acceso" FontSize="11" Foreground="#95A5A6" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Estado de Acceso" FontSize="11" Foreground="{DynamicResource TextMutedColor}" Margin="0,0,0,4" FontWeight="SemiBold"/>
                                     <TextBlock FontSize="16" FontWeight="Bold">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock">
@@ -206,10 +206,10 @@
                     <!-- No tiene usuario -->
                     <Border CornerRadius="8" Padding="20" Background="#3a2f1f" Visibility="{Binding TieneUsuario, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="#F39C12"/>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource WarningColorValue}"/>
                         </Border.Effect>
                         <StackPanel Orientation="Horizontal">
-                            <Border Background="#F39C12" CornerRadius="25" Width="50" Height="50" Margin="0,0,20,0">
+                            <Border Background="{DynamicResource WarningColor}" CornerRadius="25" Width="50" Height="50" Margin="0,0,20,0">
                                 <TextBlock Text="ℹ" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0a0a15"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
@@ -222,13 +222,13 @@
             </Border>
 
             <!-- Sección: Estado del Empleado -->
-            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="#F39C12" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,15">
+            <Border Background="{DynamicResource BackgroundDark}" BorderBrush="{DynamicResource WarningColor}" BorderThickness="2" CornerRadius="10" Padding="25" Margin="0,0,0,15">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#F39C12"/>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource WarningColorValue}"/>
                 </Border.Effect>
                 <StackPanel>
                     <!-- Header de sección mejorado -->
-                    <Border Background="#F39C12" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
+                    <Border Background="{DynamicResource WarningColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
                         <TextBlock Text="⚙ ESTADO DEL EMPLEADO" FontSize="13" FontWeight="Bold" Foreground="#0a0a15"/>
                     </Border>
 
