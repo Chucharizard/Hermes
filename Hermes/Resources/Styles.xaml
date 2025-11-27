@@ -624,7 +624,7 @@
         <Setter Property="GridLinesVisibility" Value="None"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="#0f2424"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="AlternatingRowBackground" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="RowHeight" Value="45"/>
         <Setter Property="FontSize" Value="13"/>
@@ -632,13 +632,13 @@
 
     <!-- Header de DataGrid -->
     <Style x:Key="ModernDataGridHeaderStyle" TargetType="DataGridColumnHeader">
-        <Setter Property="Background" Value="{StaticResource DarkColor}"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="{DynamicResource DarkColor}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryColor}"/>
         <Setter Property="Padding" Value="15,12"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="BorderThickness" Value="0,0,1,0"/>
-        <Setter Property="BorderBrush" Value="#34495E"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
     </Style>
 
@@ -647,11 +647,11 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="15,10"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryColor}"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#2d3748"/>
-                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryColor}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -659,13 +659,13 @@
     <!-- Fila de DataGrid (Tema oscuro verde petróleo) -->
     <Style x:Key="ModernDataGridRowStyle" TargetType="DataGridRow">
         <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
-        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryColor}"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#3d6b6b"/>
+                <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -805,7 +805,7 @@
 
     <!-- Header de Card de Tarea (con color de prioridad) -->
     <Style x:Key="TareaCardHeaderStyle" TargetType="StackPanel">
-        <Setter Property="Background" Value="#0f2424"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
         <Setter Property="Opacity" Value="0.6"/>
     </Style>
 
