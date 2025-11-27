@@ -55,6 +55,7 @@
     <SolidColorBrush x:Key="TextAccentColor" Color="#5DADE2"/>       <!-- Texto con acento (azul principal) -->
     <SolidColorBrush x:Key="TextSuccessColor" Color="#1ABC9C"/>      <!-- Texto éxito (turquesa) -->
     <SolidColorBrush x:Key="TextDangerColor" Color="#E74C3C"/>       <!-- Texto peligro (rojo) -->
+    <SolidColorBrush x:Key="TextOnPrimaryColor" Color="White"/>      <!-- Texto sobre color primario (blanco) -->
 
     <!-- Bordes -->
     <SolidColorBrush x:Key="BorderColor" Color="#415a77"/>           <!-- Azul medio para bordes -->

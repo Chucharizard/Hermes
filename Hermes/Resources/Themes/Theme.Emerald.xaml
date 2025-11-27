@@ -50,6 +50,7 @@
     <SolidColorBrush x:Key="TextAccentColor" Color="#50c878"/>       <!-- Texto con acento (verde esmeralda) -->
     <SolidColorBrush x:Key="TextSuccessColor" Color="#50c878"/>      <!-- Texto éxito (verde esmeralda) -->
     <SolidColorBrush x:Key="TextDangerColor" Color="#c45c4d"/>       <!-- Texto peligro (terracota) -->
+    <SolidColorBrush x:Key="TextOnPrimaryColor" Color="White"/>      <!-- Texto sobre color primario (blanco) -->
 
     <!-- Colores oscuros para sidebar -->
     <SolidColorBrush x:Key="DarkColor" Color="#234e52"/>             <!-- Verde petróleo oscuro -->

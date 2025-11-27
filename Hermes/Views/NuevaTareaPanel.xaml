@@ -23,6 +23,7 @@
                        Foreground="{DynamicResource TextSecondaryColor}"
                        Margin="0,0,0,5"/>
             <TextBox Text="{Binding Tarea.TituloTarea, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource ModernTextBoxStyle}"
                      FontSize="14"
                      Padding="10,5"
                      Margin="0,0,0,15"/>
@@ -33,6 +34,7 @@
                        Foreground="{DynamicResource TextSecondaryColor}"
                        Margin="0,0,0,5"/>
             <TextBox Text="{Binding Tarea.DescripcionTarea, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource ModernTextBoxStyle}"
                      FontSize="14"
                      Padding="10,5"
                      TextWrapping="Wrap"
@@ -62,6 +64,7 @@
             <ComboBox ItemsSource="{Binding UsuariosReceptores}"
                       SelectedItem="{Binding UsuarioReceptorSeleccionado}"
                       DisplayMemberPath="NombreUsuario"
+                      Style="{StaticResource ModernComboBoxStyle}"
                       FontSize="14"
                       Margin="0,0,0,15"/>
 
@@ -81,6 +84,7 @@
                                Margin="0,0,0,5"/>
                     <ComboBox ItemsSource="{Binding Estados}"
                               SelectedItem="{Binding EstadoSeleccionado}"
+                              Style="{StaticResource ModernComboBoxStyle}"
                               FontSize="14"/>
                 </StackPanel>
 
@@ -92,6 +96,7 @@
                                Margin="0,0,0,5"/>
                     <ComboBox ItemsSource="{Binding Prioridades}"
                               SelectedItem="{Binding PrioridadSeleccionada}"
+                              Style="{StaticResource ModernComboBoxStyle}"
                               FontSize="14"/>
                 </StackPanel>
             </Grid>
@@ -125,6 +130,7 @@
                                        Foreground="{DynamicResource TextMutedColor}"
                                        Margin="0,0,0,3"/>
                             <ComboBox ItemsSource="{Binding Horas}"
+                                      Style="{StaticResource ModernComboBoxStyle}"
                                       SelectedItem="{Binding HoraInicio}"
                                       FontSize="13"/>
                         </StackPanel>
@@ -134,6 +140,7 @@
                                        Foreground="{DynamicResource TextMutedColor}"
                                        Margin="0,0,0,3"/>
                             <ComboBox ItemsSource="{Binding Minutos}"
+                                      Style="{StaticResource ModernComboBoxStyle}"
                                       SelectedItem="{Binding MinutoInicio}"
                                       FontSize="13"/>
                         </StackPanel>
@@ -161,6 +168,7 @@
                                        Foreground="{DynamicResource TextMutedColor}"
                                        Margin="0,0,0,3"/>
                             <ComboBox ItemsSource="{Binding Horas}"
+                                      Style="{StaticResource ModernComboBoxStyle}"
                                       SelectedItem="{Binding HoraLimite}"
                                       FontSize="13"/>
                         </StackPanel>
@@ -170,6 +178,7 @@
                                        Foreground="{DynamicResource TextMutedColor}"
                                        Margin="0,0,0,3"/>
                             <ComboBox ItemsSource="{Binding Minutos}"
+                                      Style="{StaticResource ModernComboBoxStyle}"
                                       SelectedItem="{Binding MinutoLimite}"
                                       FontSize="13"/>
                         </StackPanel>
@@ -239,7 +248,7 @@
                                 Content="📁 Seleccionar"
                                 Command="{Binding SeleccionarArchivoCommand}"
                                 Background="{DynamicResource SuccessColor}"
-                                Foreground="White"
+                                Foreground="{DynamicResource TextOnPrimaryColor}"
                                 Padding="12,6"
                                 FontSize="12"
                                 BorderThickness="0"
@@ -295,15 +304,15 @@
                                                        FontSize="12"/>
                                             <TextBlock Text="{Binding TamañoTexto}"
                                                        FontSize="10"
-                                                       Foreground="#95A5A6"/>
+                                                       Foreground="{DynamicResource TextMutedColor}"/>
                                         </StackPanel>
 
                                         <Button Grid.Column="2"
                                                 Content="✖"
                                                 Command="{Binding DataContext.EliminarArchivoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                 CommandParameter="{Binding}"
-                                                Background="#E74C3C"
-                                                Foreground="White"
+                                                Background="{DynamicResource DangerColor}"
+                                                Foreground="{DynamicResource TextOnPrimaryColor}"
                                                 FontSize="10"
                                                 BorderThickness="0"
                                                 Cursor="Hand">
@@ -348,7 +357,7 @@
                         Content="✖ Cancelar"
                         Command="{Binding DataContext.CerrarPanelCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=2}}"
                         Background="{DynamicResource BackgroundMedium}"
-                        Foreground="White"
+                        Foreground="{DynamicResource TextOnPrimaryColor}"
                         FontSize="14"
                         BorderThickness="0"
                         Margin="0,0,5,0"
@@ -380,7 +389,7 @@
                         Content="Crear Tarea"
                         Command="{Binding GuardarCommand}"
                         Background="{DynamicResource SuccessColor}"
-                        Foreground="White"
+                        Foreground="{DynamicResource TextOnPrimaryColor}"
                         FontSize="14"
                         BorderThickness="0"
                         Margin="5,0,0,0"
