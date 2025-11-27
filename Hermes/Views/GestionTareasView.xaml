@@ -46,7 +46,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header compacto + Estadísticas inline + Nueva Tarea -->
-        <Border Grid.Row="0" Background="#234e52" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
+        <Border Grid.Row="0" Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="15,10" Margin="0,0,0,10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
@@ -69,7 +69,7 @@
                 <!-- Estadísticas inline compactas -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Total -->
-                    <Border Background="#50c878" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalTareas}"
                                        FontSize="14"
@@ -84,7 +84,7 @@
                     </Border>
 
                     <!-- Pendientes -->
-                    <Border Background="#cd7f32" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource WarningColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TareasPendientes}"
                                        FontSize="14"
@@ -99,7 +99,7 @@
                     </Border>
 
                     <!-- Completadas -->
-                    <Border Background="#50c878" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TareasCompletadas}"
                                        FontSize="14"
@@ -114,7 +114,7 @@
                     </Border>
 
                     <!-- Vencidas -->
-                    <Border Background="#c45c4d" CornerRadius="12" Padding="10,4">
+                    <Border Background="{DynamicResource DangerColor}" CornerRadius="12" Padding="10,4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TareasVencidas}"
                                        FontSize="14"
@@ -142,7 +142,7 @@
         <!-- ========================================== -->
         <!-- CALENDARIO SEMANAL MEJORADO -->
         <!-- ========================================== -->
-        <Border Grid.Row="1" Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="18" Margin="0,0,0,10">
+        <Border Grid.Row="1" Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="18" Margin="0,0,0,10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="12" ShadowDepth="4" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
@@ -153,7 +153,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Título del calendario y navegación mejorado -->
-                <Border Grid.Row="0" Background="#50c878" CornerRadius="8" Padding="12,8" Margin="0,0,0,15">
+                <Border Grid.Row="0" Background="{DynamicResource PrimaryColor}" CornerRadius="8" Padding="12,8" Margin="0,0,0,15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -163,7 +163,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <Border Background="#2e8b57" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                            <Border Background="{DynamicResource PrimaryDarkColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                 <TextBlock Text="📅" FontSize="16"/>
                             </Border>
                             <TextBlock Text="Calendario Semanal"
@@ -173,7 +173,7 @@
                                        VerticalAlignment="Center"/>
                         </StackPanel>
 
-                        <Border Grid.Column="1" Background="#2e8b57" CornerRadius="6" Padding="8,4" HorizontalAlignment="Center">
+                        <Border Grid.Column="1" Background="{DynamicResource PrimaryDarkColor}" CornerRadius="6" Padding="8,4" HorizontalAlignment="Center">
                             <TextBlock Text="{Binding TituloSemana}"
                                        FontSize="12"
                                        FontWeight="SemiBold"
@@ -184,7 +184,7 @@
                         <Button Grid.Column="2"
                                 Content="◀"
                                 Command="{Binding SemanaAnteriorCommand}"
-                                Background="#2e8b57"
+                                Background="{DynamicResource PrimaryDarkColor}"
                                 Foreground="White"
                                 Padding="12,6"
                                 FontSize="12"
@@ -215,7 +215,7 @@
                         <Button Grid.Column="3"
                                 Content="▶"
                                 Command="{Binding SemanaSiguienteCommand}"
-                                Background="#2e8b57"
+                                Background="{DynamicResource PrimaryDarkColor}"
                                 Foreground="White"
                                 Padding="12,6"
                                 FontSize="12"
@@ -253,8 +253,8 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="#234e52"
-                                    BorderBrush="#50c878"
+                            <Border Background="{DynamicResource BackgroundDark}"
+                                    BorderBrush="{DynamicResource PrimaryColor}"
                                     BorderThickness="1"
                                     Margin="3"
                                     Padding="10"
@@ -289,7 +289,7 @@
                                     <TextBlock Text="{Binding DiaNombre}"
                                                FontSize="10"
                                                FontWeight="Bold"
-                                               Foreground="#95A5A6"
+                                               Foreground="{DynamicResource TextMutedColor}"
                                                HorizontalAlignment="Center"
                                                Margin="0,0,0,4"/>
 
@@ -327,7 +327,7 @@
             <!-- ========================================== -->
             <!-- MASTER: LISTA DE TAREAS COMPACTA -->
             <!-- ========================================== -->
-            <Border Grid.Column="0" Background="#234e52" CornerRadius="8" Padding="0">
+            <Border Grid.Column="0" Background="{DynamicResource BackgroundDark}" CornerRadius="8" Padding="0">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
@@ -358,8 +358,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <!-- Tarjeta de tarea mejorada con diseño más bonito -->
-                                    <Border Background="#1a4d4d"
-                                            BorderBrush="#50c878"
+                                    <Border Background="{DynamicResource BackgroundDarkest}"
+                                            BorderBrush="{DynamicResource PrimaryColor}"
                                             BorderThickness="0,0,0,3"
                                             CornerRadius="10"
                                             Padding="15"
@@ -417,12 +417,12 @@
                                                                Foreground="White"/>
                                                 </Border>
 
-                                                <Border Background="#2d5a5a" CornerRadius="8" Padding="6,3">
+                                                <Border Background="{DynamicResource BackgroundMedium}" CornerRadius="8" Padding="6,3">
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="📅" FontSize="10" Margin="0,0,4,0"/>
                                                         <TextBlock Text="{Binding FechaInicioTarea, StringFormat=dd/MM/yyyy}"
                                                                    FontSize="10"
-                                                                   Foreground="#95A5A6"
+                                                                   Foreground="{DynamicResource TextMutedColor}"
                                                                    VerticalAlignment="Center"/>
                                                     </StackPanel>
                                                 </Border>
@@ -438,24 +438,24 @@
                                                        Margin="0,0,0,8"/>
 
                                             <!-- Fila 3: Emisor → Receptor con iconos -->
-                                            <Border Grid.Row="2" Background="#234e52" CornerRadius="6" Padding="8,6" Margin="0,0,0,8">
+                                            <Border Grid.Row="2" Background="{DynamicResource BackgroundDark}" CornerRadius="6" Padding="8,6" Margin="0,0,0,8">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <Border Background="#50c878" CornerRadius="4" Padding="4" Margin="0,0,6,0">
+                                                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="4" Padding="4" Margin="0,0,6,0">
                                                         <TextBlock Text="📤" FontSize="11"/>
                                                     </Border>
                                                     <TextBlock Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
-                                                               Foreground="#50c878"
+                                                               Foreground="{DynamicResource PrimaryColor}"
                                                                FontWeight="SemiBold"
                                                                FontSize="11"
                                                                VerticalAlignment="Center"/>
 
-                                                    <TextBlock Text=" → " Foreground="#95A5A6" FontSize="11" Margin="6,0" VerticalAlignment="Center"/>
+                                                    <TextBlock Text=" → " Foreground="{DynamicResource TextMutedColor}" FontSize="11" Margin="6,0" VerticalAlignment="Center"/>
 
-                                                    <Border Background="#50c878" CornerRadius="4" Padding="4" Margin="0,0,6,0">
+                                                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="4" Padding="4" Margin="0,0,6,0">
                                                         <TextBlock Text="📥" FontSize="11"/>
                                                     </Border>
                                                     <TextBlock Text="{Binding UsuarioReceptor.Empleado.NombresEmpleado}"
-                                                               Foreground="#50c878"
+                                                               Foreground="{DynamicResource PrimaryColor}"
                                                                FontWeight="SemiBold"
                                                                FontSize="11"
                                                                VerticalAlignment="Center"/>
@@ -467,7 +467,7 @@
                                                 <Button Content="✏"
                                                         Command="{Binding DataContext.EditarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        Background="#cd7f32"
+                                                        Background="{DynamicResource WarningColor}"
                                                         Foreground="White"
                                                         Width="24"
                                                         Height="24"
@@ -499,7 +499,7 @@
                                                 <Button Content="🗑"
                                                         Command="{Binding DataContext.EliminarTareaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        Background="#c45c4d"
+                                                        Background="{DynamicResource DangerColor}"
                                                         Foreground="White"
                                                         Width="24"
                                                         Height="24"
@@ -539,7 +539,7 @@
             <!-- ========================================== -->
             <!-- DETAIL: PANEL DE EDICIÓN / NUEVA TAREA -->
             <!-- ========================================== -->
-            <Border Grid.Column="2" Background="#234e52" CornerRadius="8">
+            <Border Grid.Column="2" Background="{DynamicResource BackgroundDark}" CornerRadius="8">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
                 </Border.Effect>
@@ -585,7 +585,7 @@
                                    Margin="0,0,0,5"/>
                         <TextBlock Text="para editarla y gestionarla"
                                    FontSize="14"
-                                   Foreground="#95A5A6"
+                                   Foreground="{DynamicResource TextMutedColor}"
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
@@ -607,13 +607,13 @@
 
                         <StackPanel>
                             <!-- Header compacto y profesional -->
-                            <Border Background="#1a4d4d" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                            <Border Background="{DynamicResource BackgroundDarkest}" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.2" Color="{DynamicResource BackgroundDarkestColor}"/>
                                 </Border.Effect>
                                 <Grid>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                        <Border Background="#50c878" CornerRadius="6" Padding="8" Margin="0,0,12,0">
+                                        <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="8" Margin="0,0,12,0">
                                             <TextBlock Text="📋" FontSize="18"/>
                                         </Border>
                                         <StackPanel VerticalAlignment="Center">
@@ -623,7 +623,7 @@
                                                        Foreground="{DynamicResource TextPrimaryColor}"/>
                                             <TextBlock Text="Modifica los detalles de la tarea"
                                                        FontSize="10"
-                                                       Foreground="#95A5A6"
+                                                       Foreground="{DynamicResource TextMutedColor}"
                                                        Margin="0,2,0,0"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -631,7 +631,7 @@
                                             Command="{Binding CerrarPanelCommand}"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
-                                            Background="#c45c4d"
+                                            Background="{DynamicResource DangerColor}"
                                             Foreground="White"
                                             Width="30"
                                             Height="30"
@@ -662,13 +662,13 @@
                             </Border>
 
                             <!-- Sección: Información Básica -->
-                            <Border Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#50c878"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#50c878" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
                                         <TextBlock Text="📝 INFORMACIÓN BÁSICA" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
 
@@ -677,7 +677,7 @@
                                         <TextBlock Text="Título de la Tarea"
                                                    FontSize="11"
                                                    FontWeight="SemiBold"
-                                                   Foreground="#95A5A6"
+                                                   Foreground="{DynamicResource TextMutedColor}"
                                                    Margin="0,0,0,6"/>
                                         <TextBox Text="{Binding TituloEditable, UpdateSourceTrigger=PropertyChanged}"
                                                  Style="{StaticResource ModernTextBoxStyle}"
@@ -689,7 +689,7 @@
                                         <TextBlock Text="Descripción Detallada"
                                                    FontSize="11"
                                                    FontWeight="SemiBold"
-                                                   Foreground="#95A5A6"
+                                                   Foreground="{DynamicResource TextMutedColor}"
                                                    Margin="0,0,0,6"/>
                                         <TextBox Text="{Binding DescripcionEditable, UpdateSourceTrigger=PropertyChanged}"
                                                  Style="{StaticResource ModernTextBoxStyle}"
@@ -703,13 +703,13 @@
                             </Border>
 
                             <!-- Sección: Configuración -->
-                            <Border Background="#1a4d4d" BorderBrush="#50c878" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#50c878"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#50c878" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
                                         <TextBlock Text="⚙ CONFIGURACIÓN" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryColor}"/>
                                     </Border>
 
@@ -723,14 +723,14 @@
                                         <!-- Estado -->
                                         <StackPanel Grid.Column="0">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="📊" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
                                                     <TextBlock Text="Estado"
                                                                FontSize="11"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#95A5A6"/>
+                                                               Foreground="{DynamicResource TextMutedColor}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                             <ComboBox ItemsSource="{Binding EstadosDisponibles}"
@@ -742,14 +742,14 @@
                                         <!-- Prioridad -->
                                         <StackPanel Grid.Column="2">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#b87333" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="{DynamicResource WarningColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="⚡" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
                                                     <TextBlock Text="Prioridad"
                                                                FontSize="11"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#95A5A6"/>
+                                                               Foreground="{DynamicResource TextMutedColor}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                             <ComboBox ItemsSource="{Binding PrioridadesDisponibles}"
@@ -762,14 +762,14 @@
                             </Border>
 
                             <!-- Sección: Cronología -->
-                            <Border Background="#1a4d4d" BorderBrush="{DynamicResource SuccessColor}" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource SuccessColor}" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource PrimaryColorValue}"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#1ABC9C" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
-                                        <TextBlock Text="📅 CRONOLOGÍA" FontSize="12" FontWeight="Bold" Foreground="#0a0a15"/>
+                                    <Border Background="{DynamicResource SuccessColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                        <TextBlock Text="📅 CRONOLOGÍA" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextDarkColor}"/>
                                     </Border>
 
                                     <Grid>
@@ -782,14 +782,14 @@
                                         <!-- Fecha Inicio -->
                                         <StackPanel Grid.Column="0">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#1ABC9C" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="{DynamicResource SuccessColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="▶" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
                                                     <TextBlock Text="Fecha Inicio"
                                                                FontSize="11"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#95A5A6"/>
+                                                               Foreground="{DynamicResource TextMutedColor}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                             <DatePicker SelectedDate="{Binding FechaInicioEditable}"
@@ -799,14 +799,14 @@
                                         <!-- Fecha Límite -->
                                         <StackPanel Grid.Column="2">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <Border Background="#c45c4d" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                                <Border Background="{DynamicResource DangerColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                     <TextBlock Text="⏰" FontSize="16"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
                                                     <TextBlock Text="Fecha Límite"
                                                                FontSize="11"
                                                                FontWeight="SemiBold"
-                                                               Foreground="#95A5A6"/>
+                                                               Foreground="{DynamicResource TextMutedColor}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                             <DatePicker SelectedDate="{Binding FechaLimiteEditable}"
@@ -817,36 +817,36 @@
                             </Border>
 
                             <!-- Sección: Asignación -->
-                            <Border Background="#1a4d4d" BorderBrush="#cd7f32" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
+                            <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource WarningColor}" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,0,0,15">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#cd7f32"/>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="{DynamicResource WarningColorValue}"/>
                                 </Border.Effect>
                                 <StackPanel>
                                     <!-- Header de sección -->
-                                    <Border Background="#cd7f32" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
-                                        <TextBlock Text="👥 ASIGNACIÓN" FontSize="12" FontWeight="Bold" Foreground="#0a0a15"/>
+                                    <Border Background="{DynamicResource WarningColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,15" HorizontalAlignment="Left">
+                                        <TextBlock Text="👥 ASIGNACIÓN" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource TextDarkColor}"/>
                                     </Border>
 
                                     <!-- Emisor (solo lectura) -->
                                     <StackPanel Margin="0,0,0,15">
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                            <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                            <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                 <TextBlock Text="📤" FontSize="16"/>
                                             </Border>
                                             <StackPanel VerticalAlignment="Center">
                                                 <TextBlock Text="Emisor de la Tarea"
                                                            FontSize="11"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#95A5A6"/>
+                                                           Foreground="{DynamicResource TextMutedColor}"/>
                                             </StackPanel>
                                         </StackPanel>
-                                        <Border Background="#234e52"
-                                                BorderBrush="#50c878"
+                                        <Border Background="{DynamicResource BackgroundDark}"
+                                                BorderBrush="{DynamicResource PrimaryColor}"
                                                 BorderThickness="1"
                                                 CornerRadius="8"
                                                 Padding="12,10">
                                             <TextBlock Text="{Binding EmisorInfo}"
-                                                       Foreground="#50c878"
+                                                       Foreground="{DynamicResource PrimaryColor}"
                                                        FontSize="13"
                                                        FontWeight="SemiBold"/>
                                         </Border>
@@ -855,14 +855,14 @@
                                     <!-- Receptor -->
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                            <Border Background="#50c878" CornerRadius="6" Padding="6" Margin="0,0,8,0">
+                                            <Border Background="{DynamicResource PrimaryColor}" CornerRadius="6" Padding="6" Margin="0,0,8,0">
                                                 <TextBlock Text="📥" FontSize="16"/>
                                             </Border>
                                             <StackPanel VerticalAlignment="Center">
                                                 <TextBlock Text="Receptor de la Tarea"
                                                            FontSize="11"
                                                            FontWeight="SemiBold"
-                                                           Foreground="#95A5A6"/>
+                                                           Foreground="{DynamicResource TextMutedColor}"/>
                                             </StackPanel>
                                         </StackPanel>
                                         <ComboBox ItemsSource="{Binding UsuariosDisponibles}"
