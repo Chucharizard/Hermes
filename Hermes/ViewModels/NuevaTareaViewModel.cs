@@ -16,6 +16,7 @@ namespace Hermes.ViewModels
         private readonly TareaService _tareaService;
         private readonly UsuarioService _usuarioService;
         private readonly TareaAdjuntoService _adjuntoService;
+        private readonly Action? _onSaveCompleted;
         private Tarea _tarea = new();
         private string _mensajeError = string.Empty;
         private ObservableCollection<Usuario> _usuariosReceptores = new();
@@ -130,15 +131,15 @@ namespace Hermes.ViewModels
         public List<int> Minutos { get; } = Enumerable.Range(0, 60).ToList();
 
         public ICommand GuardarCommand { get; }
-        public ICommand CancelarCommand { get; }
         public ICommand SeleccionarArchivoCommand { get; }
         public ICommand EliminarArchivoCommand { get; }
 
-        public NuevaTareaViewModel()
+        public NuevaTareaViewModel(Action? onSaveCompleted = null)
         {
             _tareaService = new TareaService();
             _usuarioService = new UsuarioService();
             _adjuntoService = new TareaAdjuntoService();
+            _onSaveCompleted = onSaveCompleted;
 
             // Obtener el usuario actual (emisor)
             var usuarioActual = App.UsuarioActual;
@@ -169,7 +170,6 @@ namespace Hermes.ViewModels
             };
 
             GuardarCommand = new RelayCommand(async _ => await GuardarAsync(), _ => PuedeEnviarTareas);
-            CancelarCommand = new RelayCommand(_ => Cancelar());
             SeleccionarArchivoCommand = new RelayCommand(_ => SeleccionarArchivo());
             EliminarArchivoCommand = new RelayCommand(param => EliminarArchivo((ArchivoPendiente)param!));
 
@@ -385,7 +385,8 @@ namespace Hermes.ViewModels
                                   MessageBoxImage.Information);
                 }
 
-                Application.Current.Windows.OfType<Views.NuevaTareaWindow>().FirstOrDefault()?.Close();
+                // Notificar al padre que la operación se completó (cerrar panel y recargar lista)
+                _onSaveCompleted?.Invoke();
             }
             else
             {
@@ -445,11 +446,6 @@ namespace Hermes.ViewModels
             }
 
             return $"{tam:0.##} {tamaños[orden]}";
-        }
-
-        private void Cancelar()
-        {
-            Application.Current.Windows.OfType<Views.NuevaTareaWindow>().FirstOrDefault()?.Close();
         }
     }
 

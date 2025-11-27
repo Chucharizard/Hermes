@@ -537,7 +537,7 @@
             </Border>
 
             <!-- ========================================== -->
-            <!-- DETAIL: PANEL DE EDICIÓN DE TAREA -->
+            <!-- DETAIL: PANEL DE EDICIÓN / NUEVA TAREA -->
             <!-- ========================================== -->
             <Border Grid.Column="2" Background="#234e52" CornerRadius="8">
                 <Border.Effect>
@@ -545,15 +545,28 @@
                 </Border.Effect>
 
                 <Grid>
-                    <!-- Mostrar mensaje cuando no hay tarea seleccionada -->
+                    <!-- Panel de Nueva Tarea con ViewModel propio -->
+                    <ContentPresenter Content="{Binding ViewModelNuevaTarea}">
+                        <ContentPresenter.Resources>
+                            <DataTemplate DataType="{x:Type viewmodels:NuevaTareaViewModel}">
+                                <views:NuevaTareaPanel/>
+                            </DataTemplate>
+                        </ContentPresenter.Resources>
+                    </ContentPresenter>
+
+                    <!-- Mostrar mensaje cuando no hay tarea seleccionada Y no es nueva tarea -->
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <StackPanel.Style>
                             <Style TargetType="StackPanel">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding TareaSeleccionada}" Value="{x:Null}"/>
+                                            <Condition Binding="{Binding EsNuevaTarea}" Value="False"/>
+                                        </MultiDataTrigger.Conditions>
                                         <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
+                                    </MultiDataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
@@ -576,13 +589,16 @@
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- Panel de Edición cuando hay tarea seleccionada -->
+                    <!-- Panel de Edición cuando hay tarea seleccionada Y NO es nueva tarea -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ScrollViewer.Style>
                             <Style TargetType="ScrollViewer">
                                 <Setter Property="Visibility" Value="Visible"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding TareaSeleccionada}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding EsNuevaTarea}" Value="True">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>

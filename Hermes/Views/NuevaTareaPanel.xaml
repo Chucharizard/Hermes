@@ -1,0 +1,393 @@
+<UserControl x:Class="Hermes.Views.NuevaTareaPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodels="clr-namespace:Hermes.ViewModels"
+        xmlns:helpers="clr-namespace:Hermes.Helpers">
+
+    <UserControl.Resources>
+        <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="15">
+                    <TextBlock Text="Nueva Tarea"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource TextPrimaryColor}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,30"/>
+
+                    <!-- Titulo -->
+                    <TextBlock Text="Titulo:"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextSecondaryColor}"
+                               Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Tarea.TituloTarea, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="14"
+                             Padding="10,5"
+                             Margin="0,0,0,15"/>
+
+                    <!-- Descripcion -->
+                    <TextBlock Text="Descripcion:"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextSecondaryColor}"
+                               Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Tarea.DescripcionTarea, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="14"
+                             Padding="10,5"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,15"/>
+
+                    <!-- Usuario Emisor (Usuario Logueado) -->
+                    <TextBlock Text="Usuario Emisor (Tú):"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextSecondaryColor}"
+                               Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding NombreUsuarioEmisor, Mode=OneWay}"
+                             FontSize="14"
+                             Padding="10,5"
+                             IsReadOnly="True"
+                             Background="{DynamicResource BackgroundMedium}"
+                             Foreground="{DynamicResource TextPrimaryColor}"
+                             FontWeight="SemiBold"
+                             Margin="0,0,0,15"/>
+
+                    <!-- Usuario Receptor (Asignar a) -->
+                    <TextBlock Text="Asignar Tarea A:"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextSecondaryColor}"
+                               Margin="0,0,0,5"/>
+                    <ComboBox ItemsSource="{Binding UsuariosReceptores}"
+                              SelectedItem="{Binding UsuarioReceptorSeleccionado}"
+                              DisplayMemberPath="NombreUsuario"
+                              FontSize="14"
+                              Margin="0,0,0,15"/>
+
+                    <!-- Grid para Estado y Prioridad -->
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Estado -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Estado:"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextSecondaryColor}"
+                                       Margin="0,0,0,5"/>
+                            <ComboBox ItemsSource="{Binding Estados}"
+                                      SelectedItem="{Binding EstadoSeleccionado}"
+                                      FontSize="14"/>
+                        </StackPanel>
+
+                        <!-- Prioridad -->
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Prioridad:"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextSecondaryColor}"
+                                       Margin="0,0,0,5"/>
+                            <ComboBox ItemsSource="{Binding Prioridades}"
+                                      SelectedItem="{Binding PrioridadSeleccionada}"
+                                      FontSize="14"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Grid para Fechas -->
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Fecha Inicio -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Fecha y Hora de Inicio:"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextSecondaryColor}"
+                                       Margin="0,0,0,5"/>
+                            <DatePicker SelectedDate="{Binding Tarea.FechaInicioTarea}"
+                                        FontSize="14"
+                                        Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Hora:"
+                                               FontSize="10"
+                                               Foreground="{DynamicResource TextMutedColor}"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Horas}"
+                                              SelectedItem="{Binding HoraInicio}"
+                                              FontSize="13"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Minuto:"
+                                               FontSize="10"
+                                               Foreground="{DynamicResource TextMutedColor}"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Minutos}"
+                                              SelectedItem="{Binding MinutoInicio}"
+                                              FontSize="13"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- Fecha Limite -->
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Fecha y Hora Límite (opcional):"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextSecondaryColor}"
+                                       Margin="0,0,0,5"/>
+                            <DatePicker SelectedDate="{Binding Tarea.FechaLimiteTarea}"
+                                        FontSize="14"
+                                        Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Hora:"
+                                               FontSize="10"
+                                               Foreground="{DynamicResource TextMutedColor}"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Horas}"
+                                              SelectedItem="{Binding HoraLimite}"
+                                              FontSize="13"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Minuto:"
+                                               FontSize="10"
+                                               Foreground="{DynamicResource TextMutedColor}"
+                                               Margin="0,0,0,3"/>
+                                    <ComboBox ItemsSource="{Binding Minutos}"
+                                              SelectedItem="{Binding MinutoLimite}"
+                                              FontSize="13"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Configuración de cierre de tarea -->
+                    <Border Background="{DynamicResource BackgroundDark}"
+                            BorderBrush="{DynamicResource PrimaryColor}"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Padding="12"
+                            Margin="0,0,0,15">
+                        <StackPanel>
+                            <TextBlock Text="⚙ Configuración de Entrega"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource PrimaryColor}"
+                                       Margin="0,0,0,8"/>
+                            <CheckBox IsChecked="{Binding Tarea.PermiteEntregaConRetraso}"
+                                      Content="Permitir entrega con retraso después de la fecha límite"
+                                      FontSize="12"
+                                      Foreground="{DynamicResource TextPrimaryColor}"
+                                      Margin="0,0,0,5"/>
+                            <TextBlock Text="✓ Marcado: Se puede entregar después de la hora límite (con retraso)&#x0a;✗ Desmarcado: La tarea se cierra automáticamente y no acepta entregas"
+                                       FontSize="10"
+                                       Foreground="{DynamicResource TextMutedColor}"
+                                       TextWrapping="Wrap"
+                                       Margin="20,0,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Mensaje de Error -->
+                    <Border Background="{DynamicResource DangerColor}"
+                            CornerRadius="4"
+                            Padding="10,8"
+                            Margin="0,0,0,15"
+                            Visibility="{Binding MensajeError, Converter={StaticResource StringToVisibilityConverter}}">
+                        <TextBlock Text="{Binding MensajeError}"
+                                   Foreground="{DynamicResource TextDangerColor}"
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Archivos Adjuntos -->
+                    <Border Background="{DynamicResource BackgroundMedium}"
+                            CornerRadius="5"
+                            Padding="15"
+                            Margin="0,0,0,15">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0"
+                                           Text="📎 Archivos Adjuntos (Opcional)"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource TextSecondaryColor}"
+                                           VerticalAlignment="Center"/>
+
+                                <Button Grid.Column="1"
+                                        Content="📁 Seleccionar"
+                                        Command="{Binding SeleccionarArchivoCommand}"
+                                        Background="{DynamicResource SuccessColor}"
+                                        Foreground="White"
+                                        Padding="12,6"
+                                        FontSize="12"
+                                        BorderThickness="0"
+                                        Cursor="Hand">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="4"
+                                                                Padding="{TemplateBinding Padding}">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#229954"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+
+                            <!-- Lista de archivos seleccionados -->
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{DynamicResource BackgroundDarkest}"
+                                                CornerRadius="4"
+                                                Padding="10"
+                                                Margin="0,0,0,5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0"
+                                                           Text="📄"
+                                                           FontSize="16"
+                                                           Margin="0,0,10,0"/>
+
+                                                <StackPanel Grid.Column="1">
+                                                    <TextBlock Text="{Binding NombreArchivo}"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{DynamicResource TextPrimaryColor}"
+                                                               FontSize="12"/>
+                                                    <TextBlock Text="{Binding TamañoTexto}"
+                                                               FontSize="10"
+                                                               Foreground="#95A5A6"/>
+                                                </StackPanel>
+
+                                                <Button Grid.Column="2"
+                                                        Content="✖"
+                                                        Command="{Binding DataContext.EliminarArchivoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="#E74C3C"
+                                                        Foreground="White"
+                                                        FontSize="10"
+                                                        BorderThickness="0"
+                                                        Cursor="Hand">
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border Background="{TemplateBinding Background}"
+                                                                                CornerRadius="3"
+                                                                                Padding="{TemplateBinding Padding}">
+                                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#C0392B"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Botones -->
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0"
+                                Content="✖ Cancelar"
+                                Command="{Binding DataContext.CerrarPanelCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=2}}"
+                                Background="{DynamicResource BackgroundMedium}"
+                                Foreground="White"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Margin="0,0,5,0"
+                                Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="5"
+                                                        Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#7F8C8D"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <Button Grid.Column="1"
+                                Content="Crear Tarea"
+                                Command="{Binding GuardarCommand}"
+                                Background="{DynamicResource SuccessColor}"
+                                Foreground="White"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Margin="5,0,0,0"
+                                Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="5"
+                                                        Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#229954"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+    </ScrollViewer>
+</UserControl>

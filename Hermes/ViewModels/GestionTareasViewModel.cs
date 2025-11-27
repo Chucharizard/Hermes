@@ -49,6 +49,8 @@ namespace Hermes.ViewModels
         private DateTime _semanaActual;
         private DateTime? _diaSeleccionado;
         private bool _mostrarPanelEdicion;
+        private bool _esNuevaTarea;
+        private NuevaTareaViewModel? _viewModelNuevaTarea;
 
         // Propiedades editables
         private string _tituloEditable = string.Empty;
@@ -87,6 +89,18 @@ namespace Hermes.ViewModels
         {
             get => _mostrarPanelEdicion;
             set => SetProperty(ref _mostrarPanelEdicion, value);
+        }
+
+        public bool EsNuevaTarea
+        {
+            get => _esNuevaTarea;
+            set => SetProperty(ref _esNuevaTarea, value);
+        }
+
+        public NuevaTareaViewModel? ViewModelNuevaTarea
+        {
+            get => _viewModelNuevaTarea;
+            set => SetProperty(ref _viewModelNuevaTarea, value);
         }
 
         public string FiltroTexto
@@ -302,18 +316,19 @@ namespace Hermes.ViewModels
 
         private void AbrirNuevaTarea()
         {
-            var ventana = new Views.NuevaTareaWindow();
-            ventana.Owner = Application.Current.MainWindow;
-            if (ventana.ShowDialog() == true)
-            {
-                Task.Run(async () => await CargarTareasAsync());
-            }
+            // Crear ViewModel con callback para cerrar panel
+            ViewModelNuevaTarea = new NuevaTareaViewModel(CerrarPanel);
+
+            // Mostrar panel de nueva tarea
+            EsNuevaTarea = true;
+            MostrarPanelEdicion = true;
         }
 
         private void EditarTarea(Tarea? tarea)
         {
             if (tarea == null) return;
 
+            EsNuevaTarea = false;
             TareaSeleccionada = tarea;
             MostrarPanelEdicion = true;
         }
@@ -351,6 +366,7 @@ namespace Hermes.ViewModels
         {
             if (tarea == null) return;
 
+            EsNuevaTarea = false;
             TareaSeleccionada = tarea;
             MostrarPanelEdicion = true;
         }
@@ -358,7 +374,10 @@ namespace Hermes.ViewModels
         private void CerrarPanel()
         {
             MostrarPanelEdicion = false;
+            EsNuevaTarea = false;
             TareaSeleccionada = null;
+            ViewModelNuevaTarea = null;
+            Task.Run(async () => await CargarTareasAsync()); // Recargar lista si se creó una tarea
         }
 
         private async Task CargarUsuariosAsync()
