@@ -221,7 +221,6 @@
                     <Border CornerRadius="12"
                             Padding="15"
                             Margin="10,0,10,15"
-                            Background="{DynamicResource SidebarGradient}"
                             BorderBrush="{DynamicResource BorderColor}"
                             BorderThickness="1">
                         <Border.Effect>
@@ -229,6 +228,7 @@
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
+                                <Setter Property="Background" Value="{DynamicResource SidebarGradient}"/>
                                 <Setter Property="Visibility" Value="Visible"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
