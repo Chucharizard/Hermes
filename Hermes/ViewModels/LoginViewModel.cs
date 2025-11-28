@@ -4,12 +4,14 @@ using System.Linq;
 using Hermes.Commands;
 using Hermes.Models;
 using Hermes.Services;
+using System;
 
 namespace Hermes.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
         private readonly AutenticacionService _autenticacionService;
+        private readonly AuditoriaSesionService _auditoriaSesionService;
         private int _ciEmpleado;
         private string _password = string.Empty;
         private string _mensajeError = string.Empty;
@@ -52,6 +54,7 @@ namespace Hermes.ViewModels
         public LoginViewModel()
         {
             _autenticacionService = new AutenticacionService();
+            _auditoriaSesionService = new AuditoriaSesionService();
             LoginCommand = new RelayCommand(async _ => await LoginAsync(), _ => !IsLoading);
         }
 
@@ -80,6 +83,22 @@ namespace Hermes.ViewModels
                 if (!string.IsNullOrEmpty(usuario.TemaPreferido))
                 {
                     ThemeService.Instance.ApplyTheme(usuario.TemaPreferido);
+                }
+
+                // Registrar auditoría de LOGIN
+                try
+                {
+                    string nombreMaquina = Environment.MachineName;
+                    await _auditoriaSesionService.RegistrarLoginAsync(
+                        usuario.IdUsuario,
+                        usuario.EmpleadoCi.ToString(),
+                        nombreMaquina
+                    );
+                }
+                catch (Exception ex)
+                {
+                    // Error en auditoría no debe bloquear el login
+                    System.Diagnostics.Debug.WriteLine($"Error al registrar auditoría de login: {ex.Message}");
                 }
 
                 // Abrir ventana principal (todos los roles tienen acceso)

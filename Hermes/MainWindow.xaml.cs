@@ -27,6 +27,9 @@ namespace Hermes
             // Actualizar el ícono del botón maximizar según el estado de la ventana
             this.StateChanged += MainWindow_StateChanged;
 
+            // Manejar el cierre de la ventana para registrar logout
+            this.Closing += MainWindow_Closing;
+
             // Cargar el tema actual
             LoadCurrentTheme();
             _isInitialized = true;
@@ -268,6 +271,42 @@ namespace Hermes
             else
             {
                 MaximizeButton.Content = "▢"; // Ícono para maximizar
+            }
+        }
+
+        /// <summary>
+        /// Maneja el evento de cierre de la ventana para registrar logout en auditoría
+        /// </summary>
+        private async void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // Registrar auditoría de LOGOUT cuando se cierra la aplicación
+            if (App.UsuarioActual != null)
+            {
+                try
+                {
+                    // Cancelar el cierre temporalmente para permitir que el registro se complete
+                    e.Cancel = true;
+
+                    var auditoriaSesionService = new Services.AuditoriaSesionService();
+                    string nombreMaquina = Environment.MachineName;
+                    await auditoriaSesionService.RegistrarLogoutAsync(
+                        App.UsuarioActual.IdUsuario,
+                        App.UsuarioActual.EmpleadoCi.ToString(),
+                        nombreMaquina
+                    );
+
+                    // Ahora sí cerrar la ventana
+                    this.Closing -= MainWindow_Closing; // Remover el event handler para evitar loop
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Error en auditoría no debe bloquear el cierre
+                    System.Diagnostics.Debug.WriteLine($"Error al registrar auditoría de logout: {ex.Message}");
+                    // Cerrar de todas formas
+                    this.Closing -= MainWindow_Closing;
+                    this.Close();
+                }
             }
         }
     }

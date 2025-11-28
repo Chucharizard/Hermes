@@ -15,6 +15,11 @@ namespace Hermes.Data
         public DbSet<TareaComentario> TareasComentarios { get; set; }
         public DbSet<TareaAdjunto> TareasAdjuntos { get; set; }
 
+        // Tablas de Auditoría
+        public DbSet<AuditoriaSesion> AuditoriasSesion { get; set; }
+        public DbSet<AuditoriaEmpleadoUsuario> AuditoriasEmpleadoUsuario { get; set; }
+        public DbSet<AuditoriaTarea> AuditoriasTarea { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
@@ -218,6 +223,56 @@ namespace Hermes.Data
                     .WithMany()
                     .HasForeignKey(ta => ta.IdUsuarioSubioTareaAdjunto)
                     .HasConstraintName("FK_ADJUNTO_USUARIO")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(false);
+            });
+
+            // Configuración AuditoriaSesion
+            modelBuilder.Entity<AuditoriaSesion>(entity =>
+            {
+                entity.Property(a => a.IdAuditoriaSesion).HasDefaultValueSql("NEWID()");
+
+                entity.HasOne(a => a.Usuario)
+                    .WithMany()
+                    .HasForeignKey(a => a.UsuarioId)
+                    .HasConstraintName("FK_AUDITORIA_SESION_USUARIO")
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(a => a.Empleado)
+                    .WithMany()
+                    .HasForeignKey(a => a.CiEmpleado)
+                    .HasConstraintName("FK_AUDITORIA_SESION_EMPLEADO")
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            // Configuración AuditoriaEmpleadoUsuario
+            modelBuilder.Entity<AuditoriaEmpleadoUsuario>(entity =>
+            {
+                entity.Property(a => a.IdAuditoria).HasDefaultValueSql("NEWID()");
+
+                entity.HasOne(a => a.UsuarioModificador)
+                    .WithMany()
+                    .HasForeignKey(a => a.UsuarioIdModificador)
+                    .HasConstraintName("FK_AUDITORIA_EMP_USU_MODIFICADOR")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(false);
+            });
+
+            // Configuración AuditoriaTarea
+            modelBuilder.Entity<AuditoriaTarea>(entity =>
+            {
+                entity.Property(a => a.IdAuditoria).HasDefaultValueSql("NEWID()");
+
+                entity.HasOne(a => a.UsuarioModificador)
+                    .WithMany()
+                    .HasForeignKey(a => a.UsuarioIdModificador)
+                    .HasConstraintName("FK_AUDITORIA_TAREA_MODIFICADOR")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(false);
+
+                entity.HasOne(a => a.Tarea)
+                    .WithMany()
+                    .HasForeignKey(a => a.TareaId)
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired(false);
             });

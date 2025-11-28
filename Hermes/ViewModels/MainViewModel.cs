@@ -3,6 +3,8 @@ using System.Windows.Input;
 using System.Linq;
 using Hermes.Commands;
 using Hermes.Views;
+using Hermes.Services;
+using System;
 
 namespace Hermes.ViewModels
 {
@@ -69,6 +71,7 @@ namespace Hermes.ViewModels
         public ICommand MostrarDashboardCommand { get; }
         public ICommand MostrarBandejaTareasEnviadasCommand { get; }
         public ICommand MostrarBandejaTareasRecibidasCommand { get; }
+        public ICommand MostrarAuditoriaCommand { get; }
         public ICommand CerrarSesionCommand { get; }
         public ICommand ToggleSidebarCommand { get; }
 
@@ -102,6 +105,7 @@ namespace Hermes.ViewModels
             MostrarDashboardCommand = new RelayCommand(_ => MostrarDashboard());
             MostrarBandejaTareasEnviadasCommand = new RelayCommand(_ => MostrarBandejaTareasEnviadas());
             MostrarBandejaTareasRecibidasCommand = new RelayCommand(_ => MostrarBandejaTareasRecibidas());
+            MostrarAuditoriaCommand = new RelayCommand(_ => MostrarAuditoria());
             CerrarSesionCommand = new RelayCommand(_ => CerrarSesion());
             ToggleSidebarCommand = new RelayCommand(_ => ToggleSidebar());
 
@@ -142,6 +146,11 @@ namespace Hermes.ViewModels
             CurrentView = new BandejaTareasRecibidasView();
         }
 
+        private void MostrarAuditoria()
+        {
+            CurrentView = new AuditoriaView();
+        }
+
         public void MostrarBandejaTareasRecibidasConFiltro(string filtroEstado)
         {
             var view = new BandejaTareasRecibidasView();
@@ -157,7 +166,7 @@ namespace Hermes.ViewModels
             SidebarColapsado = !SidebarColapsado;
         }
 
-        private void CerrarSesion()
+        private async void CerrarSesion()
         {
             var result = MessageBox.Show("�Esta seguro que desea cerrar sesion?",
                                          "Confirmar",
@@ -166,6 +175,26 @@ namespace Hermes.ViewModels
 
             if (result == MessageBoxResult.Yes)
             {
+                // Registrar auditoría de LOGOUT antes de cerrar sesión
+                if (App.UsuarioActual != null)
+                {
+                    try
+                    {
+                        var auditoriaSesionService = new AuditoriaSesionService();
+                        string nombreMaquina = Environment.MachineName;
+                        await auditoriaSesionService.RegistrarLogoutAsync(
+                            App.UsuarioActual.IdUsuario,
+                            App.UsuarioActual.EmpleadoCi.ToString(),
+                            nombreMaquina
+                        );
+                    }
+                    catch (Exception ex)
+                    {
+                        // Error en auditoría no debe bloquear el logout
+                        System.Diagnostics.Debug.WriteLine($"Error al registrar auditoría de logout: {ex.Message}");
+                    }
+                }
+
                 App.UsuarioActual = null;
 
                 var loginWindow = new LoginWindow();
