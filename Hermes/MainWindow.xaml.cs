@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hermes.Services;
+using Hermes.ViewModels;
 
 namespace Hermes
 {
@@ -144,16 +145,23 @@ namespace Hermes
                 MainContentGrid.UpdateLayout();
 
                 // ===== RECREAR VISTA ACTUAL =====
-                // Guardar la vista actual
-                var currentView = CurrentViewContent.Content;
+                // Obtener el ViewModel
+                if (this.DataContext is MainViewModel viewModel)
+                {
+                    // Guardar la vista actual
+                    var currentView = viewModel.CurrentView;
 
-                // Establecer a null temporalmente para destruir la vista
-                CurrentViewContent.Content = null;
-                CurrentViewContent.InvalidateVisual();
-                CurrentViewContent.UpdateLayout();
+                    // Establecer a null temporalmente - esto notifica el cambio vía PropertyChanged
+                    viewModel.CurrentView = null;
 
-                // Restaurar la vista - esto la recrea con los nuevos colores del tema
-                CurrentViewContent.Content = currentView;
+                    // Pequeña pausa para asegurar que la vista se destruya
+                    CurrentViewContent.InvalidateVisual();
+                    CurrentViewContent.UpdateLayout();
+
+                    // Restaurar la vista - esto la recrea con los nuevos colores del tema
+                    viewModel.CurrentView = currentView;
+                }
+
                 CurrentViewContent.InvalidateVisual();
                 CurrentViewContent.UpdateLayout();
 
