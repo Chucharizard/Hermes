@@ -362,6 +362,27 @@
         </Setter>
     </Style>
 
+    <!-- User Info Border en Sidebar -->
+    <Style x:Key="UserInfoBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource SidebarGradient}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="15"/>
+        <Setter Property="Margin" Value="10,0,10,15"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- Header de Sección (Con degradado oscuro) -->
     <Style x:Key="SectionHeaderStyle" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource DarkGradient}"/>
