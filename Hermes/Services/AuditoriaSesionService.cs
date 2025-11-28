@@ -16,7 +16,7 @@ namespace Hermes.Services
         /// <summary>
         /// Registra un evento de inicio de sesión (LOGIN)
         /// </summary>
-        public async Task<bool> RegistrarLoginAsync(Guid usuarioId, string ciEmpleado, string nombreMaquina)
+        public async Task<bool> RegistrarLoginAsync(Guid usuarioId, int ciEmpleado, string nombreMaquina)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Hermes.Services
         /// <summary>
         /// Registra un evento de cierre de sesión (LOGOUT)
         /// </summary>
-        public async Task<bool> RegistrarLogoutAsync(Guid usuarioId, string ciEmpleado, string nombreMaquina)
+        public async Task<bool> RegistrarLogoutAsync(Guid usuarioId, int ciEmpleado, string nombreMaquina)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Hermes.Services
         /// <summary>
         /// Obtiene registros de auditoría de un empleado específico (por CI)
         /// </summary>
-        public async Task<List<AuditoriaSesion>> ObtenerPorEmpleadoAsync(string ciEmpleado)
+        public async Task<List<AuditoriaSesion>> ObtenerPorEmpleadoAsync(int ciEmpleado)
         {
             return await _context.AuditoriasSesion
                 .Include(a => a.Usuario)
@@ -143,7 +143,7 @@ namespace Hermes.Services
             DateTime? fechaInicio = null,
             DateTime? fechaFin = null,
             Guid? usuarioId = null,
-            string? ciEmpleado = null,
+            int? ciEmpleado = null,
             string? tipoEvento = null)
         {
             var query = _context.AuditoriasSesion
@@ -161,8 +161,8 @@ namespace Hermes.Services
             if (usuarioId.HasValue)
                 query = query.Where(a => a.UsuarioId == usuarioId.Value);
 
-            if (!string.IsNullOrEmpty(ciEmpleado))
-                query = query.Where(a => a.CiEmpleado == ciEmpleado);
+            if (ciEmpleado.HasValue)
+                query = query.Where(a => a.CiEmpleado == ciEmpleado.Value);
 
             if (!string.IsNullOrEmpty(tipoEvento))
                 query = query.Where(a => a.TipoEvento == tipoEvento);

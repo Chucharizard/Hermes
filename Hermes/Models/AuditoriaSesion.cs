@@ -17,8 +17,7 @@ namespace Hermes.Models
 
         [Required]
         [Column("ci_empleado")]
-        [MaxLength(20)]
-        public string CiEmpleado { get; set; } = string.Empty;
+        public int CiEmpleado { get; set; }
 
         [Required]
         [Column("fecha_hora")]

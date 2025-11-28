@@ -91,7 +91,7 @@ namespace Hermes.ViewModels
                     string nombreMaquina = Environment.MachineName;
                     await _auditoriaSesionService.RegistrarLoginAsync(
                         usuario.IdUsuario,
-                        usuario.EmpleadoCi.ToString(),
+                        usuario.EmpleadoCi,
                         nombreMaquina
                     );
                 }

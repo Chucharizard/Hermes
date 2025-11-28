@@ -15,7 +15,7 @@ BEGIN
     CREATE TABLE AUDITORIA_SESION (
         id_auditoria_sesion UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
         usuario_id UNIQUEIDENTIFIER NOT NULL,
-        ci_empleado VARCHAR(20) NOT NULL,
+        ci_empleado INT NOT NULL,
         fecha_hora DATETIME NOT NULL DEFAULT GETDATE(),
         nombre_maquina NVARCHAR(100) NOT NULL,
         tipo_evento NVARCHAR(20) NOT NULL CHECK (tipo_evento IN ('LOGIN', 'LOGOUT')),
@@ -49,10 +49,10 @@ BEGIN
         id_auditoria UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
         tabla_afectada NVARCHAR(50) NOT NULL CHECK (tabla_afectada IN ('EMPLEADO', 'USUARIO')),
         accion NVARCHAR(10) NOT NULL CHECK (accion IN ('INSERT', 'UPDATE', 'DELETE')),
-        ci_empleado_afectado VARCHAR(20),
+        ci_empleado_afectado INT,
         usuario_id_afectado UNIQUEIDENTIFIER,
         usuario_id_modificador UNIQUEIDENTIFIER,
-        ci_modificador VARCHAR(20),
+        ci_modificador INT,
         fecha_hora DATETIME NOT NULL DEFAULT GETDATE(),
         nombre_maquina NVARCHAR(100) NOT NULL,
         detalles NVARCHAR(MAX), -- JSON con los cambios
@@ -86,7 +86,7 @@ BEGIN
         tarea_id UNIQUEIDENTIFIER,
         accion NVARCHAR(10) NOT NULL CHECK (accion IN ('INSERT', 'UPDATE', 'DELETE')),
         usuario_id_modificador UNIQUEIDENTIFIER,
-        ci_modificador VARCHAR(20),
+        ci_modificador INT,
         fecha_hora DATETIME NOT NULL DEFAULT GETDATE(),
         nombre_maquina NVARCHAR(100) NOT NULL,
         detalles NVARCHAR(MAX), -- JSON con los cambios

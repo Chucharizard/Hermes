@@ -291,7 +291,7 @@ namespace Hermes
                     string nombreMaquina = Environment.MachineName;
                     await auditoriaSesionService.RegistrarLogoutAsync(
                         App.UsuarioActual.IdUsuario,
-                        App.UsuarioActual.EmpleadoCi.ToString(),
+                        App.UsuarioActual.EmpleadoCi,
                         nombreMaquina
                     );
 

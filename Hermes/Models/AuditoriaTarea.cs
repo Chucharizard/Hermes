@@ -23,8 +23,7 @@ namespace Hermes.Models
         public Guid? UsuarioIdModificador { get; set; }
 
         [Column("ci_modificador")]
-        [MaxLength(20)]
-        public string? CiModificador { get; set; }
+        public int? CiModificador { get; set; }
 
         [Required]
         [Column("fecha_hora")]
