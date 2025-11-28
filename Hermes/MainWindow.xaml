@@ -35,7 +35,8 @@
             <!-- ========================================== -->
             <!-- BARRA DE TÍTULO PERSONALIZADA -->
             <!-- ========================================== -->
-            <Border Grid.Row="0"
+            <Border x:Name="TitleBarBorder"
+                    Grid.Row="0"
                     Background="{DynamicResource BackgroundDarkest}"
                     CornerRadius="0"
                     MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"

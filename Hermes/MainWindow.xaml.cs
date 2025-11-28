@@ -91,6 +91,10 @@ namespace Hermes
                 var backgroundDarkest = (Color)Application.Current.FindResource("BackgroundDarkestColor");
                 var backgroundDark = (Color)Application.Current.FindResource("BackgroundDarkColor");
 
+                // ===== TITLE BAR =====
+                // Actualizar el background de la barra de título
+                TitleBarBorder.Background = new SolidColorBrush(backgroundDarkest);
+
                 // ===== SIDEBAR =====
                 // Crear nuevo LinearGradientBrush vertical para sidebar
                 var sidebarBrush = new LinearGradientBrush
@@ -130,6 +134,8 @@ namespace Hermes
                 MainContentGrid.Background = mainContentBrush;
 
                 // Forzar actualización visual de todos los elementos
+                TitleBarBorder.InvalidateVisual();
+                TitleBarBorder.UpdateLayout();
                 SidebarBorder.InvalidateVisual();
                 SidebarBorder.UpdateLayout();
                 UserInfoBorder.InvalidateVisual();
