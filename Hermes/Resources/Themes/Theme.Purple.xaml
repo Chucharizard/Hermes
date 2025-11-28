@@ -123,4 +123,17 @@
         <GradientStop Color="#16213e" Offset="1"/>
     </LinearGradientBrush>
 
+    <!-- Degradado diagonal para fondo principal -->
+    <LinearGradientBrush x:Key="BackgroundDiagonalGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#0d1b2a" Offset="0"/>
+        <GradientStop Color="#1b263b" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado con efecto de brillo central (para login branding) -->
+    <LinearGradientBrush x:Key="LoginBrandingGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1b263b" Offset="0"/>
+        <GradientStop Color="#0d1b2a" Offset="0.5"/>
+        <GradientStop Color="#1b263b" Offset="1"/>
+    </LinearGradientBrush>
+
 </ResourceDictionary>

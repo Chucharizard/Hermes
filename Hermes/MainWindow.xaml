@@ -181,14 +181,8 @@
                 </Grid.ColumnDefinitions>
             
             <!-- Sidebar Menu con degradado vertical morado medianoche -->
-            <Border x:Name="SidebarBorder" Grid.Column="0" Padding="0,20">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0.5"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Border x:Name="SidebarBorder" Grid.Column="0" Padding="0,20"
+                    Background="{DynamicResource BackgroundDarkest}">
                 <StackPanel>
                     <!-- Botón Hamburguesa -->
                     <Button Content="☰"
@@ -227,14 +221,9 @@
                     <Border CornerRadius="12"
                             Padding="15"
                             Margin="10,0,10,15"
+                            Background="{DynamicResource SidebarGradient}"
                             BorderBrush="{DynamicResource BorderColor}"
                             BorderThickness="1">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="0"/>
-                                <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
@@ -580,13 +569,8 @@
             </Border>
             
             <!-- Main Content Area con tema morado medianoche -->
-            <Grid x:Name="MainContentGrid" Grid.Column="1">
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
+            <Grid x:Name="MainContentGrid" Grid.Column="1"
+                  Background="{DynamicResource BackgroundDiagonalGradient}">
 
                 <!-- Elementos decorativos de fondo -->
                 <Canvas IsHitTestVisible="False">

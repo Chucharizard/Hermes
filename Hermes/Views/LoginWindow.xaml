@@ -65,14 +65,8 @@
             </Grid.ColumnDefinitions>
 
             <!-- Panel Izquierdo - Branding (Paleta dinámica según tema) -->
-            <Border Grid.Column="0" CornerRadius="20,0,0,20">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0.5"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Border Grid.Column="0" CornerRadius="20,0,0,20"
+                    Background="{DynamicResource LoginBrandingGradient}">
 
                 <Grid>
                     <!-- Constelación decorativa -->
@@ -375,14 +369,7 @@
             </Border>
 
             <!-- Panel Derecho - Formulario -->
-            <Grid Grid.Column="1">
-                <!-- Fondo degradado dinámico según tema -->
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
+            <Grid Grid.Column="1" Background="{DynamicResource BackgroundDiagonalGradient}">
 
                 <!-- Elementos decorativos de fondo -->
                 <Canvas>
@@ -484,14 +471,9 @@
                         Panel.ZIndex="5"
                         Opacity="0"
                         RenderTransformOrigin="0.5,0.5"
+                        Background="{DynamicResource CardGradient}"
                         BorderBrush="{DynamicResource PrimaryColor}"
                         BorderThickness="1">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
-                            <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.5" Color="{DynamicResource BackgroundDarkestColor}"/>
                     </Border.Effect>

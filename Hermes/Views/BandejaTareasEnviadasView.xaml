@@ -56,14 +56,7 @@
 
         <!-- Estilo para columnas Kanban -->
         <Style x:Key="KanbanColumnStyle" TargetType="Border">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Background" Value="{DynamicResource BackgroundDarkest}"/>
             <Setter Property="BorderBrush" Value="#30FFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="12"/>
@@ -96,13 +89,9 @@
             </Grid.RowDefinitions>
 
             <!-- Header compacto + Estadísticas inline (tema morado medianoche) -->
-        <Border Grid.Row="0" CornerRadius="12" Padding="18,12" Margin="0,0,0,15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
-                    <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
+        <Border Grid.Row="0" CornerRadius="12" Padding="18,12" Margin="0,0,0,15"
+                Background="{DynamicResource CardGradient}"
+                BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.35" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Border.Effect>
