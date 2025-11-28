@@ -218,7 +218,16 @@
                     </StackPanel>
 
                     <!-- Información del Usuario (ocultar cuando está colapsado) -->
-                    <Border Style="{StaticResource UserInfoBorderStyle}">
+                    <Border CornerRadius="12"
+                            Padding="15"
+                            Margin="10,0,10,15"
+                            Background="{DynamicResource SidebarGradient}"
+                            BorderBrush="{DynamicResource BorderColor}"
+                            BorderThickness="1"
+                            Visibility="{Binding SidebarColapsado, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
+                        </Border.Effect>
                         <StackPanel>
                             <TextBlock Text="{Binding NombreUsuarioActual}"
                                        FontSize="16"
