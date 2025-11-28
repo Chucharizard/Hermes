@@ -103,6 +103,21 @@ namespace Hermes
                 sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 1));
                 SidebarBorder.Background = sidebarBrush;
 
+                // ===== USER INFO BORDER =====
+                // Crear nuevo LinearGradientBrush para el borde de información del usuario
+                var userInfoBrush = new LinearGradientBrush
+                {
+                    StartPoint = new Point(0, 0),
+                    EndPoint = new Point(0, 1)
+                };
+                userInfoBrush.GradientStops.Add(new GradientStop(backgroundDark, 0));
+                userInfoBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 1));
+                UserInfoBorder.Background = userInfoBrush;
+
+                // Actualizar el BorderBrush del UserInfoBorder
+                var borderColorBrush = (SolidColorBrush)Application.Current.FindResource("BorderColor");
+                UserInfoBorder.BorderBrush = borderColorBrush;
+
                 // ===== MAIN CONTENT AREA (Dashboard) =====
                 // Crear nuevo LinearGradientBrush diagonal para main content
                 var mainContentBrush = new LinearGradientBrush
@@ -114,9 +129,11 @@ namespace Hermes
                 mainContentBrush.GradientStops.Add(new GradientStop(backgroundDark, 1));
                 MainContentGrid.Background = mainContentBrush;
 
-                // Forzar actualización visual de ambos
+                // Forzar actualización visual de todos los elementos
                 SidebarBorder.InvalidateVisual();
                 SidebarBorder.UpdateLayout();
+                UserInfoBorder.InvalidateVisual();
+                UserInfoBorder.UpdateLayout();
                 MainContentGrid.InvalidateVisual();
                 MainContentGrid.UpdateLayout();
 

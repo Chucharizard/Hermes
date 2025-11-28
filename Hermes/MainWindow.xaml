@@ -218,7 +218,8 @@
                     </StackPanel>
 
                     <!-- Información del Usuario (ocultar cuando está colapsado) -->
-                    <Border CornerRadius="12"
+                    <Border x:Name="UserInfoBorder"
+                            CornerRadius="12"
                             Padding="15"
                             Margin="10,0,10,15"
                             Background="{DynamicResource SidebarGradient}"
