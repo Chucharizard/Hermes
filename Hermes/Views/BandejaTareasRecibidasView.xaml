@@ -59,8 +59,8 @@
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#0f1419" Offset="0"/>
-                        <GradientStop Color="#0a0a15" Offset="1"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -99,8 +99,8 @@
         <Border Grid.Row="0" CornerRadius="12" Padding="18,12" Margin="0,0,0,15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#1a1a2e" Offset="0"/>
-                    <GradientStop Color="#16213e" Offset="1"/>
+                    <GradientStop Color="{DynamicResource BackgroundDarkestColor}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource BackgroundDarkColor}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <Border.Effect>
@@ -124,7 +124,7 @@
                 <!-- Estadísticas inline compactas -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <!-- Total -->
-                    <Border Background="#9B59B6" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource PrimaryColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalRecibidas}"
                                        FontSize="14"
@@ -139,7 +139,7 @@
                     </Border>
 
                     <!-- Pendientes -->
-                    <Border Background="#F39C12" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource WarningColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalPendientes}"
                                        FontSize="14"
@@ -154,7 +154,7 @@
                     </Border>
 
                     <!-- Completadas -->
-                    <Border Background="#27AE60" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource SuccessColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalCompletadas}"
                                        FontSize="14"
@@ -169,7 +169,7 @@
                     </Border>
 
                     <!-- Vencidas -->
-                    <Border Background="#E67E22" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
+                    <Border Background="{DynamicResource WarningColor}" CornerRadius="12" Padding="10,4" Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalVencidas}"
                                        FontSize="14"
@@ -184,7 +184,7 @@
                     </Border>
 
                     <!-- Observadas -->
-                    <Border Background="#E74C3C" CornerRadius="12" Padding="10,4">
+                    <Border Background="{DynamicResource DangerColor}" CornerRadius="12" Padding="10,4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalObservadas}"
                                        FontSize="14"
@@ -242,7 +242,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Header de columna -->
-                    <Border Grid.Row="0" Background="#F39C12" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                    <Border Grid.Row="0" Background="{DynamicResource WarningColor}" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
                         <StackPanel>
                             <TextBlock Text="⏳ PENDIENTE"
                                        FontSize="13"
@@ -313,7 +313,7 @@
                                                 <TextBlock Grid.Column="1"
                                                            Text="{Binding FechaLimiteTarea, StringFormat='📅 {0:dd/MM}'}"
                                                            FontSize="10"
-                                                           Foreground="#B0B8C8"
+                                                           Foreground="{DynamicResource TextSecondaryColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Right"/>
                                             </Grid>
@@ -323,7 +323,7 @@
                                                     Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
-                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                <TextBlock FontSize="10" Foreground="{DynamicResource TextSecondaryColor}">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
                                                          Foreground="{DynamicResource WarningColor}"
@@ -350,7 +350,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Header de columna -->
-                    <Border Grid.Row="0" Background="#27AE60" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                    <Border Grid.Row="0" Background="{DynamicResource SuccessColor}" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
                         <StackPanel>
                             <TextBlock Text="✅ COMPLETADO"
                                        FontSize="13"
@@ -421,7 +421,7 @@
                                                 <TextBlock Grid.Column="1"
                                                            Text="{Binding FechaCompletadaTarea, StringFormat='✓ {0:dd/MM}'}"
                                                            FontSize="10"
-                                                           Foreground="#27AE60"
+                                                           Foreground="{DynamicResource SuccessColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Right"/>
                                             </Grid>
@@ -431,7 +431,7 @@
                                                     Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
-                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                <TextBlock FontSize="10" Foreground="{DynamicResource TextSecondaryColor}">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
                                                          Foreground="{DynamicResource WarningColor}"
@@ -458,7 +458,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Header de columna -->
-                    <Border Grid.Row="0" Background="#E67E22" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                    <Border Grid.Row="0" Background="{DynamicResource WarningColor}" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
                         <StackPanel>
                             <TextBlock Text="⚠️ VENCIDO"
                                        FontSize="13"
@@ -529,7 +529,7 @@
                                                 <TextBlock Grid.Column="1"
                                                            Text="{Binding TiempoRestante}"
                                                            FontSize="10"
-                                                           Foreground="#E67E22"
+                                                           Foreground="{DynamicResource WarningColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Right"
                                                            TextWrapping="Wrap"/>
@@ -540,7 +540,7 @@
                                                     Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
-                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                <TextBlock FontSize="10" Foreground="{DynamicResource TextSecondaryColor}">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
                                                          Foreground="{DynamicResource WarningColor}"
@@ -567,7 +567,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Header de columna -->
-                    <Border Grid.Row="0" Background="#E74C3C" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                    <Border Grid.Row="0" Background="{DynamicResource DangerColor}" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
                         <StackPanel>
                             <TextBlock Text="👁️ OBSERVADO"
                                        FontSize="13"
@@ -638,7 +638,7 @@
                                                 <TextBlock Grid.Column="1"
                                                            Text="{Binding FechaLimiteTarea, StringFormat='📅 {0:dd/MM}'}"
                                                            FontSize="10"
-                                                           Foreground="#B0B8C8"
+                                                           Foreground="{DynamicResource TextSecondaryColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Right"/>
                                             </Grid>
@@ -648,7 +648,7 @@
                                                     Background="{DynamicResource BackgroundDark}"
                                                     CornerRadius="8"
                                                     Padding="6,4">
-                                                <TextBlock FontSize="10" Foreground="#B0B8C8">
+                                                <TextBlock FontSize="10" Foreground="{DynamicResource TextSecondaryColor}">
                                                     <Run Text="👤 De:"/>
                                                     <Run Text="{Binding UsuarioEmisor.Empleado.NombresEmpleado}"
                                                          Foreground="{DynamicResource WarningColor}"
@@ -691,7 +691,7 @@
                     <Button Grid.Column="0"
                             Content="⬅ Volver"
                             Command="{Binding VolverCommand}"
-                            Background="#3498DB"
+                            Background="{DynamicResource InfoColor}"
                             Foreground="White"
                             Padding="12,6"
                             FontSize="13"
@@ -733,7 +733,7 @@
 
             <!-- Contenido del detalle -->
             <Border Grid.Row="1"
-                    Background="#0a0a15">
+                    Background="{DynamicResource BackgroundDarkest}">
                 <views:DetalleTareaView DataContext="{Binding DetalleViewModel}"/>
             </Border>
         </Grid>
