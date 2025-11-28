@@ -142,6 +142,18 @@ namespace Hermes
                 UserInfoBorder.UpdateLayout();
                 MainContentGrid.InvalidateVisual();
                 MainContentGrid.UpdateLayout();
+
+                // ===== RECREAR VISTA ACTUAL =====
+                // Guardar la vista actual
+                var currentView = CurrentViewContent.Content;
+
+                // Establecer a null temporalmente para destruir la vista
+                CurrentViewContent.Content = null;
+                CurrentViewContent.InvalidateVisual();
+                CurrentViewContent.UpdateLayout();
+
+                // Restaurar la vista - esto la recrea con los nuevos colores del tema
+                CurrentViewContent.Content = currentView;
                 CurrentViewContent.InvalidateVisual();
                 CurrentViewContent.UpdateLayout();
 
