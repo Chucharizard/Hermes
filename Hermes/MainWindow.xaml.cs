@@ -142,10 +142,13 @@ namespace Hermes
                 UserInfoBorder.UpdateLayout();
                 MainContentGrid.InvalidateVisual();
                 MainContentGrid.UpdateLayout();
+                CurrentViewContent.InvalidateVisual();
+                CurrentViewContent.UpdateLayout();
 
                 // Recorrer elementos hijos para forzar actualización
                 RefreshVisualTree(SidebarBorder);
                 RefreshVisualTree(MainContentGrid);
+                RefreshVisualTree(CurrentViewContent);
             }
             catch (Exception ex)
             {

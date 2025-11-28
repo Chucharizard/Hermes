@@ -663,7 +663,8 @@
                     </Ellipse>
                 </Canvas>
 
-                <ContentControl Content="{Binding CurrentView}"
+                <ContentControl x:Name="CurrentViewContent"
+                              Content="{Binding CurrentView}"
                               Margin="15"
                               Panel.ZIndex="1"/>
             </Grid>
