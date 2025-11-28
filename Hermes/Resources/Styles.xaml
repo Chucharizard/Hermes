@@ -49,7 +49,7 @@
 
     <!-- Botón Primario con Degradado -->
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource PrimaryGradient}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryGradient}"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
@@ -350,46 +350,46 @@
 
     <!-- Card con Sombra (Tema morado medianoche) -->
     <Style x:Key="CardStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
+        <Setter Property="Background" Value="{DynamicResource CardGradient}"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Padding" Value="20"/>
-        <Setter Property="BorderBrush" Value="#30FFFFFF"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Setter.Value>
         </Setter>
     </Style>
 
     <!-- Header de Sección (Con degradado oscuro) -->
     <Style x:Key="SectionHeaderStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource DarkGradient}"/>
+        <Setter Property="Background" Value="{DynamicResource DarkGradient}"/>
         <Setter Property="Padding" Value="20"/>
         <Setter Property="Margin" Value="0,0,0,20"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.3" Color="#0d1b2a"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Setter.Value>
         </Setter>
     </Style>
 
     <!-- Card de Estadísticas (Con degradado de card) -->
     <Style x:Key="StatsCardStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
+        <Setter Property="Background" Value="{DynamicResource CardGradient}"/>
         <Setter Property="Padding" Value="20"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.2" Color="#0d1b2a"/>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.2" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Setter.Value>
         </Setter>
     </Style>
 
     <!-- Banner de Información (Fondo claro) -->
     <Style x:Key="InfoBannerStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundLightColor}"/>
         <Setter Property="Padding" Value="15"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
@@ -463,7 +463,7 @@
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundLightColor}"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundLightColor}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -751,16 +751,16 @@
 
     <!-- Card de Tarea Individual (Tema morado medianoche) -->
     <Style x:Key="TareaCardStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource CardGradient}"/>
+        <Setter Property="Background" Value="{DynamicResource CardGradient}"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="Margin" Value="8"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="1,1,1,4"/>
-        <Setter Property="BorderBrush" Value="#30FFFFFF"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="#000000"/>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3" Color="{DynamicResource BackgroundDarkestColor}"/>
             </Setter.Value>
         </Setter>
         <Setter Property="RenderTransform">
@@ -847,7 +847,7 @@
         <Setter Property="Width" Value="36"/>
         <Setter Property="Height" Value="36"/>
         <Setter Property="CornerRadius" Value="18"/>
-        <Setter Property="Background" Value="{StaticResource PrimaryGradient}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryGradient}"/>
     </Style>
 
     <!-- Texto de Metadata (fechas, etc - tema oscuro) -->
