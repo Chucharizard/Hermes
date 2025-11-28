@@ -221,22 +221,13 @@
                     <Border CornerRadius="12"
                             Padding="15"
                             Margin="10,0,10,15"
+                            Background="{DynamicResource SidebarGradient}"
                             BorderBrush="{DynamicResource BorderColor}"
-                            BorderThickness="1">
+                            BorderThickness="1"
+                            Visibility="{Binding SidebarColapsado, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="{DynamicResource SidebarGradient}"/>
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SidebarColapsado}" Value="True">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
                         <StackPanel>
                             <TextBlock Text="{Binding NombreUsuarioActual}"
                                        FontSize="16"
