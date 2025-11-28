@@ -10,8 +10,10 @@
     <Color x:Key="BackgroundDarkestColor">#1a4d4d</Color>
     <Color x:Key="BackgroundDarkColor">#234e52</Color>
     <Color x:Key="BackgroundMediumColor">#2d5a5a</Color>
+    <Color x:Key="BackgroundMediumLightColor">#3d6b6b</Color>
     <Color x:Key="PrimaryColorValue">#50c878</Color>
     <Color x:Key="PrimaryDarkColorValue">#2e8b57</Color>
+    <Color x:Key="PrimaryLightColorValue">#7fd4a8</Color>
     <Color x:Key="SuccessColorValue">#50c878</Color>
     <Color x:Key="InfoColorValue">#50c878</Color>
     <Color x:Key="WarningColorValue">#cd7f32</Color>
@@ -67,73 +69,73 @@
 
     <!-- Degradado principal (verde esmeralda vibrante) -->
     <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#50c878" Offset="0"/>
-        <GradientStop Color="#2e8b57" Offset="1"/>
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PrimaryGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#50c878" Offset="0"/>
-        <GradientStop Color="#2e8b57" Offset="1"/>
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado oscuro (fondos principales - verde petróleo) -->
     <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#1a4d4d" Offset="0"/>
-        <GradientStop Color="#234e52" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1a4d4d" Offset="0"/>
-        <GradientStop Color="#234e52" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado sidebar (verde petróleo oscuro) -->
     <LinearGradientBrush x:Key="SidebarGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#234e52" Offset="0"/>
-        <GradientStop Color="#1a4d4d" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado medio (verde petróleo medio) -->
     <LinearGradientBrush x:Key="MediumGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#2d5a5a" Offset="0"/>
-        <GradientStop Color="#3d6b6b" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundMediumColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundMediumLightColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado éxito (verde esmeralda) -->
     <LinearGradientBrush x:Key="SuccessGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#50c878" Offset="0"/>
-        <GradientStop Color="#2e8b57" Offset="1"/>
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado verde profundo -->
     <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#234e52" Offset="0"/>
-        <GradientStop Color="#1a4d4d" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado verde claro -->
     <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#7fd4a8" Offset="0"/>
-        <GradientStop Color="#50c878" Offset="1"/>
+        <GradientStop Color="{StaticResource PrimaryLightColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado para cards (tema oscuro verde petróleo) -->
     <LinearGradientBrush x:Key="CardGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1a4d4d" Offset="0"/>
-        <GradientStop Color="#234e52" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado diagonal para fondo principal -->
     <LinearGradientBrush x:Key="BackgroundDiagonalGradient" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#1a4d4d" Offset="0"/>
-        <GradientStop Color="#234e52" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado con efecto de brillo central (para login branding) -->
     <LinearGradientBrush x:Key="LoginBrandingGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#234e52" Offset="0"/>
-        <GradientStop Color="#1a4d4d" Offset="0.5"/>
-        <GradientStop Color="#234e52" Offset="1"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
 </ResourceDictionary>
