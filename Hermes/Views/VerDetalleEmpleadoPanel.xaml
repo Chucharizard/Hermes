@@ -68,7 +68,7 @@
                 <StackPanel>
                     <!-- Header de sección mejorado -->
                     <Border Background="{DynamicResource SuccessColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
-                        <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="13" FontWeight="Bold" Foreground="#0a0a15"/>
+                        <TextBlock Text="📞 INFORMACIÓN DE CONTACTO" FontSize="13" FontWeight="Bold" Foreground="{DynamicResource TextDarkColor}"/>
                     </Border>
 
                     <Grid>
@@ -204,13 +204,13 @@
                     </StackPanel>
 
                     <!-- No tiene usuario -->
-                    <Border CornerRadius="8" Padding="20" Background="#3a2f1f" Visibility="{Binding TieneUsuario, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <Border CornerRadius="8" Padding="20" Background="{DynamicResource WarningColor}" Visibility="{Binding TieneUsuario, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.3" Color="{DynamicResource WarningColorValue}"/>
                         </Border.Effect>
                         <StackPanel Orientation="Horizontal">
                             <Border Background="{DynamicResource WarningColor}" CornerRadius="25" Width="50" Height="50" Margin="0,0,20,0">
-                                <TextBlock Text="ℹ" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0a0a15"/>
+                                <TextBlock Text="ℹ" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource TextDarkColor}"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Sin Cuenta de Usuario" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource WarningColor}"/>
@@ -229,7 +229,7 @@
                 <StackPanel>
                     <!-- Header de sección mejorado -->
                     <Border Background="{DynamicResource WarningColor}" CornerRadius="6" Padding="10,8" Margin="0,0,0,20" HorizontalAlignment="Left">
-                        <TextBlock Text="⚙ ESTADO DEL EMPLEADO" FontSize="13" FontWeight="Bold" Foreground="#0a0a15"/>
+                        <TextBlock Text="⚙ ESTADO DEL EMPLEADO" FontSize="13" FontWeight="Bold" Foreground="{DynamicResource TextDarkColor}"/>
                     </Border>
 
                     <Border CornerRadius="8" Padding="20">

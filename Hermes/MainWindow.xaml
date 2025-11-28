@@ -227,7 +227,7 @@
                     <Border CornerRadius="12"
                             Padding="15"
                             Margin="10,0,10,15"
-                            BorderBrush="#30FFFFFF"
+                            BorderBrush="{DynamicResource BorderColor}"
                             BorderThickness="1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -236,7 +236,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="#000000"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
                         </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">

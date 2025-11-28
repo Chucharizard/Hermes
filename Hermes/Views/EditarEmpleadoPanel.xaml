@@ -36,9 +36,9 @@
 
                     <!-- CI (readonly) -->
                     <TextBlock Text="🆔 Cédula de Identidad (CI):" FontSize="11" Foreground="{DynamicResource TextSecondaryColor}" Margin="0,0,0,5"/>
-                    <Border Background="#0a0a15" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1" CornerRadius="4" Padding="10,8" Margin="0,0,0,12">
+                    <Border Background="{DynamicResource BackgroundDarkest}" BorderBrush="{DynamicResource PrimaryColor}" BorderThickness="1" CornerRadius="4" Padding="10,8" Margin="0,0,0,12">
                         <TextBlock Text="{Binding Empleado.CiEmpleado}"
-                                   Foreground="#95A5A6"
+                                   Foreground="{DynamicResource TextMutedColor}"
                                    FontSize="13"
                                    FontStyle="Italic"/>
                     </Border>
