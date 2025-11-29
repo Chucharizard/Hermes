@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Hermes.Models;
+using Hermes.Helpers;
+using Microsoft.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hermes.Data
 {
@@ -276,6 +280,42 @@ namespace Hermes.Data
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired(false);
             });
+        }
+
+        /// <summary>
+        /// Override de SaveChangesAsync para establecer SESSION_CONTEXT antes de guardar
+        /// Esto permite que los triggers de auditoría capturen quién hizo la modificación
+        /// </summary>
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            // Establecer SESSION_CONTEXT si hay un usuario actual
+            if (App.UsuarioActual != null && Database.GetDbConnection() is SqlConnection sqlConnection)
+            {
+                // Asegurar que la conexión esté abierta
+                if (sqlConnection.State != System.Data.ConnectionState.Open)
+                {
+                    await sqlConnection.OpenAsync(cancellationToken);
+                }
+
+                // Establecer el contexto de sesión
+                await SessionContextHelper.EstablecerContextoAsync(
+                    sqlConnection,
+                    App.UsuarioActual.IdUsuario,
+                    App.UsuarioActual.EmpleadoCi
+                );
+            }
+
+            // Llamar al método base para guardar los cambios
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Override de SaveChanges (versión sincrónica)
+        /// </summary>
+        public override int SaveChanges()
+        {
+            // Usar la versión asíncrona
+            return SaveChangesAsync().GetAwaiter().GetResult();
         }
     }
 }
