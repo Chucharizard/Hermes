@@ -80,7 +80,7 @@ namespace Hermes.Services
         /// <summary>
         /// Obtiene registros de auditoría de un empleado afectado específico (por CI)
         /// </summary>
-        public async Task<List<AuditoriaEmpleadoUsuario>> ObtenerPorEmpleadoAfectadoAsync(string ciEmpleado)
+        public async Task<List<AuditoriaEmpleadoUsuario>> ObtenerPorEmpleadoAfectadoAsync(int ciEmpleado)
         {
             return await _context.AuditoriasEmpleadoUsuario
                 .Include(a => a.UsuarioModificador)
@@ -112,7 +112,7 @@ namespace Hermes.Services
             string? tablaAfectada = null,
             string? accion = null,
             Guid? usuarioModificadorId = null,
-            string? ciEmpleadoAfectado = null,
+            int? ciEmpleadoAfectado = null,
             Guid? usuarioIdAfectado = null)
         {
             var query = _context.AuditoriasEmpleadoUsuario
@@ -135,8 +135,8 @@ namespace Hermes.Services
             if (usuarioModificadorId.HasValue)
                 query = query.Where(a => a.UsuarioIdModificador == usuarioModificadorId.Value);
 
-            if (!string.IsNullOrEmpty(ciEmpleadoAfectado))
-                query = query.Where(a => a.CiEmpleadoAfectado == ciEmpleadoAfectado);
+            if (ciEmpleadoAfectado.HasValue)
+                query = query.Where(a => a.CiEmpleadoAfectado == ciEmpleadoAfectado.Value);
 
             if (usuarioIdAfectado.HasValue)
                 query = query.Where(a => a.UsuarioIdAfectado == usuarioIdAfectado.Value);
