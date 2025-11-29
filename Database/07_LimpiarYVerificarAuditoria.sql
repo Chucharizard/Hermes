@@ -12,11 +12,17 @@ PRINT 'LIMPIANDO TABLAS DE AUDITORÍA';
 PRINT '===========================================';
 PRINT '';
 
+-- Contar registros ANTES de limpiar
+DECLARE @CountSesionAntes INT, @CountEmpleadoUsuarioAntes INT, @CountTareaAntes INT;
+SELECT @CountSesionAntes = COUNT(*) FROM AUDITORIA_SESION;
+SELECT @CountEmpleadoUsuarioAntes = COUNT(*) FROM AUDITORIA_EMPLEADO_USUARIO;
+SELECT @CountTareaAntes = COUNT(*) FROM AUDITORIA_TAREA;
+
 -- Mostrar contenido ANTES de limpiar
 PRINT '--- Estado ANTES de limpiar ---';
-PRINT 'AUDITORIA_SESION: ' + CAST((SELECT COUNT(*) FROM AUDITORIA_SESION) AS VARCHAR) + ' registros';
-PRINT 'AUDITORIA_EMPLEADO_USUARIO: ' + CAST((SELECT COUNT(*) FROM AUDITORIA_EMPLEADO_USUARIO) AS VARCHAR) + ' registros';
-PRINT 'AUDITORIA_TAREA: ' + CAST((SELECT COUNT(*) FROM AUDITORIA_TAREA) AS VARCHAR) + ' registros';
+PRINT 'AUDITORIA_SESION: ' + CAST(@CountSesionAntes AS VARCHAR) + ' registros';
+PRINT 'AUDITORIA_EMPLEADO_USUARIO: ' + CAST(@CountEmpleadoUsuarioAntes AS VARCHAR) + ' registros';
+PRINT 'AUDITORIA_TAREA: ' + CAST(@CountTareaAntes AS VARCHAR) + ' registros';
 PRINT '';
 
 -- Limpiar AUDITORIA_TAREA (primero, no tiene FK)
