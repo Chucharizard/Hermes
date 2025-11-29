@@ -38,7 +38,7 @@ namespace Hermes.Data
             // Configuraci�n Empleado
             modelBuilder.Entity<Empleado>(entity =>
             {
-                entity.ToTable("EMPLEADO");
+                entity.ToTable("EMPLEADO", tb => tb.HasTrigger("trg_Auditoria_EMPLEADO_INSERT"));
                 entity.HasKey(e => e.CiEmpleado);
                 entity.Property(e => e.CiEmpleado).HasColumnName("ci_empleado");
                 entity.Property(e => e.NombresEmpleado).HasColumnName("nombres_empleado").HasMaxLength(100);
@@ -62,7 +62,7 @@ namespace Hermes.Data
             // Configuraci�n Usuario
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.ToTable("USUARIO");
+                entity.ToTable("USUARIO", tb => tb.HasTrigger("trg_Auditoria_USUARIO_INSERT"));
                 entity.HasKey(u => u.IdUsuario);
                 entity.Property(u => u.IdUsuario).HasColumnName("id_usuario").HasDefaultValueSql("NEWID()");
                 entity.Property(u => u.EmpleadoCi).HasColumnName("empleado_ci");
@@ -158,7 +158,7 @@ namespace Hermes.Data
             // Configuraci�n Tarea (m�ltiples FK a Usuario)
             modelBuilder.Entity<Tarea>(entity =>
             {
-                entity.ToTable("TAREA");
+                entity.ToTable("TAREA", tb => tb.HasTrigger("trg_Auditoria_TAREA_INSERT"));
                 entity.HasKey(t => t.IdTarea);
                 entity.Property(t => t.IdTarea).HasColumnName("id_tarea").HasDefaultValueSql("NEWID()");
                 entity.Property(t => t.UsuarioEmisorId).HasColumnName("usuario_emisor_id");
