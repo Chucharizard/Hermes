@@ -57,5 +57,37 @@ namespace Hermes.Helpers
                 );
             }
         }
+
+        /// <summary>
+        /// Versión SINCRÓNICA de EstablecerContexto para usar en SaveChanges() y evitar deadlocks en WPF
+        /// </summary>
+        public static void EstablecerContexto(SqlConnection conexion, Guid usuarioId, int ciEmpleado)
+        {
+            try
+            {
+                // Convertir GUID a string para SESSION_CONTEXT
+                string usuarioIdStr = usuarioId.ToString();
+                string ciEmpleadoStr = ciEmpleado.ToString();
+
+                // Establecer UsuarioId en SESSION_CONTEXT
+                using (var cmdUsuario = new SqlCommand("EXEC sp_set_session_context @key = N'UsuarioId', @value = @usuarioId", conexion))
+                {
+                    cmdUsuario.Parameters.AddWithValue("@usuarioId", usuarioIdStr);
+                    cmdUsuario.ExecuteNonQuery(); // Sincrónico
+                }
+
+                // Establecer CiEmpleado en SESSION_CONTEXT
+                using (var cmdCi = new SqlCommand("EXEC sp_set_session_context @key = N'CiEmpleado', @value = @ciEmpleado", conexion))
+                {
+                    cmdCi.Parameters.AddWithValue("@ciEmpleado", ciEmpleadoStr);
+                    cmdCi.ExecuteNonQuery(); // Sincrónico
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error al establecer SESSION_CONTEXT: {ex.Message}");
+                // No lanzar excepción para no bloquear la operación principal
+            }
+        }
     }
 }

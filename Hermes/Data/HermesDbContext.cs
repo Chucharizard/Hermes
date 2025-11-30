@@ -311,11 +311,29 @@ namespace Hermes.Data
 
         /// <summary>
         /// Override de SaveChanges (versión sincrónica)
+        /// IMPORTANTE: Esta versión es completamente sincrónica para evitar deadlocks en WPF
         /// </summary>
         public override int SaveChanges()
         {
-            // Usar la versión asíncrona
-            return SaveChangesAsync().GetAwaiter().GetResult();
+            // Establecer SESSION_CONTEXT si hay un usuario actual
+            if (App.UsuarioActual != null && Database.GetDbConnection() is SqlConnection sqlConnection)
+            {
+                // Asegurar que la conexión esté abierta (sincrónico)
+                if (sqlConnection.State != System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Open();
+                }
+
+                // Establecer el contexto de sesión (versión SINCRÓNICA para evitar deadlocks)
+                SessionContextHelper.EstablecerContexto(
+                    sqlConnection,
+                    App.UsuarioActual.IdUsuario,
+                    App.UsuarioActual.EmpleadoCi
+                );
+            }
+
+            // Llamar al método base para guardar los cambios
+            return base.SaveChanges();
         }
     }
 }
