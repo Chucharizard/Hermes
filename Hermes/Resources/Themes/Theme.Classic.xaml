@@ -8,8 +8,8 @@
     <!-- ========================================== -->
 
     <!-- COLORES BASE (para DropShadowEffect y otras propiedades Color) -->
-    <Color x:Key="BackgroundDarkestColor">#f5f5f5</Color>      <!-- Gris muy claro (sidebar) -->
-    <Color x:Key="BackgroundDarkColor">#fafaf8</Color>         <!-- Crema muy claro (sidebar) -->
+    <Color x:Key="BackgroundDarkestColor">#2c5282</Color>      <!-- Azul marino SIDEBAR -->
+    <Color x:Key="BackgroundDarkColor">#3c6896</Color>         <!-- Azul marino claro SIDEBAR -->
     <Color x:Key="BackgroundMediumColor">#ffffff</Color>       <!-- BLANCO PURO para tablas/panels -->
     <Color x:Key="BackgroundMediumLightColor">#ffffff</Color>  <!-- Blanco puro -->
     <Color x:Key="PrimaryColorValue">#5a8db5</Color>           <!-- Azul solo para botones -->
@@ -21,8 +21,8 @@
     <Color x:Key="DangerColorValue">#c96b66</Color>            <!-- Rojo suave -->
 
     <!-- Fondos BLANCOS y CREMA (TODO blanco/crema, SIN AZUL) -->
-    <SolidColorBrush x:Key="BackgroundDarkest" Color="#f5f5f5"/>   <!-- Gris muy claro -->
-    <SolidColorBrush x:Key="BackgroundDark" Color="#fafaf8"/>      <!-- Crema muy claro -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="#2c5282"/>   <!-- AZUL MARINO SIDEBAR -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#3c6896"/>      <!-- AZUL MARINO CLARO SIDEBAR -->
     <SolidColorBrush x:Key="BackgroundMedium" Color="#ffffff"/>    <!-- BLANCO para tablas/panels -->
     <SolidColorBrush x:Key="BackgroundCharcoal" Color="#ffffff"/>  <!-- Blanco puro -->
     <SolidColorBrush x:Key="BackgroundLight" Color="#ffffff"/>     <!-- Blanco puro -->
@@ -55,10 +55,10 @@
     <SolidColorBrush x:Key="TextDangerColor" Color="#c96b66"/>       <!-- Texto peligro rojo -->
     <SolidColorBrush x:Key="TextOnPrimaryColor" Color="White"/>      <!-- Texto sobre azul (blanco) -->
 
-    <!-- Colores para sidebar (BLANCO/CREMA, sin azul) -->
-    <SolidColorBrush x:Key="DarkColor" Color="#fafaf8"/>             <!-- Crema muy claro sidebar -->
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#f0f0f0"/>        <!-- Gris muy claro hover -->
-    <SolidColorBrush x:Key="SidebarColor" Color="#fafaf8"/>          <!-- Crema muy claro sidebar -->
+    <!-- Colores para sidebar (AZUL MARINO) -->
+    <SolidColorBrush x:Key="DarkColor" Color="#3c6896"/>             <!-- Azul marino sidebar -->
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#2c5282"/>        <!-- Azul marino oscuro hover -->
+    <SolidColorBrush x:Key="SidebarColor" Color="#3c6896"/>          <!-- Azul marino sidebar -->
 
     <!-- Bordes (grises muy sutiles) -->
     <SolidColorBrush x:Key="BorderColor" Color="#e0e0e0"/>           <!-- Gris muy claro para bordes -->
@@ -79,21 +79,21 @@
         <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado para sidebar (CREMA/GRIS, sin azul) -->
+    <!-- Degradado para sidebar (AZUL MARINO) -->
     <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#f5f5f5" Offset="0"/>
-        <GradientStop Color="#fafaf8" Offset="1"/>
+        <GradientStop Color="#2c5282" Offset="0"/>
+        <GradientStop Color="#3c6896" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#f5f5f5" Offset="0"/>
-        <GradientStop Color="#fafaf8" Offset="1"/>
+        <GradientStop Color="#2c5282" Offset="0"/>
+        <GradientStop Color="#3c6896" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado sidebar vertical (crema) -->
+    <!-- Degradado sidebar vertical (azul marino) -->
     <LinearGradientBrush x:Key="SidebarGradient" x:Shared="False" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#fafaf8" Offset="0"/>
-        <GradientStop Color="#f5f5f5" Offset="1"/>
+        <GradientStop Color="#3c6896" Offset="0"/>
+        <GradientStop Color="#2c5282" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado medio (blanco a crema muy sutil) -->
@@ -108,10 +108,10 @@
         <GradientStop Color="#5a8a6e" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado crema/gris (antes azul) -->
+    <!-- Degradado azul marino -->
     <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#fafaf8" Offset="0"/>
-        <GradientStop Color="#f5f5f5" Offset="1"/>
+        <GradientStop Color="#3c6896" Offset="0"/>
+        <GradientStop Color="#2c5282" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado azul claro suave -->
@@ -132,11 +132,11 @@
         <GradientStop Color="#fafaf8" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado con efecto sutil para login branding (crema) -->
+    <!-- Degradado con efecto sutil para login branding (azul marino) -->
     <LinearGradientBrush x:Key="LoginBrandingGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#fafaf8" Offset="0"/>
-        <GradientStop Color="#f5f5f5" Offset="0.5"/>
-        <GradientStop Color="#fafaf8" Offset="1"/>
+        <GradientStop Color="#3c6896" Offset="0"/>
+        <GradientStop Color="#2c5282" Offset="0.5"/>
+        <GradientStop Color="#3c6896" Offset="1"/>
     </LinearGradientBrush>
 
 </ResourceDictionary>
