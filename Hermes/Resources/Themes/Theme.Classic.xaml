@@ -8,11 +8,11 @@
     <!-- ========================================== -->
 
     <!-- COLORES BASE (para DropShadowEffect y otras propiedades Color) -->
-    <Color x:Key="BackgroundDarkestColor">#4a7ba7</Color>      <!-- Azul suave para sidebar -->
-    <Color x:Key="BackgroundDarkColor">#5a8db5</Color>         <!-- Azul claro para sidebar -->
-    <Color x:Key="BackgroundMediumColor">#fafaf8</Color>       <!-- Crema muy claro (panels/cards) -->
+    <Color x:Key="BackgroundDarkestColor">#6b9ac4</Color>      <!-- Azul muy claro para sidebar -->
+    <Color x:Key="BackgroundDarkColor">#7ba5c9</Color>         <!-- Azul pastel para sidebar -->
+    <Color x:Key="BackgroundMediumColor">#ffffff</Color>       <!-- BLANCO PURO para tablas/panels -->
     <Color x:Key="BackgroundMediumLightColor">#ffffff</Color>  <!-- Blanco puro -->
-    <Color x:Key="PrimaryColorValue">#5a8db5</Color>           <!-- Azul suave desaturado -->
+    <Color x:Key="PrimaryColorValue">#5a8db5</Color>           <!-- Azul suave solo para botones -->
     <Color x:Key="PrimaryDarkColorValue">#4a7ba7</Color>       <!-- Azul medio -->
     <Color x:Key="PrimaryLightColorValue">#7ba5c9</Color>      <!-- Azul muy claro -->
     <Color x:Key="SuccessColorValue">#6b9b7f</Color>           <!-- Verde suave -->
@@ -23,11 +23,11 @@
     <!-- Fondos BLANCOS y CREMA (minimalista) -->
     <SolidColorBrush x:Key="BackgroundDarkest" Color="{StaticResource BackgroundDarkestColor}"/>  <!-- Solo para sidebar -->
     <SolidColorBrush x:Key="BackgroundDark" Color="{StaticResource BackgroundDarkColor}"/>        <!-- Solo para sidebar -->
-    <SolidColorBrush x:Key="BackgroundMedium" Color="#fafaf8"/>                                   <!-- Crema muy claro -->
+    <SolidColorBrush x:Key="BackgroundMedium" Color="#ffffff"/>                                   <!-- BLANCO para tablas/panels -->
     <SolidColorBrush x:Key="BackgroundCharcoal" Color="#ffffff"/>                                 <!-- Blanco puro -->
     <SolidColorBrush x:Key="BackgroundLight" Color="#ffffff"/>                                    <!-- Blanco puro -->
     <SolidColorBrush x:Key="BackgroundLightColor" Color="#fafaf8"/>                               <!-- Crema muy claro -->
-    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#f5f5f5"/>                                <!-- Gris muy claro -->
+    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#fafaf8"/>                                <!-- Crema muy claro -->
 
     <!-- Azul Corporativo (Color principal - Acentos SUTILES) -->
     <SolidColorBrush x:Key="PrimaryColor" Color="{StaticResource PrimaryColorValue}"/>
@@ -55,10 +55,10 @@
     <SolidColorBrush x:Key="TextDangerColor" Color="#c96b66"/>       <!-- Texto peligro rojo -->
     <SolidColorBrush x:Key="TextOnPrimaryColor" Color="White"/>      <!-- Texto sobre azul (blanco) -->
 
-    <!-- Colores para sidebar (azul suave) -->
-    <SolidColorBrush x:Key="DarkColor" Color="#5a8db5"/>             <!-- Azul suave sidebar -->
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#4a7ba7"/>        <!-- Azul hover -->
-    <SolidColorBrush x:Key="SidebarColor" Color="#5a8db5"/>          <!-- Azul suave sidebar -->
+    <!-- Colores para sidebar (azul pastel claro) -->
+    <SolidColorBrush x:Key="DarkColor" Color="#7ba5c9"/>             <!-- Azul pastel sidebar -->
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#6b9ac4"/>        <!-- Azul claro hover -->
+    <SolidColorBrush x:Key="SidebarColor" Color="#7ba5c9"/>          <!-- Azul pastel sidebar -->
 
     <!-- Bordes (grises muy sutiles) -->
     <SolidColorBrush x:Key="BorderColor" Color="#e0e0e0"/>           <!-- Gris muy claro para bordes -->
