@@ -1,0 +1,141 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ========================================== -->
+    <!-- TEMA: CLASSIC - AZUL/ROJO/BLANCO -->
+    <!-- Profesional, patriótico, moderno -->
+    <!-- ========================================== -->
+
+    <!-- COLORES BASE (para DropShadowEffect y otras propiedades Color) -->
+    <Color x:Key="BackgroundDarkestColor">#0a1929</Color>      <!-- Azul marino muy oscuro -->
+    <Color x:Key="BackgroundDarkColor">#1a2332</Color>         <!-- Azul marino oscuro -->
+    <Color x:Key="BackgroundMediumColor">#1e3a5f</Color>       <!-- Azul marino medio -->
+    <Color x:Key="BackgroundMediumLightColor">#2a4d7c</Color>  <!-- Azul marino claro -->
+    <Color x:Key="PrimaryColorValue">#2563eb</Color>           <!-- Azul brillante -->
+    <Color x:Key="PrimaryDarkColorValue">#1d4ed8</Color>       <!-- Azul oscuro -->
+    <Color x:Key="PrimaryLightColorValue">#60a5fa</Color>      <!-- Azul claro -->
+    <Color x:Key="SuccessColorValue">#2563eb</Color>           <!-- Azul (éxito) -->
+    <Color x:Key="InfoColorValue">#3b82f6</Color>              <!-- Azul info -->
+    <Color x:Key="WarningColorValue">#f59e0b</Color>           <!-- Ámbar (advertencia) -->
+    <Color x:Key="DangerColorValue">#dc2626</Color>            <!-- Rojo vibrante -->
+
+    <!-- Fondos Oscuros (Azul Marino) -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="{StaticResource BackgroundDarkestColor}"/>
+    <SolidColorBrush x:Key="BackgroundDark" Color="{StaticResource BackgroundDarkColor}"/>
+    <SolidColorBrush x:Key="BackgroundMedium" Color="{StaticResource BackgroundMediumColor}"/>
+    <SolidColorBrush x:Key="BackgroundCharcoal" Color="#2d3748"/>
+    <SolidColorBrush x:Key="BackgroundLight" Color="#e5e7eb"/>
+    <SolidColorBrush x:Key="BackgroundLightColor" Color="#f9fafb"/>
+    <SolidColorBrush x:Key="BackgroundGrayColor" Color="#e5e7eb"/>
+
+    <!-- Azul Brillante (Color principal - Acentos) -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="{StaticResource PrimaryColorValue}"/>
+    <SolidColorBrush x:Key="PrimaryDarkColor" Color="{StaticResource PrimaryDarkColorValue}"/>
+    <SolidColorBrush x:Key="PrimaryDeeperColor" Color="#1e40af"/>    <!-- Azul profundo -->
+    <SolidColorBrush x:Key="PrimaryLightColor" Color="#60a5fa"/>     <!-- Azul claro -->
+
+    <!-- Colores de acción -->
+    <SolidColorBrush x:Key="InfoColor" Color="#3b82f6"/>             <!-- Azul (info) -->
+    <SolidColorBrush x:Key="InfoHoverColor" Color="#2563eb"/>        <!-- Azul oscuro (hover) -->
+    <SolidColorBrush x:Key="SuccessColor" Color="#2563eb"/>          <!-- Azul brillante (éxito) -->
+    <SolidColorBrush x:Key="SuccessHoverColor" Color="#1d4ed8"/>     <!-- Azul oscuro (hover) -->
+    <SolidColorBrush x:Key="WarningColor" Color="#f59e0b"/>          <!-- Ámbar (advertencia) -->
+    <SolidColorBrush x:Key="WarningHoverColor" Color="#d97706"/>     <!-- Ámbar oscuro (hover) -->
+    <SolidColorBrush x:Key="DangerColor" Color="#dc2626"/>           <!-- Rojo vibrante (peligro) -->
+    <SolidColorBrush x:Key="DangerHoverColor" Color="#b91c1c"/>      <!-- Rojo oscuro (hover) -->
+
+    <!-- Colores de texto -->
+    <SolidColorBrush x:Key="TextPrimaryColor" Color="#f8fafc"/>      <!-- Texto principal (blanco/gris muy claro) -->
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#e2e8f0"/>    <!-- Texto secundario (gris claro) -->
+    <SolidColorBrush x:Key="TextMutedColor" Color="#94a3b8"/>        <!-- Texto apagado (gris azulado) -->
+    <SolidColorBrush x:Key="TextDarkColor" Color="#0a1929"/>         <!-- Texto oscuro (para fondos claros) -->
+    <SolidColorBrush x:Key="TextAccentColor" Color="#3b82f6"/>       <!-- Texto con acento (azul) -->
+    <SolidColorBrush x:Key="TextSuccessColor" Color="#2563eb"/>      <!-- Texto éxito (azul) -->
+    <SolidColorBrush x:Key="TextDangerColor" Color="#dc2626"/>       <!-- Texto peligro (rojo) -->
+    <SolidColorBrush x:Key="TextOnPrimaryColor" Color="White"/>      <!-- Texto sobre color primario (blanco) -->
+
+    <!-- Colores oscuros para sidebar -->
+    <SolidColorBrush x:Key="DarkColor" Color="#1a2332"/>             <!-- Azul marino oscuro -->
+    <SolidColorBrush x:Key="DarkHoverColor" Color="#0a1929"/>        <!-- Azul marino muy oscuro -->
+    <SolidColorBrush x:Key="SidebarColor" Color="#1a2332"/>          <!-- Azul marino oscuro -->
+
+    <!-- Bordes -->
+    <SolidColorBrush x:Key="BorderColor" Color="#2a4d7c"/>           <!-- Azul marino para bordes -->
+    <SolidColorBrush x:Key="BorderLightColor" Color="#3b5998"/>      <!-- Azul claro -->
+
+    <!-- ========================================== -->
+    <!-- DEGRADADOS MODERNOS -->
+    <!-- ========================================== -->
+
+    <!-- Degradado principal (azul brillante) -->
+    <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="PrimaryGradientVertical" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado oscuro (fondos principales - azul marino) -->
+    <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado sidebar (azul marino oscuro) -->
+    <LinearGradientBrush x:Key="SidebarGradient" x:Shared="False" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado medio (azul marino medio) -->
+    <LinearGradientBrush x:Key="MediumGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource BackgroundMediumColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundMediumLightColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado éxito (azul brillante) -->
+    <LinearGradientBrush x:Key="SuccessGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado azul profundo -->
+    <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado azul claro -->
+    <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource PrimaryLightColorValue}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado para cards (tema oscuro azul marino) -->
+    <LinearGradientBrush x:Key="CardGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado diagonal para fondo principal -->
+    <LinearGradientBrush x:Key="BackgroundDiagonalGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Degradado con efecto de brillo central (para login branding) -->
+    <LinearGradientBrush x:Key="LoginBrandingGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackgroundDarkestColor}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource BackgroundDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

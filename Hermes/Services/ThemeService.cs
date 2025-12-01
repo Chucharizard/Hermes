@@ -128,7 +128,7 @@ namespace Hermes.Services
         /// </summary>
         public string[] GetAvailableThemes()
         {
-            return new[] { "Emerald", "Purple" };
+            return new[] { "Emerald", "Purple", "Classic" };
         }
 
         /// <summary>
