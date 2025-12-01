@@ -11,6 +11,11 @@
     <Color x:Key="BackgroundDarkColor">#234e52</Color>
     <Color x:Key="BackgroundMediumColor">#2d5a5a</Color>
     <Color x:Key="BackgroundMediumLightColor">#3d6b6b</Color>
+
+    <!-- Colores específicos para SIDEBAR (en Emerald usa verde petróleo) -->
+    <Color x:Key="SidebarBackgroundDarkColor">#1a4d4d</Color>
+    <Color x:Key="SidebarBackgroundLightColor">#234e52</Color>
+
     <Color x:Key="PrimaryColorValue">#50c878</Color>
     <Color x:Key="PrimaryDarkColorValue">#2e8b57</Color>
     <Color x:Key="PrimaryLightColorValue">#7fd4a8</Color>

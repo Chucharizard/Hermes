@@ -13,6 +13,11 @@
     <Color x:Key="BackgroundMediumLightColor">#778DA9</Color>
     <Color x:Key="CardBackgroundDarkColor">#1a1a2e</Color>
     <Color x:Key="CardBackgroundLightColor">#16213e</Color>
+
+    <!-- Colores específicos para SIDEBAR (en Purple usa azul medianoche) -->
+    <Color x:Key="SidebarBackgroundDarkColor">#0d1b2a</Color>
+    <Color x:Key="SidebarBackgroundLightColor">#1b263b</Color>
+
     <Color x:Key="PrimaryColorValue">#5DADE2</Color>
     <Color x:Key="PrimaryDarkColorValue">#3498DB</Color>
     <Color x:Key="PrimaryLightColorValue">#85C1E9</Color>
