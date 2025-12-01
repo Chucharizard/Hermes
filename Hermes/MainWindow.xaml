@@ -181,9 +181,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
             
-            <!-- Sidebar Menu con degradado vertical morado medianoche -->
+            <!-- Sidebar Menu con degradado vertical azul marino -->
             <Border x:Name="SidebarBorder" Grid.Column="0" Padding="0,20"
-                    Background="{DynamicResource BackgroundDarkest}">
+                    Background="{DynamicResource SidebarGradient}">
                 <StackPanel>
                     <!-- Botón Hamburguesa -->
                     <Button Content="☰"
@@ -228,7 +228,7 @@
                             BorderThickness="1"
                             Visibility="{Binding SidebarColapsado, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource BackgroundDarkestColor}"/>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4" Color="{DynamicResource SidebarBackgroundDarkColor}"/>
                         </Border.Effect>
                         <StackPanel>
                             <TextBlock Text="{Binding NombreUsuarioActual}"
