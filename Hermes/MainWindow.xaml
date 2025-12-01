@@ -580,7 +580,7 @@
                             </ComboBox.ItemContainerStyle>
                             <ComboBoxItem Content="🌿 Verde Esmeralda" Tag="Emerald"/>
                             <ComboBoxItem Content="💜 Morado Azul" Tag="Purple"/>
-                            <ComboBoxItem Content="🇧🇴 Patriótico Classic" Tag="Classic"/>
+                            <ComboBoxItem Content="☀️ Modo Claro" Tag="Classic"/>
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
