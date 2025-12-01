@@ -15,6 +15,7 @@
     <!-- Colores específicos para SIDEBAR (en Emerald usa verde petróleo) -->
     <Color x:Key="SidebarBackgroundDarkColor">#1a4d4d</Color>
     <Color x:Key="SidebarBackgroundLightColor">#234e52</Color>
+    <Color x:Key="SidebarBackgroundHoverColor">#164040</Color>  <!-- Verde petróleo oscuro hover -->
 
     <Color x:Key="PrimaryColorValue">#50c878</Color>
     <Color x:Key="PrimaryDarkColorValue">#2e8b57</Color>
@@ -63,6 +64,7 @@
     <SolidColorBrush x:Key="DarkColor" Color="#234e52"/>             <!-- Verde petróleo oscuro -->
     <SolidColorBrush x:Key="DarkHoverColor" Color="#1a4d4d"/>        <!-- Verde petróleo muy oscuro -->
     <SolidColorBrush x:Key="SidebarColor" Color="#234e52"/>          <!-- Verde petróleo oscuro -->
+    <SolidColorBrush x:Key="SidebarBackgroundHover" Color="#164040"/><!-- Verde petróleo oscuro hover -->
 
     <!-- Bordes -->
     <SolidColorBrush x:Key="BorderColor" Color="#3d6b6b"/>           <!-- Verde petróleo para bordes -->

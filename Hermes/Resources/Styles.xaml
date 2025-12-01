@@ -327,7 +327,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource BackgroundMedium}"/>
+                <Setter Property="Background" Value="{DynamicResource SidebarBackgroundHover}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

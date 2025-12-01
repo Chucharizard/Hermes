@@ -16,6 +16,7 @@
     <!-- NUEVOS: Colores específicos para SIDEBAR y LOGIN (Azul Marino) -->
     <Color x:Key="SidebarBackgroundDarkColor">#2c5282</Color>  <!-- Azul marino oscuro SIDEBAR/LOGIN -->
     <Color x:Key="SidebarBackgroundLightColor">#3c6896</Color> <!-- Azul marino claro SIDEBAR/LOGIN -->
+    <Color x:Key="SidebarBackgroundHoverColor">#234567</Color> <!-- Azul marino muy oscuro hover -->
 
     <Color x:Key="PrimaryColorValue">#5a8db5</Color>           <!-- Azul solo para botones -->
     <Color x:Key="PrimaryDarkColorValue">#4a7ba7</Color>       <!-- Azul oscuro botones -->
@@ -37,7 +38,7 @@
     <!-- NUEVOS: Brushes específicos para SIDEBAR y LOGIN (AZUL MARINO) -->
     <SolidColorBrush x:Key="SidebarBackground" Color="#3c6896"/>        <!-- Azul marino SIDEBAR/LOGIN -->
     <SolidColorBrush x:Key="SidebarBackgroundDark" Color="#2c5282"/>    <!-- Azul marino oscuro SIDEBAR/LOGIN -->
-    <SolidColorBrush x:Key="SidebarBackgroundHover" Color="#2c5282"/>   <!-- Azul marino hover -->
+    <SolidColorBrush x:Key="SidebarBackgroundHover" Color="#234567"/>   <!-- Azul marino muy oscuro hover -->
 
     <!-- Azul Corporativo (Color principal - Acentos SUTILES) -->
     <SolidColorBrush x:Key="PrimaryColor" Color="{StaticResource PrimaryColorValue}"/>

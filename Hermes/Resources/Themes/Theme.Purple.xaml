@@ -17,6 +17,7 @@
     <!-- Colores específicos para SIDEBAR (en Purple usa azul medianoche) -->
     <Color x:Key="SidebarBackgroundDarkColor">#0d1b2a</Color>
     <Color x:Key="SidebarBackgroundLightColor">#1b263b</Color>
+    <Color x:Key="SidebarBackgroundHoverColor">#0a1520</Color>  <!-- Azul medianoche muy oscuro hover -->
 
     <Color x:Key="PrimaryColorValue">#5DADE2</Color>
     <Color x:Key="PrimaryDarkColorValue">#3498DB</Color>
@@ -56,6 +57,7 @@
     <SolidColorBrush x:Key="DarkColor" Color="#1b263b"/>             <!-- Azul oscuro -->
     <SolidColorBrush x:Key="DarkHoverColor" Color="#0d1b2a"/>        <!-- Azul muy oscuro -->
     <SolidColorBrush x:Key="SidebarColor" Color="#1b263b"/>          <!-- Azul oscuro -->
+    <SolidColorBrush x:Key="SidebarBackgroundHover" Color="#0a1520"/><!-- Azul medianoche muy oscuro hover -->
 
     <!-- Textos (mejorado para contraste) -->
     <SolidColorBrush x:Key="TextPrimaryColor" Color="#FFFFFF"/>      <!-- Blanco puro para fondos oscuros -->
