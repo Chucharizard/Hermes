@@ -100,10 +100,10 @@
         <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado sidebar vertical (azul marino) -->
+    <!-- Degradado sidebar vertical (azul marino) - VALORES DIRECTOS -->
     <LinearGradientBrush x:Key="SidebarGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="0"/>
-        <GradientStop Color="{StaticResource SidebarBackgroundDarkColor}" Offset="1"/>
+        <GradientStop Color="#3c6896" Offset="0"/>
+        <GradientStop Color="#2c5282" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado medio (blanco a crema muy sutil) -->

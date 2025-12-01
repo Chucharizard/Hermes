@@ -51,6 +51,10 @@ namespace Hermes
             {
                 ThemeComboBox.SelectedIndex = 1;
             }
+            else if (currentTheme == "Classic")
+            {
+                ThemeComboBox.SelectedIndex = 2;
+            }
         }
 
         /// <summary>
@@ -95,31 +99,34 @@ namespace Hermes
                 var backgroundDarkest = (Color)Application.Current.FindResource("BackgroundDarkestColor");
                 var backgroundDark = (Color)Application.Current.FindResource("BackgroundDarkColor");
 
+                // Obtener colores específicos para SIDEBAR (pueden ser diferentes a los backgrounds generales)
+                var sidebarDark = (Color)Application.Current.FindResource("SidebarBackgroundDarkColor");
+                var sidebarLight = (Color)Application.Current.FindResource("SidebarBackgroundLightColor");
+
                 // ===== TITLE BAR =====
                 // Actualizar el background de la barra de título
                 TitleBarBorder.Background = new SolidColorBrush(backgroundDarkest);
 
                 // ===== SIDEBAR =====
-                // Crear nuevo LinearGradientBrush vertical para sidebar
+                // Crear nuevo LinearGradientBrush vertical para sidebar usando colores específicos
                 var sidebarBrush = new LinearGradientBrush
                 {
                     StartPoint = new Point(0, 0),
                     EndPoint = new Point(0, 1)
                 };
-                sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 0));
-                sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 0.5));
-                sidebarBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 1));
+                sidebarBrush.GradientStops.Add(new GradientStop(sidebarLight, 0));
+                sidebarBrush.GradientStops.Add(new GradientStop(sidebarDark, 1));
                 SidebarBorder.Background = sidebarBrush;
 
                 // ===== USER INFO BORDER =====
-                // Crear nuevo LinearGradientBrush para el borde de información del usuario
+                // Crear nuevo LinearGradientBrush para el borde de información del usuario usando colores específicos de sidebar
                 var userInfoBrush = new LinearGradientBrush
                 {
                     StartPoint = new Point(0, 0),
                     EndPoint = new Point(0, 1)
                 };
-                userInfoBrush.GradientStops.Add(new GradientStop(backgroundDark, 0));
-                userInfoBrush.GradientStops.Add(new GradientStop(backgroundDarkest, 1));
+                userInfoBrush.GradientStops.Add(new GradientStop(sidebarLight, 0));
+                userInfoBrush.GradientStops.Add(new GradientStop(sidebarDark, 1));
                 UserInfoBorder.Background = userInfoBrush;
 
                 // Actualizar el BorderBrush del UserInfoBorder
