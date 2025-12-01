@@ -4,14 +4,19 @@
     <!-- ========================================== -->
     <!-- TEMA: CLASSIC - MODO CLARO PROFESIONAL -->
     <!-- Elegante, simple, formal, sin saturación -->
-    <!-- Fondos blancos con detalles azules -->
+    <!-- Fondos blancos + Sidebar/Login azul marino -->
     <!-- ========================================== -->
 
     <!-- COLORES BASE (para DropShadowEffect y otras propiedades Color) -->
-    <Color x:Key="BackgroundDarkestColor">#7b7368</Color>      <!-- Gris cálido oscuro SIDEBAR -->
-    <Color x:Key="BackgroundDarkColor">#8b8378</Color>         <!-- Gris cálido SIDEBAR -->
+    <Color x:Key="BackgroundDarkestColor">#fafaf8</Color>      <!-- Crema claro (general) -->
+    <Color x:Key="BackgroundDarkColor">#f5f5f5</Color>         <!-- Gris muy claro (general) -->
     <Color x:Key="BackgroundMediumColor">#ffffff</Color>       <!-- BLANCO PURO para tablas/panels -->
     <Color x:Key="BackgroundMediumLightColor">#ffffff</Color>  <!-- Blanco puro -->
+
+    <!-- NUEVOS: Colores específicos para SIDEBAR y LOGIN (Azul Marino) -->
+    <Color x:Key="SidebarBackgroundDarkColor">#2c5282</Color>  <!-- Azul marino oscuro SIDEBAR/LOGIN -->
+    <Color x:Key="SidebarBackgroundLightColor">#3c6896</Color> <!-- Azul marino claro SIDEBAR/LOGIN -->
+
     <Color x:Key="PrimaryColorValue">#5a8db5</Color>           <!-- Azul solo para botones -->
     <Color x:Key="PrimaryDarkColorValue">#4a7ba7</Color>       <!-- Azul oscuro botones -->
     <Color x:Key="PrimaryLightColorValue">#7ba5c9</Color>      <!-- Azul claro botones -->
@@ -20,14 +25,19 @@
     <Color x:Key="WarningColorValue">#d9a566</Color>           <!-- Ámbar claro -->
     <Color x:Key="DangerColorValue">#c96b66</Color>            <!-- Rojo suave -->
 
-    <!-- Fondos BLANCOS y CREMA (TODO blanco/crema, SIN AZUL) -->
-    <SolidColorBrush x:Key="BackgroundDarkest" Color="#7b7368"/>   <!-- Gris cálido oscuro SIDEBAR -->
-    <SolidColorBrush x:Key="BackgroundDark" Color="#8b8378"/>      <!-- Gris cálido SIDEBAR -->
+    <!-- Fondos BLANCOS y CREMA (para contenido general) -->
+    <SolidColorBrush x:Key="BackgroundDarkest" Color="#fafaf8"/>   <!-- Crema claro -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#f5f5f5"/>      <!-- Gris muy claro -->
     <SolidColorBrush x:Key="BackgroundMedium" Color="#ffffff"/>    <!-- BLANCO para tablas/panels -->
     <SolidColorBrush x:Key="BackgroundCharcoal" Color="#ffffff"/>  <!-- Blanco puro -->
     <SolidColorBrush x:Key="BackgroundLight" Color="#ffffff"/>     <!-- Blanco puro -->
     <SolidColorBrush x:Key="BackgroundLightColor" Color="#fafaf8"/><!-- Crema muy claro -->
     <SolidColorBrush x:Key="BackgroundGrayColor" Color="#fafaf8"/> <!-- Crema muy claro -->
+
+    <!-- NUEVOS: Brushes específicos para SIDEBAR y LOGIN (AZUL MARINO) -->
+    <SolidColorBrush x:Key="SidebarBackground" Color="#3c6896"/>        <!-- Azul marino SIDEBAR/LOGIN -->
+    <SolidColorBrush x:Key="SidebarBackgroundDark" Color="#2c5282"/>    <!-- Azul marino oscuro SIDEBAR/LOGIN -->
+    <SolidColorBrush x:Key="SidebarBackgroundHover" Color="#2c5282"/>   <!-- Azul marino hover -->
 
     <!-- Azul Corporativo (Color principal - Acentos SUTILES) -->
     <SolidColorBrush x:Key="PrimaryColor" Color="{StaticResource PrimaryColorValue}"/>
@@ -55,10 +65,10 @@
     <SolidColorBrush x:Key="TextDangerColor" Color="#c96b66"/>       <!-- Texto peligro rojo -->
     <SolidColorBrush x:Key="TextOnPrimaryColor" Color="White"/>      <!-- Texto sobre azul (blanco) -->
 
-    <!-- Colores para sidebar (GRIS CÁLIDO) -->
-    <SolidColorBrush x:Key="DarkColor" Color="#8b8378"/>             <!-- Gris cálido sidebar -->
-    <SolidColorBrush x:Key="DarkHoverColor" Color="#7b7368"/>        <!-- Gris cálido oscuro hover -->
-    <SolidColorBrush x:Key="SidebarColor" Color="#8b8378"/>          <!-- Gris cálido sidebar -->
+    <!-- Colores para sidebar (AHORA usa recursos específicos SidebarBackground*) -->
+    <SolidColorBrush x:Key="DarkColor" Color="{StaticResource SidebarBackgroundLightColor}"/>      <!-- Azul marino sidebar -->
+    <SolidColorBrush x:Key="DarkHoverColor" Color="{StaticResource SidebarBackgroundDarkColor}"/>  <!-- Azul marino hover -->
+    <SolidColorBrush x:Key="SidebarColor" Color="{StaticResource SidebarBackgroundLightColor}"/>   <!-- Azul marino sidebar -->
 
     <!-- Bordes (grises muy sutiles) -->
     <SolidColorBrush x:Key="BorderColor" Color="#e0e0e0"/>           <!-- Gris muy claro para bordes -->
@@ -79,21 +89,21 @@
         <GradientStop Color="{StaticResource PrimaryDarkColorValue}" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado para sidebar (GRIS CÁLIDO) -->
+    <!-- Degradado para sidebar (AZUL MARINO - usa recursos específicos) -->
     <LinearGradientBrush x:Key="DarkGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#7b7368" Offset="0"/>
-        <GradientStop Color="#8b8378" Offset="1"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DarkGradientVertical" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#7b7368" Offset="0"/>
-        <GradientStop Color="#8b8378" Offset="1"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundDarkColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado sidebar vertical (gris cálido) -->
+    <!-- Degradado sidebar vertical (azul marino) -->
     <LinearGradientBrush x:Key="SidebarGradient" x:Shared="False" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#8b8378" Offset="0"/>
-        <GradientStop Color="#7b7368" Offset="1"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Degradado medio (blanco a crema muy sutil) -->
@@ -108,13 +118,13 @@
         <GradientStop Color="#5a8a6e" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado gris cálido -->
+    <!-- Degradado azul marino para sidebar/login -->
     <LinearGradientBrush x:Key="DeepBlueGradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#8b8378" Offset="0"/>
-        <GradientStop Color="#7b7368" Offset="1"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundDarkColor}" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado azul claro suave -->
+    <!-- Degradado azul claro suave (para botones) -->
     <LinearGradientBrush x:Key="LightBlueGradient" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Color="{StaticResource PrimaryLightColorValue}" Offset="0"/>
         <GradientStop Color="{StaticResource PrimaryColorValue}" Offset="1"/>
@@ -132,11 +142,11 @@
         <GradientStop Color="#fafaf8" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- Degradado con efecto sutil para login branding (gris cálido) -->
+    <!-- Degradado con efecto sutil para login branding (AZUL MARINO) -->
     <LinearGradientBrush x:Key="LoginBrandingGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#8b8378" Offset="0"/>
-        <GradientStop Color="#7b7368" Offset="0.5"/>
-        <GradientStop Color="#8b8378" Offset="1"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundDarkColor}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource SidebarBackgroundLightColor}" Offset="1"/>
     </LinearGradientBrush>
 
 </ResourceDictionary>
